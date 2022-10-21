@@ -59,7 +59,10 @@
                       </div>
                     </td>
                     <td>
-                      <div class="requirements__icon" (click)="confirmDelete(r.id)">
+                      <div
+                        class="requirements__icon"
+                        (click)="confirmDelete(r.id)"
+                      >
                         <img src="assets/img/iconos/ico-trash.svg" />
                       </div>
                     </td>
@@ -207,28 +210,25 @@
   </form>
 </p-dialog>
 
-
 <p-dialog
   header="Confirmación de eliminar"
-  class="modalNewReq confirm-delete"
+  class="confirmDelete"
   [(visible)]="this.displayConfirma"
   [modal]="true"
   [draggable]="false"
   [resizable]="false"
 >
-  <div class="content-confirm">
-      <img src="assets/img/iconos/ico-trash.svg" alt="">
-      <h3>¿Está seguro de eliminar este dato?</h3>
+  <div class="confirmDelete__confirm">
+    <div>
+      <img src="assets/img/iconos/ico-trash.svg" alt="icono eliminar" />
+    </div>
+    <div>¿Está seguro de eliminar este dato?</div>
   </div>
 
   <div class="modalNewReq__buttons u-mb-25">
-      <button
-        class="btn-outline-primary"
-        (click)="this.displayConfirma = false"
-      >
-        Cancelar
-      </button>
-      <button class="btn-primary" (click)="deleteReq()">Aceptar</button>
+    <button class="btn-outline-primary" (click)="this.displayConfirma = false">
+      Cancelar
+    </button>
+    <button class="btn-primary" (click)="deleteReq()">Aceptar</button>
   </div>
-
 </p-dialog>
