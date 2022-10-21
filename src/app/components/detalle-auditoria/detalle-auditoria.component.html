@@ -1,7 +1,12 @@
 <div class="page">
   <div class="container detail-flex">
     <div class="titulo-bloque">Ficha técnica</div>
-    <div class="detail-link">Editar</div>
+    <div
+      class="detail-link"
+      [routerLink]="['/auditoria', idAuditoria, isEdit, '']"
+    >
+      Editar
+    </div>
   </div>
 
   <section class="detail">
