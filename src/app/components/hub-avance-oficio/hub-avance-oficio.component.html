@@ -1,0 +1,64 @@
+<div class="page">
+  <div class="container">
+    <div class="titulo-bloque u-mb-5">HUB colaborativo / Avance del oficio</div>
+    <div class="subtitulo-bloque">Oficio 230 / 2020</div>
+  </div>
+  <section>
+    <div class="container">
+      <div class="middleBoard u-pb-50">
+        <div class="section dataSheet section-padding">
+          <div class="section__title title__xl">
+            Requerimientos contabilidad
+          </div>
+          <div class="section__content">
+            <div class="task__table">
+              <p-table class="table table-contabilidad" [value]="contabilidad">
+                <ng-template pTemplate="header">
+                  <tr>
+                    <th>Responsable</th>
+                    <th>Requerimiento</th>
+                    <th>Estatus actual</th>
+                    <th>Fecha de entrega</th>
+                    <th>&nbsp;</th>
+                  </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-contabilidad>
+                  <tr>
+                    <td>{{ contabilidad.responsable }}</td>
+                    <td>{{ contabilidad.requerimiento }}</td>
+                    <td>
+                      <div class="d-flex-alignCenter">
+                        <span
+                          class="estatus-actual"
+                          [ngClass]="{
+                            estatus__roja: contabilidad.colorEstatus === 'rojo',
+                            estatus__amarillo:
+                              contabilidad.colorEstatus === 'amarillo',
+                            estatus__verde:
+                              contabilidad.colorEstatus === 'verde'
+                          }"
+                        ></span>
+                        {{ contabilidad.estatus }}
+                      </div>
+                    </td>
+                    <td>{{ contabilidad.fechaEntrega }}</td>
+                    <td>
+                      <a class="link" routerLink="/ver-detalle-requerimiento">{{
+                        contabilidad.detalle
+                      }}</a>
+                    </td>
+                  </tr>
+                </ng-template>
+              </p-table>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="d-flex-justifyCenter u-mt-30">
+        <button class="btn-auditoria" routerLink="/hub-colaborativo">
+          Regresar a HUB
+        </button>
+      </div>
+    </div>
+  </section>
+</div>

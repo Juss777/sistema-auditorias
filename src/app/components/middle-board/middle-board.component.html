@@ -1,0 +1,68 @@
+<div class="container">
+  <div class="titulo-bloque">Dashboard</div>
+</div>
+<div class="container">
+  <div class="section dataSheet section-padding">
+    <div class="section__title">Ficha técnica</div>
+    <div class="section__content">
+      <div
+        class="dataFicha"
+        [ngClass]="{
+          card__informative: auditoria.tipoCard === 'informativo',
+          card__entregadoMal: auditoria.tipoCard === 'mal',
+          card__entregadoCambios: auditoria.tipoCard === 'cambios'
+        }"
+      >
+        <div class="dataFicha_header">
+          <div class="header-titulo">
+            <h3>BAZ 2016</h3>
+            <div>Ord. Revisión: BAZ960100134</div>
+          </div>
+          <div class="header-monto">Monto: <span>$23,172 MDP</span></div>
+        </div>
+        <div class="dataFicha_body u-mb-40">
+          <div class="body-detalles borderTop-gris">
+            <div>
+              <span>Año</span>
+              <span>2016</span>
+            </div>
+            <div>
+              <span>Unidad de negocio</span>
+              <span>BAZ</span>
+            </div>
+            <div>
+              <span>Autoridad:</span>
+              <span
+                >Administración centrar de fiscalización a grupos de sociedades
+                adscrita.</span
+              >
+            </div>
+          </div>
+          <div class="body-detalles borderTop-gris">
+            <div>
+              <span>Representante de la Unidad de Negocio: </span>
+              <span>Jesús Morales Aguilar</span>
+            </div>
+            <div>
+              <span>Fecha de creación: </span>
+              <span>20/09/2016</span>
+            </div>
+            <div>
+              <span>Creador: </span>
+              <span>Marco López</span>
+            </div>
+          </div>
+        </div>
+        <!-- , auditoria.id, true -->
+        <div class="dataFicha_footer">
+          <button
+            class="btn-auditoria"
+            [routerLink]="['/detalle-auditoria', auditoria.id]"
+          >
+            Ir a detalle
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

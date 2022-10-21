@@ -1,0 +1,419 @@
+<section class="audit catalogs">
+  <!-- ***************************UNIDAD DE NEGOCIO*************************** -->
+  <form
+    [formGroup]="formUnidadNegocio"
+    (ngSubmit)="addData(formUnidadNegocio, 'unidadNegocio')"
+    *ngIf="catalog == 'unidadNegocio'"
+  >
+    <div class="audit__columns2 u-mb-50">
+      <div class="p-field styleInput">
+        <label for="unidadNegocio">Nombre de unidad de negocio</label>
+        <input
+          id="unidadNegocio"
+          type="text"
+          placeholder="Ingresa la unidad de negocio"
+          pInputText
+          formControlName="nombre"
+        />
+        <small
+          class="audit__required"
+          *ngIf="auditoriaService.validaCampo(formUnidadNegocio, 'nombre')"
+          >* Campo requerido.</small
+        >
+      </div>
+
+      <div class="p-field styleInput">
+        <label for="rfc">RFC</label>
+        <input
+          id="rfc"
+          type="text"
+          placeholder="Ingresa el rfc"
+          pInputText
+          formControlName="rfc"
+        />
+        <small
+          class="audit__required"
+          *ngIf="auditoriaService.validaCampo(formUnidadNegocio, 'rfc')"
+          >* Campo requerido.</small
+        >
+      </div>
+
+      <div class="p-field styleInput">
+        <label for="siglas">Siglas</label>
+        <input
+          id="siglas"
+          type="text"
+          placeholder="Ingresa las siglas"
+          pInputText
+          formControlName="siglas"
+        />
+        <small
+          class="audit__required"
+          *ngIf="auditoriaService.validaCampo(formUnidadNegocio, 'siglas')"
+          >* Campo requerido.</small
+        >
+      </div>
+    </div>
+    <div class="audit__columns1">
+      <div class="buttons-content">
+        <button type="submit" class="btn-primary">Agregar</button>
+      </div>
+    </div>
+  </form>
+
+  <!-- ***************************ÁREA RESPONSABLE*************************** -->
+  <form
+    [formGroup]="formAreaResponsable"
+    (ngSubmit)="addData(formAreaResponsable, 'areaResponsable')"
+    *ngIf="catalog == 'areaResponsable'"
+  >
+    <div class="audit__columns2 u-mb-50">
+      <div class="p-field styleInput">
+        <label for="areaResponsable">Área responsable</label>
+        <input
+          id="areaResponsable"
+          type="text"
+          placeholder="Ingresa el numero de año"
+          pInputText
+          formControlName="areaResponsable"
+        />
+        <small
+          class="audit__required"
+          *ngIf="
+            auditoriaService.validaCampo(formAreaResponsable, 'areaResponsable')
+          "
+          >* Campo requerido.</small
+        >
+      </div>
+
+      <div class="p-field styleInput">
+        <label for="grupoCorreo">Grupo de correo</label>
+        <input
+          id="grupoCorreo"
+          type="text"
+          placeholder="Ingresa el grupo de correo"
+          pInputText
+          formControlName="grupoCorreo"
+        />
+        <small
+          class="audit__required"
+          *ngIf="
+            auditoriaService.validaCampo(formAreaResponsable, 'grupoCorreo')
+          "
+          >* Campo requerido.</small
+        >
+      </div>
+
+      <div class="p-field styleInput">
+        <label for="responsableArea">Responsable del área</label>
+        <input
+          id="responsableArea"
+          type="text"
+          pInputText
+          placeholder="Ingresa el responsable del área"
+          formControlName="responsableArea"
+        />
+        <small
+          class="audit__required"
+          *ngIf="
+            auditoriaService.validaCampo(formAreaResponsable, 'responsableArea')
+          "
+          >* Campo requerido.</small
+        >
+      </div>
+    </div>
+    <div class="audit__columns1">
+      <div class="buttons-content">
+        <button type="submit" class="btn-primary">Agregar</button>
+      </div>
+    </div>
+  </form>
+
+  <!-- ***************************ÁREA*************************** -->
+  <form
+    [formGroup]="formArea"
+    (ngSubmit)="addData(formArea, catalog)"
+    *ngIf="catalog == 'area' || catalog == 'instrumento'"
+    class="space-bottom"
+  >
+    <div class="audit__columns2 u-mb-50">
+      <div class="p-field styleInput">
+        <label for="area">Nombre del {{catalog}}</label>
+        <input
+          id="area"
+          type="text"
+          placeholder="{{catalog == 'area' ? 'Ingresa el nombre del área' : ''}}"
+          pInputText
+          formControlName="nombre"
+        />
+        <small
+          class="audit__required"
+          *ngIf="
+            auditoriaService.validaCampo(formArea, 'nombre')
+          "
+          >* Campo requerido.</small
+        >
+      </div>
+    </div>
+    <div class="audit__columns1">
+      <div class="buttons-content">
+        <button type="submit" class="btn-primary">Agregar</button>
+      </div>
+    </div>
+  </form>
+
+  <div *ngIf="catalog == 'instrumento'" class="sectionNoBg__title" style="margin-bottom:43px;">{{catalogName}}</div>
+  <!-- ***************************REPRESENTANTE LEGAL*************************** -->
+  <form 
+    [formGroup]="formRepresentante"
+    *ngIf="catalog == 'representanteLegal' || catalog == 'administradorGeneral' || catalog == 'administradorCentral' || catalog == 'administradorArea' || catalog == 'instrumento'"
+    (ngSubmit)="addData(formRepresentante, catalog)"
+  >
+    <div class="audit__columns2 u-mb-50">
+      <div class="p-field styleInput">
+        <label for="representanteLegal">Nombres</label>
+        <input
+          id="representanteLegal"
+          type="text"
+          placeholder="Ingresa nombre del representante"
+          pInputText
+          formControlName="nombre"
+        />
+        <small
+          class="audit__required"
+          *ngIf="auditoriaService.validaCampo(formRepresentante, 'nombre')"
+          >* Campo requerido.</small
+        >
+      </div>
+
+      <div class="p-field styleInput">
+        <label for="apellidoPaterno">Apellido Paterno</label>
+        <input
+          id="apellidoPaterno"
+          type="text"
+          placeholder="Ingresa el apellido paterno"
+          pInputText
+          formControlName="apellidoPat"
+        />
+        <small
+          class="audit__required"
+          *ngIf="auditoriaService.validaCampo(formRepresentante, 'apellidoPat')"
+          >* Campo requerido.</small
+        >
+      </div>
+
+      <div class="p-field styleInput">
+        <label for="apellidoMaterno">Apellido Materno</label>
+        <input
+          id="apellidoMaterno"
+          type="text"
+          placeholder="Ingresa el apellido materno"
+          pInputText
+          formControlName="apellidoMat"
+        />
+        <small
+          class="audit__required"
+          *ngIf="auditoriaService.validaCampo(formRepresentante, 'apellidoMat')"
+          >* Campo requerido.</small
+        >
+      </div>
+    </div>
+
+    <div class="audit__columns1">
+      <div class="buttons-content">
+        <button type="submit" class="btn-primary">Agregar</button>
+      </div>
+    </div>
+  </form>
+
+  <!-- ***************************TIPO REQUERIMIENTO*************************** -->
+  <form
+    [formGroup]="formTipoRequerimiento"
+    *ngIf="catalog == 'tipoRequerimiento'"
+    (ngSubmit)="addData(formTipoRequerimiento, 'tipoRequerimiento')"
+  >
+    <div class="audit__columns1 u-mb-50">
+      <div class="p-field styleInput">
+        <label for="representanteLegal">Tipo de reuqerimiento</label>
+        <textarea
+          id="tipoRequerimiento"
+          formControlName="tipoRequerimiento"
+          placeholder="Ingresa texto"
+          pInputTextarea
+        ></textarea>
+        <small
+          class="audit__required"
+          *ngIf="
+            auditoriaService.validaCampo(
+              formTipoRequerimiento,
+              'tipoRequerimiento'
+            )
+          "
+          >* Campo requerido.</small
+        >
+      </div>
+    </div>
+
+    <div class="audit__columns2 u-mb-50">
+      <!-- ***************************COLUMNA 1*************************** -->
+      <div class="audit__team">
+        <div class="p-field styleInput">
+          <div class="label-checks">
+            <p-checkbox
+              [(ngModel)]="materialidadChecked"
+              [binary]="true"
+              inputId="materialidad"
+            ></p-checkbox>
+            <label for="materialidad">Materialidad</label>
+          </div>
+        </div>
+
+        <div class="p-field styleInput">
+          <label>Tipo de documentos</label>
+          <div class="audit__flex">
+            <p-autoComplete
+              [suggestions]="filteredDocuments"
+              (completeMethod)="filter($event, tipoDocumentosList)"
+              placeholder="Búsqueda autocomplete"
+              formControlName="tipo"
+            ></p-autoComplete>
+            <img src="assets/img/iconos/gear-fill.svg" alt="" />
+            <small
+              class="audit__required"
+              *ngIf="auditoriaService.validaCampo(formRepresentante, 'nombre')"
+              >* Campo requerido.</small
+            >
+          </div>
+        </div>
+
+        <div class="p-field">
+          <div class="content_type_docs">
+            <div class="bg-type-docs">
+              Contratos <span class="ico-delet-type-docs">x</span>
+            </div>
+            <div class="bg-type-docs">
+              Balanzas <span class="ico-delet-type-docs">x</span>
+            </div>
+            <div class="bg-type-docs">
+              Tickets <span class="ico-delet-type-docs">x</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ***************************COLUMNA 2*************************** -->
+      <div class="audit__team">
+        <div class="p-field styleInput">
+          <div class="label-checks">
+            <p-checkbox
+              [(ngModel)]="legalidadChecked"
+              [binary]="true"
+              inputId="legalidad"
+            ></p-checkbox>
+            <label for="legalidad">Legalidad</label>
+          </div>
+        </div>
+
+        <div class="p-field styleInput">
+          <label>Tipo de documentos</label>
+          <div class="audit__flex">
+            <p-autoComplete
+              [suggestions]="filteredDocuments"
+              (completeMethod)="filter($event, tipoDocumentosList)"
+              placeholder="Búsqueda autocomplete"
+              formControlName="tipoDocumento"
+            ></p-autoComplete>
+          </div>
+        </div>
+
+        <div class="p-field styleInput">
+          <div class="height-label"></div>
+          <input
+            type="text"
+            placeholder="Ingresa tipo de documento"
+            pInputText
+            formControlName="tipoDoc"
+          />
+        </div>
+
+        <div class="p-field styleInput">
+          <div class="height-label"></div>
+          <input
+            type="text"
+            placeholder="Ingresa tipo de documento"
+            pInputText
+          />
+        </div>
+      </div>
+    </div>
+
+    <div class="audit__columns1">
+      <div class="buttons-content">
+        <button type="submit" class="btn-primary">Guardar</button>
+      </div>
+    </div>
+  </form>
+
+
+  <!-- ***********************************TABLES*********************************** -->
+  <div class="requirements__content">
+    <div class="requirements__overflow">
+      <table class="table" >
+        <!-- *********************UNIDAD DE NEGOCIO************************ -->
+        <tbody *ngIf="catalog == 'unidadNegocio'">
+          <tr *ngFor="let item of list">
+            <td>{{item.nombre}}</td>
+            <td>{{item.rfc}}</td>
+            <td>{{item.siglas}}</td>
+            <td><img src="assets/img/iconos/ico-trash.svg"/></td>
+            <td><img src="assets/img/iconos/ico-pencil-square.svg"></td>
+          </tr>
+        </tbody>
+
+        <!-- *********************REPRESENTANTE LEGAL, RESPONSABLE AREA************************ -->
+        <tbody *ngIf="catalog == 'representanteLegal' || catalog == 'responsableArea' || catalog == 'contencioso' || catalog == 'directorArea' || catalog == 'administradorArea'">
+          <tr *ngFor="let item of list">
+            <td>{{item.nombre}}</td>
+            <td>{{item.apellidoPat}}</td>
+            <td>{{item.apellidoMat}}</td>
+            <td><img src="assets/img/iconos/ico-trash.svg"/></td>
+            <td><img src="assets/img/iconos/ico-pencil-square.svg"></td>
+          </tr>
+        </tbody>
+
+        <!-- *********************INTRUMENTO************************ -->
+        <tbody *ngIf="catalog == 'instrumento'">
+          <tr *ngFor="let item of list">
+            <td>{{item.nombre}}</td>
+            <td>USUARIO 1</td>
+            <td><img src="assets/img/iconos/ico-trash.svg" /></td>
+            <td><img src="assets/img/iconos/ico-pencil-square.svg"></td>
+          </tr>
+        </tbody>
+
+        <!-- *********************ÁREA************************ -->
+        <tbody *ngIf="catalog == 'area'">
+          <tr *ngFor="let item of list">
+            <td>{{item.nombre}}</td>
+            <td>USUARIO 1</td>
+            <td><img src="assets/img/iconos/ico-trash.svg" /></td>
+            <td><img src="assets/img/iconos/ico-pencil-square.svg"></td>
+          </tr>
+        </tbody>
+
+        <!-- *********************AUTORIDAD************************ -->
+        <tbody *ngIf="catalog == 'autoridad'">
+          <tr *ngFor="let item of list">
+            <td>{{item.nombre}}</td>
+            <td>USUARIO 1</td>
+            <td><img src="assets/img/iconos/ico-trash.svg" /></td>
+            <td><img src="assets/img/iconos/ico-pencil-square.svg"></td>
+          </tr>
+        </tbody>
+
+      </table>
+    </div>
+  </div>
+
+  
+</section>

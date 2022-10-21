@@ -1,0 +1,196 @@
+.tracking {
+  &__content {
+    background-color: var(--color-blanco);
+    box-shadow: 0px 3px 6px #00000029;
+    border-radius: 3px;
+  }
+
+  &__header {
+    padding: 20px;
+    border-bottom: 1px solid #00000029;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+
+    div {
+      span {
+        display: block;
+        line-height: 1.6;
+        font-family: var(--main-font-regular);
+        &:nth-child(1) {
+          font-size: 1.4rem;
+          color: #43413b;
+        }
+        &:nth-child(2) {
+          font-size: 1.2rem;
+          color: #000000;
+        }
+      }
+      &:nth-child(2) {
+        text-align: right;
+      }
+    }
+  }
+
+  &__step {
+    padding: 20px;
+    overflow: auto;
+  }
+}
+
+// Tracking de etapas
+
+.stepper-horizontal {
+  display: table;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.stepper-horizontal .step {
+  display: table-cell;
+  position: relative;
+  padding: 1.5rem;
+  z-index: 2;
+  width: 25%;
+}
+
+.stepper-horizontal .step:last-child .step-bar-left,
+.stepper-horizontal .step:last-child .step-bar-right {
+  display: none;
+}
+
+.stepper-horizontal .step .step-circle {
+  width: 100px;
+  height: 100px;
+  margin: 0 auto;
+  border-radius: 50%;
+  z-index: 2;
+  border: 2px solid #ebeff2;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.stepper-horizontal .step:nth-child(4) .step-circle {
+  background-color: #ebeff2;
+}
+
+.stepper-horizontal .step .step-circle .step-circle-middle {
+  width: 90px;
+  height: 90px;
+  margin: 0 auto;
+  border-radius: 50%;
+
+  background: #ebeff2;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+}
+
+.stepper-horizontal .step.done .step-circle {
+  background-color: #fff;
+  border: 2px solid #71ca6b;
+}
+
+.stepper-horizontal .step.done .step-circle .step-circle-middle {
+  background-color: #71ca6b;
+}
+
+.stepper-horizontal .step:nth-child(1) .step-circle .step-circle-middle img {
+  width: 30px;
+}
+
+.stepper-horizontal .step:nth-child(2) .step-circle .step-circle-middle img {
+  width: 35px;
+}
+
+.stepper-horizontal .step:nth-child(3) .step-circle .step-circle-middle img {
+  width: 50px;
+}
+
+.stepper-horizontal .step:nth-child(4) .step-circle .step-circle-middle img {
+  width: 50px;
+}
+
+.stepper-horizontal .step.done .step-circle .step-circle-middle img {
+  filter: brightness(100);
+}
+
+// .stepper-horizontal .step.done .step-circle * {
+//   display: none;
+// }
+
+.stepper-horizontal .step.done .step-title {
+  color: #43413b;
+  text-decoration: underline;
+}
+
+.stepper-horizontal .step.editing .step-circle {
+  background: transparent;
+  border-color: #71ca6b;
+}
+
+.stepper-horizontal .step:nth-child(4).editing .step-circle {
+  background-color: #71ca6b;
+}
+
+.stepper-horizontal .step.editing .step-circle .step-circle-middle {
+  background: #71ca6b;
+  border-color: #71ca6b;
+}
+
+.stepper-horizontal .step.editing .step-circle .step-circle-middle img {
+  filter: brightness(100);
+}
+
+.stepper-horizontal .step.editing .step-title {
+  color: #43413b;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.stepper-horizontal .step .step-title {
+  margin-top: 10px;
+  font-size: 1.4rem;
+  font-family: var(--main-font-demi);
+}
+
+.stepper-horizontal .step .step-title {
+  text-align: center;
+  color: #b7b7b7;
+}
+
+.stepper-horizontal .step .step-bar-left,
+.stepper-horizontal .step .step-bar-right {
+  position: absolute;
+  top: calc(2rem + 40px);
+  height: 8px;
+  background-color: #ebeff2;
+  border: solid #ebeff2;
+  border-width: 2px 0;
+}
+
+.stepper-horizontal .step .step-bar-left {
+  width: calc(74% - 2rem);
+  left: 63%;
+  margin-left: 1rem;
+  z-index: -1;
+}
+
+.stepper-horizontal .step .step-bar-right {
+  width: 0;
+  left: 63%;
+  margin-left: 1rem;
+  z-index: -1;
+  transition: width 500ms ease-in-out;
+}
+
+.stepper-horizontal .step.done .step-bar-right {
+  background-color: #71ca6b;
+  border-color: #71ca6b;
+  z-index: 3;
+  width: calc(100% - 1rem);
+}

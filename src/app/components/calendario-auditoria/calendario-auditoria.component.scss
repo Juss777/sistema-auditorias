@@ -1,0 +1,20 @@
+label {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.p-field * {
+  display: block;
+
+  @media (min-width: 768px) {
+    width: 25%;
+  }
+}
+
+.calendar__content {
+  padding: 10px;
+
+  @media (min-width: 768px) {
+    padding: 0px 41.5px 22px 41.5px;
+  }
+}

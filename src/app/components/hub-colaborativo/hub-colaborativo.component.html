@@ -1,0 +1,163 @@
+<div class="page">
+  <section>
+    <div class="container">
+      <div class="titulo-bloque u-mb-5">HUB colaborativo</div>
+      <div class="subtitulo-bloque u-mb-10">
+        BAZ 2016 - Oficio 230/2022 - Requerimiento de información
+      </div>
+      <div class="alert-bloque">Se desahogó la información completa</div>
+    </div>
+  </section>
+  <section>
+    <div class="container">
+      <!-- Sección de chat y plazo -->
+      <div class="chat u-mb-20">
+        <div class="section section-padding">
+          <div class="section__title title__xl">Foro de discusión 230/2016</div>
+          <!--Inicio de foro de discusión-->
+          <div class="section__content chat__content">
+            <div class="chat__box">
+              <div class="chat__message received">
+                <div>
+                  Esto son comentarios de quien sube los documentos, puede o no
+                  hacer comentarios, son opcionales.
+                </div>
+                <div>Julio Hernández - 22/09/22 a las 21:30</div>
+              </div>
+              <div class="chat__message send">
+                <div>No entiendo por qué está rechazado</div>
+                <div>Hoy a las 12:30</div>
+              </div>
+            </div>
+            <div class="chat__sending">
+              <div class="p-field styleInput">
+                <input pInputText placeholder="Escribe un mensaje" />
+              </div>
+              <div class="buttons-content">
+                <button class="btn-primary">Enviar</button>
+              </div>
+            </div>
+          </div>
+          <!--Fin de foro de discusión-->
+        </div>
+        <section>
+          <!--Sección de plazo-->
+          <div class="section section-padding u-mb-10 term">
+            <div class="section__title title__xl">El plazo vence en:</div>
+            <div class="section__content">
+              <div class="term__time">22 días 10hrs 5 min</div>
+            </div>
+          </div>
+
+          <div class="section section-padding">
+            <div class="section__title title__xl">Versiones desahogo</div>
+            <div class="section__content">
+              <div class="version">
+                <div class="version__image">
+                  <img src="assets/img/iconos/icono-doc.svg" alt="" />
+                </div>
+                <div class="version__title">Desahogo Oficio 230/2016</div>
+                <div class="version__text">
+                  <span
+                    >Agregado hoy a las 13:00 por Margarita López - Fiscal</span
+                  >
+                </div>
+                <div class="d-flex u-mb-10">
+                  <div class="version__ico">
+                    <img
+                      src="assets/img/iconos/icono-cargar.svg"
+                      alt="icono cargar"
+                    />
+                    <div>Cargar</div>
+                  </div>
+                  <div class="version__ico">
+                    <img
+                      src="assets/img/iconos/icono-descargar.svg"
+                      alt="icono descargar"
+                    />
+                    <div>Descargar</div>
+                  </div>
+                </div>
+                <a
+                  class="version__link"
+                  (click)="
+                    showModal('modal2', 'Versiones desahogo oficio - 230/2016')
+                  "
+                  >Ver todas las versiones</a
+                >
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- Sección de Avance de proyecto -->
+      <div class="advance">
+        <div class="section section-padding">
+          <div class="section__title">Avance del proyecto</div>
+          <div class="section__content pd-10">
+            <p-table class="table advance__table" [value]="colaborativo">
+              <ng-template pTemplate="header">
+                <tr>
+                  <th>Área</th>
+                  <th>% de avance</th>
+                  <th>Requerimientos terminados</th>
+                  <th>Último inicio de sesión</th>
+                  <th>Acción</th>
+                </tr>
+              </ng-template>
+              <ng-template pTemplate="body" let-colaborativo>
+                <tr>
+                  <td>{{ colaborativo.area }}</td>
+                  <td>
+                    <p-progressBar
+                      [value]="colaborativo.avance"
+                    ></p-progressBar>
+                  </td>
+                  <td>{{ colaborativo.req }}</td>
+                  <td>{{ colaborativo.ult }}</td>
+                  <td>
+                    <a
+                      class="link"
+                      (click)="
+                        showModal(
+                          'modal1',
+                          'Tareas / BAZ 2016 - Oficio 230/2022 - Requerimiento de información'
+                        )
+                      "
+                    >
+                      Ver detalle
+                    </a>
+                  </td>
+                </tr>
+              </ng-template>
+            </p-table>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="buttons-content">
+      <button
+        class="btn-primary"
+        (click)="showModal('modal3', 'Determinar estrategia')"
+      >
+        Concluir proyecto
+      </button>
+    </div>
+  </section>
+</div>
+<!-- class="modalReq modalRelief" -->
+<p-dialog
+  [header]="this.headerModal"
+  [ngClass]="{
+    modalReq: typeModal == 'modal1',
+    modalRelief: typeModal == 'modal2',
+    modalStrategy: typeModal == 'modal3'
+  }"
+  [(visible)]="this.displayModal"
+  [modal]="true"
+  [draggable]="false"
+  [resizable]="false"
+>
+  <app-modales [typeModal]="typeModal"></app-modales>
+</p-dialog>

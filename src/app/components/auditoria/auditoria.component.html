@@ -1,0 +1,234 @@
+<div class="page">
+  <div class="container d-flex-auditoria">
+    <div class="titulo-bloque">Nueva auditoría</div>
+    <div>
+      <span>Estado procesal:</span>
+      <span>Por iniciar</span>
+    </div>
+  </div>
+
+  <app-form-auditoria
+    [isReading]="isReading"
+    [unidadeNegocio]="unidadeNegocio"
+    [representantes]="representantes"
+    [auditoria]="auditoria"
+    [areas]="areas"
+    (auditoriaDataOut)="getformAuditoriaData($event)"
+    (auditoriaDataEtapaOut)="getFormEtapaData($event)"
+  ></app-form-auditoria>
+
+  <section class="requirements">
+    <div class="container">
+      <div class="section dataSheet">
+        <div class="section__title">Requerimientos</div>
+        <div class="section__content">
+          <div class="requirements__content">
+            <div class="requirements__overflow">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Tipo de requerimiento</th>
+                    <th>Área responsable</th>
+                    <th>Responsable</th>
+                    <th>Grupo de correo</th>
+                    <th>Estado</th>
+                    <th></th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody></tbody>
+                <tbody *ngIf="requirements.length > 0">
+                  <tr *ngFor="let r of requirements">
+                    <td>
+                      <a class="requirements__id">{{ r.id }}</a>
+                    </td>
+                    <td>{{ r.type.name }}</td>
+                    <td>{{ r.area.responsableArea }}</td>
+                    <td>{{ r.responsible.name }}</td>
+                    <td>{{ r.email }}</td>
+                    <td>
+                      <span class="main-font-demi">{{ r.state }}</span>
+                    </td>
+                    <td>
+                      <div class="requirements__icon">
+                        <img
+                          routerLink="/ver-detalle"
+                          src="assets/img/iconos/ico-pencil-square.svg"
+                        />
+                      </div>
+                    </td>
+                    <td>
+                      <div class="requirements__icon" (click)="confirmDelete(r.id)">
+                        <img src="assets/img/iconos/ico-trash.svg" />
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+
+                <tbody *ngIf="requirements.length == 0">
+                  <tr>
+                    <td
+                      colspan="7"
+                      style="
+                        font-size: 13px;
+                        text-align: center;
+                        font-style: italic;
+                        color: #929292;
+                      "
+                    >
+                      Sin requerimientos...
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="requirements__button">
+              <button
+                [ngClass]="dButton ? 'btn-primary-disabled' : 'btn-primary'"
+                (click)="displayNuevoReq = true"
+              >
+                Nuevo requerimiento
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<p-dialog
+  header="Nuevo Requerimiento"
+  class="modalNewReq"
+  [(visible)]="displayNuevoReq"
+  [modal]="true"
+  [draggable]="false"
+  [resizable]="false"
+>
+  <form [formGroup]="formRequerimiento">
+    <div class="modalNewReq__grid u-mb-40">
+      <div class="p-field styleInput">
+        <label for="area">Tipo de requerimiento</label>
+        <div class="audit__flex">
+          <div>
+            <p-dropdown
+              [options]="tipoRequerimientos"
+              optionLabel="name"
+              placeholder="Selecciona una opción"
+              formControlName="type"
+            ></p-dropdown>
+            <small
+              class="audit__required"
+              *ngIf="auditoriaService.validaCampo(formRequerimiento, 'type')"
+              >* Campo requerido.</small
+            >
+          </div>
+          <img
+            src="assets/img/iconos/gear-fill.svg"
+            (click)="
+              visibleSidebar = true;
+              catalogName = 'Agrega tipo de requerimiento';
+              catalog = 'tipoRequerimiento'
+            "
+          />
+          <!--  -->
+        </div>
+      </div>
+
+      <div class="p-field styleInput">
+        <label for="area">Área responsable</label>
+        <div class="audit__flex">
+          <div>
+            <p-dropdown
+              [options]="areas"
+              optionLabel="areaResponsable"
+              placeholder="Selecciona una opción"
+              formControlName="area"
+            ></p-dropdown>
+            <small
+              class="audit__required"
+              *ngIf="auditoriaService.validaCampo(formRequerimiento, 'area')"
+              >* Campo requerido.</small
+            >
+          </div>
+          <img src="assets/img/iconos/gear-fill.svg" />
+        </div>
+      </div>
+
+      <div class="p-field styleInput">
+        <label for="area">Responsable</label>
+        <div class="audit__flex">
+          <div>
+            <p-dropdown
+              [options]="responsibles"
+              optionLabel="name"
+              placeholder="Selecciona una opción"
+              formControlName="responsible"
+            ></p-dropdown>
+            <small
+              class="audit__required"
+              *ngIf="
+                auditoriaService.validaCampo(formRequerimiento, 'responsible')
+              "
+              >* Campo requerido.</small
+            >
+          </div>
+          <img src="assets/img/iconos/gear-fill.svg" />
+        </div>
+      </div>
+
+      <div class="styleInput">
+        <label>Fecha de entrega</label>
+        <p-calendar
+          name="fechaEntrega"
+          placeholder="Selecciona una opción"
+        ></p-calendar>
+      </div>
+
+      <div class="p-field styleInput">
+        <label>Grupo de correo</label>
+        <input
+          pInputText
+          [class.input-disabled]="true"
+          formControlName="email"
+        />
+      </div>
+    </div>
+    <div class="modalNewReq__buttons u-mb-25">
+      <button
+        class="btn-outline-primary"
+        (click)="this.displayNuevoReq = false"
+      >
+        Cancelar
+      </button>
+      <button class="btn-primary" (click)="saveDataReq()">Guardar</button>
+    </div>
+  </form>
+</p-dialog>
+
+
+<p-dialog
+  header="Confirmación de eliminar"
+  class="modalNewReq confirm-delete"
+  [(visible)]="this.displayConfirma"
+  [modal]="true"
+  [draggable]="false"
+  [resizable]="false"
+>
+  <div class="content-confirm">
+      <img src="assets/img/iconos/ico-trash.svg" alt="">
+      <h3>¿Está seguro de eliminar este dato?</h3>
+  </div>
+
+  <div class="modalNewReq__buttons u-mb-25">
+      <button
+        class="btn-outline-primary"
+        (click)="this.displayConfirma = false"
+      >
+        Cancelar
+      </button>
+      <button class="btn-primary" (click)="deleteReq()">Aceptar</button>
+  </div>
+
+</p-dialog>

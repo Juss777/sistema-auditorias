@@ -1,0 +1,36 @@
+<section class="header">
+  <div class="header__top">
+    <div class="header__logo">
+      <img src="assets/img/header/logo.svg" />
+    </div>
+    <div class="header__info">
+      <div class="header__username">
+        <div>
+          <img src="assets/img/header/user.svg" alt="" />
+        </div>
+        <div>
+          <span>Bruno Gastélum</span>
+          <span>Bruno Gastélum</span>
+        </div>
+      </div>
+      <div class="welcome">
+        <span>Bienvenido a</span>
+        <span>Sistema de Auditorias</span>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="nav">
+  <input type="checkbox" id="nav-check" />
+  <div class="nav-btn">
+    <label for="nav-check">
+      <span></span>
+      <span></span>
+      <span></span>
+    </label>
+  </div>
+
+  <div class="nav-links">
+    <a *ngFor="let m of menu" [routerLink]="m.url">{{ m.name }}</a>
+  </div>
+</div>

@@ -1,0 +1,337 @@
+<div class="page">
+  <!-- <div class="container">
+    <div class="titulo-bloque">Oficio 300/ 2016</div>
+  </div> -->
+
+  <!--Formulario Notificación-->
+  <section class="noti">
+    <div class="container">
+      <div class="sectionNoBg">
+        <!-- <div class="sectionNoBg__title">Notificación</div> -->
+        <div class="sectionNoBg__title">Datos generales de la etapa</div>
+        <div class="sectionNoBg__content">
+          <form [formGroup]="formNotificacion" class="noti__content">
+            <div class="noti__grid">
+              <div class="styleInput">
+                <label>Tipo de notificación</label>
+                <div class="styleInput__radioButton">
+                  <div class="field-radiobutton">
+                    <p-radioButton
+                      name="tipoNotificacion"
+                      value="fisica"
+                      formControlName="tipoNotificacion"
+                      (onClick)="changeNotiFisica()"
+                    ></p-radioButton>
+                    <label>Física</label>
+                  </div>
+                  <div class="field-radiobutton">
+                    <p-radioButton
+                      name="tipoNotificacion"
+                      value="buzon tributario"
+                      formControlName="tipoNotificacion"
+                      (onClick)="changeNotiBuzon()"
+                    ></p-radioButton>
+                    <label>Buzón tributario</label>
+                  </div>
+                </div>
+              </div>
+
+              <div class="styleInput">
+                <label>¿Existe {{ tipoMensaje }}?</label>
+                <div class="styleInput__radioButton">
+                  <div class="field-radiobutton">
+                    <p-radioButton
+                      name="existeMensaje"
+                      value="si"
+                      formControlName="existeMensaje"
+                    ></p-radioButton>
+                    <label>Si</label>
+                  </div>
+                  <div class="field-radiobutton">
+                    <p-radioButton
+                      name="existeMensaje"
+                      value="no"
+                      formControlName="existeMensaje"
+                    ></p-radioButton>
+                    <label>No</label>
+                  </div>
+                </div>
+              </div>
+
+              <div class="styleInput">
+                <label for="basic">Fecha de {{ tipoComunicado }}</label>
+                <p-calendar
+                  name="fechaMensaje"
+                  formControlName="fechaMensaje"
+                  placeholder="Selecciona una opción"
+                ></p-calendar>
+              </div>
+
+              <div class="styleInput" *ngFor="let file of files">
+                <label>{{
+                  file.label == "Citatorio" && formBuzon ? "Aviso" : file.label
+                }}</label>
+                <input
+                  type="file"
+                  class="inputFile"
+                  name="tipoArchivo"
+                  formControlName="tipoArchivo"
+                  [id]="file.id"
+                  (change)="handleFileInput($event, file)"
+                />
+                <label [for]="file.id"
+                  ><span [ngClass]="{ 'u-txt-black': file.estatus }">{{
+                    file.name
+                  }}</span></label
+                >
+              </div>
+
+              <div class="styleInput" *ngIf="formFisico">
+                <label for="basic">Fecha de notificación</label>
+                <p-calendar
+                  name="fechaNotifacion"
+                  formControlName="fechaNotifacion"
+                  placeholder="Selecciona una opción"
+                ></p-calendar>
+              </div>
+
+              <div class="styleInput" *ngIf="formBuzon">
+                <label>Tipo de notificación</label>
+                <div class="styleInput__radioButton">
+                  <div class="field-radiobutton">
+                    <p-radioButton
+                      value="manual"
+                      name="notificacionTipo"
+                      formControlName="notificacionTipo"
+                    ></p-radioButton>
+                    <label>Manual</label>
+                  </div>
+                  <div class="field-radiobutton">
+                    <p-radioButton
+                      value="automatica"
+                      name="notificacionTipo"
+                      formControlName="notificacionTipo"
+                    ></p-radioButton>
+                    <label>Automática</label>
+                  </div>
+                </div>
+              </div>
+
+              <div
+                [ngClass]="fechaTermino ? 'styleInput__disabled' : ''"
+                class="styleInput"
+              >
+                <label>Fecha de término</label>
+                <input
+                  name="fechaTermino"
+                  formControlName="fechaTermino"
+                  placeholder="22/09/2022"
+                  pInputText
+                />
+              </div>
+
+              <div class="styleInput" *ngIf="formFisico">
+                <label>¿Cumple con formalidades de la ley?</label>
+                <div class="styleInput__radioButton">
+                  <div class="field-radiobutton">
+                    <p-radioButton
+                      value="si"
+                      name="cumpleLey"
+                      formControlName="cumpleLey"
+                      (click)="formFisico ? changeCitaSi() : ''"
+                    ></p-radioButton>
+                    <label>Si</label>
+                  </div>
+                  <div class="field-radiobutton">
+                    <p-radioButton
+                      value="no"
+                      name="cumpleLey"
+                      formControlName="cumpleLey"
+                      (click)="changeCitaNo()"
+                    ></p-radioButton>
+                    <label>No</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div *ngIf="varEditor" class="u-mb-10">
+              <div class="noti__editor">
+                <label>Comentarios</label>
+                <p-editor [style]="{ height: '320px' }"></p-editor>
+              </div>
+              <div class="buttons-content">
+                <button class="btn-primary">Guardar</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!--Sección de datos generales-->
+  <!-- <section class="data">
+    <div class="container">
+      <div class="sectionNoBg">
+        <div class="sectionNoBg__title">Datos generales</div>
+        <div class="sectionNoBg__content">
+          <div class="data__content">
+            <div class="data__grid">
+              <div class="p-field styleInput">
+                <label>No. de oficio</label>
+                <input pInputText placeholder="Ingresa el no. de oficio" />
+              </div>
+              <div class="p-field styleInput">
+                <label>Autoridad</label>
+                <p-dropdown
+                  [options]="authorities"
+                  [(ngModel)]="selectedAuthority"
+                  optionLabel="name"
+                  placeholder="Selecciona el representante legal"
+                ></p-dropdown>
+              </div>
+              <div class="p-field styleInput">
+                <label>Representante de autoridad</label>
+                <input pInputText placeholder="Ingresa la información" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="buttons-content">
+        <button class="btn-outline-primary">Regresar</button>
+        <button class="btn-primary">Guardar</button>
+      </div>
+    </div>
+  </section> -->
+
+  <!--Sección de Alta de Requerimientos-->
+  <!-- <section class="requirements">
+    <div class="container">
+      <div class="section dataSheet">
+        <div class="section__title">Alta de requerimientos</div>
+        <div class="section__content">
+          <div class="requirements__content">
+            <div class="requirements__overflow">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Tipo de requerimiento</th>
+                    <th>Área responsable</th>
+                    <th>Responsable</th>
+                    <th>Grupo de correo</th>
+                    <th>Estado</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let r of requirements">
+                    <td>
+                      <a class="requirements__id">{{ r.id }}</a>
+                    </td>
+                    <td>{{ r.type }}</td>
+                    <td>{{ r.area }}</td>
+                    <td>{{ r.responsible }}</td>
+                    <td>{{ r.email }}</td>
+                    <td>
+                      <span class="main-font-demi">{{ r.state }}</span>
+                    </td>
+                    <td><a class="requirements__edit">Editar</a></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="requirements__button">
+              <button class="btn-primary" (click)="showModal()">
+                Nuevo requerimiento
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section> -->
+</div>
+
+<!-- Modal Nuevo Requerimiento -->
+<!-- <p-dialog
+  header="Nuevo Requerimiento"
+  class="modal"
+  [(visible)]="this.displayNuevoReq"
+  [modal]="true"
+  [draggable]="false"
+  [resizable]="false"
+>
+  <div class="modal__body">
+    <div class="data__grid-modal u-mb-40">
+      <div class="p-field styleInput">
+        <label>Tipo de requerimiento</label>
+        <p-dropdown
+          [options]="requerimientos"
+          [(ngModel)]="selectedReq"
+          optionLabel="name"
+          placeholder="Selecciona una opción"
+          (onChange)="nuevoReq()"
+          [class.select-disabled]="newArea"
+        ></p-dropdown>
+        <div class="linkModal u-mt-15" (click)="agregarReq()">
+          +agregar nuevo requerimiento
+        </div>
+      </div>
+      <div class="p-field styleInput">
+        <label>Área responsable</label>
+        <p-dropdown
+          [options]="areas"
+          [(ngModel)]="selectedArea"
+          optionLabel="name"
+          placeholder="Selecciona una opción"
+          (onChange)="nuevaArea()"
+          [class.select-disabled]="newReq"
+        ></p-dropdown>
+        <div class="linkModal u-mt-15" (click)="agregarArea()">
+          +agregar área responsable
+        </div>
+      </div>
+      <div class="p-field styleInput" *ngIf="displayReq">
+        <label>Nombre del requerimiento</label>
+        <input pInputText placeholder="Ingresa un nombre" />
+      </div>
+      <div class="p-field styleInput" *ngIf="displayArea">
+        <label>Nombre del área</label>
+        <input pInputText placeholder="Ingresa un nombre" />
+      </div>
+      <div class="btn-modal-grid" *ngIf="displayReq || displayArea">
+        <button class="btn-primary" (click)="agregarNuevoReq()">Agregar</button>
+      </div>
+      <div class="p-field styleInput">
+        <label>Responsable</label>
+        <p-dropdown
+          [options]="responsables"
+          [(ngModel)]="selectedResponsable"
+          optionLabel="name"
+          placeholder="Selecciona una opción"
+          [class.select-disabled]="displayReq || displayArea"
+        ></p-dropdown>
+      </div>
+      <div class="p-field styleInput">
+        <label>Grupo de correo</label>
+        <input
+          pInputText
+          [class.input-disabled]="true"
+          value="ejemplo@mail.com.mx"
+        />
+      </div>
+    </div>
+    <div class="data__buttons u-mb-25">
+      <button
+        class="btn-outline-primary"
+        (click)="this.displayNuevoReq = false"
+      >
+        Cancelar
+      </button>
+      <button class="btn-primary" (click)="mandarCorreo()">Guardar</button>
+    </div>
+  </div>
+</p-dialog> -->

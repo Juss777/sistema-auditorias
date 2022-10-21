@@ -1,0 +1,22 @@
+<p-table class="table" [value]="listaOficios">
+  <ng-template pTemplate="header">
+    <tr>
+      <th>No. Oficio</th>
+      <th>Fecha de notificación</th>
+      <th>Fecha de término</th>
+      <th>Estado</th>
+      <th>Correo</th>
+      <th></th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-oficio>
+    <tr>
+      <td>{{ oficio.numOficio }}</td>
+      <td>{{ oficio.fechaNotificacion }}</td>
+      <td>{{ oficio.fechaTermino }}</td>
+      <td>{{ oficio.estado }}</td>
+      <td>{{ oficio.correo }}</td>
+      <td><a class="requirements__edit" routerLink="/nuevo-oficio">Ir a</a></td>
+    </tr>
+  </ng-template>
+</p-table>

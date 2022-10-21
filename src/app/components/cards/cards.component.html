@@ -1,0 +1,28 @@
+<section>
+  <div class="container">
+    <div class="titulo-bloque u-mb-5">Últimas auditorias revisadas</div>
+  </div>
+  <div class="container">
+    <div class="card">
+      <div
+        class="card__content"
+        *ngFor="let auditoria of auditorias"
+        [ngClass]="{
+          card__inactive: !auditoria.active,
+          card__active: auditoria.active,
+          card__informative: auditoria.tipoCard === 'informativo',
+          card__entregadoMal: auditoria.tipoCard === 'mal',
+          card__entregadoCambios: auditoria.tipoCard === 'cambios'
+        }"
+      >
+        <p-card class="card__cards">
+          <ng-template pTemplate="header">Auditoría</ng-template>
+          {{ auditoria.content }}
+          <ng-template pTemplate="footer">
+            "Última apertura: 12 sep 22"
+          </ng-template>
+        </p-card>
+      </div>
+    </div>
+  </div>
+</section>

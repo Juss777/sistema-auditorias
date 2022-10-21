@@ -1,0 +1,149 @@
+<div class="page">
+  <div class="container detail-flex">
+    <div class="titulo-bloque">Ficha técnica</div>
+    <div class="detail-link">Editar</div>
+  </div>
+
+  <section class="detail">
+    <div class="container">
+      <div class="section detail__section">
+        <div class="detail__container">
+          <div class="detail__header">
+            <div class="detail__header-left">
+              <span>BAZ 2016</span>
+              <span
+                >Estado Procesal: Auditoría en proceso - Oficio de observaciones
+                / en PRODECON</span
+              >
+            </div>
+            <div class="detail__header-right">
+              Monto: <span>$23,172 MDP</span>
+            </div>
+          </div>
+          <div class="detail__body">
+            <div>
+              <div class="detail__title">Equipo</div>
+              <div class="detail__body-label">Responsable: JYF</div>
+              <div class="detail__body-label">
+                Equipo: JIM / JATR / YUI / TGJ / HTY
+
+                <a href="" class="space-ver-mas audit__upload-add">Ver más</a>
+              </div>
+              <div class="detail__body-label">Contencioso: JGM</div>
+            </div>
+            <div>
+              <div class="detail__title">Contraparte</div>
+              <div class="detail__body-label">
+                Autoridad: Secretaría de Administración Tributaria
+              </div>
+              <div class="detail__body-label">
+                Área: Administración Central de Fiscalización a Grupo de
+                Sociedades
+              </div>
+              <div class="detail__body-label">
+                Administrador General: Antonio Martínez Dagnino
+              </div>
+              <div class="detail__body-label">
+                Administrador Central: Armando Ramírez Sánchez
+              </div>
+              <div class="detail__body-label">
+                Administrador: Arturo Márquez Rivero
+              </div>
+            </div>
+          </div>
+          <div class="detail__footer">
+            <div class="detail__title">Conceptos</div>
+            <ul>
+              <li *ngFor="let l of pagingList">{{ l.id }} - {{ l.nombre }}</li>
+            </ul>
+          </div>
+        </div>
+        <div class="detail__paginator">
+          <p-paginator
+            [rows]="10"
+            [totalRecords]="list.length"
+            [rowsPerPageOptions]="[5, 10, 20, 30]"
+            (onPageChange)="paginate($event)"
+          ></p-paginator>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="tracking">
+    <div class="container">
+      <div class="section">
+        <div class="section__title">Etapas</div>
+        <div class="section__content">
+          <div class="tracking__content">
+            <div class="tracking__header">
+              <div>
+                <span>Fecha de citatorio:</span>
+                <span>28 de septiembre de 2022</span>
+              </div>
+              <div>
+                <span>Fecha de término:</span>
+                <span>7 de octubre de 2022</span>
+              </div>
+            </div>
+            <div class="tracking__step">
+              <div class="stepper-horizontal" id="stepper1">
+                <div
+                  class="step editing"
+                  [routerLink]="[
+                    '/auditoria',
+                    idAuditoria,
+                    isEdit,
+                    '#SectionEtapas'
+                  ]"
+                >
+                  <div class="step-circle">
+                    <div class="step-circle-middle">
+                      <img
+                        src="assets/img/iconos/ico-file-earmark-check-fill.svg"
+                      />
+                    </div>
+                  </div>
+                  <div class="step-title">Citatorio</div>
+                  <div class="step-bar-left"></div>
+                  <div class="step-bar-right"></div>
+                </div>
+                <div class="step">
+                  <div class="step-circle">
+                    <div class="step-circle-middle">
+                      <img src="assets/img/iconos/ico-bell-fill.svg" />
+                    </div>
+                  </div>
+                  <div class="step-title">Notificación de oficio</div>
+                  <div class="step-bar-left"></div>
+                  <div class="step-bar-right"></div>
+                </div>
+                <div class="step">
+                  <div class="step-circle">
+                    <div class="step-circle-middle">
+                      <img src="assets/img/iconos/ico-list-check.svg" />
+                    </div>
+                  </div>
+                  <div class="step-title">Desahogo</div>
+                  <div class="step-bar-left"></div>
+                  <div class="step-bar-right"></div>
+                </div>
+                <div class="step">
+                  <div class="step-circle">
+                    <div class="step-circle-middle">
+                      <img src="assets/img/iconos/ico-check-lg.svg" />
+                    </div>
+                  </div>
+                  <div class="step-title">Término</div>
+                  <div class="step-bar-left"></div>
+                  <div class="step-bar-right"></div>
+                </div>
+              </div>
+              <!-- <button (click)="nextStep()">Next</button> -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

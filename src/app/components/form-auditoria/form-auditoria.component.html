@@ -1,0 +1,767 @@
+<!--  -->
+<section class="data">
+  <div class="container">
+    <div class="sectionNoBg">
+      <div class="sectionNoBg__title">Datos generales Auditoría</div>
+      <div class="sectionNoBg__content">
+        <div class="data__content">
+          <form [formGroup]="formAuditoria">
+            <section class="audit">
+              <div class="audit__columns3 u-mb-50">
+                <div class="p-field styleInput">
+                  <label for="anio">Año de la auditoría</label>
+                  <input
+                    id="anio"
+                    type="text"
+                    placeholder="Ingresa el numero de año"
+                    pInputText
+                    formControlName="anio"
+                    (change)="obtenerSiglas($event)"
+                  />
+                  <small
+                    class="audit__required"
+                    *ngIf="auditoriaService.validaCampo(formAuditoria, 'anio')"
+                    >* Campo requerido.</small
+                  >
+                </div>
+
+                <div class="p-field styleInput">
+                  <label for="unidadNegocio">Unidad de Negocio</label>
+                  <div class="audit__flex">
+                    <div>
+                      <p-autoComplete
+                        [suggestions]="filterGeneral"
+                        (completeMethod)="search($event, unidadeNegocio)"
+                        formControlName="unidadNegocio"
+                        (click)="obtenerSiglas($event)"
+                      ></p-autoComplete>
+                      <small
+                        class="audit__required"
+                        *ngIf="
+                          auditoriaService.validaCampo(
+                            formAuditoria,
+                            'unidadNegocio'
+                          )
+                        "
+                        >* Campo requerido.</small
+                      >
+                    </div>
+                    <img
+                      src="assets/img/iconos/gear-fill.svg"
+                      alt=""
+                      (click)="
+                        visibleSidebar = true;
+                        catalogName = 'Agregar unidad de negocio';
+                        catalog = 'unidadNegocio';
+                        listaGeneral = unidadeNegocio;
+                        inputSearch = '';
+                      "
+                    />
+                  </div>
+                </div>
+
+                <div class="p-field styleInput">
+                  <label for="siglas">Siglas</label>
+                  <input
+                    id="siglas"
+                    type="text"
+                    pInputText
+                    formControlName="siglas"
+                  />
+                  <small
+                    class="audit__required"
+                    *ngIf="
+                      auditoriaService.validaCampo(formAuditoria, 'siglas')
+                    "
+                    >* Campo requerido.</small
+                  >
+                </div>
+
+                <div class="p-field styleInput">
+                  <label for="nombre">Nombre de la auditoría</label>
+                  <input
+                    id="nombre"
+                    type="text"
+                    pInputText
+                    formControlName="nombre"
+                  />
+                </div>
+
+                <div class="p-field styleInput">
+                  <label for="monto">Monto</label>
+                  <input
+                    id="monto"
+                    type="text"
+                    pInputText
+                    formControlName="monto"
+                  />
+                  <small
+                    class="audit__required"
+                    *ngIf="auditoriaService.validaCampo(formAuditoria, 'monto')"
+                    >* Campo requerido.</small
+                  >
+                </div>
+              </div>
+
+              <!--*********************campos representante legal***************************-->
+              <div class="audit__columns2-rep-leg u-mb-50">
+                <div class="audit__columns1" formArrayName="representanteLegal">
+
+                  <div
+                    class="p-field styleInput input-space-top"
+                    *ngFor="let repre of representanteLegal.controls; let i = index;"
+                  >
+                    <label>Representante legal {{i+1}}</label>
+                    <div class="audit__flex">
+                      <div>
+                        <p-autoComplete
+                          [suggestions]="filterGeneral"
+                          (completeMethod)="search($event, representantes)"
+                          [multiple]="true"
+                          [formControlName]="i"
+                        ></p-autoComplete>
+                      </div>
+                      <img
+                        src="assets/img/iconos/gear-fill.svg"
+                        (click)="
+                          visibleSidebar = true;
+                          catalogName = 'Agregar representante legal';
+                          catalog = 'representanteLegal';
+                          listaGeneral = representantes;
+                          inputSearch = '';
+                        "
+                        *ngIf="i == 0"
+                      />
+
+                      <img
+                        src="assets/img/iconos/ico-trash.svg"
+                        *ngIf="i > 0"
+                        (click)="
+                          deleteRepresentanteLegal(i)
+                        "
+                      />
+                    </div>
+                  </div>
+
+                  <div
+                    class="audit__upload-add add-rep-leg"
+                    (click)="addInputRepresentanteLegal()"
+                  >
+                    +agregar representante legal
+                  </div>
+                </div>
+
+                <div class="audit__columns1">
+                  <div class="audit__columns2-Inst-pub">
+
+                    <div formArrayName="instrumentoPublicoPoder" class="p-field styleInput">
+                      <div *ngFor="let inputIP of instrumentoPublicoPoder.controls; let i = index;" class="input-space-top">
+                        <label for="representanteLegal">Instrumento público (poder) {{i+1}}</label>
+                      <div class="audit__flex">
+                        <div>
+                          <p-autoComplete
+                            [suggestions]="filterGeneral"
+                            (completeMethod)="
+                              search($event, instrumentosPublicos)
+                            " 
+                            [multiple]="true"
+                            [formControlName]="i"
+                            [id]="'instrumento'+i"
+                          ></p-autoComplete>
+                        </div>
+                        <img
+                          src="assets/img/iconos/gear-fill.svg"
+                          (click)="
+                            visibleSidebar = true;
+                            catalogName = 'Agregar instrumento público';
+                            catalog = 'instrumento';
+                            listaGeneral = instrumentosPublicos;
+                            inputSearch = '';
+                          "
+                          *ngIf="i == 0"
+                        />
+                      </div>
+                      </div>
+                    </div>
+                    
+                    <div formArrayName="instrumentoPublico" class="styleInput audit__upload-file">
+                      <div *ngFor="let inputIP of instrumentoPublicoPoder.controls; let i = index;" class="input-space-top input-file-margin-bottom">
+                        <label>Subir instrumento {{i+1}}</label>
+                        <div class="audit__flex">
+                          <input
+                            type="file"
+                            class="inputFile"
+                            [ngClass]="{
+                              inputFileLoaded: filesInstrumentoPublico[i].estatus
+                            }"
+                            name="tipoArchivoLegal"
+                            [id]="filesInstrumentoPublico[i].id"
+                            [formControlName]="i"  
+                            (change)="
+                              handleFileInput($event, filesInstrumentoPublico[i])
+                            "
+                          />
+                          <label [for]="filesInstrumentoPublico[i].id"
+                            ><span
+                              [ngClass]="{
+                                'u-txt-white': filesInstrumentoPublico[i].estatus
+                              }"
+                              >{{filesInstrumentoPublico[i].name}}</span
+                            ></label
+                          >
+                          <img
+                            src="assets/img/iconos/ico-trash.svg"
+                            *ngIf="i > 0"
+                            (click)="
+                            deleteInstrumentPublico(i)
+                            "
+                          />
+                        </div>
+                      </div>
+                    </div>
+                    
+                  </div>
+                  <div
+                    class="audit__upload-add add-inst-pub top_link"
+                    (click)="addInputsInstrumentoPublico()"
+                  >
+                    +agregar Instrumento público (poder)
+                  </div>
+                </div>
+              </div>
+              <!--*********************campos representante legal***************************-->
+
+              <!--campos area-->
+              <div class="audit__team">
+                <div class="audit__title">Equipo</div>
+                  <div class="audit__team-content">
+                    <section formArrayName="areaEquipo">
+                      <div class="p-field styleInput" *ngFor="let inputsArea of areaEquipo.controls; let i = index;">
+                        <label for="area">Área {{i+1}}</label>
+                        <div class="audit__flex">
+                          <div>
+                            <p-autoComplete
+                              [suggestions]="filterGeneral"
+                              (completeMethod)="search($event, areaAll)"
+                              [multiple]="true"
+                              [formControlName]="i"
+                            ></p-autoComplete>
+                          </div>
+                          <img
+                            src="assets/img/iconos/gear-fill.svg"
+                            alt=""
+                            (click)="
+                              visibleSidebar = true;
+                              catalogName = 'Agregar área';
+                              catalog = 'area';
+                              listaGeneral = areaAll;
+                              inputSearch = '';
+                            "
+                            *ngIf="i == 0"
+                          />
+                        </div>
+                      </div>
+                    </section>
+
+                    <section></section>
+
+                    <section formArrayName="responsableEquipo">
+                      <div class="p-field styleInput audit__team-column2" *ngFor="let inputsArea of areaEquipo.controls; let i = index;">
+                        <label for="area">Responsable {{i+1}}</label>
+                        <div class="audit__flex">
+                          <div>
+                            <p-autoComplete
+                              [suggestions]="filterGeneral"
+                              (completeMethod)="search($event, responsablesArea)"
+                              [multiple]="true"
+                              [formControlName]="i" 
+                            ></p-autoComplete>
+                          </div>
+                          <img
+                            src="assets/img/iconos/gear-fill.svg"
+                            alt=""
+                            (click)="
+                              visibleSidebar = true;
+                              catalogName = 'Agregar responsable del área';
+                              catalog = 'responsableArea';
+                              listaGeneral = responsablesArea;
+                              inputSearch = '';
+                            "
+                            *ngIf="i == 0"
+                          />
+                          <img
+                            src="assets/img/iconos/ico-trash.svg"
+                            (click)="deleteFormArea(i)"
+                            *ngIf="i > 0"
+                          />
+                        </div>
+                      </div>
+                    </section>
+                    
+                  </div>
+                <div class="audit__team-add" (click)="addInputsArea()">
+                  +agregar área
+                </div>
+              </div>
+
+              <!--autocomplete contencioso-->
+              <div class="audit__contentious">
+                <div class="p-field styleInput">
+                  <label for="area">Contencioso</label>
+                  <div class="audit__flex">
+                    <div>
+                      <p-autoComplete
+                        [suggestions]="filterGeneral"
+                        (completeMethod)="search($event, contenciosoAll)"
+                        formControlName="contencioso"
+                        [multiple]="true"
+                      ></p-autoComplete>
+                      <small
+                        class="audit__required"
+                        *ngIf="
+                          auditoriaService.validaCampo(formAuditoria, 'area')
+                        "
+                        >* Campo requerido.</small
+                      >
+                    </div>
+                    <img src="assets/img/iconos/gear-fill.svg" 
+                    (click)="
+                      visibleSidebar = true;
+                      catalogName = 'Agregar contencioso';
+                      catalog = 'contencioso';
+                      listaGeneral = contenciosoAll;
+                      inputSearch = '';
+                    "
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <!--campo chip-->
+              <div class="audit__chips">
+                <label for="area">Equipo</label>
+                <div class="audit__chips-content">
+                  <div>
+                    <p-chip label="Responsable 1"></p-chip>
+                    <p-chip label="Responsable 2"></p-chip>
+                    <p-chip label="Responsable 3"></p-chip>
+                  </div>
+                  <a href="" class="space-ver-mas audit__upload-add">Ver más</a>
+                </div>
+              </div>
+
+              <!--Campos de contraparte-->
+              <div class="audit__title">Contraparte</div>
+
+              <div class="audit__columns3 u-mb-50">
+                <!--autocomplete autoridad-->
+                <div class="p-field styleInput">
+                  <label for="autoridadAll">Autoridad</label>
+                  <div class="audit__flex">
+                    <div>
+                      <p-autoComplete
+                        [suggestions]="filterGeneral"
+                        (completeMethod)="search($event, autoridadAll)"
+                        formControlName="autoridad"
+                        [multiple]="true"
+                      ></p-autoComplete>
+                      <small
+                        class="audit__required"
+                        *ngIf="
+                          auditoriaService.validaCampo(formAuditoria, 'area')
+                        "
+                        >* Campo requerido.</small
+                      >
+                    </div>
+                    <img src="assets/img/iconos/gear-fill.svg"
+                    (click)="
+                      visibleSidebar = true;
+                      catalogName = 'Agregar autoridad';
+                      catalog = 'autoridad';
+                      listaGeneral = autoridadAll;
+                      inputSearch = '';
+                    "
+                    />
+                  </div>
+                </div>
+
+                <!--autocomplete área-->
+                <div class="p-field styleInput">
+                  <label for="areaAll">Área</label>
+                  <div class="audit__flex">
+                    <div>
+                      <p-autoComplete
+                        [suggestions]="filterGeneral"
+                        (completeMethod)="search($event, areaAll)"
+                        formControlName="area"
+                        [multiple]="true"
+                      ></p-autoComplete>
+                      <small
+                        class="audit__required"
+                        *ngIf="
+                          auditoriaService.validaCampo(formAuditoria, 'area')
+                        "
+                        >* Campo requerido.</small
+                      >
+                    </div>
+                    <img
+                      src="assets/img/iconos/gear-fill.svg"
+                      (click)="
+                        visibleSidebar = true;
+                        catalogName = 'Agregar área';
+                        catalog = 'area';
+                        listaGeneral = areaAll;
+                        inputSearch = '';
+                      "
+                    />
+                  </div>
+                </div>
+
+                <!--autocomplete responsable del área-->
+                <div class="p-field styleInput">
+                  <label>Administrador General</label>
+                  <div class="audit__flex">
+                    <p-autoComplete
+                      [suggestions]="filterGeneral"
+                      (completeMethod)="search($event, adminsGenerales)"
+                      formControlName="administradorGeneral"
+                      [multiple]="true"
+                    ></p-autoComplete>
+                    <img
+                      src="assets/img/iconos/gear-fill.svg"
+                      alt=""
+                      (click)="
+                        visibleSidebar = true;
+                        catalogName = 'Agregar administrador general';
+                        catalog = 'administradorGeneral';
+                        listaGeneral = adminsGenerales;
+                        inputSearch = '';
+                      "
+                    />
+                  </div>
+                </div>
+
+                <!--autocomplete director del área-->
+                <div class="p-field styleInput">
+                  <label for="director">Administrador Central</label>
+                  <div class="audit__flex">
+                    <p-autoComplete
+                      [suggestions]="filterGeneral"
+                      (completeMethod)="search($event, adminsCentrales)"
+                      formControlName="administradorCentral"
+                      [multiple]="true"
+                    ></p-autoComplete>
+                    <img
+                      src="assets/img/iconos/gear-fill.svg"
+                      (click)="
+                        visibleSidebar = true;
+                        catalogName = 'Agregar administrador central';
+                        catalog = 'administradorCentral';
+                        listaGeneral = adminsCentrales;
+                        inputSearch = '';
+                      "
+                    />
+                  </div>
+                </div>
+
+                <!--autocomplete Administrador-->
+                <div class="p-field styleInput">
+                  <label for="administrador">Administrador</label>
+                  <div class="audit__flex">
+                    <p-autoComplete
+                      [suggestions]="filterGeneral"
+                      (completeMethod)="search($event, admin)"
+                      formControlName="administrador"
+                      [multiple]="true"
+                    ></p-autoComplete>
+                    <img
+                      src="assets/img/iconos/gear-fill.svg"
+                      (click)="
+                        visibleSidebar = true;
+                        catalogName = 'Agregar administrador';
+                        catalog = 'administradorArea';
+                        listaGeneral = admin;
+                        inputSearch = '';
+                      "
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <div class="audit__columns1">
+                <div class="p-field styleInput u-mb-10">
+                  <label for="conceptos">Conceptos</label>
+                  <p-editor
+                    id="conceptos"
+                    formControlName="conceptos"
+                    [style]="{ height: '250px' }"
+                    placeholder="Ingresa un comentario"
+                  ></p-editor>
+                </div>
+
+                <div class="p-field styleInput">
+                  <label for="defensa">Defensa</label>
+                  <p-editor
+                    id="defensa"
+                    formControlName="defensa"
+                    [style]="{ height: '250px' }"
+                    placeholder="Ingresa un comentario"
+                  ></p-editor>
+                </div>
+              </div>
+            </section>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="noti" id="SectionEtapas">
+  <div class="container">
+    <div class="sectionNoBg">
+      <!-- <div class="sectionNoBg__title">Notificación</div> -->
+      <div class="sectionNoBg__title">Datos generales de la etapa</div>
+      <div class="sectionNoBg__content">
+        <form [formGroup]="formEtapa" class="noti__content">
+          <div class="noti__grid">
+            <div class="styleInput">
+              <label>Tipo de notificación</label>
+              <div class="styleInput__radioButton">
+                <div class="field-radiobutton">
+                  <p-radioButton
+                    name="tipoNotificacion"
+                    value="fisica"
+                    formControlName="tipoNotificacion"
+                    (onClick)="changeNotiFisica()"
+                  ></p-radioButton>
+                  <label>Física</label>
+                </div>
+                <div class="field-radiobutton">
+                  <p-radioButton
+                    name="tipoNotificacion"
+                    value="buzon tributario"
+                    formControlName="tipoNotificacion"
+                    (onClick)="changeNotiBuzon()"
+                  ></p-radioButton>
+                  <label>Buzón tributario</label>
+                </div>
+              </div>
+            </div>
+
+            <div class="styleInput">
+              <label>¿Existe {{ tipoMensaje }}?</label>
+              <div class="styleInput__radioButton">
+                <div class="field-radiobutton">
+                  <p-radioButton
+                    name="existeMensaje"
+                    value="si"
+                    formControlName="existeMensaje"
+                  ></p-radioButton>
+                  <label>Si</label>
+                </div>
+                <div class="field-radiobutton">
+                  <p-radioButton
+                    name="existeMensaje"
+                    value="no"
+                    formControlName="existeMensaje"
+                  ></p-radioButton>
+                  <label>No</label>
+                </div>
+              </div>
+            </div>
+
+            <div class="styleInput">
+              <label for="basic">Fecha de {{ tipoComunicado }}</label>
+              <p-calendar
+                name="fechaMensaje"
+                formControlName="fechaMensaje"
+                placeholder="Selecciona una opción"
+              ></p-calendar>
+            </div>
+
+            <div class="styleInput" *ngFor="let file of files">
+              <label>{{
+                file.label == "Citatorio" && formBuzon ? "Aviso" : file.label
+              }}</label>
+              <input
+                type="file"
+                class="inputFile"
+                name="tipoArchivo"
+                formControlName="tipoArchivo"
+                [id]="file.id"
+                (change)="handleFileInput($event, file)"
+              />
+              <label [for]="file.id"
+                ><span [ngClass]="{ 'u-txt-black': file.estatus }">{{
+                  file.name
+                }}</span></label
+              >
+            </div>
+
+            <div class="styleInput" *ngIf="formFisico">
+              <label for="basic">Fecha de notificación</label>
+              <p-calendar
+                name="fechaNotifacion"
+                formControlName="fechaNotifacion"
+                placeholder="Selecciona una opción"
+              ></p-calendar>
+            </div>
+
+            <div class="styleInput" *ngIf="formBuzon">
+              <label>Tipo de notificación</label>
+              <div class="styleInput__radioButton">
+                <div class="field-radiobutton">
+                  <p-radioButton
+                    value="manual"
+                    name="notificacionTipo"
+                    formControlName="notificacionTipo"
+                  ></p-radioButton>
+                  <label>Manual</label>
+                </div>
+                <div class="field-radiobutton">
+                  <p-radioButton
+                    value="automatica"
+                    name="notificacionTipo"
+                    formControlName="notificacionTipo"
+                  ></p-radioButton>
+                  <label>Automática</label>
+                </div>
+              </div>
+            </div>
+
+            <div
+              [ngClass]="fechaTermino ? 'styleInput__disabled' : ''"
+              class="styleInput"
+            >
+              <label>Fecha de término</label>
+              <input
+                name="fechaTermino"
+                formControlName="fechaTermino"
+                placeholder="22/09/2022"
+                pInputText
+              />
+            </div>
+
+            <div class="styleInput" *ngIf="!formFisico">
+              <label>Número de oficio</label>
+              <input
+                name="numeroOficio"
+                formControlName="numeroOficio"
+                placeholder="Ingresa el no. de oficio"
+                pInputText
+              />
+            </div>
+
+            <div class="styleInput" *ngIf="formFisico">
+              <label>¿Cumple con formalidades de la ley?</label>
+              <div class="styleInput__radioButton">
+                <div class="field-radiobutton">
+                  <p-radioButton
+                    value="si"
+                    name="cumpleLey"
+                    formControlName="cumpleLey"
+                    (click)="formFisico ? changeCitaSi() : ''"
+                  ></p-radioButton>
+                  <label>Si</label>
+                </div>
+                <div class="field-radiobutton">
+                  <p-radioButton
+                    value="no"
+                    name="cumpleLey"
+                    formControlName="cumpleLey"
+                    (click)="changeCitaNo()"
+                  ></p-radioButton>
+                  <label>No</label>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div *ngIf="varEditor" class="u-mb-10">
+            <div class="noti__editor">
+              <label>Comentarios</label>
+              <p-editor
+                [style]="{ height: '320px' }"
+                formControlName="comentario"
+              ></p-editor>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="buttons-content">
+  <button
+    type="button"
+    class="btn-outline-primary"
+    *ngIf="!isReading"
+    (click)="
+      auditoria.id > 0 ? activaDesactivarModificar() : formAuditoria.reset()
+    "
+  >
+    Cancelar
+  </button>
+  <button
+    type="button"
+    class="btn-outline-primary"
+    *ngIf="isReading && auditoria.id > 0"
+    (click)="activaDesactivarModificar()"
+  >
+    Editar
+  </button>
+  <button
+    type="button"
+    class="btn-primary"
+    *ngIf="!isReading"
+    (click)="saveData()"
+  >
+    Guardar
+  </button>
+</div>
+
+<p-sidebar
+  [(visible)]="visibleSidebar"
+  position="right"
+  [baseZIndex]="10000"
+  styleClass="p-sidebar-xl"
+  [transitionOptions]="'200ms'"
+>
+  <div class="page">
+    <section class="data">
+      <div class="container">
+        <div class="sectionNoBg">
+          <div class="sectionNoBg__title">{{ catalogName }}</div>
+          <div class="sectionNoBg__content">
+
+            <div class="content-search-catalog styleInput">
+              <p-autoComplete
+                class="input-search"
+                [suggestions]="filterGeneral"
+                (completeMethod)="
+                  search($event, listaGeneral)
+                "
+                [(ngModel)] = "inputSearch"
+              ></p-autoComplete>
+              <div class="buttons-content-search-catalog">
+                <button type="submit" class="btn-primary">Agregar</button>
+              </div>
+            </div>
+
+            <div class="data__content">
+              <app-catalogos
+                [catalog]="catalog"
+                [catalogName]="catalogName"
+                [list] = "listaGeneral"
+                (formDataOut)="getDataForm($event)"
+              ></app-catalogos>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</p-sidebar>
+

@@ -1,0 +1,34 @@
+<div class="page">
+  <div class="container">
+    <div class="titulo-bloque">BAZ 2016</div>
+  </div>
+
+  <section class="calendarFull">
+    <div class="container">
+      <div class="section">
+        <div class="section__title">Calendario Auditoría BAZ 2016</div>
+        <div class="calendarFull__content">
+          <form [formGroup]="formOficio" class="u-mb-30">
+            <div class="p-field">
+              <label for="oficio" style="font-family: 'Avenir_Next_Bold'"
+                >Selecciona el oficio</label
+              >
+              <p-dropdown
+                id="oficio"
+                [options]="listOficios"
+                [(ngModel)]="oficioSelected"
+                placeholder="Selecciona el oficio"
+                optionLabel="numOficio"
+                [showClear]="true"
+                formControlName="oficio"
+              ></p-dropdown>
+            </div>
+          </form>
+          <div>
+            <app-calendar [events]="events"></app-calendar>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

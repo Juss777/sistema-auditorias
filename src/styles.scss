@@ -1,0 +1,262 @@
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@import "~@angular/material/theming";
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat-core();
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$REQDC7958-primary: mat-palette($mat-indigo);
+$REQDC7958-accent: mat-palette($mat-pink, A200, A100, A400);
+
+// The warn palette is optional (defaults to red).
+$REQDC7958-warn: mat-palette($mat-red);
+
+// Create the theme object (a Sass map containing all of the palettes).
+$REQDC7958-theme: mat-light-theme(
+  $REQDC7958-primary,
+  $REQDC7958-accent,
+  $REQDC7958-warn
+);
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include angular-material-theme($REQDC7958-theme);
+
+/* You can add global styles to this file, and also import other style files */
+@import "assets/scss/temaBAZ.scss";
+@import "assets/scss/fonts.scss";
+@import "assets/scss/utilidades.scss";
+@import "assets/scss/header.scss";
+@import "assets/scss/forms.scss";
+@import "assets/scss/main.scss";
+@import "assets/scss/table.scss";
+@import "assets/scss/card.scss";
+@import "assets/scss/board.scss";
+@import "assets/scss/new-job.scss";
+@import "assets/scss/dialog.scss";
+@import "assets/scss/fullCalendar.scss";
+@import "assets/scss/audit.scss";
+@import "assets/scss/step.scss";
+
+@import "assets/scss/hub.scss";
+@import "assets/scss/notifications.scss";
+@import "assets/scss/request.scss";
+@import "assets/scss/newReq.scss";
+
+/* general */
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+}
+
+:root {
+  --main-color: #3684b1;
+  --main-color__third: #83b9d8;
+  --main-color__light: #d3efff;
+  --main-color__medium: #49abe4;
+  --main-color__dark: #0c6496;
+  --main-color__secundario: #70ca6a;
+  --main-color__return: #525252;
+  --main-color-texto: #2d2926;
+  --color-gris: #9b9b9b;
+  --color-gris-oscuro: #2d2926;
+  --color-gris-claro: #a8a8a8;
+  --color-blanco: #fff;
+  --color-negro: #000;
+  --main-font-regular: "Avenir_Next_Regular";
+  --main-font-bold: "Avenir_Next_Bold";
+  --main-font-demi: "Avenir_Next_Demi_Bold";
+  --main-font-medium: "AvenirNextLTPro-Medium";
+  --background-gris: #f3f2f2;
+  --background-gris-secondary: #afafaf;
+  --estatus-listo: #2d720f;
+  --estatus-entregadoMal: #f5a000;
+  --estatus-entregadoCambios: #740faa;
+
+  --color-text-74: #747474;
+
+  /* Cambios Arantxa */
+  --color-gris2: #747474;
+  --color-gris-oscuro: #2d2926;
+  --color-gris-claro: #a8a8a8;
+  --color-gris-claro2: #d6d6d6;
+  --color-rojo: #da493d;
+  --color-blanco: #fff;
+  --color-negro: #000;
+  --color-avance-tabla: #e75116;
+  --color-avance-total: #3885b2;
+  --color-range-picker: #eaeaea;
+  --color-amarillo: #f8d616;
+  --color-verde: #71ca6b;
+}
+
+html {
+  font-size: 62.5%;
+  box-sizing: border-box;
+}
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+body {
+  // position: relative;
+  height: 100vh;
+  font-family: var(--main-font-regular);
+  font-size: 1.6rem;
+  line-height: 1.6;
+  color: var(--main-color-texto);
+  background-color: var(--color-blanco);
+}
+
+p {
+  margin: 0;
+  display: initial;
+}
+
+a {
+  text-decoration: none;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+.container {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.page {
+  padding-bottom: 50px;
+}
+
+// scrollbar
+
+*::-webkit-scrollbar-thumb {
+  background-color: var(--main-color);
+}
+
+.scroll::-webkit-scrollbar-track {
+  background-color: var(--background-gris-secondary);
+}
+
+*::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+
+.scroll::-webkit-scrollbar {
+  height: 2px;
+}
+
+.scroll {
+  overflow-x: auto;
+}
+
+// Section
+.section-padding {
+  padding: 10px 10px;
+}
+
+// Section
+.section {
+  border-radius: 3px;
+  background-color: #f3f2f2;
+  &__title {
+    padding: 5px 10px;
+    font-size: 1.4rem;
+    font-family: var(--main-font-demi);
+    color: var(--color-text-black);
+
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    span {
+      &:nth-child(2) {
+        width: 20px;
+        height: 20px;
+        background-color: #ff0000;
+        border-radius: 50%;
+        text-align: center;
+        color: var(--color-blanco);
+      }
+    }
+  }
+
+  &__content {
+    width: 100%;
+    height: auto;
+    padding: 10px;
+    border-top: 2px solid var(--main-color);
+  }
+}
+
+.sectionNoBg {
+  border-radius: 3px;
+  &__title {
+    padding: 5px 0px;
+    font-size: 1.4rem;
+    font-family: var(--main-font-demi);
+    color: var(--color-text-black);
+  }
+
+  &__content {
+    width: 100%;
+    height: auto;
+    padding: 10px;
+    border-top: 2px solid var(--main-color);
+    background-color: #f3f2f2;
+  }
+}
+
+.calendar {
+  .section__content {
+    display: flex;
+    justify-content: center;
+  }
+}
+
+.borderTop-gris {
+  border-top: 1px solid var(--color-gris-claro2);
+}
+
+.calendario__range {
+  .p-datepicker table td > span.p-highlight {
+    background: var(--color-range-picker);
+  }
+}
+
+.section__nombreOficio {
+  font-size: 1.5rem;
+  font-family: var(--main-font-demi);
+  color: var(--color-negro);
+}
+
+/*SIDEBAR*/
+.p-sidebar-right.p-sidebar-xl {
+  width: 57rem;
+
+  @media (min-width: 949px) {
+    width: 87rem;
+  }
+
+  @media (max-width: 636px) {
+    width: 37rem;
+  }
+}

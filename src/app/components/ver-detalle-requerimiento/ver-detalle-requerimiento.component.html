@@ -1,0 +1,151 @@
+<div class="page">
+  <div class="container">
+    <div class="titulo-bloque u-mb-5">
+      Revisión de requerimiento / Estado de cuenta
+    </div>
+    <div class="subtitulo-bloque">
+      BAZ 2016 - Oficio 230/2022 - Requerimiento de información
+    </div>
+  </div>
+
+  <!--Requerimientos contabilidad-->
+  <section>
+    <div class="container">
+      <div class="sectionNoBg">
+        <div class="sectionNoBg__title">Tareas contabilidad</div>
+        <div class="sectionNoBg__content">
+          <div class="requirements__overflow detailReq">
+            <p-table class="table" [value]="tarea">
+              <ng-template pTemplate="header">
+                <tr>
+                  <th>Tipo de requerimiento</th>
+                  <th>Área responsable</th>
+                  <th>Responsable</th>
+                  <th>Fecha de entrega</th>
+                </tr>
+              </ng-template>
+              <ng-template pTemplate="body" let-tarea>
+                <tr>
+                  <td>{{ tarea.requerimiento }}</td>
+                  <td>{{ tarea.area }}</td>
+                  <td>{{ tarea.responsable }}</td>
+                  <td>{{ tarea.fechaEntrega }}</td>
+                </tr>
+              </ng-template>
+            </p-table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!--Tipo de documentos-->
+  <section class="typeDocument">
+    <div class="container">
+      <div class="sectionNoBg">
+        <div class="sectionNoBg__title">Tipo de documentos</div>
+        <div class="sectionNoBg__content">
+          <div class="typeDocument__content">
+            <div class="typeDocument__legality">
+              <div class="typeDocument__title">Explicativo</div>
+              <div class="typeDocument__chip">
+                <p-chip label="Citatorio"></p-chip>
+                <p-chip label="Oficio"></p-chip>
+                <p-chip label="Documento"></p-chip>
+              </div>
+            </div>
+            <div class="typeDocument__materiality">
+              <div class="typeDocument__title">Documental</div>
+              <div class="typeDocument__chip">
+                <p-chip label="Contratos"></p-chip>
+                <p-chip label="Balanzas"></p-chip>
+                <p-chip label="Tickets"></p-chip>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!--Documentos-->
+  <section class="documents">
+    <div class="container">
+      <div class="sectionNoBg">
+        <div class="sectionNoBg__title">Documentos</div>
+        <div class="sectionNoBg__content">
+          <div class="documents__content">
+            <div class="documents__grid">
+              <div class="styleInput">
+                <label>Cargados</label>
+                <div
+                  class="d-flex-alignCenter gap-10 u-mb-10"
+                  *ngFor="let d of download"
+                >
+                  <div class="styleInput__download">{{ d.name }}</div>
+                  <img src="assets/img/iconos/ico-dow.svg" />
+                </div>
+              </div>
+              <div class="styleInput documents__area">
+                <label>Bitácora de comentarios</label>
+                <textarea pInputTextarea [autoResize]="true"></textarea>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!--Datos generales-->
+  <section class="dataGe">
+    <div class="container">
+      <div class="section">
+        <div class="section__title">Datos generales</div>
+        <div class="section__content">
+          <div class="dataGe__content">
+            <div class="dataGe__grid">
+              <div class="styleInput">
+                <label>Resultado de la revisión</label>
+                <p-dropdown
+                  [options]="opt"
+                  (onChange)="changeLegal()"
+                  optionLabel="name"
+                  placeholder="Selecciona el representante legal"
+                ></p-dropdown>
+              </div>
+              <div class="styleInput documents__area">
+                <label>Comentarios generales</label>
+                <textarea
+                  pInputTextarea
+                  [autoResize]="true"
+                  placeholder="Ingresa un comentario"
+                ></textarea>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="buttons-content" *ngIf="save">
+        <button class="btn-outline-primary">Cancelar</button>
+        <button class="btn-primary" (click)="showModal('modal4')">
+          Guardar
+        </button>
+      </div>
+      <div class="buttons-content" *ngIf="toReturn">
+        <button class="btn-outline-primary">Regresar</button>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- Modal Confirmar Cambios -->
+<p-dialog
+  class="modalNotice"
+  [(visible)]="this.displayModal"
+  [modal]="true"
+  [draggable]="false"
+  [resizable]="false"
+>
+  <app-modales [typeModal]="typeModal"></app-modales>
+</p-dialog>

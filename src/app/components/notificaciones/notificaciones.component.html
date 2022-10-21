@@ -1,0 +1,58 @@
+<div class="page">
+  <section class="notifications">
+    <div class="container">
+      <div class="middleBoard">
+        <div class="section dataSheet section-padding">
+          <div class="section__title title__xl">Notificaciones</div>
+          <div class="section__content">
+            <div class="notifications__content">
+              <div
+                class="notifications__card"
+                *ngFor="let notificacion of auditoriaService.notificaciones"
+                [ngClass]="{
+                  notifications__danger:
+                    notificacion.tipoNotificacion === 'rojo',
+                  notifications__warning:
+                    notificacion.tipoNotificacion === 'amarillo',
+                  notifications__success:
+                    notificacion.tipoNotificacion === 'verde'
+                }"
+              >
+                <p-card>
+                  <ng-template pTemplate="header">{{
+                    notificacion.header
+                  }}</ng-template>
+                  {{ notificacion.content }}
+                  <ng-template pTemplate="footer">
+                    <a
+                      (click)="
+                        showModal(
+                          'modal1',
+                          'Tareas / BAZ 2016 - Oficio 230/2022 - Requerimiento de información'
+                        )
+                      "
+                      >Ver detalle</a
+                    >
+                  </ng-template>
+                </p-card>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- Modal Mis Tareas Pendientes-->
+
+<p-dialog
+  [header]="this.headerModal"
+  class="modalReq"
+  [(visible)]="this.displayModal"
+  [modal]="true"
+  [draggable]="false"
+  [resizable]="false"
+>
+  <app-modales [typeModal]="typeModal"></app-modales>
+</p-dialog>
