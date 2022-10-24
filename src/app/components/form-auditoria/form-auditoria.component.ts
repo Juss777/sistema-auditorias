@@ -165,14 +165,14 @@ export class FormAuditoriaComponent implements OnInit, AfterViewInit {
   filterGeneral: any[] = [];
   listaGeneral: any[] = [];
 
-  inputSearch: string = '';
+  inputSearch: string = "";
 
   @Output() auditoriaDataOut: EventEmitter<Auditoria> = new EventEmitter();
   @Output() auditoriaDataEtapaOut: EventEmitter<Etapa> = new EventEmitter();
 
   areaEquipoForm: FormGroup = this.formBuilder.group({
-    area: ['', Validators.required],
-    responsable: ['', Validators.required]
+    area: ["", Validators.required],
+    responsable: ["", Validators.required],
   });
 
   formAuditoria: FormGroup = this.formBuilder.group({
@@ -182,30 +182,24 @@ export class FormAuditoriaComponent implements OnInit, AfterViewInit {
     siglas: [""],
     nombre: [""],
     monto: ["", Validators.required],
-    
+
     representanteLegal: this.formBuilder.array([
-      this.formBuilder.control('', [Validators.required, Validators.min(1)])
+      this.formBuilder.control("", [Validators.required, Validators.min(1)]),
     ]),
 
     instrumentoPublicoPoder: this.formBuilder.array([
-      this.formBuilder.control('')
+      this.formBuilder.control(""),
     ]),
-    instrumentoPublico: this.formBuilder.array([
-      this.formBuilder.control('')
-    ]),
-    
-    areaEquipo: this.formBuilder.array([
-      this.formBuilder.control('')
-    ]),
-    responsableEquipo: this.formBuilder.array([
-      this.formBuilder.control('')
-    ]),
+    instrumentoPublico: this.formBuilder.array([this.formBuilder.control("")]),
+
+    areaEquipo: this.formBuilder.array([this.formBuilder.control("")]),
+    responsableEquipo: this.formBuilder.array([this.formBuilder.control("")]),
 
     contencioso: [""],
 
     equipo: [""],
 
-    autoridad: [''],
+    autoridad: [""],
     area: [0],
     administradorGeneral: [""],
     administradorCentral: [""],
@@ -274,7 +268,7 @@ export class FormAuditoriaComponent implements OnInit, AfterViewInit {
 
   filesInstrumentoPublico = [
     {
-      id: 'file-1',
+      id: "file-1",
       label: "Subir instrumento",
       name: "Subir documento",
       estatus: false,
@@ -321,19 +315,19 @@ export class FormAuditoriaComponent implements OnInit, AfterViewInit {
     this.filterGeneral = filtered;
   }
 
-  setInputsRepresentanteLegal(representanteLegal: any[]){
+  setInputsRepresentanteLegal(representanteLegal: any[]) {
     for (let i = 0; i < representanteLegal.length - 1; i++) {
       this.addInputRepresentanteLegal();
     }
   }
 
-  setInputsInstrumentoPublicoPoder(instrumentoPublicoPoder: any[]){
+  setInputsInstrumentoPublicoPoder(instrumentoPublicoPoder: any[]) {
     for (let i = 0; i < instrumentoPublicoPoder.length - 1; i++) {
       this.addInputsInstrumentoPublico();
     }
   }
 
-  setInputsArea(areaEquipo: any[]){
+  setInputsArea(areaEquipo: any[]) {
     for (let i = 0; i < areaEquipo.length - 1; i++) {
       this.addInputsArea();
     }
@@ -343,17 +337,15 @@ export class FormAuditoriaComponent implements OnInit, AfterViewInit {
     var audi = new Auditoria(auditoria);
     this.setInputsRepresentanteLegal(audi.representanteLegal);
     this.setInputsInstrumentoPublicoPoder(audi.instrumentoPublicoPoder);
-    this.filesInstrumentoPublico.forEach(a => {
-      audi.instrumentoPublico.forEach(b => {
+    this.filesInstrumentoPublico.forEach((a) => {
+      audi.instrumentoPublico.forEach((b) => {
         a.name = b;
         a.estatus = true;
-      })
+      });
     });
 
     this.setInputsArea(audi.areaEquipo);
     this.formAuditoria.setValue(audi);
-
-    
   }
 
   activaDesactivarModificar() {
@@ -402,7 +394,7 @@ export class FormAuditoriaComponent implements OnInit, AfterViewInit {
       this.formAuditoria.markAllAsTouched();
     } else {
       console.log(this.formAuditoria);
-      
+
       var auditoria = new Auditoria(this.formAuditoria.value);
 
       var etapa = new Etapa(this.formEtapa.value);
@@ -417,46 +409,46 @@ export class FormAuditoriaComponent implements OnInit, AfterViewInit {
     }
   }
 
-  get representanteLegal(){
-    return this.formAuditoria.get('representanteLegal') as FormArray;
+  get representanteLegal() {
+    return this.formAuditoria.get("representanteLegal") as FormArray;
   }
 
-  get instrumentoPublicoPoder(){
-    return this.formAuditoria.get('instrumentoPublicoPoder') as FormArray;
+  get instrumentoPublicoPoder() {
+    return this.formAuditoria.get("instrumentoPublicoPoder") as FormArray;
   }
 
-  get instrumentoPublico(){
-    return this.formAuditoria.get('instrumentoPublico') as FormArray;
+  get instrumentoPublico() {
+    return this.formAuditoria.get("instrumentoPublico") as FormArray;
   }
 
-  get areaEquipo(){
-    return this.formAuditoria.get('areaEquipo') as FormArray;
+  get areaEquipo() {
+    return this.formAuditoria.get("areaEquipo") as FormArray;
   }
 
-  get responsableEquipo(){
-    return this.formAuditoria.get('responsableEquipo') as FormArray;
+  get responsableEquipo() {
+    return this.formAuditoria.get("responsableEquipo") as FormArray;
   }
 
   addInputRepresentanteLegal() {
-    this.representanteLegal.push(this.formBuilder.control('', [Validators.required, Validators.min(1)]));
+    this.representanteLegal.push(
+      this.formBuilder.control("", [Validators.required, Validators.min(1)])
+    );
   }
 
   addInputsInstrumentoPublico() {
-    this.filesInstrumentoPublico.push(
-      {
-        id: `file-${this.filesInstrumentoPublico.length + 1}`,
-        name: `subirInstrumento-${this.filesInstrumentoPublico.length + 1}`,
-        label: `Subir instrumento ${this.filesInstrumentoPublico.length + 1}`,
-        estatus: false,
-      }
-    )
-    this.instrumentoPublicoPoder.push(this.formBuilder.control(''));
-    this.instrumentoPublico.push(this.formBuilder.control(''));
+    this.filesInstrumentoPublico.push({
+      id: `file-${this.filesInstrumentoPublico.length + 1}`,
+      name: `subirInstrumento-${this.filesInstrumentoPublico.length + 1}`,
+      label: `Subir instrumento ${this.filesInstrumentoPublico.length + 1}`,
+      estatus: false,
+    });
+    this.instrumentoPublicoPoder.push(this.formBuilder.control(""));
+    this.instrumentoPublico.push(this.formBuilder.control(""));
   }
 
   addInputsArea() {
-    this.areaEquipo.push(this.formBuilder.control(''));
-    this.responsableEquipo.push(this.formBuilder.control(''));
+    this.areaEquipo.push(this.formBuilder.control(""));
+    this.responsableEquipo.push(this.formBuilder.control(""));
   }
 
   deleteInstrumentPublico(index: number) {
@@ -465,7 +457,7 @@ export class FormAuditoriaComponent implements OnInit, AfterViewInit {
     this.filesInstrumentoPublico.splice(index, 1);
   }
 
-  deleteRepresentanteLegal(index: number){
+  deleteRepresentanteLegal(index: number) {
     this.representanteLegal.removeAt(index);
   }
 

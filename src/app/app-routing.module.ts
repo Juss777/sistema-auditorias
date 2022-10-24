@@ -10,6 +10,7 @@ import { AuditoriaComponent } from "./components/auditoria/auditoria.component";
 import { CalendarioAuditoriaComponent } from "./components/calendario-auditoria/calendario-auditoria.component";
 import { DetalleAuditoriaComponent } from "./components/detalle-auditoria/detalle-auditoria.component";
 import { DashboardColaboradorComponent } from "./components/dashboard-colaborador/dashboard-colaborador.component";
+import { DetallePorAreaComponent } from "./components/detalle-por-area/detalle-por-area.component";
 
 const routes: Routes = [
   {
@@ -101,6 +102,7 @@ const routes: Routes = [
     },
   },
   { path: "dash-colaborador", component: DashboardColaboradorComponent },
+  { path: "detalle-por-area", component: DetallePorAreaComponent },
   { path: "nuevo-oficio", component: NuevoOficioComponent },
   {
     path: "notificacion",

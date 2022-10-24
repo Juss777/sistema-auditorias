@@ -1,0 +1,153 @@
+From 3a1a0aa2106385b492e22be257a38256c3632e2a Mon Sep 17 00:00:00 2001
+From: Luis Zapata <luis.azapatazepeda@gmail.com>
+Date: Fri, 21 Oct 2022 18:02:29 -0500
+Subject: [PATCH] Cambios en modal nuevo requerimiento
+
+---
+ .../auditoria/auditoria.component.html        | 30 ++++-----
+ src/assets/scss/newReq.scss                   | 67 ++++++++++++++++---
+ 2 files changed, 71 insertions(+), 26 deletions(-)
+
+diff --git a/src/app/components/auditoria/auditoria.component.html b/src/app/components/auditoria/auditoria.component.html
+index 237f9df..079c8a0 100644
+--- a/src/app/components/auditoria/auditoria.component.html
++++ b/src/app/components/auditoria/auditoria.component.html
+@@ -59,7 +59,10 @@
+                       </div>
+                     </td>
+                     <td>
+-                      <div class="requirements__icon" (click)="confirmDelete(r.id)">
++                      <div
++                        class="requirements__icon"
++                        (click)="confirmDelete(r.id)"
++                      >
+                         <img src="assets/img/iconos/ico-trash.svg" />
+                       </div>
+                     </td>
+@@ -207,28 +210,25 @@
+   </form>
+ </p-dialog>
+ 
+-
+ <p-dialog
+   header="Confirmación de eliminar"
+-  class="modalNewReq confirm-delete"
++  class="confirmDelete"
+   [(visible)]="this.displayConfirma"
+   [modal]="true"
+   [draggable]="false"
+   [resizable]="false"
+ >
+-  <div class="content-confirm">
+-      <img src="assets/img/iconos/ico-trash.svg" alt="">
+-      <h3>¿Está seguro de eliminar este dato?</h3>
++  <div class="confirmDelete__confirm">
++    <div>
++      <img src="assets/img/iconos/ico-trash.svg" alt="icono eliminar" />
++    </div>
++    <div>¿Está seguro de eliminar este dato?</div>
+   </div>
+ 
+   <div class="modalNewReq__buttons u-mb-25">
+-      <button
+-        class="btn-outline-primary"
+-        (click)="this.displayConfirma = false"
+-      >
+-        Cancelar
+-      </button>
+-      <button class="btn-primary" (click)="deleteReq()">Aceptar</button>
++    <button class="btn-outline-primary" (click)="this.displayConfirma = false">
++      Cancelar
++    </button>
++    <button class="btn-primary" (click)="deleteReq()">Aceptar</button>
+   </div>
+-
+-</p-dialog>
+\ No newline at end of file
++</p-dialog>
+diff --git a/src/assets/scss/newReq.scss b/src/assets/scss/newReq.scss
+index 65439f8..5bf2e0a 100644
+--- a/src/assets/scss/newReq.scss
++++ b/src/assets/scss/newReq.scss
+@@ -72,21 +72,66 @@
+   }
+ }
+ 
+-
+-.confirm-delete {
++.confirmDelete {
+   .p-dialog {
+-    max-width: 500px !important;
+-    height: 300px !important;
++    position: relative;
++    width: 100%;
++
++    padding: 10px 10px 20px;
++    font-family: var(--main-font-regular);
++    background-color: var(--background-gris);
++
++    @media (min-width: 768px) {
++      max-width: 560px;
++      height: auto;
++    }
++
++    .p-dialog-header {
++      border-bottom: 2px solid var(--main-color);
++      padding: 15px 0;
++      box-sizing: border-box;
++      background-color: var(--background-gris);
++
++      .p-dialog-title {
++        font-size: 1.8rem;
++        font-family: var(--main-font-demi);
++        line-height: 1.4;
++
++        @media (min-width: 768px) {
++          font-size: 2rem;
++        }
++      }
++
++      .p-dialog-header-icons {
++        .pi {
++          font-size: 1.8rem;
++        }
++      }
++    }
++
++    .p-dialog-content {
++      padding: 0;
++      background-color: var(--background-gris);
++    }
+   }
+ 
+-  .content-confirm{
+-    text-align: center;
+-    padding-top: 25px;
++  &__confirm {
++    div {
++      padding-top: 25px;
++      display: flex;
++      flex-direction: column;
++      justify-content: center;
++      align-items: center;
+ 
+-    img{
++      font-size: 2rem;
++      font-family: var(--main-font-demi);
++      text-align: center;
++    }
++
++    img {
+       display: initial;
+-      width:inherit;
+-      height:50px;
++      width: inherit;
++      height: 50px;
+     }
+   }
+-}
+\ No newline at end of file
++}
+-- 
+2.33.0.windows.2
+

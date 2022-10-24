@@ -16,3 +16,13 @@ export interface TablaRequrimientos {
   avance: string;
   terminado: string;
 }
+
+export interface Audito {
+  id: string;
+  name: string;
+}
+
+export interface Ofi {
+  id: string;
+  name: string;
+}
