@@ -48,4 +48,16 @@ export class ModalesComponent implements OnInit {
     this.inputHidden = true;
     this.buttonDisabled = true;
   }
+
+  countChars: number = 0;
+  isMax: boolean = false;
+  maxCharacters: number = 250;
+  countCharacters(event: any) {
+    this.countChars = event.target.value.length;
+    if (this.countChars === this.maxCharacters) {
+      this.isMax = true;
+    } else {
+      this.isMax = false;
+    }
+  }
 }

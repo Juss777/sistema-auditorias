@@ -1,0 +1,137 @@
+.modalNewReq {
+  &__grid {
+    display: grid;
+    gap: 20px;
+
+    @media (min-width: 768px) {
+      padding: 10px 50px;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 30px;
+    }
+  }
+
+  &__buttons {
+    margin: 30px 0 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    column-gap: 35px;
+    button {
+      width: 140px;
+      height: 40px;
+    }
+  }
+
+  .p-dialog {
+    position: relative;
+    width: 100%;
+
+    padding: 10px 10px 20px;
+    font-family: var(--main-font-regular);
+    background-color: var(--background-gris);
+
+    @media (min-width: 768px) {
+      max-width: 768px;
+      height: 550px;
+    }
+
+    .p-dialog-header {
+      border-bottom: 2px solid var(--main-color);
+      padding: 15px 0;
+      box-sizing: border-box;
+      background-color: var(--background-gris);
+
+      .p-dialog-title {
+        font-size: 1.8rem;
+        font-family: var(--main-font-demi);
+        line-height: 1.4;
+
+        @media (min-width: 768px) {
+          font-size: 2rem;
+        }
+      }
+
+      .p-dialog-header-icons {
+        .pi {
+          font-size: 1.8rem;
+        }
+      }
+    }
+
+    .p-dialog-content {
+      padding: 0;
+      background-color: var(--background-gris);
+    }
+  }
+
+  .p-dialog-mask {
+    padding: 10px;
+    @media (min-width: 1024px) {
+      padding: 0px;
+    }
+  }
+}
+
+.confirmDelete {
+  .p-dialog {
+    position: relative;
+    width: 100%;
+
+    padding: 10px 10px 20px;
+    font-family: var(--main-font-regular);
+    background-color: var(--background-gris);
+
+    @media (min-width: 768px) {
+      max-width: 560px;
+      height: auto;
+    }
+
+    .p-dialog-header {
+      border-bottom: 2px solid var(--main-color);
+      padding: 15px 0;
+      box-sizing: border-box;
+      background-color: var(--background-gris);
+
+      .p-dialog-title {
+        font-size: 1.8rem;
+        font-family: var(--main-font-demi);
+        line-height: 1.4;
+
+        @media (min-width: 768px) {
+          font-size: 2rem;
+        }
+      }
+
+      .p-dialog-header-icons {
+        .pi {
+          font-size: 1.8rem;
+        }
+      }
+    }
+
+    .p-dialog-content {
+      padding: 0;
+      background-color: var(--background-gris);
+    }
+  }
+
+  &__confirm {
+    div {
+      padding-top: 25px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+      font-size: 2rem;
+      font-family: var(--main-font-demi);
+      text-align: center;
+    }
+
+    img {
+      display: initial;
+      width: inherit;
+      height: 50px;
+    }
+  }
+}

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from "@angular/core";
+import { Component, OnInit, Input, AfterViewInit } from '@angular/core';
 import { Task } from "src/app/interface/task";
 import { AuditoriaService } from "src/app/services/auditorias.service";
 import { Req } from "src/app/interface/req";
@@ -11,10 +11,9 @@ import { Auditoria } from "src/app/class/auditoriasClass";
   templateUrl: "./bottom-board.component.html",
   styles: [],
 })
-export class BottomBoardComponent implements OnInit {
+export class BottomBoardComponent implements OnInit, AfterViewInit{
   tasks!: Task[];
-  date14!: Date;
-  dates!: Date[];
+  startEndDay: Date[] = [new Date('2022-10-13'), new Date('2022-10-25')]
   value: number = 40;
 
   // displayTareaTabla: boolean = false;
@@ -34,6 +33,13 @@ export class BottomBoardComponent implements OnInit {
   ngOnInit(): void {
     this.customService.getTasks().then((data) => (this.tasks = data));
     this.reqService.getRegistros().then((data) => (this.requerimiento = data));
+  }
+
+  ngAfterViewInit(): void{
+    setTimeout(() =>{
+      this.markDayStartAndFinish();
+    }, 200)
+    
   }
 
   pending = [
@@ -73,5 +79,13 @@ export class BottomBoardComponent implements OnInit {
     this.headerModal = headerModal;
     this.typeModal = typeModal;
     this.displayTabla = true;
+  }
+
+  markDayStartAndFinish(){
+    var d: any = document.getElementsByClassName('p-highlight');
+    d[0].style.backgroundColor = 'green';
+    d[0].style.color = 'white';
+    d[d.length-1].style.backgroundColor = 'red';
+    d[d.length-1].style.color = 'white';
   }
 }

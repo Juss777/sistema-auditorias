@@ -1,0 +1,56 @@
+.notifications {
+  &__card {
+    border-radius: 3px;
+
+    .p-card {
+      //   height: 90px;
+      padding: 15px 20px;
+      margin: 20px 0;
+
+      .p-card-header {
+        margin-bottom: 10px;
+        font-size: 1.2rem;
+        color: var(--color-gris2);
+        font-family: var(--main-font-medium);
+      }
+
+      .p-card-body {
+        padding: 0;
+        font-size: 1.2rem;
+        color: var(--color-negro);
+        font-family: var(--main-font-regular);
+        .p-card-content {
+          padding: 0;
+        }
+      }
+
+      .p-card-footer {
+        text-align: right;
+
+        a {
+          font-size: 1.2rem;
+          text-decoration: underline;
+          color: var(--main-color);
+          cursor: pointer;
+          font-family: var(--main-font-regular);
+        }
+      }
+    }
+
+    &:last-of-type .p-card {
+      margin: 0;
+    }
+  }
+
+  &__danger {
+    border-left: 5px solid var(--color-rojo);
+  }
+
+  &__warning {
+    border-left: 5px solid var(--color-amarillo);
+  }
+
+  &__success {
+    border-left: 5px solid var(--color-verde);
+  }
+}

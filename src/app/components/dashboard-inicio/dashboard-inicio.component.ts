@@ -54,6 +54,8 @@ export class DashboardInicioComponent implements OnInit, AfterViewInit {
   displayTabla: boolean = false;
   headerModal: string = "";
 
+  startEndDay: Date[] = [new Date('2022-10-13'), new Date('2022-10-25')]
+
   constructor(
     public auditoriaService: AuditoriaService,
     public customService: CustomService,
@@ -73,6 +75,9 @@ export class DashboardInicioComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit() {
     this.translateChange("es");
+    setTimeout(() =>{
+      this.markDayStartAndFinish();
+    }, 200)
   }
 
   translateChange(lang: string) {
@@ -163,5 +168,13 @@ export class DashboardInicioComponent implements OnInit, AfterViewInit {
   }
   cambioPCol() {
     this.colaborador = false;
+  }
+
+  markDayStartAndFinish(){
+    var d: any = document.getElementsByClassName('p-highlight');
+    d[0].style.backgroundColor = 'green';
+    d[0].style.color = 'white';
+    d[d.length-1].style.backgroundColor = 'red';
+    d[d.length-1].style.color = 'white';
   }
 }

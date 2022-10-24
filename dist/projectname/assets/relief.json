@@ -1,0 +1,34 @@
+{
+      "data": [
+            {
+                  "id": "1",
+                  "version": "23/09/2022 - 12:01:05",
+                  "responsable": "Usuario1",
+                  "area": "Fiscal"
+            },
+            {
+                  "id": "2",
+                  "version": "23/09/2022 - 12:01:05",
+                  "responsable": "Usuario2",
+                  "area": "Contabilidad"
+            },
+            {
+                  "id": "3",
+                  "version": "23/09/2022 - 12:01:05",
+                  "responsable": "Usuario3",
+                  "area": "Jurídico"
+            },
+            {
+                  "id": "4",
+                  "version": "23/09/2022 - 12:01:05",
+                  "responsable": "Usuario4",
+                  "area": "Contabilidad"
+            },
+            {
+                  "id": "5",
+                  "version": "23/09/2022 - 12:01:05",
+                  "responsable": "Usuario5",
+                  "area": "Contabilidad"
+            }
+      ]
+}

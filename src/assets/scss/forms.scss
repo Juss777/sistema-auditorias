@@ -294,3 +294,15 @@
     grid-template-columns: 70% 30%;
   }
 }
+
+.count-characters {
+  /*width: 100%;*/
+  font-size: 12px;
+  text-align: right;
+  font-family: "Avenir_Next_Demi_Bold";
+  color: #a6a6a6;
+}
+
+.status-characters-max{
+  color: var(--color-rojo);
+}

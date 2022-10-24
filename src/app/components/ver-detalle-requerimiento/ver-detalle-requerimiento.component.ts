@@ -71,4 +71,16 @@ export class VerDetalleRequerimientoComponent implements OnInit {
     this.typeModal = typeModal;
     this.displayModal = true;
   }
+
+  countChars: number = 0;
+  isMax: boolean = false;
+  maxCharacters: number = 250;
+  countCharacters(event: any) {
+    this.countChars = event.target.value.length;
+    if (this.countChars === this.maxCharacters) {
+      this.isMax = true;
+    } else {
+      this.isMax = false;
+    }
+  }
 }

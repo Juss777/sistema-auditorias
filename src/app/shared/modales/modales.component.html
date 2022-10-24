@@ -141,7 +141,12 @@
             [autoResize]="true"
             formControlName="comentarios"
             placeholder="Ingresa un comentario"
+            (keyup)="countCharacters($event)"
+            maxlength="250"
           ></textarea>
+          <div class="count-characters" [ngClass]="isMax ? 'status-characters-max' : ''">
+            {{ countChars }} / {{maxCharacters}} máx.
+          </div>
         </div>
 
         <div class="buttons-content">
