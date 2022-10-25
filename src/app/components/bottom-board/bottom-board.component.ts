@@ -16,8 +16,6 @@ export class BottomBoardComponent implements OnInit, AfterViewInit{
   startEndDay: Date[] = [new Date('2022-10-13'), new Date('2022-10-25')]
   value: number = 40;
 
-  // displayTareaTabla: boolean = false;
-
   requerimiento!: Req[];
 
   @Input() auditoria = new Auditoria({});

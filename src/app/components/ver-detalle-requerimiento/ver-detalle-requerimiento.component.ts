@@ -62,14 +62,12 @@ export class VerDetalleRequerimientoComponent implements OnInit {
     this.toReturn = false;
   }
 
-  // showModal() {
-  //   this.displayConfirmar = true;
-  // }
-
   showModal(typeModal: string) {
     this.typeModal = typeModal;
     this.displayModal = true;
   }
+
+  
 
   countChars: number = 0;
   isMax: boolean = false;

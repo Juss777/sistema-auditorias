@@ -12,7 +12,7 @@
   <div class="container">
     <!-- Componente Cards -->
     <div class="dashboardTop u-mb-20" *ngIf="!colaborador">
-      <app-cards></app-cards>
+      <app-cards [auditorias]="auditorias" (auditoriaSelected)="fichaTecnica($event)"></app-cards>
     </div>
     <!-- Componente Ficha Técnica -->
     <div class="dashboardMidlle u-mb-20">
@@ -22,27 +22,27 @@
           <div
             class="dataFicha"
             [ngClass]="{
-              card__informative: auditoria.tipoCard === 'informativo',
-              card__entregadoMal: auditoria.tipoCard === 'mal',
-              card__entregadoCambios: auditoria.tipoCard === 'cambios'
+              card__informative: auditoriaSelected.tipoCard === 'informativo',
+              card__entregadoMal: auditoriaSelected.tipoCard === 'mal',
+              card__entregadoCambios: auditoriaSelected.tipoCard === 'cambios'
             }"
           >
             <div class="dataFicha_header">
               <div class="header-titulo">
-                <h3>BAZ 2016</h3>
+                <h3>{{auditoriaSelected.nombre}}</h3>
                 <div>Ord. Revisión: BAZ960100134</div>
               </div>
-              <div class="header-monto">Monto: <span>$23,172 MDP</span></div>
+              <div class="header-monto">Monto: <span>${{auditoriaSelected.monto}} MDP</span></div>
             </div>
             <div class="dataFicha_body u-mb-40">
               <div class="body-detalles borderTop-gris">
                 <div>
                   <span>Año</span>
-                  <span>2016</span>
+                  <span>{{auditoriaSelected.anio}}</span>
                 </div>
                 <div>
                   <span>Unidad de negocio</span>
-                  <span>BAZ</span>
+                  <span>{{auditoriaSelected.unidadNegocio}}</span>
                 </div>
                 <div>
                   <span>Autoridad:</span>
@@ -71,7 +71,7 @@
             <div class="dataFicha_footer" *ngIf="colaborador">
               <button
                 class="btn-auditoria"
-                [routerLink]="['/detalle-auditoria', auditoria.id]"
+                [routerLink]="['/detalle-auditoria', auditoriaSelected.id]"
               >
                 Ir a detalle
               </button>
