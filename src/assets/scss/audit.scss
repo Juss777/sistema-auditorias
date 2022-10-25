@@ -173,7 +173,7 @@
       gap: 10px;
       justify-content: space-between;
 
-      div{
+      div {
         display: flex;
         gap: 5px;
       }
@@ -337,10 +337,25 @@
   }
 }
 
-.space-ver-mas{
+// Detalle área (Colaborador)
+.detailArea {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+
+  &__content {
+    display: flex;
+    gap: 10px;
+
+    div {
+      width: 100%;
+    }
+  }
+}
+
+.space-ver-mas {
   margin-left: 47px;
 }
 
-.space-bottom{
+.space-bottom {
   margin-bottom: 83px;
 }

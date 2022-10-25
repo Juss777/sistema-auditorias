@@ -1,15 +1,79 @@
 <div class="page">
   <div class="container">
-    <div class="div">
-      <div class="titulo-bloque u-mb-5">Contabilidad</div>
-      <div>
+    <div class="detailArea u-mb-40">
+      <div class="titulo-bloque">Contabilidad</div>
+      <div class="detailArea__content">
         <div class="p-field styleInput">
           <label for="anio">Año de la auditoría</label>
           <p-dropdown [options]="audi" optionLabel="name"></p-dropdown>
         </div>
         <div class="p-field styleInput">
           <label for="anio">Seleccionar oficio</label>
-          <p-dropdown [options]="audi" optionLabel="name"></p-dropdown>
+          <p-dropdown [options]="ofi" optionLabel="name"></p-dropdown>
+        </div>
+      </div>
+    </div>
+    <div class="dialogReq">
+      <div class="section">
+        <div class="section__title">
+          Tareas <br />
+          BAZ 2016 - Oficio 230/2022 - Requerimiento de información
+        </div>
+        <div class="section__content">
+          <p-table class="table" [value]="requerimiento">
+            <ng-template pTemplate="header">
+              <tr>
+                <th pSortableColumn="area">
+                  Área <p-sortIcon field="area"></p-sortIcon>
+                </th>
+                <th pSortableColumn="responsable">
+                  Responsable <p-sortIcon field="responsable"></p-sortIcon>
+                </th>
+                <th pSortableColumn="requerimiento">
+                  Requerimiento <p-sortIcon field="requerimiento"></p-sortIcon>
+                </th>
+                <th pSortableColumn="tipoDeRequerimiento">
+                  Tipo de requerimiento
+                  <p-sortIcon field="tipoDeRequerimiento"></p-sortIcon>
+                </th>
+                <th pSortableColumn="estatus">
+                  Estatus actual <p-sortIcon field="estatus"></p-sortIcon>
+                </th>
+                <th pSortableColumn="fechaEntrega">
+                  Fecha de entrega
+                  <p-sortIcon field="fechaEntrega"></p-sortIcon>
+                </th>
+                <th>&nbsp;</th>
+              </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-req>
+              <tr>
+                <td>{{ req.area }}</td>
+                <td>{{ req.responsable }}</td>
+                <td>{{ req.requerimiento }}</td>
+                <td>{{ req.tipo }}</td>
+                <td>
+                  <div class="status">
+                    <span
+                      class="status__circle"
+                      [ngClass]="{
+                        status__red: req.colorEstatus === 'rojo',
+                        status__yellow: req.colorEstatus === 'amarillo',
+                        status__green: req.colorEstatus === 'verde'
+                      }"
+                    ></span>
+                    <span>{{ req.estatus }}</span>
+                  </div>
+                </td>
+                <td>{{ req.fechaEntrega }}</td>
+                <td>
+                  <a class="link" routerLink="/ver-detalle">{{
+                    req.detalle
+                  }}</a>
+                </td>
+              </tr>
+            </ng-template>
+          </p-table>
         </div>
       </div>
     </div>

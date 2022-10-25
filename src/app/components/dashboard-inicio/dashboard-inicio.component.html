@@ -12,7 +12,10 @@
   <div class="container">
     <!-- Componente Cards -->
     <div class="dashboardTop u-mb-20" *ngIf="!colaborador">
-      <app-cards [auditorias]="auditorias" (auditoriaSelected)="fichaTecnica($event)"></app-cards>
+      <app-cards
+        [auditorias]="auditorias"
+        (auditoriaSelected)="fichaTecnica($event)"
+      ></app-cards>
     </div>
     <!-- Componente Ficha Técnica -->
     <div class="dashboardMidlle u-mb-20">
@@ -29,20 +32,22 @@
           >
             <div class="dataFicha_header">
               <div class="header-titulo">
-                <h3>{{auditoriaSelected.nombre}}</h3>
+                <h3>{{ auditoriaSelected.nombre }}</h3>
                 <div>Ord. Revisión: BAZ960100134</div>
               </div>
-              <div class="header-monto">Monto: <span>${{auditoriaSelected.monto}} MDP</span></div>
+              <div class="header-monto">
+                Monto: <span>${{ auditoriaSelected.monto }} MDP</span>
+              </div>
             </div>
             <div class="dataFicha_body u-mb-40">
               <div class="body-detalles borderTop-gris">
                 <div>
                   <span>Año</span>
-                  <span>{{auditoriaSelected.anio}}</span>
+                  <span>{{ auditoriaSelected.anio }}</span>
                 </div>
                 <div>
                   <span>Unidad de negocio</span>
-                  <span>{{auditoriaSelected.unidadNegocio}}</span>
+                  <span>{{ auditoriaSelected.unidadNegocio }}</span>
                 </div>
                 <div>
                   <span>Autoridad:</span>
@@ -81,90 +86,7 @@
       </div>
     </div>
 
-    <div class="dashboardMidlleFile u-mb-20">
-      <!--Requerimientos Administador-->
-      <div
-        class="dashboardBottom__columnOne section section-padding"
-        *ngIf="colaborador"
-      >
-        <div class="section__title border-bottom">
-          Requerimiento de información
-        </div>
-        <!-- Requerimiento de información / Avence Total-->
-        <div class="summary">
-          <div class="summary__advance">
-            <div>Avance total</div>
-            <div><p-progressBar [value]="value"></p-progressBar></div>
-            <div>Total de áreas: 30</div>
-          </div>
-        </div>
-        <!--Requerimiento de información / Área responsable -->
-        <div class="informationArea pd-10">
-          <div class="informationArea__content">
-            <p-table class="table informationArea__table" [value]="tasks">
-              <ng-template pTemplate="header">
-                <tr>
-                  <th>Área responsable</th>
-                  <th>% de avance</th>
-                  <th>Último inicio de sesión</th>
-                </tr>
-              </ng-template>
-              <ng-template pTemplate="body" let-task>
-                <tr>
-                  <td>{{ task.area }}</td>
-                  <td><p-progressBar [value]="task.avance"></p-progressBar></td>
-                  <td>{{ task.ultimoInicio }}</td>
-                </tr>
-              </ng-template>
-            </p-table>
-          </div>
-          <div class="d-flex-justifyCenter u-mt-40 u-mb-25">
-            <button class="btn-auditoria" routerLink="/hub-colaborativo">
-              Ir a HUB colaborativo
-            </button>
-          </div>
-        </div>
-      </div>
-
-      <!--Requerimientos Colaborador-->
-      <div
-        class="dashboardBottom__columnOne section section-padding"
-        *ngIf="!colaborador"
-      >
-        <div class="section">
-          <div class="section__title border-bottom">
-            Requerimiento de información
-          </div>
-
-          <div class="informationAreaOficio">
-            <p-table class="table informationAreaOficio__table" [value]="req">
-              <ng-template pTemplate="header">
-                <tr>
-                  <th>Oficio</th>
-                  <th>% de avance</th>
-                  <th>Requerimientos terminados</th>
-                  <th></th>
-                </tr>
-              </ng-template>
-              <ng-template pTemplate="body" let-req>
-                <tr>
-                  <td>{{ req.oficio }}</td>
-                  <td><p-progressBar [value]="req.avance"></p-progressBar></td>
-                  <td>{{ req.terminado }}</td>
-                  <td>
-                    <a routerLink="detalle-por-area" class="link"
-                      >Ver requerimiento</a
-                    >
-                  </td>
-                </tr>
-              </ng-template>
-            </p-table>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="dashboardBottom">
+    <div class="dashboardBottom u-mb-20">
       <!-- Calendario -->
       <div class="section calendar section-padding">
         <div
@@ -256,8 +178,92 @@
               </tbody>
             </table>
             <div class="pending__plus">
-              <a>Ver más</a>
+              <a routerLink="/detalle-por-area">Ver más</a>
             </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tabla de Requerimientos -->
+    <div class="dashboardMidlleFile">
+      <!--Requerimientos Administador-->
+      <div
+        class="dashboardBottom__columnOne section section-padding"
+        *ngIf="colaborador"
+      >
+        <div class="section__title border-bottom">
+          Requerimiento de información
+        </div>
+        <!-- Requerimiento de información / Avence Total-->
+        <div class="summary">
+          <div class="summary__advance">
+            <div>Avance total</div>
+            <div><p-progressBar [value]="value"></p-progressBar></div>
+            <div>Total de áreas: 30</div>
+          </div>
+        </div>
+        <!--Requerimiento de información / Área responsable -->
+        <div class="informationArea pd-10">
+          <div class="informationArea__content">
+            <p-table class="table informationArea__table" [value]="tasks">
+              <ng-template pTemplate="header">
+                <tr>
+                  <th>Área responsable</th>
+                  <th>% de avance</th>
+                  <th>Último inicio de sesión</th>
+                </tr>
+              </ng-template>
+              <ng-template pTemplate="body" let-task>
+                <tr>
+                  <td>{{ task.area }}</td>
+                  <td><p-progressBar [value]="task.avance"></p-progressBar></td>
+                  <td>{{ task.ultimoInicio }}</td>
+                </tr>
+              </ng-template>
+            </p-table>
+          </div>
+          <div class="d-flex-justifyCenter u-mt-40 u-mb-25">
+            <button class="btn-auditoria" routerLink="/hub-colaborativo">
+              Ir a HUB colaborativo
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!--Requerimientos Colaborador-->
+      <div
+        class="dashboardBottom__columnOne section section-padding"
+        *ngIf="!colaborador"
+      >
+        <div class="section">
+          <div class="section__title border-bottom">
+            Requerimiento de información
+          </div>
+
+          <div class="informationAreaOficio">
+            <p-table class="table informationAreaOficio__table" [value]="req">
+              <ng-template pTemplate="header">
+                <tr>
+                  <th>Oficio</th>
+                  <th>% de avance</th>
+                  <th>Requerimientos terminados</th>
+                  <th></th>
+                </tr>
+              </ng-template>
+              <ng-template pTemplate="body" let-req>
+                <tr>
+                  <td>{{ req.oficio }}</td>
+                  <td><p-progressBar [value]="req.avance"></p-progressBar></td>
+                  <td>{{ req.terminado }}</td>
+                  <td>
+                    <a routerLink="/detalle-por-area" class="link"
+                      >Ver requerimiento</a
+                    >
+                  </td>
+                </tr>
+              </ng-template>
+            </p-table>
           </div>
         </div>
       </div>
