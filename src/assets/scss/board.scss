@@ -42,22 +42,7 @@
   display: grid;
   gap: 20px;
   @media (min-width: 768px) {
-    grid-template-columns: repeat(3, 1fr);
-  }
-  &__columnOne {
-    background-color: #f3f2f2;
-    @media (min-width: 768px) {
-      grid-column: 1/3;
-    }
-  }
-  &__columnTwo {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-
-    @media (min-width: 768px) {
-      grid-column: 3/4;
-    }
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 

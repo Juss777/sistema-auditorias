@@ -5,30 +5,6 @@
             "oficio": "20/2016",
             "avance": 40,
             "terminado": "20/60"
-        },
-        {
-            "id": "2",
-            "oficio": "20/2016",
-            "avance": 40,
-            "terminado": "20/60"
-        },
-        {
-            "id": "3",
-            "oficio": "20/2016",
-            "avance": 40,
-            "terminado": "20/60"
-        },
-        {
-            "id": "4",
-            "oficio": "20/2016",
-            "avance": 40,
-            "terminado": "20/60"
-        },
-        {
-            "id": "5",
-            "oficio": "20/2016",
-            "avance": 40,
-            "terminado": "20/60"
         }
     ]
 }

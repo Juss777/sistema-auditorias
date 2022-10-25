@@ -80,7 +80,8 @@
         </div>
       </div>
     </div>
-    <div class="dashboardBottom">
+
+    <div class="dashboardMidlleFile u-mb-20">
       <!--Requerimientos Administador-->
       <div
         class="dashboardBottom__columnOne section section-padding"
@@ -161,101 +162,101 @@
           </div>
         </div>
       </div>
+    </div>
 
-      <div class="dashboardBottom__columnTwo">
-        <!-- Calendario -->
-        <div class="section calendar section-padding">
-          <div
-            class="section__title"
-            [routerLink]="['calendario-auditoria/', 0]"
-            style="cursor: pointer"
-          >
-            Calendario {{ auditoriaService.tituloFicha }}
-          </div>
-          <div class="section__content">
-            <p-calendar
-              class="calendario__range"
-              [(ngModel)]="startEndDay"
-              [inline]="true"
-              [showWeek]="true"
-              selectionMode="range"
-              inputId="range"
-            ></p-calendar>
-          </div>
+    <div class="dashboardBottom">
+      <!-- Calendario -->
+      <div class="section calendar section-padding">
+        <div
+          class="section__title"
+          [routerLink]="['calendario-auditoria/', 0]"
+          style="cursor: pointer"
+        >
+          Calendario {{ auditoriaService.tituloFicha }}
         </div>
-        <!-- Mis tareas pendientes -->
-        <div class="section pending section-padding" *ngIf="colaborador">
-          <div class="section__title">
-            <span>Mis tareas pendientes</span>
-            <span>{{ pending.length }}</span>
-          </div>
-          <div class="section__content">
-            <div class="pending__content">
-              <table>
-                <thead>
-                  <tr>
-                    <th>Tarea</th>
-                    <th>Fecha entrega</th>
-                    <th>&nbsp;</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr *ngFor="let p of pending">
-                    <td><span class="pending__bullet"></span> {{ p.name }}</td>
-                    <td>{{ p.fechaEntrega }}</td>
-                    <td>
-                      <button class="pending__ico">
-                        <img [src]="p.verTarea" alt="icono ver" />
-                      </button>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-              <div class="pending__plus">
-                <a
-                  (click)="
-                    showModal(
-                      'modal1',
-                      'Tareas / BAZ 2016 - Oficio 230/2022 - Requerimiento de información'
-                    )
-                  "
-                  >Ver más</a
-                >
-              </div>
+        <div class="section__content">
+          <p-calendar
+            class="calendario__range"
+            [(ngModel)]="startEndDay"
+            [inline]="true"
+            [showWeek]="true"
+            selectionMode="range"
+            inputId="range"
+          ></p-calendar>
+        </div>
+      </div>
+      <!-- Mis tareas pendientes -->
+      <div class="section pending section-padding" *ngIf="colaborador">
+        <div class="section__title">
+          <span>Mis tareas pendientes</span>
+          <span>{{ pending.length }}</span>
+        </div>
+        <div class="section__content">
+          <div class="pending__content">
+            <table>
+              <thead>
+                <tr>
+                  <th>Tarea</th>
+                  <th>Fecha entrega</th>
+                  <th>&nbsp;</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let p of pending">
+                  <td><span class="pending__bullet"></span> {{ p.name }}</td>
+                  <td>{{ p.fechaEntrega }}</td>
+                  <td>
+                    <button class="pending__ico">
+                      <img [src]="p.verTarea" alt="icono ver" />
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <div class="pending__plus">
+              <a
+                (click)="
+                  showModal(
+                    'modal1',
+                    'Tareas / BAZ 2016 - Oficio 230/2022 - Requerimiento de información'
+                  )
+                "
+                >Ver más</a
+              >
             </div>
           </div>
         </div>
-        <!-- Mis tareas pendientes colaborador -->
-        <div class="section pending section-padding" *ngIf="!colaborador">
-          <div class="section__title">
-            <span>Mis tareas pendientes</span>
-            <span>{{ pending.length }}</span>
-          </div>
-          <div class="section__content">
-            <div class="pending__content">
-              <table class="tblTareasPendientes">
-                <thead>
-                  <tr>
-                    <th>Tarea</th>
-                    <th>Días restantes</th>
-                    <th>&nbsp;</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr *ngFor="let p of pendings">
-                    <td><span class="pending__bullet"></span> {{ p.name }}</td>
-                    <td>{{ p.dias }}</td>
-                    <td>
-                      <button class="pending__ico">
-                        <img [src]="p.verTarea" alt="icono ver" />
-                      </button>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-              <div class="pending__plus">
-                <a>Ver más</a>
-              </div>
+      </div>
+      <!-- Mis tareas pendientes colaborador -->
+      <div class="section pending section-padding" *ngIf="!colaborador">
+        <div class="section__title">
+          <span>Mis tareas pendientes</span>
+          <span>{{ pending.length }}</span>
+        </div>
+        <div class="section__content">
+          <div class="pending__content">
+            <table class="tblTareasPendientes">
+              <thead>
+                <tr>
+                  <th>Tarea</th>
+                  <th>Días restantes</th>
+                  <th>&nbsp;</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let p of pendings">
+                  <td><span class="pending__bullet"></span> {{ p.name }}</td>
+                  <td>{{ p.dias }}</td>
+                  <td>
+                    <button class="pending__ico">
+                      <img [src]="p.verTarea" alt="icono ver" />
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <div class="pending__plus">
+              <a>Ver más</a>
             </div>
           </div>
         </div>

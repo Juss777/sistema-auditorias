@@ -25,7 +25,6 @@ export class VerDetalleRequerimientoComponent implements OnInit {
     this.opt = [
       { name: "Entregado, pendiente de revisión" },
       { name: "No entregado" },
-      { name: "No entregado" },
       { name: "Listo" },
       { name: "Entregado, no se presenta" },
     ];
