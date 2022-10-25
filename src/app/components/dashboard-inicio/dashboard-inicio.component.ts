@@ -46,6 +46,7 @@ export class DashboardInicioComponent implements OnInit, AfterViewInit {
 
   auditoriaSelected = new Auditoria({});
   @Input() auditoria = new Auditoria({});
+  @Input() auditorias: Auditoria[] = [];
 
   value: number = 40;
   colaborador: boolean = true;
@@ -67,10 +68,11 @@ export class DashboardInicioComponent implements OnInit, AfterViewInit {
     this.customService.getTasks().then((data) => (this.tasks = data));
     this.reqService.getRegistros().then((data) => (this.requerimiento = data));
     this.customService.getRequerimiento().then((data) => (this.req = data));
+    this.auditorias = auditoriaService.auditoriaDetalles;
   }
 
   ngOnInit(): void {
-    // this.fichaTecnica(this.listAuditorias[0]);
+    this.fichaTecnica(this.auditorias[0]);
   }
 
   ngAfterViewInit() {
@@ -160,6 +162,8 @@ export class DashboardInicioComponent implements OnInit, AfterViewInit {
   }
 
   fichaTecnica(auditoria: any) {
+    console.log(auditoria);
+    
     this.auditoriaSelected = auditoria;
   }
 

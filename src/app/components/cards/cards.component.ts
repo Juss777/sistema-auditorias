@@ -1,5 +1,5 @@
-import { Component, OnInit } from "@angular/core";
-import { AuditoriaService } from "src/app/services/auditorias.service";
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Auditoria } from '../../class/auditoriasClass';
 
 @Component({
   selector: "app-cards",
@@ -7,34 +7,22 @@ import { AuditoriaService } from "src/app/services/auditorias.service";
   styles: [],
 })
 export class CardsComponent implements OnInit {
+  @Input() auditorias: Auditoria[] = [];
+  @Output() auditoriaSelected: EventEmitter<Auditoria> = new EventEmitter();
+  selected = new Auditoria({})
+
   constructor() {}
 
   ngOnInit(): void {}
 
-  auditorias = [
-    {
-      id: 1,
-      header: "Auditoría",
-      content: "BAZ 2016",
-      footer: "Última apertura: 12 sep 22",
-      active: false,
-      tipoCard: "cambios",
-    },
-    // {
-    //   id: 2,
-    //   header: "Auditoría",
-    //   content: "BAZ 2018",
-    //   footer: "Última apertura: 12 sep 22",
-    //   active: false,
-    //   tipoCard: "mal",
-    // },
-    // {
-    //   id: 3,
-    //   header: "Auditoría",
-    //   content: "BAZ 2019",
-    //   footer: "Última apertura: 12 sep 22",
-    //   active: false,
-    //   tipoCard: "cambios",
-    // },
-  ];
+  ngAfterViewInit(): void {
+    setTimeout(() =>{
+      this.selectedAuditoria(this.auditorias[0]);
+    }, 100)
+  }
+
+  selectedAuditoria(auditoria: Auditoria){
+    this.selected = auditoria;
+    this.auditoriaSelected.emit(auditoria);
+  }
 }

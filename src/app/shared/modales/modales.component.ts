@@ -49,6 +49,9 @@ export class ModalesComponent implements OnInit {
     this.buttonDisabled = true;
   }
 
+
+  
+
   countChars: number = 0;
   isMax: boolean = false;
   maxCharacters: number = 250;

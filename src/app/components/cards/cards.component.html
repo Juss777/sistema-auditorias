@@ -3,16 +3,17 @@
     class="card__content"
     *ngFor="let auditoria of auditorias"
     [ngClass]="{
-      card__inactive: !auditoria.active,
-      card__active: auditoria.active,
+      card__inactive: selected.id !== auditoria.id,
+      card__active: selected.id === auditoria.id,
       card__informative: auditoria.tipoCard === 'informativo',
       card__entregadoMal: auditoria.tipoCard === 'mal',
       card__entregadoCambios: auditoria.tipoCard === 'cambios'
     }"
+    (click)="selectedAuditoria(auditoria)"
   >
     <p-card class="card__cards">
       <ng-template pTemplate="header">Auditoría</ng-template>
-      {{ auditoria.content }}
+      {{ auditoria.nombre }}
       <ng-template pTemplate="footer">
         "Última apertura: 12 sep 22"
       </ng-template>
