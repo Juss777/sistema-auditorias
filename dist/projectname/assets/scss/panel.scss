@@ -1,0 +1,86 @@
+.panel {
+  &__table {
+    width: 100%;
+    border-spacing: 20px;
+
+    thead {
+      tr {
+        th {
+          padding: 10px;
+          font-size: 1.2rem;
+          font-family: var(--main-font-demi);
+        }
+      }
+    }
+
+    tbody {
+      tr {
+        td {
+          padding: 10px;
+        }
+
+        &:nth-child(3) {
+          td {
+            background: var(--color-blanco);
+            box-shadow: 0px 3px 6px #00000029;
+            height: 700px;
+          }
+        }
+      }
+    }
+  }
+
+  &__content {
+    padding: 20px;
+    border-radius: 3px;
+    background-color: #f3f2f2;
+  }
+
+  &__title {
+    text-align: center;
+    background: var(--color-verde);
+    color: var(--color-blanco);
+    font-size: 1.2rem;
+    font-family: var(--main-font-demi);
+  }
+
+  &__card {
+    width: 100px;
+    height: auto;
+    padding: 2px;
+    max-width: 70%;
+    font-size: 1rem;
+
+    text-align: center;
+    box-shadow: 1px 1px 2px #00000029;
+    border-radius: 3px;
+  }
+
+  &__card--gray {
+    background: #e7e9f1;
+  }
+
+  &__card--white {
+    background: var(--color-blanco);
+  }
+
+  &__border {
+    border-left: 4px solid var(--estatus-listo);
+  }
+
+  &__column2 {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  &__column3 {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 10px;
+  }
+}

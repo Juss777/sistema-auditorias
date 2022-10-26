@@ -1,0 +1,161 @@
+// Detalle de tarea
+
+.detailReq {
+  background: var(--color-blanco);
+  box-shadow: 0px 3px 6px #00000029;
+  border-radius: 3px;
+
+  .p-datatable .p-datatable-thead > tr > th {
+    background: var(--color-blanco);
+    color: var(--color-text-74);
+  }
+}
+
+// Tipo de documentos
+
+.typeDocument {
+  &__content {
+    display: grid;
+    gap: 20px;
+
+    @media (min-width: 768px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  &__title {
+    margin-bottom: 10px;
+    font-size: 1.4rem;
+    color: var(--color-negro);
+    font-family: var(--main-font-regular);
+  }
+
+  &__chip {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    font-family: var(--main-font-regular);
+
+    .p-chip {
+      padding: 0 1rem;
+      border: 1px solid var(--color-text-74);
+      border-radius: 16px;
+      font-family: var(--main-font-regular);
+      background-color: var(--color-blanco);
+      color: var(--color-text-74);
+    }
+    .p-chip-text {
+      font-size: 1.4rem;
+    }
+  }
+}
+
+// Datos generales
+
+.documents {
+  &__grid {
+    display: grid;
+    column-gap: 20px;
+    @media (min-width: 768px) {
+      grid-template-columns: repeat(2, 1fr);
+      column-gap: 40px;
+    }
+  }
+
+  &__area {
+    textarea {
+      height: 232px !important;
+    }
+  }
+
+  img {
+    cursor: pointer;
+  }
+}
+
+.dataGe {
+  &__grid {
+    display: grid;
+    gap: 30px;
+    @media (min-width: 768px) {
+      grid-template-columns: 2fr 5fr;
+    }
+  }
+}
+
+// -----Modal Aviso------
+.modalNotice {
+  .p-dialog {
+    position: relative;
+    width: 100%;
+    padding: 10px 10px 20px;
+
+    font-family: var(--main-font-regular);
+    background-color: var(--background-gris);
+
+    @media (min-width: 768px) {
+      max-width: 600px;
+      max-height: 332px;
+    }
+
+    .p-dialog-header {
+      padding: 0 0 15px;
+      background-color: var(--background-gris);
+
+      .p-dialog-header-icons {
+        .pi {
+          font-size: 1.8rem;
+        }
+      }
+    }
+
+    .p-dialog-content {
+      padding: 0;
+      background-color: var(--background-gris);
+    }
+  }
+
+  .p-dialog-mask {
+    padding: 10px;
+    @media (min-width: 1024px) {
+      padding: 0px;
+    }
+  }
+}
+
+.notice {
+  &__title {
+    margin-bottom: 20px;
+    font-size: 1.8rem;
+    line-height: 1.8;
+    text-align: center;
+    font-family: var(--main-font-demi);
+    color: var(--color-negro);
+
+    @media (min-width: 768px) {
+      font-size: 2rem;
+    }
+  }
+
+  &__text {
+    max-width: 90%;
+    margin: 0 auto;
+    font-size: 1.6rem;
+    line-height: 1.6;
+    text-align: center;
+    font-family: var(--main-font-medium);
+    color: var(--color-text-74);
+  }
+
+  .data__buttons {
+    margin: 30px 0 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    column-gap: 35px;
+    button {
+      width: 140px;
+      height: 40px;
+    }
+  }
+}
