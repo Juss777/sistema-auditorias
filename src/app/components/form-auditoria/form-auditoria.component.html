@@ -699,11 +699,14 @@
     class="btn-outline-primary"
     *ngIf="!isReading"
     (click)="
-      auditoria.id > 0 ? activaDesactivarModificar() : formAuditoria.reset()
+      auditoria.id > 0 ? activaDesactivarModificar() : openModalConfirm(true, '¿Está seguro de salir sin guardar los datos?', 'ico-bell-fill', 'cancel')
     "
   >
     Cancelar
   </button>
+  
+
+
   <button
     type="button"
     class="btn-outline-primary"
@@ -712,11 +715,12 @@
   >
     Editar
   </button>
+
   <button
     type="button"
     class="btn-primary"
     *ngIf="!isReading"
-    (click)="saveData()"
+    (click)="openModalConfirm(true, '¿Está seguro de salvar los datos?', 'ico-bell-fill', 'save')"
   >
     Guardar
   </button>
@@ -764,4 +768,21 @@
     </section>
   </div>
 </p-sidebar>
+
+<p-dialog
+  header="Confirmación"
+  class="confirmDelete"
+  [(visible)]="this.displayConfirma"
+  [modal]="true"
+  [draggable]="false"
+  [resizable]="false"
+>
+  <app-modales 
+    [typeModal]="'modal5'" 
+    [displayModal]="displayConfirma" 
+    [message]="message"
+    [icon]="icon"
+    (result)="getResutlModal($event)">
+  </app-modales>
+</p-dialog>
 

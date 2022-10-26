@@ -13,6 +13,7 @@ import {
   Responsible,
 } from "../../class/auditoriasClass";
 import { AuditoriaService } from "../../services/auditorias.service";
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: "app-auditoria",
@@ -61,11 +62,16 @@ export class AuditoriaComponent implements OnInit {
 
   dButton = false;
 
+  message: string = '';
+  icon: string = '';
+  typeConfirma: string = "";
+
   constructor(
     public formBuilder: FormBuilder,
     private _router: ActivatedRoute,
-    public auditoriaService: AuditoriaService
-  ) {
+    public auditoriaService: AuditoriaService,
+    private toastr: ToastrService
+  ) { 
     this.idAuditoria = this._router.snapshot.paramMap.get("id");
     this.isReading =
       this._router.snapshot.paramMap.get("isReading") == "true" ? true : false;
@@ -78,17 +84,36 @@ export class AuditoriaComponent implements OnInit {
   ngOnInit(): void {}
 
   getformAuditoriaData(auditoria: Auditoria) {
-    console.log(auditoria);
+    this.auditoria = auditoria;    this.saveDataAuditoria()
+  }
 
-    if (auditoria.id > 0) {
-      let index = this.auditoriaService.auditoriaDetalles.findIndex(
-        (x) => x.id === auditoria.id
-      );
-      this.auditoriaService.auditoriaDetalles[index] = auditoria;
-    } else {
-      auditoria.id = this.auditoriaService.auditoriaDetalles.length + 1;
-      this.auditoriaService.auditoriaDetalles.push(auditoria);
+
+  saveDataAuditoria(){
+    var msj = "Se creó nueva auditoría exitosamente";
+    var accion = "Alta correcta";
+    
+    if (this.idAuditoria > 0) {
+      msj = "Se modificó la auditoría exitosamente";
+      accion = 'Modificacion correcta';
     }
+  
+    if (this.idAuditoria > 0) {
+      let index = this.auditoriaService.auditoriaDetalles.findIndex(
+        (x) => x.id === this.idAuditoria
+      );
+      this.auditoriaService.auditoriaDetalles[index] = this.auditoria;
+    } else {
+      this.auditoria.id = this.auditoriaService.auditoriaDetalles.length + 1;
+      this.auditoriaService.auditoriaDetalles.push(this.auditoria);
+    }
+
+    this.toastr.success(msj, accion, {
+      timeOut: 6000,
+      extendedTimeOut: 6000,
+      closeButton: true
+    });
+
+    this.displayConfirma = false;
   }
 
   getFormEtapaData(etapa: Etapa) {
@@ -231,9 +256,12 @@ export class AuditoriaComponent implements OnInit {
    /******************CONFIRMACIÓN DE ELIMINAR REQUERIMIENTO*************** */
    displayConfirma: boolean = false;
    idRequirement: number = 0;
-   confirmDelete(id: number){
+   openModalConfirm(displayConfirma: boolean, message: string, icon: string, typeConfirma:string, id: number = 0){
     this.idRequirement = id;
-    this.displayConfirma = true;
+    this.displayConfirma = displayConfirma;
+    this.message = message;
+    this.icon = icon;
+    this.typeConfirma = typeConfirma;
    }
 
    deleteReq(){ 
@@ -241,5 +269,23 @@ export class AuditoriaComponent implements OnInit {
     this.requirements.splice(index, 1);
     this.displayConfirma = false;
    }
+
+   getResutlModal(result: any){
+    console.log(result);
+    if (result) {
+      switch (this.typeConfirma) {
+        case 'delete':
+          this.deleteReq();
+          break;
+      
+        case 'save':
+          
+          break;
+      }
+    } else {
+      this.displayConfirma = false;
+    }
+  }
+    
 
 }
