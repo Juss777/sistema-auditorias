@@ -23,6 +23,7 @@ import { PrimeNGConfig } from "primeng/api";
 
 import esLocale from "@fullcalendar/core/locales/es";
 import { CalendarOptions } from "@fullcalendar/angular";
+import { Router } from "@angular/router";
 
 interface Authority {
   name: string;
@@ -184,7 +185,7 @@ export class FormAuditoriaComponent implements OnInit, AfterViewInit {
     monto: ["", Validators.required],
 
     representanteLegal: this.formBuilder.array([
-      this.formBuilder.control("", [Validators.required, Validators.min(1)]),
+      this.formBuilder.control(""),
     ]),
 
     instrumentoPublicoPoder: this.formBuilder.array([
@@ -275,11 +276,17 @@ export class FormAuditoriaComponent implements OnInit, AfterViewInit {
     },
   ];
 
+  message: string = '';
+  icon: string = '';
+  typeConfirma: string = "";
+  displayConfirma: boolean = false;
+
   constructor(
     public formBuilder: FormBuilder,
     public auditoriaService: AuditoriaService,
     private primengConfig: PrimeNGConfig,
-    private translateService: TranslateService
+    private translateService: TranslateService,
+    private _router: Router
   ) {}
 
   ngOnInit(): void {
@@ -350,11 +357,14 @@ export class FormAuditoriaComponent implements OnInit, AfterViewInit {
 
   activaDesactivarModificar() {
     this.isReading = !this.isReading;
-    if (this.isReading) this.formAuditoria.disable();
+    
+    if (this.isReading) {
+      this.formAuditoria.disable();
+    } 
     else {
-      this.formAuditoria.controls["anio"].enable();
-      this.formAuditoria.controls["unidadNegocio"].enable();
-      this.formAuditoria.controls["representanteLegal"].enable();
+      this.formAuditoria.enable();
+      this.formAuditoria.controls["siglas"].disable();
+      this.formAuditoria.controls["nombre"].disable();
     }
   }
 
@@ -401,12 +411,18 @@ export class FormAuditoriaComponent implements OnInit, AfterViewInit {
 
       this.auditoriaDataOut.emit(auditoria);
       this.auditoriaDataEtapaOut.emit(etapa);
+
       if (this.auditoria.id > 0) {
         this.activaDesactivarModificar();
       } else {
-        //this.formAuditoria.reset();
+        this.formAuditoria.reset();
       }
     }
+  }
+
+  cancelCreate() {
+    this.formAuditoria.reset();
+    this._router.navigate(['/']);
   }
 
   get representanteLegal() {
@@ -549,5 +565,30 @@ export class FormAuditoriaComponent implements OnInit, AfterViewInit {
 
   changeCitaNo() {
     this.varEditor = false;
+  }
+
+  openModalConfirm(displayConfirma: boolean, message: string, icon: string, typeConfirma:string){
+    this.displayConfirma = displayConfirma;
+    this.message = message;
+    this.icon = icon;
+    this.typeConfirma = typeConfirma;
+  }
+
+  getResutlModal(result: any){
+    if (result) {
+      switch (this.typeConfirma) {
+        case 'save':
+          this.saveData();
+          break;
+      
+        case 'cancel':
+          this.cancelCreate();
+          break;
+      }
+      
+    }
+
+    this.displayConfirma = false;
+    
   }
 }

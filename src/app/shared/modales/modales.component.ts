@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from "@angular/core";
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup } from "@angular/forms";
 import { Desahogo, DesahogoList } from "src/app/interface/custom";
 import { Req } from "src/app/interface/req";
@@ -20,6 +20,10 @@ export class ModalesComponent implements OnInit {
   @Input() displayModal: boolean = false;
   // @Input() displayDesahogoTabla: boolean = false;
   @Input() typeModal: string = "";
+  @Input() icon: string = "";
+  @Input() message: string = "";
+  @Output() result: EventEmitter<boolean> = new EventEmitter()
+
 
   formEstrategia: FormGroup = this.formBuilder.group({
     desahogo: [""],
@@ -47,6 +51,10 @@ export class ModalesComponent implements OnInit {
   changeDesahogo() {
     this.inputHidden = true;
     this.buttonDisabled = true;
+  }
+
+  emitResult(value: boolean) {
+    this.result.emit(value)
   }
 
 

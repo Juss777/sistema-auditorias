@@ -86,14 +86,10 @@ export class AuditoriaService {
       "instrumentoPublicoPoder": [
           [
               "Instrumento Público 1"
-          ],
-          [
-              "Instrumento Público 2"
           ]
       ],
       "instrumentoPublico": [
-          "Mancuernas_UX_Service.pdf",
-          "Cita - 2022-10-03T175816.949 (1).pdf"
+          "Mancuernas_UX_Service.pdf"
       ],
       "areaEquipo": [
           [

@@ -98,6 +98,9 @@ $REQDC7958-theme: mat-light-theme(
   --color-range-picker: #eaeaea;
   --color-amarillo: #f8d616;
   --color-verde: #71ca6b;
+  --color-success-toast: #51A351;
+  --color-error-toast: #da493d;
+  --color-warning-toast: #f8d616;
 }
 
 html {
@@ -260,3 +263,36 @@ img {
     width: 37rem;
   }
 }
+
+/*TOAST*/
+.toast-success {
+  background-color: rgb(81 163 81 / 20%) !important;
+  border-left: 6px solid var(--color-success-toast);
+  color: var(--color-success-toast) !important;
+
+  .toast-close-button {
+    color: var(--color-success-toast) !important;
+  }
+}
+
+.toast-error {
+  background-color: rgb(163 81 81 / 20%) !important;
+  border-left: 6px solid var(--color-error-toast);
+  color: var(--color-error-toast) !important;
+
+  .toast-close-button {
+    color: var(--color-error-toast) !important;
+  }
+}
+
+.toast-warning {
+  background-color: rgb(248 214 22 / 20%) !important;
+  border-left: 6px solid var(--color-warning-toast);
+  color: var(--color-warning-toast) !important;
+
+  .toast-close-button {
+    color: var(--color-warning-toast) !important;
+  }
+}
+
+
