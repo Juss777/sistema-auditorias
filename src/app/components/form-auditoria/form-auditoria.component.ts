@@ -163,6 +163,8 @@ export class FormAuditoriaComponent implements OnInit, AfterViewInit {
     },
   ];
 
+  @Input() idAuditoria: any;
+
   filterGeneral: any[] = [];
   listaGeneral: any[] = [];
 

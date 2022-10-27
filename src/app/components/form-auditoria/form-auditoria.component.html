@@ -699,7 +699,7 @@
     class="btn-outline-primary"
     *ngIf="!isReading"
     (click)="
-      auditoria.id > 0 ? activaDesactivarModificar() : openModalConfirm(true, '¿Está seguro de salir sin guardar los datos?', 'ico-bell-fill', 'cancel')
+      idAuditoria > 0 ? activaDesactivarModificar() : openModalConfirm(true, '¿Está seguro de salir sin guardar los datos?', 'ico-bell-fill', 'cancel')
     "
   >
     Cancelar
@@ -710,7 +710,7 @@
   <button
     type="button"
     class="btn-outline-primary"
-    *ngIf="isReading && auditoria.id > 0"
+    *ngIf="isReading && idAuditoria > 0"
     (click)="activaDesactivarModificar()"
   >
     Editar
