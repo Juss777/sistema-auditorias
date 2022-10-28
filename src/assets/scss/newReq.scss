@@ -8,6 +8,13 @@
       grid-template-columns: repeat(2, 1fr);
       gap: 30px;
     }
+
+    .inputTextArea {
+      grid-column: 1/3;
+      textarea {
+        resize: none;
+      }
+    }
   }
 
   &__buttons {
@@ -32,7 +39,7 @@
 
     @media (min-width: 768px) {
       max-width: 768px;
-      height: 550px;
+      // height: 550px;
     }
 
     .p-dialog-header {

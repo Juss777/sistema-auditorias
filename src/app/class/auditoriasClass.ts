@@ -152,17 +152,29 @@ export class Etapa {
 
 export class Requirement {
   id;
-  type;
-  area;
+  description;
+  typePartida;
+  typeDocument;
+  typeRequestDocument;
+  typeRequestDescrip;
+  typeRequestNuevo;
+  areaResponsible;
   responsible;
-  email;
+  dateDelivery;
+  acredita;
   state;
   constructor(r: any) {
     this.id = r.id || 0;
-    this.type = r.type || 0;
-    this.area = r.area || 0;
-    this.responsible = r.responsible || 0;
-    this.email = r.email || "";
+    this.description = r.description || "";
+    this.typePartida = r.typePartida || "";
+    this.typeDocument = r.typeDocument  || "";
+    this.typeRequestDocument = r.typeRequestDocument  || false;
+    this.typeRequestDescrip = r.typeRequestDescrip  || false;
+    this.typeRequestNuevo = r.typeRequestNuevo  || false;
+    this.areaResponsible = r.areaResponsible  || "";
+    this.responsible = r.responsible  || "";
+    this.dateDelivery = r.dateDelivery  || "";
+    this.acredita = r.acredita  || "";
     this.state = r.state || "Pendiente";
   }
 }

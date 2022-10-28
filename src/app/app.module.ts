@@ -41,6 +41,7 @@ import { TranslateLoader, TranslateModule } from "@ngx-translate/core";
 import { TranslateHttpLoader } from "@ngx-translate/http-loader";
 import { HttpClient } from "@angular/common/http";
 import { DetallePorAreaComponent } from './components/detalle-por-area/detalle-por-area.component';
+import { TableroComponent } from './components/tablero/tablero.component';
 
 export function HttpLoaderFactory(httpClient: HttpClient) {
   return new TranslateHttpLoader(httpClient, "./assets/i18n/", ".json");
@@ -71,6 +72,7 @@ import { ToastrModule } from 'ngx-toastr';
     DashboardColaboradorComponent,
     CardsComponent,
     DetallePorAreaComponent,
+    TableroComponent,
   ],
   imports: [
     BrowserModule,

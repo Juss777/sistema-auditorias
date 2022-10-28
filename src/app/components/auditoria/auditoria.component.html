@@ -25,31 +25,48 @@
         <div class="section__content">
           <div class="requirements__content">
             <div class="requirements__overflow">
-              <table class="table">
+              <table class="table table-requirements">
                 <thead>
                   <tr>
-                    <th>ID</th>
-                    <th>Tipo de requerimiento</th>
+                    <th>Partida</th>
+                    <th style="width:257px;">Descripción del requerimiento</th>
+                    <th style="width:200px;">Tipo de documentos</th>
                     <th>Área responsable</th>
-                    <th>Responsable</th>
-                    <th>Grupo de correo</th>
-                    <th>Estado</th>
+                    <th>Estatus</th>
                     <th></th>
                     <th></th>
                   </tr>
                 </thead>
-                <tbody></tbody>
                 <tbody *ngIf="requirements.length > 0">
                   <tr *ngFor="let r of requirements">
-                    <td>
-                      <a class="requirements__id">{{ r.id }}</a>
+                    <td>{{ r.typePartida }}</td>
+                    <td>{{ verMas ? applicaSubtr(r.description) : r.description}}  <br>
+                      <a (click)="verMas = false;" *ngIf="verMas"><strong>Ver mas</strong></a> 
+                      <a (click)="verMas = true;" *ngIf="!verMas"><strong>Ver menos</strong></a>
                     </td>
-                    <td>{{ r.type.name }}</td>
-                    <td>{{ r.area.responsableArea }}</td>
-                    <td>{{ r.responsible.name }}</td>
-                    <td>{{ r.email }}</td>
+                    <td>{{ verMas ? applicaSubtr(r.typeDocument) : r.typeDocument}} <br>
+                      <a (click)="verMas = false;" *ngIf="verMas"><strong>Ver mas</strong></a> 
+                      <a (click)="verMas = true;" *ngIf="!verMas"><strong>Ver menos</strong></a>
+                    </td>
+                    <td>{{ r.areaResponsible }}</td>
                     <td>
                       <span class="main-font-demi">{{ r.state }}</span>
+                    </td>
+                    <td>
+                      <div
+                        class="requirements__icon"
+                        (click)="
+                          openModalConfirm(
+                            true,
+                            '¿Está seguro de eliminar este dato?',
+                            'ico-trash',
+                            'delete',
+                            r.id
+                          )
+                        "
+                      >
+                        <img src="assets/img/iconos/ico-trash.svg" />
+                      </div>
                     </td>
                     <td>
                       <div class="requirements__icon">
@@ -57,14 +74,6 @@
                           routerLink="/ver-detalle"
                           src="assets/img/iconos/ico-pencil-square.svg"
                         />
-                      </div>
-                    </td>
-                    <td>
-                      <div
-                        class="requirements__icon"
-                        (click)="openModalConfirm(true, '¿Está seguro de eliminar este dato?', 'ico-trash', 'delete', r.id)"
-                      >
-                        <img src="assets/img/iconos/ico-trash.svg" />
                       </div>
                     </td>
                   </tr>
@@ -112,22 +121,19 @@
 >
   <form [formGroup]="formRequerimiento">
     <div class="modalNewReq__grid u-mb-40">
+      <!-- Autocomplete Partida -->
       <div class="p-field styleInput">
-        <label for="area">Tipo de requerimiento</label>
+        <label for="area">Partida</label>
         <div class="audit__flex">
           <div>
-            <p-dropdown
-              [options]="tipoRequerimientos"
-              optionLabel="name"
-              placeholder="Selecciona una opción"
-              formControlName="type"
-            ></p-dropdown>
+            <p-autoComplete [suggestions]="filterGeneral" (completeMethod)="search($event, partidas)" formControlName="typePartida"></p-autoComplete>
             <small
               class="audit__required"
-              *ngIf="auditoriaService.validaCampo(formRequerimiento, 'type')"
+              *ngIf="auditoriaService.validaCampo(formRequerimiento, 'typePartida')"
               >* Campo requerido.</small
             >
           </div>
+
           <img
             src="assets/img/iconos/gear-fill.svg"
             (click)="
@@ -136,77 +142,136 @@
               catalog = 'tipoRequerimiento'
             "
           />
-          <!--  -->
         </div>
       </div>
 
+      <!-- Autocomplete Documento -->
       <div class="p-field styleInput">
-        <label for="area">Área responsable</label>
+        <label for="area">Tipo de documento</label>
         <div class="audit__flex">
           <div>
-            <p-dropdown
-              [options]="areas"
-              optionLabel="areaResponsable"
-              placeholder="Selecciona una opción"
-              formControlName="area"
-            ></p-dropdown>
+            <p-autoComplete [suggestions]="filterGeneral" (completeMethod)="search($event, typesDocuments)" formControlName="typeDocument"></p-autoComplete>
             <small
+              class="audit__required"
+              *ngIf="auditoriaService.validaCampo(formRequerimiento, 'typeDocument')"
+              >* Campo requerido.</small
+            >
+          </div>
+
+          <img
+            src="assets/img/iconos/gear-fill.svg"
+            (click)="
+              visibleSidebar = true;
+              catalogName = 'Agrega tipo de requerimiento';
+              catalog = 'tipoRequerimiento'
+            "
+          />
+        </div>
+      </div>
+
+      <!-- Checkbox Tipo de Requerimiento -->
+      <div class="p-field styleInput">
+        <label>Tipo de requerimiento</label>
+        <div class="audit__flex field-checkbox">
+          <p-checkbox
+            name="group1"
+            value="Documental / Probatorio"
+            formControlName="typeRequestDocument"
+          ></p-checkbox>
+          <label>Documental / Probatorio</label>
+        </div>
+        <div class="audit__flex field-checkbox">
+          <p-checkbox
+            name="group1"
+            value="Descriptivo / Argumentativo"
+            formControlName="typeRequestDescrip"
+          ></p-checkbox>
+          <label>Descriptivo / Argumentativo</label>
+        </div>
+        <div class="audit__flex field-checkbox">
+          <p-checkbox
+            name="group1"
+            value="Nuevo"
+            formControlName="typeRequestNuevo"
+          ></p-checkbox>
+          <label>Nuevo</label>
+        </div>
+      </div>
+
+      <!-- Input Acredita -->
+      <div class="p-field styleInput">
+        <label>Acredita</label>
+        <input
+          pInputText
+          [class.input-disabled]="true"
+          formControlName="acredita"
+        />
+      </div>
+
+      <!-- Textarea descripción del requerimiento -->
+      <div class="p-field styleInput inputTextArea">
+        <label>Descripción del requerimiento</label>
+        <textarea pInputTextarea></textarea>
+      </div>
+
+      <!-- Autocomplete Área responsable -->
+      <div class="p-field styleInput">
+        <label>Área responsable</label>
+        <div class="audit__flex">
+          <div>
+            <p-autoComplete [suggestions]="filterGeneral" (completeMethod)="search($event, areasResponsible)" formControlName="areaResponsible"></p-autoComplete>
+            <!-- <small
               class="audit__required"
               *ngIf="auditoriaService.validaCampo(formRequerimiento, 'area')"
               >* Campo requerido.</small
-            >
+            > -->
           </div>
           <img src="assets/img/iconos/gear-fill.svg" />
         </div>
       </div>
 
+      <!-- Autocomplete Área responsable -->
       <div class="p-field styleInput">
-        <label for="area">Responsable</label>
-        <div class="audit__flex">
-          <div>
-            <p-dropdown
-              [options]="responsibles"
-              optionLabel="name"
-              placeholder="Selecciona una opción"
-              formControlName="responsible"
-            ></p-dropdown>
-            <small
-              class="audit__required"
-              *ngIf="
-                auditoriaService.validaCampo(formRequerimiento, 'responsible')
-              "
-              >* Campo requerido.</small
-            >
-          </div>
-          <img src="assets/img/iconos/gear-fill.svg" />
-        </div>
+        <label>Responsable</label>
+        <input
+          pInputText
+          [class.input-disabled]="true"
+          formControlName="responsable"
+        />
       </div>
 
-      <div class="styleInput">
+      <!-- Input Fecha de entrega -->
+      <div class="p-field styleInput">
         <label>Fecha de entrega</label>
         <p-calendar
           name="fechaEntrega"
           placeholder="Selecciona una opción"
+          formControlName="dateDelivery"
         ></p-calendar>
       </div>
-
-      <div class="p-field styleInput">
-        <label>Grupo de correo</label>
-        <input
-          pInputText
-          [class.input-disabled]="true"
-          formControlName="email"
-        />
-      </div>
     </div>
-    <div class="modalNewReq__buttons u-mb-25">
+
+    <div class="buttons-content">
       <button
-        class="btn-outline-primary"
+        type="button"
+        [ngClass]="
+          buttonDisabled
+            ? 'btn-outline-primary'
+            : 'btn-outline-primary-disabled'
+        "
         (click)="this.displayNuevoReq = false"
       >
         Cancelar
       </button>
-      <button class="btn-primary" (click)="saveDataReq()">Guardar</button>
+
+      <button
+        type="button"
+        [ngClass]="buttonDisabled ? 'btn-primary' : 'btn-primary-disabled'"
+        class=""
+        (click)="saveDataReq()"
+      >
+        Guardar
+      </button>
     </div>
   </form>
 </p-dialog>
@@ -219,11 +284,12 @@
   [draggable]="false"
   [resizable]="false"
 >
-  <app-modales 
-    [typeModal]="'modal5'" 
-    [displayModal]="displayConfirma" 
+  <app-modales
+    [typeModal]="'modal5'"
+    [displayModal]="displayConfirma"
     [message]="message"
     [icon]="icon"
-    (result)="getResutlModal($event)">
+    (result)="getResutlModal($event)"
+  >
   </app-modales>
 </p-dialog>
