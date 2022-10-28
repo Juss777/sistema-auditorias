@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
 import { ActivatedRoute } from "@angular/router";
 import {
   Area,
@@ -84,7 +84,9 @@ export class AuditoriaComponent implements OnInit {
     }
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+
+  }
 
   getformAuditoriaData(auditoria: Auditoria) {
     this.auditoria = auditoria;
@@ -142,42 +144,32 @@ export class AuditoriaComponent implements OnInit {
   requirements: Requirement[] = [
     {
       id: 1,
-      type: {
-        id: 1,
-        name: "Estado de Cuenta",
-      },
-      area: {
-        id: 1,
-        responsableArea: "Representante 1",
-        grupoCorreo: "A",
-        areaResponsable: "Area 1",
-      },
-      responsible: {
-        id: 1,
-        name: "Responsable 1",
-      },
-      email: "ejemplo@mail.com.mx",
+      description: 'Explique amplia y detalladamente en qué consisten las erogaciones por concepto de “Artículos Promocionales”; asimismo, en caso de que dichos artículos sean entregados a los clientes (acreditados) de la contribuyente, indique los requisitos que debe.',
+      typePartida: 'Generales',
+      typeDocument: 'Instrumento público, solicitud de crédito, aprobación de crédito, contrato, identificación, tabla de amortización, comprobante de domicilio, estado de cuenta, detalle de movimientos, consulta de gestiones, registros contables' ,
+      typeRequestDocument: '',
+      typeRequestDescrip: '',
+      typeRequestNuevo: '',
+      areaResponsible: 'Contabilidad' ,
+      responsible: '',
+      dateDelivery: '',
+      acredita: '',
       state: "Pendiente",
     },
     {
       id: 2,
-      type: {
-        id: 1,
-        name: "Estado de Cuenta 2",
-      },
-      area: {
-        id: 1,
-        responsableArea: "Representante 1",
-        grupoCorreo: "A",
-        areaResponsable: "Area 1",
-      },
-      responsible: {
-        id: 1,
-        name: "Responsable 1",
-      },
-      email: "ejemplo@mail.com.mx",
+      description: 'Explique amplia y detalladamente en qué consisten las erogaciones por concepto de “Artículos Promocionales”; asimismo, en caso de que dichos artículos sean entregados a los clientes (acreditados) de la contribuyente, indique los requisitos que debe.',
+      typePartida: 'Generales',
+      typeDocument: 'Instrumento público, solicitud de crédito, aprobación de crédito, contrato, identificación, tabla de amortización, comprobante de domicilio, estado de cuenta, detalle de movimientos, consulta de gestiones, registros contables' ,
+      typeRequestDocument: '',
+      typeRequestDescrip: '',
+      typeRequestNuevo: '',
+      areaResponsible: 'Contabilidad' ,
+      responsible: '',
+      dateDelivery: '',
+      acredita: '',
       state: "Pendiente",
-    },
+    }
   ];
 
   requirementsEmpty: Requirement[] = [];
@@ -210,15 +202,89 @@ export class AuditoriaComponent implements OnInit {
 
   formRequerimiento: FormGroup = this.formBuilder.group({
     id: [0],
+    description: [""],
     typePartida: [""],
-    typeDocumento: [""],
-    type: [this.selectedTypeReq, [Validators.required]],
-    area: [this.selectedArea, [Validators.required]],
+    typeDocument: [""],
+    typeRequestDocument: [false],
+    typeRequestDescrip: [false],
+    typeRequestNuevo: [false],
+    areaResponsible: [this.selectedArea, [Validators.required]],
     responsible: [this.selectedResponsible, [Validators.required]],
+    dateDelivery: [""],
     acredita: [""],
     responsable: [""],
     state: [""],
   });
+
+  filterGeneral: any[] = [];
+
+  partidas: any[] = [
+    {
+      id: 1,
+      name: 'Partida 1'
+    },
+    {
+      id: 2,
+      name: 'Partida 2'
+    },
+    {
+      id: 3,
+      name: 'Partida 3'
+    }
+  ]
+
+  typesDocuments: any[] = [
+    {
+      id: 1,
+      name: 'Tipo Documento 1'
+    },
+    {
+      id: 2,
+      name: 'Tipo Documento 2'
+    },
+    {
+      id: 3,
+      name: 'Tipo Documento 3'
+    }
+  ];
+
+  areasResponsible: any[] = [
+    {
+      id: 1,
+      name: 'Área Responsable 1'
+    },
+    {
+      id: 2,
+      name: 'Área Responsable 2'
+    },
+    {
+      id: 3,
+      name: 'Área Responsable 3'
+    }
+  ];
+
+  search(event: any, list: any[]) {
+    let filtered: any[] = [];
+    let query = event.query;
+    for (let i = 0; i < list.length; i++) {
+      let obj = list[i];
+      if (obj.name.toLowerCase().indexOf(query.toLowerCase()) == 0) {
+        filtered.push(obj.name);
+      }
+    }
+
+    this.filterGeneral = filtered;
+  }
+
+  verMas: boolean = true;
+  isDescription: boolean = true;
+  idRequerimiento: number = 0;
+  applicaSubtr(text: string) {
+    console.log(text);
+    
+    var texto = text.substr(0, 100) + '...';
+    return texto;
+  }
 
   saveDataReq() {
     if (this.formRequerimiento.invalid) {

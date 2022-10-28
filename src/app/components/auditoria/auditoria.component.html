@@ -13,6 +13,7 @@
     [representantes]="representantes"
     [auditoria]="auditoria"
     [areas]="areas"
+    [idAuditoria]="idAuditoria"
     (auditoriaDataOut)="getformAuditoriaData($event)"
     (auditoriaDataEtapaOut)="getFormEtapaData($event)"
   ></app-form-auditoria>
@@ -24,39 +25,32 @@
         <div class="section__content">
           <div class="requirements__content">
             <div class="requirements__overflow">
-              <table class="table">
+              <table class="table table-requirements">
                 <thead>
                   <tr>
-                    <th>ID</th>
-                    <th>Tipo de requerimiento</th>
+                    <th>Partida</th>
+                    <th style="width:257px;">Descripción del requerimiento</th>
+                    <th style="width:200px;">Tipo de documentos</th>
                     <th>Área responsable</th>
-                    <th>Responsable</th>
-                    <th>Grupo de correo</th>
-                    <th>Estado</th>
+                    <th>Estatus</th>
                     <th></th>
                     <th></th>
                   </tr>
                 </thead>
-                <tbody></tbody>
                 <tbody *ngIf="requirements.length > 0">
                   <tr *ngFor="let r of requirements">
-                    <td>
-                      <a class="requirements__id">{{ r.id }}</a>
+                    <td>{{ r.typePartida }}</td>
+                    <td>{{ verMas ? applicaSubtr(r.description) : r.description}}  <br>
+                      <a (click)="verMas = false;" *ngIf="verMas"><strong>Ver mas</strong></a> 
+                      <a (click)="verMas = true;" *ngIf="!verMas"><strong>Ver menos</strong></a>
                     </td>
-                    <td>{{ r.type.name }}</td>
-                    <td>{{ r.area.responsableArea }}</td>
-                    <td>{{ r.responsible.name }}</td>
-                    <td>{{ r.email }}</td>
+                    <td>{{ verMas ? applicaSubtr(r.typeDocument) : r.typeDocument}} <br>
+                      <a (click)="verMas = false;" *ngIf="verMas"><strong>Ver mas</strong></a> 
+                      <a (click)="verMas = true;" *ngIf="!verMas"><strong>Ver menos</strong></a>
+                    </td>
+                    <td>{{ r.areaResponsible }}</td>
                     <td>
                       <span class="main-font-demi">{{ r.state }}</span>
-                    </td>
-                    <td>
-                      <div class="requirements__icon">
-                        <img
-                          routerLink="/ver-detalle"
-                          src="assets/img/iconos/ico-pencil-square.svg"
-                        />
-                      </div>
                     </td>
                     <td>
                       <div
@@ -72,6 +66,14 @@
                         "
                       >
                         <img src="assets/img/iconos/ico-trash.svg" />
+                      </div>
+                    </td>
+                    <td>
+                      <div class="requirements__icon">
+                        <img
+                          routerLink="/ver-detalle"
+                          src="assets/img/iconos/ico-pencil-square.svg"
+                        />
                       </div>
                     </td>
                   </tr>
@@ -124,16 +126,10 @@
         <label for="area">Partida</label>
         <div class="audit__flex">
           <div>
-            <!-- <p-dropdown
-              [options]="tipoRequerimientos"
-              optionLabel="name"
-              placeholder="Selecciona una opción"
-              formControlName="type"
-            ></p-dropdown> -->
-            <p-autoComplete formControlName="typePartida"></p-autoComplete>
+            <p-autoComplete [suggestions]="filterGeneral" (completeMethod)="search($event, partidas)" formControlName="typePartida"></p-autoComplete>
             <small
               class="audit__required"
-              *ngIf="auditoriaService.validaCampo(formRequerimiento, 'type')"
+              *ngIf="auditoriaService.validaCampo(formRequerimiento, 'typePartida')"
               >* Campo requerido.</small
             >
           </div>
@@ -154,16 +150,10 @@
         <label for="area">Tipo de documento</label>
         <div class="audit__flex">
           <div>
-            <!-- <p-dropdown
-              [options]="tipoRequerimientos"
-              optionLabel="name"
-              placeholder="Selecciona una opción"
-              formControlName="type"
-            ></p-dropdown> -->
-            <p-autoComplete formControlName="typeDocumento"></p-autoComplete>
+            <p-autoComplete [suggestions]="filterGeneral" (completeMethod)="search($event, typesDocuments)" formControlName="typeDocument"></p-autoComplete>
             <small
               class="audit__required"
-              *ngIf="auditoriaService.validaCampo(formRequerimiento, 'type')"
+              *ngIf="auditoriaService.validaCampo(formRequerimiento, 'typeDocument')"
               >* Campo requerido.</small
             >
           </div>
@@ -186,6 +176,7 @@
           <p-checkbox
             name="group1"
             value="Documental / Probatorio"
+            formControlName="typeRequestDocument"
           ></p-checkbox>
           <label>Documental / Probatorio</label>
         </div>
@@ -193,8 +184,17 @@
           <p-checkbox
             name="group1"
             value="Descriptivo / Argumentativo"
+            formControlName="typeRequestDescrip"
           ></p-checkbox>
           <label>Descriptivo / Argumentativo</label>
+        </div>
+        <div class="audit__flex field-checkbox">
+          <p-checkbox
+            name="group1"
+            value="Nuevo"
+            formControlName="typeRequestNuevo"
+          ></p-checkbox>
+          <label>Nuevo</label>
         </div>
       </div>
 
@@ -216,16 +216,10 @@
 
       <!-- Autocomplete Área responsable -->
       <div class="p-field styleInput">
-        <label for="area">Área responsable</label>
+        <label>Área responsable</label>
         <div class="audit__flex">
           <div>
-            <!-- <p-dropdown
-              [options]="areas"
-              optionLabel="areaResponsable"
-              placeholder="Selecciona una opción"
-              formControlName="area"
-            ></p-dropdown> -->
-            <p-autoComplete formControlName="area"></p-autoComplete>
+            <p-autoComplete [suggestions]="filterGeneral" (completeMethod)="search($event, areasResponsible)" formControlName="areaResponsible"></p-autoComplete>
             <!-- <small
               class="audit__required"
               *ngIf="auditoriaService.validaCampo(formRequerimiento, 'area')"
@@ -252,6 +246,7 @@
         <p-calendar
           name="fechaEntrega"
           placeholder="Selecciona una opción"
+          formControlName="dateDelivery"
         ></p-calendar>
       </div>
     </div>
