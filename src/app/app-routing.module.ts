@@ -40,8 +40,12 @@ const routes: Routes = [
     data: {
       breadcrumb: [
         {
-          label: "Dashboard",
+          label: "Tablero de control",
           url: "/",
+        },
+        {
+          label: "Dashboard",
+          url: "/dashboard",
         },
         {
           label: "Ficha técnica",

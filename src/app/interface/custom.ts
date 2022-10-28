@@ -26,3 +26,17 @@ export interface Ofi {
   id: string;
   name: string;
 }
+
+export interface AdminTarea {
+  id: string;
+  documentos: string;
+  estatus: string;
+  fechaEntrega: string;
+}
+
+export interface ColaboTarea {
+  id: string;
+  documentos: string;
+  estatus: string;
+  fechaEntrega: string;
+}

@@ -1,6 +1,11 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { Desahogo, TablaRequrimientos } from "../interface/custom";
+import {
+  AdminTarea,
+  ColaboTarea,
+  Desahogo,
+  TablaRequrimientos,
+} from "../interface/custom";
 import { Tarea } from "../interface/tarea";
 import { Task } from "../interface/task";
 
@@ -45,6 +50,26 @@ export class CustomService {
       .get<any>("assets/requerimiento.json")
       .toPromise()
       .then((res) => <TablaRequrimientos[]>res.data)
+      .then((data) => {
+        return data;
+      });
+  }
+
+  getAdminTarea() {
+    return this.http
+      .get<any>("assets/adminTarea.json")
+      .toPromise()
+      .then((res) => <AdminTarea[]>res.data)
+      .then((data) => {
+        return data;
+      });
+  }
+
+  getColaboTarea() {
+    return this.http
+      .get<any>("assets/colaboTarea.json")
+      .toPromise()
+      .then((res) => <ColaboTarea[]>res.data)
       .then((data) => {
         return data;
       });

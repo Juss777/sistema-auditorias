@@ -23,7 +23,13 @@
           td {
             background: var(--color-blanco);
             box-shadow: 0px 3px 6px #00000029;
-            height: 700px;
+            height: auto;
+
+            &:nth-child(1) {
+              padding: 0;
+              box-shadow: none;
+              background-color: #f3f2f2;
+            }
           }
         }
       }
@@ -45,10 +51,11 @@
   }
 
   &__card {
-    width: 100px;
+    position: relative;
+    width: 110px;
     height: auto;
     padding: 2px;
-    max-width: 70%;
+    max-width: 65%;
     font-size: 1rem;
 
     text-align: center;
@@ -60,27 +67,118 @@
     background: #e7e9f1;
   }
 
+  &__card--darkGray {
+    background: #606473;
+    color: var(--color-blanco);
+  }
+
   &__card--white {
     background: var(--color-blanco);
   }
 
   &__border {
     border-left: 4px solid var(--estatus-listo);
+    cursor: pointer;
+  }
+
+  &__column1 {
+    display: flex;
+    flex-direction: column;
   }
 
   &__column2 {
-    height: 100%;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    gap: 10px;
+    vertical-align: top;
+    &-content {
+      height: 100%;
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      gap: 14px;
+    }
   }
 
   &__column3 {
+    vertical-align: top;
+
+    &-content {
+      height: 100%;
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      gap: 14px;
+    }
+  }
+
+  &__top {
+    padding: 10px;
+    background: var(--color-blanco);
+    box-shadow: 0px 3px 6px #00000029;
+
     height: 100%;
     display: flex;
     align-items: center;
     flex-direction: column;
+    gap: 14px;
+  }
+
+  &__bottom {
+    &-title {
+      padding: 10px;
+      font-size: 1.2rem;
+      font-family: var(--main-font-demi);
+      text-align: center;
+    }
+    &-subtitle {
+      margin-bottom: 20px;
+      padding: 10px;
+      text-align: center;
+      background: var(--color-verde);
+      color: var(--color-blanco);
+      font-size: 1.2rem;
+      font-family: var(--main-font-demi);
+    }
+    &-content {
+      padding: 10px;
+      background: var(--color-blanco);
+      box-shadow: 0px 3px 6px #00000029;
+
+      height: 100%;
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      gap: 10px;
+    }
+  }
+
+  &__connectivity {
+    position: absolute;
+    top: 65px;
+    left: 45%;
+  }
+
+  &__footer {
+    font-size: 1.1rem;
+    font-family: var(--main-font-regular);
+    display: flex;
+    align-items: center;
     gap: 10px;
+
+    &-content {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+
+      div {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+    }
+
+    &-italic {
+      margin-top: 10px;
+      font-family: var(--main-font-medium);
+      font-style: italic;
+    }
   }
 }

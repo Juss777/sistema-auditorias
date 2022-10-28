@@ -1,6 +1,11 @@
 import { AfterViewInit, Component, Input, OnInit } from "@angular/core";
 import { Auditoria } from "src/app/class/auditoriasClass";
-import { Audito, TablaRequrimientos } from "src/app/interface/custom";
+import {
+  AdminTarea,
+  Audito,
+  ColaboTarea,
+  TablaRequrimientos,
+} from "src/app/interface/custom";
 import { Req } from "src/app/interface/req";
 import { Task } from "src/app/interface/task";
 import { AuditoriaService } from "src/app/services/auditorias.service";
@@ -43,6 +48,8 @@ export class DashboardInicioComponent implements OnInit, AfterViewInit {
   tasks!: Task[];
   requerimiento!: Req[];
   req!: TablaRequrimientos[];
+  adminTarea!: AdminTarea[];
+  colaboTarea!: ColaboTarea[];
 
   auditoriaSelected = new Auditoria({});
   @Input() auditoria = new Auditoria({});
@@ -55,7 +62,7 @@ export class DashboardInicioComponent implements OnInit, AfterViewInit {
   displayTabla: boolean = false;
   headerModal: string = "";
 
-  startEndDay: Date[] = [new Date('2022-10-13'), new Date('2022-10-25')]
+  startEndDay: Date[] = [new Date("2022-10-13"), new Date("2022-10-25")];
 
   constructor(
     public auditoriaService: AuditoriaService,
@@ -68,6 +75,11 @@ export class DashboardInicioComponent implements OnInit, AfterViewInit {
     this.customService.getTasks().then((data) => (this.tasks = data));
     this.reqService.getRegistros().then((data) => (this.requerimiento = data));
     this.customService.getRequerimiento().then((data) => (this.req = data));
+    this.customService.getAdminTarea().then((data) => (this.adminTarea = data));
+    this.customService
+      .getColaboTarea()
+      .then((data) => (this.colaboTarea = data));
+
     this.auditorias = auditoriaService.auditoriaDetalles;
   }
 
@@ -77,9 +89,9 @@ export class DashboardInicioComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit() {
     this.translateChange("es");
-    setTimeout(() =>{
+    setTimeout(() => {
       this.markDayStartAndFinish();
-    }, 200)
+    }, 200);
   }
 
   translateChange(lang: string) {
@@ -163,7 +175,7 @@ export class DashboardInicioComponent implements OnInit, AfterViewInit {
 
   fichaTecnica(auditoria: any) {
     console.log(auditoria);
-    
+
     this.auditoriaSelected = auditoria;
   }
 
@@ -174,11 +186,11 @@ export class DashboardInicioComponent implements OnInit, AfterViewInit {
     this.colaborador = false;
   }
 
-  markDayStartAndFinish(){
-    var d: any = document.getElementsByClassName('p-highlight');
-    d[0].style.backgroundColor = 'green';
-    d[0].style.color = 'white';
-    d[d.length-1].style.backgroundColor = 'red';
-    d[d.length-1].style.color = 'white';
+  markDayStartAndFinish() {
+    var d: any = document.getElementsByClassName("p-highlight");
+    d[0].style.backgroundColor = "green";
+    d[0].style.color = "white";
+    d[d.length - 1].style.backgroundColor = "red";
+    d[d.length - 1].style.color = "white";
   }
 }

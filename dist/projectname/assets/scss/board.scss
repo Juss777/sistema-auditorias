@@ -42,7 +42,7 @@
   display: grid;
   gap: 20px;
   @media (min-width: 768px) {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 5fr 1fr;
   }
 }
 
@@ -50,69 +50,31 @@
   &__content {
     width: 100%;
     background-color: var(--color-blanco);
+  }
 
-    ul {
-      padding: 0;
-      margin: 0;
+  &__table {
+    .p-datatable {
+      .p-datatable-thead tr {
+        th {
+          padding: 10px;
+          border-bottom: 0.5px solid #d6d6d6;
+          font-size: 1.2rem;
+          background-color: var(--color-blanco);
+          color: var(--color-gris2);
+          font-family: var(--main-font-medium);
 
-      li {
-        position: relative;
-        padding: 12px 10px 12px 30px;
-        border-bottom: 1px solid #d6d6d6;
-
-        font-size: 1.2rem;
-        font-family: var(--main-font-regular);
-
-        list-style: none;
-        display: flex;
-        align-items: center;
-
-        &:before {
-          position: absolute;
-          width: 8px;
-          height: 8px;
-          content: " ";
-          background-image: url("../img/board/ico-list-style.svg");
-          background-repeat: no-repeat;
-          left: 15px;
+          &:nth-child(1) {
+            @media (min-width: 768px) {
+              width: 450px;
+            }
+          }
         }
       }
-    }
 
-    // Table
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
-
-      tr {
-        th {
-          color: var(--color-gris2);
-          font-size: 12px;
-          font-family: var(--main-font-medium);
-          text-align: left;
-          padding: 10px;
-          border-bottom: 1px solid #d6d6d6;
-
-          &:nth-child(2) {
-            text-align: center;
-          }
-        }
-
-        td {
-          padding: 10px;
-          border-bottom: 1px solid #d6d6d6;
-          font-size: 1.2rem;
-          font-family: var(--main-font-regular);
-
-          &:nth-child(2) {
-            text-align: center;
-          }
-        }
-
-        &:last-of-type {
+      .p-datatable-tbody {
+        tr {
           td {
-            border: none;
+            border-bottom: 0.5px solid #d6d6d6;
           }
         }
       }
@@ -121,9 +83,13 @@
 
   &__ico {
     width: 15px;
+    margin: 0 auto;
+
     border: none;
     background: none;
     cursor: pointer;
+
+    display: block;
   }
 
   &__bullet {
@@ -146,6 +112,40 @@
       text-decoration: underline;
       cursor: pointer;
     }
+  }
+}
+
+// Semaforo de Estatus
+.semaphore {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  span {
+    &:nth-child(1) {
+      width: 8px;
+      height: 8px;
+      border-radius: 100%;
+      border: 0.5px solid #707070;
+      opacity: 1;
+    }
+  }
+
+  &__delivery,
+  &__revision,
+  &__additional,
+  &__wrong {
+    background-color: #eaea15;
+  }
+
+  &__ready,
+  &__introduce {
+    background-color: #59ad25;
+  }
+
+  &__undelivered,
+  &__notReviewed {
+    background-color: #f42727;
   }
 }
 
