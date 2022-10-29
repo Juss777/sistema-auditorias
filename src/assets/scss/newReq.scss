@@ -38,7 +38,7 @@
     background-color: var(--background-gris);
 
     @media (min-width: 768px) {
-      max-width: 768px;
+      max-width: 968px;
       // height: 550px;
     }
 
@@ -75,6 +75,22 @@
     padding: 10px;
     @media (min-width: 1024px) {
       padding: 0px;
+    }
+  }
+}
+
+.p-overlaypanel .p-overlaypanel-content{
+  max-width: 398px;
+  font-size: 12px;
+  padding: 33px 26px 40px 26px !important;
+
+  .overlay-panel{
+    div{
+      margin-bottom: 15px;
+    }
+
+    .icon-delete-overlay{
+      float: right;
     }
   }
 }

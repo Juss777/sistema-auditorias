@@ -360,4 +360,27 @@
   margin-bottom: 83px;
 }
 
+.inputTextArea {
+  div{
+    p-chip{
+      padding-right: 10px;
+      padding-bottom: 10px;
+      
+      .p-chip {
+        background-color: #fff !important;
+        color: #3684B1 !important;
+        border-radius: 16px;
+        padding: 0 0.5rem;
+        border: 1px solid #3684B1 !important;
+        margin-bottom: 10px;
+      }
+    }
+
+    p-chip .p-chip-text{
+      font-size: 14px;
+      margin: 7px 15px 7px 15px;
+    }
+  }
+}
+
 //Tabla requerimientos en Auditoría

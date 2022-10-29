@@ -38,20 +38,25 @@
                   </tr>
                 </thead>
                 <tbody *ngIf="requirements.length > 0">
-                  <tr *ngFor="let r of requirements">
+                  <tr *ngFor="let r of requirements; let i = index;">
                     <td>{{ r.typePartida }}</td>
-                    <td>{{ verMas ? applicaSubtr(r.description) : r.description}}  <br>
-                      <a (click)="verMas = false;" *ngIf="verMas"><strong>Ver mas</strong></a> 
-                      <a (click)="verMas = true;" *ngIf="!verMas"><strong>Ver menos</strong></a>
+
+                    <td id="{{i + '-descriptionNoComplete'}}" class="show">{{applicaSubtr(r.description)}} <br>
+                      <a (click)="showAndHidden(i + '-descriptionComplete', i + '-descriptionNoComplete')"><strong>Ver mas</strong></a> 
                     </td>
-                    <td>{{ verMas ? applicaSubtr(r.typeDocument) : r.typeDocument}} <br>
-                      <a (click)="verMas = false;" *ngIf="verMas"><strong>Ver mas</strong></a> 
-                      <a (click)="verMas = true;" *ngIf="!verMas"><strong>Ver menos</strong></a>
+                    <td id="{{i + '-descriptionComplete'}}" class="hidden">{{r.description}} <br>
+                      <a (click)="showAndHidden(i + '-descriptionNoComplete', i + '-descriptionComplete')"><strong>Ver menos</strong></a>
                     </td>
+
+                    <td id="{{i + '-tipoDocNoComplete'}}" class="show">{{applicaSubtr(r.description)}} <br>
+                      <a (click)="showAndHidden(i + '-tipoDocComplete', i + '-tipoDocNoComplete')"><strong>Ver mas</strong></a> 
+                    </td>
+                    <td id="{{i + '-tipoDocComplete'}}" class="hidden">{{r.description}} <br>
+                      <a (click)="showAndHidden(i + '-tipoDocNoComplete', i + '-tipoDocComplete')"><strong>Ver menos</strong></a>
+                    </td>
+
                     <td>{{ r.areaResponsible }}</td>
-                    <td>
-                      <span class="main-font-demi">{{ r.state }}</span>
-                    </td>
+                    <td><span class="main-font-demi">{{ r.state }}</span></td>
                     <td>
                       <div
                         class="requirements__icon"
@@ -145,29 +150,79 @@
         </div>
       </div>
 
-      <!-- Autocomplete Documento -->
-      <div class="p-field styleInput">
-        <label for="area">Tipo de documento</label>
-        <div class="audit__flex">
-          <div>
-            <p-autoComplete [suggestions]="filterGeneral" (completeMethod)="search($event, typesDocuments)" formControlName="typeDocument"></p-autoComplete>
-            <small
-              class="audit__required"
-              *ngIf="auditoriaService.validaCampo(formRequerimiento, 'typeDocument')"
-              >* Campo requerido.</small
-            >
-          </div>
+      <div></div>
 
-          <img
-            src="assets/img/iconos/gear-fill.svg"
-            (click)="
-              visibleSidebar = true;
-              catalogName = 'Agrega tipo de requerimiento';
-              catalog = 'tipoRequerimiento'
-            "
-          />
+      <!-- Autocomplete Documento -->
+      <ng-container [formGroup]="formDocuments">
+        <div class="p-field styleInput">
+          <label for="area">Tipo de documento</label>
+          <div class="audit__flex">
+            <div>
+              <p-autoComplete [suggestions]="filterGeneral" (completeMethod)="search($event, typesDocuments)" formControlName="typeDocument"></p-autoComplete>
+              <small
+                class="audit__required"
+                *ngIf="auditoriaService.validaCampo(formDocuments, 'typeDocument')"
+                >* Campo requerido.</small
+              >
+            </div>
+  
+            <img
+              src="assets/img/iconos/gear-fill.svg"
+              (click)="
+                visibleSidebar = true;
+                catalogName = 'Agrega tipo de requerimiento';
+                catalog = 'tipoRequerimiento'
+              "
+            />
+          </div>
+        </div>
+  
+        <div class="p-field styleInput">
+          <label for="area">Descripción de documento</label>
+          <div class="audit__flex">
+            <div>
+              <input type="text" pInputText formControlName="descriptionDocument">
+            </div>
+            <button type="button" class="btn-primary btn-size-complete" (click)="addTypeDocumentChip()">Agregar</button>
+          </div>
+        </div>
+      </ng-container>
+      
+
+      <div class="p-field styleInput inputTextArea">
+        <div>
+          <p-chip *ngFor="let document of typesDocumentsChips" label="{{document.typeDocument}}" class="cursor-pointer" (click)="op.toggle($event)">
+            <p-overlayPanel #op [showCloseIcon]="true">
+              <ng-template pTemplate>
+                <div class="overlay-panel">
+                  <div>{{document.typeDocument}}</div>
+
+                  <div>Descripción:</div>
+                  <div>{{document.descriptionDocument}}</div>
+
+                  <div
+                    class="icon-delete-overlay"
+                    (click)="
+                      openModalConfirm(
+                        true,
+                        '¿Está seguro de eliminar este tipo de documento?',
+                        'ico-trash',
+                        'delete-typeDocument',
+                        document.id
+                      )
+                    "
+                  >
+                    <img src="assets/img/iconos/ico-trash.svg" />
+                  </div>
+                </div>
+              </ng-template>
+            </p-overlayPanel>
+          </p-chip>
+          
         </div>
       </div>
+
+      
 
       <!-- Checkbox Tipo de Requerimiento -->
       <div class="p-field styleInput">

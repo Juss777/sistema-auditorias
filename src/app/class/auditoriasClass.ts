@@ -196,3 +196,14 @@ export class TypeRequeriment {
     this.name = t.name || "";
   }
 }
+
+export class TypeDocument{
+  id;
+  typeDocument;
+  descriptionDocument;
+  constructor(typeDocument:any){
+    this.id = typeDocument.id || 0;
+    this.typeDocument = typeDocument.typeDocument || '';
+    this.descriptionDocument = typeDocument.descriptionDocument || '';
+  }
+}

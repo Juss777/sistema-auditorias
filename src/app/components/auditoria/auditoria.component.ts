@@ -11,6 +11,7 @@ import {
   Requirement,
   TypeRequeriment,
   Responsible,
+  TypeDocument,
 } from "../../class/auditoriasClass";
 import { AuditoriaService } from "../../services/auditorias.service";
 import { ToastrService } from "ngx-toastr";
@@ -200,11 +201,17 @@ export class AuditoriaComponent implements OnInit {
   selectedArea!: Area;
   selectedResponsible!: Responsible;
 
+  formDocuments: FormGroup = this.formBuilder.group({
+    id: [0],
+    typeDocument: ['', [Validators.required]],
+    descriptionDocument: ['']
+  })
+
   formRequerimiento: FormGroup = this.formBuilder.group({
     id: [0],
     description: [""],
     typePartida: [""],
-    typeDocument: [""],
+    typeDocumentForm: this.formDocuments,
     typeRequestDocument: [false],
     typeRequestDescrip: [false],
     typeRequestNuevo: [false],
@@ -215,6 +222,8 @@ export class AuditoriaComponent implements OnInit {
     responsable: [""],
     state: [""],
   });
+
+  
 
   filterGeneral: any[] = [];
 
@@ -236,15 +245,15 @@ export class AuditoriaComponent implements OnInit {
   typesDocuments: any[] = [
     {
       id: 1,
-      name: 'Tipo Documento 1'
+      name: 'Contrato'
     },
     {
       id: 2,
-      name: 'Tipo Documento 2'
+      name: 'Adendas'
     },
     {
       id: 3,
-      name: 'Tipo Documento 3'
+      name: 'Anexos'
     }
   ];
 
@@ -263,6 +272,14 @@ export class AuditoriaComponent implements OnInit {
     }
   ];
 
+  typesDocumentsChips: TypeDocument[] = [
+    {
+      "id": 1,
+      "typeDocument": "Adendas",
+      "descriptionDocument": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+    }
+  ]
+
   search(event: any, list: any[]) {
     let filtered: any[] = [];
     let query = event.query;
@@ -276,14 +293,19 @@ export class AuditoriaComponent implements OnInit {
     this.filterGeneral = filtered;
   }
 
-  verMas: boolean = true;
-  isDescription: boolean = true;
-  idRequerimiento: number = 0;
-  applicaSubtr(text: string) {
-    console.log(text);
-    
+  applicaSubtr(text: string) {  
     var texto = text.substr(0, 100) + '...';
     return texto;
+  }
+
+  showAndHidden(tdShow: string, tdHidden: string) {
+    var show: any = document.getElementById(tdShow);
+    var hidden: any = document.getElementById(tdHidden);
+    show.classList.remove('hidden');
+    show.classList.add('show');
+
+    hidden.classList.remove('show');
+    hidden.classList.add('hidden');
   }
 
   saveDataReq() {
@@ -297,6 +319,25 @@ export class AuditoriaComponent implements OnInit {
       this.formRequerimiento.controls["email"].setValue("ejemplo@mail.com.mx");
       this.displayNuevoReq = false;
     }
+  }
+
+  addTypeDocumentChip(){
+    console.log(this.formDocuments.controls);
+    if (this.formDocuments.invalid) {
+      this.formDocuments.markAllAsTouched();
+    } else {
+      var typeDocument = new TypeDocument(this.formDocuments.value);
+      typeDocument.id = this.typesDocumentsChips.length + 1;
+      console.log(typeDocument);
+      this.typesDocumentsChips.push(typeDocument);
+      this.formDocuments.reset();
+    }
+  }
+
+  deleteTypeDocument(id: number){
+    let index = this.typesDocumentsChips.findIndex((x) => x.id == id);
+    this.typesDocumentsChips.splice(index, 1);
+    this.displayConfirma = false;
   }
 
   mandarCorreo() {
@@ -327,7 +368,7 @@ export class AuditoriaComponent implements OnInit {
 
   /******************CONFIRMACIÓN DE ELIMINAR REQUERIMIENTO*************** */
   displayConfirma: boolean = false;
-  idRequirement: number = 0;
+  idDataToDelete: number = 0;
   openModalConfirm(
     displayConfirma: boolean,
     message: string,
@@ -335,15 +376,15 @@ export class AuditoriaComponent implements OnInit {
     typeConfirma: string,
     id: number = 0
   ) {
-    this.idRequirement = id;
+    this.idDataToDelete = id;
     this.displayConfirma = displayConfirma;
     this.message = message;
     this.icon = icon;
     this.typeConfirma = typeConfirma;
   }
 
-  deleteReq() {
-    let index = this.requirements.findIndex((x) => x.id == this.idRequirement);
+  deleteReq(id: number) {
+    let index = this.requirements.findIndex((x) => x.id == id);
     this.requirements.splice(index, 1);
     this.displayConfirma = false;
   }
@@ -353,10 +394,11 @@ export class AuditoriaComponent implements OnInit {
     if (result) {
       switch (this.typeConfirma) {
         case "delete":
-          this.deleteReq();
+          this.deleteReq(this.idDataToDelete);
           break;
 
-        case "save":
+        case "delete-typeDocument":
+          this.deleteTypeDocument(this.idDataToDelete)
           break;
       }
     } else {
