@@ -29,38 +29,11 @@ export class AuditoriaComponent implements OnInit {
   auditoria = new Auditoria({});
   buttonDisabled: boolean = false;
 
-  unidadeNegocio: UnidadNegocio[] = [
-    { id: 1, nombre: "Banco Azteca", rfc: "", siglas: "BAZ" },
-    { id: 2, nombre: "Elektra", rfc: "", siglas: "EKT" },
-    { id: 3, nombre: "Total Play", rfc: "", siglas: "TP" },
-  ];
+  unidadeNegocio: UnidadNegocio[] = [];
 
-  representantes: Representante[] = [
-    { id: 1, nombre: "Representante 1", apellidoPat: "", apellidoMat: "" },
-    { id: 2, nombre: "Representante 2", apellidoPat: "", apellidoMat: "" },
-    { id: 3, nombre: "Representante 3", apellidoPat: "", apellidoMat: "" },
-  ];
+  representantes: Representante[] = [];
 
-  areas: Area[] = [
-    {
-      id: 1,
-      responsableArea: "Representante 1",
-      grupoCorreo: "A",
-      areaResponsable: "Area 1",
-    },
-    {
-      id: 2,
-      responsableArea: "Representante 2",
-      grupoCorreo: "B",
-      areaResponsable: "Area 2",
-    },
-    {
-      id: 3,
-      responsableArea: "Representante 3",
-      grupoCorreo: "C",
-      areaResponsable: "Area 3",
-    },
-  ];
+  areas: Area[] = [ ];
 
   results!: string[];
 
@@ -147,12 +120,18 @@ export class AuditoriaComponent implements OnInit {
       id: 1,
       description: 'Explique amplia y detalladamente en qué consisten las erogaciones por concepto de “Artículos Promocionales”; asimismo, en caso de que dichos artículos sean entregados a los clientes (acreditados) de la contribuyente, indique los requisitos que debe.',
       typePartida: 'Generales',
-      typeDocument: 'Instrumento público, solicitud de crédito, aprobación de crédito, contrato, identificación, tabla de amortización, comprobante de domicilio, estado de cuenta, detalle de movimientos, consulta de gestiones, registros contables' ,
-      typeRequestDocument: '',
-      typeRequestDescrip: '',
-      typeRequestNuevo: '',
+      documentsType: [
+        {
+          id: 1,
+          typeDocument: 'Anexo',
+          descriptionDocument: 'Instrumento público, solicitud de crédito, aprobación de crédito, contrato, identificación, tabla de amortización, comprobante de domicilio, estado de cuenta, detalle de movimientos, consulta de gestiones, registros contables'
+        }
+      ],
+      typeRequestDocumental: '',
+      typeRequestDescriptive: '',
       areaResponsible: 'Contabilidad' ,
       responsible: '',
+      email: '',
       dateDelivery: '',
       acredita: '',
       state: "Pendiente",
@@ -161,12 +140,18 @@ export class AuditoriaComponent implements OnInit {
       id: 2,
       description: 'Explique amplia y detalladamente en qué consisten las erogaciones por concepto de “Artículos Promocionales”; asimismo, en caso de que dichos artículos sean entregados a los clientes (acreditados) de la contribuyente, indique los requisitos que debe.',
       typePartida: 'Generales',
-      typeDocument: 'Instrumento público, solicitud de crédito, aprobación de crédito, contrato, identificación, tabla de amortización, comprobante de domicilio, estado de cuenta, detalle de movimientos, consulta de gestiones, registros contables' ,
-      typeRequestDocument: '',
-      typeRequestDescrip: '',
-      typeRequestNuevo: '',
+      documentsType: [
+        {
+          id: 1,
+          typeDocument: 'Anexo',
+          descriptionDocument: 'Instrumento público, solicitud de crédito, aprobación de crédito, contrato, identificación, tabla de amortización, comprobante de domicilio, estado de cuenta, detalle de movimientos, consulta de gestiones, registros contables'
+        }
+      ],
+      typeRequestDocumental: '',
+      typeRequestDescriptive: '',
       areaResponsible: 'Contabilidad' ,
       responsible: '',
+      email: '',
       dateDelivery: '',
       acredita: '',
       state: "Pendiente",
@@ -211,15 +196,14 @@ export class AuditoriaComponent implements OnInit {
     id: [0],
     description: [""],
     typePartida: [""],
-    typeDocumentForm: this.formDocuments,
-    typeRequestDocument: [false],
-    typeRequestDescrip: [false],
-    typeRequestNuevo: [false],
+    documentsType: [[]],
+    typeRequestDocumental: [false],
+    typeRequestDescriptive: [false],
     areaResponsible: [this.selectedArea, [Validators.required]],
-    responsible: [this.selectedResponsible, [Validators.required]],
+    responsible: ["", [Validators.required]],
+    email: [''],
     dateDelivery: [""],
     acredita: [""],
-    responsable: [""],
     state: [""],
   });
 

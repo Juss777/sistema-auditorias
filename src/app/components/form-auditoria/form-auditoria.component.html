@@ -133,19 +133,19 @@
                         *ngIf="i == 0"
                       />
 
-                      <img
+                      <!-- <img
                         src="assets/img/iconos/ico-trash.svg"
                         *ngIf="i > 0"
                         (click)="
-                          deleteRepresentanteLegal(i)
+                          
                         "
-                      />
+                      /> -->
                     </div>
                   </div>
 
                   <div
                     class="audit__upload-add add-rep-leg"
-                    (click)="addInputRepresentanteLegal()"
+                    (click)="addInputRepresentanteLegal(); addInputsInstrumentoPublico();"
                   >
                     +agregar representante legal
                   </div>
@@ -213,7 +213,8 @@
                             src="assets/img/iconos/ico-trash.svg"
                             *ngIf="i > 0"
                             (click)="
-                            deleteInstrumentPublico(i)
+                            deleteRepresentanteLegal(i);
+                            deleteInstrumentPublico(i);
                             "
                           />
                         </div>
@@ -221,12 +222,12 @@
                     </div>
                     
                   </div>
-                  <div
+                  <!-- <div
                     class="audit__upload-add add-inst-pub top_link"
                     (click)="addInputsInstrumentoPublico()"
                   >
                     +agregar Instrumento público (poder)
-                  </div>
+                  </div> -->
                 </div>
               </div>
               <!--*********************campos representante legal***************************-->

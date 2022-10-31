@@ -56,112 +56,15 @@ export class FormAuditoriaComponent implements OnInit, AfterViewInit {
   @Input() representantes: Representante[] = [];
   @Input() areas: Area[] = [];
   @Input() auditoria = new Auditoria({});
-  @Input() responsablesArea: Representante[] = [
-    {
-      id: 1,
-      nombre: "Responsable Área 1",
-      apellidoPat: "",
-      apellidoMat: "",
-    },
-    {
-      id: 2,
-      nombre: "Responsable Área 2",
-      apellidoPat: "",
-      apellidoMat: "",
-    },
-  ];
-  @Input() adminsGenerales: Representante[] = [
-    {
-      id: 1,
-      nombre: "Admin General 1",
-      apellidoPat: "",
-      apellidoMat: "",
-    },
-    {
-      id: 2,
-      nombre: "Admin General 2",
-      apellidoPat: "",
-      apellidoMat: "",
-    },
-  ];
-  @Input() adminsCentrales: Representante[] = [
-    {
-      id: 1,
-      nombre: "Admin Central 1",
-      apellidoPat: "",
-      apellidoMat: "",
-    },
-    {
-      id: 2,
-      nombre: "Admin Central 2",
-      apellidoPat: "",
-      apellidoMat: "",
-    },
-  ];
-  @Input() admin: Representante[] = [
-    {
-      id: 1,
-      nombre: "Administrador 1",
-      apellidoPat: "",
-      apellidoMat: "",
-    },
-    {
-      id: 2,
-      nombre: "Administrador 2",
-      apellidoPat: "",
-      apellidoMat: "",
-    },
-  ];
-  @Input() responsableAll: any[] = [
-    {
-      id: 1,
-      nombre: "responsable 1",
-    },
-    {
-      id: 2,
-      nombre: "responsable 2",
-    },
-  ];
-  @Input() contenciosoAll: any[] = [
-    {
-      id: 1,
-      nombre: "contencioso 1",
-    },
-    {
-      id: 2,
-      nombre: "contencioso 2",
-    },
-  ];
-  @Input() autoridadAll: any[] = [
-    {
-      id: 1,
-      nombre: "autoridad 1",
-    },
-    {
-      id: 2,
-      nombre: "autoridad 2",
-    },
-  ];
-  @Input() areaAll: any[] = [
-    {
-      id: 1,
-      nombre: "área 1",
-    },
-    {
-      id: 2,
-      nombre: "área 2",
-    },
-  ];
-  @Input() instrumentosPublicos: any[] = [
-    {
-      id: 1,
-      nombre: "Instrumento Público 1",
-    },
-    {
-      id: 2,
-      nombre: "Instrumento Público 2",
-    },
-  ];
+  @Input() responsablesArea: Representante[] = [];
+  @Input() adminsGenerales: Representante[] = [ ];
+  @Input() adminsCentrales: Representante[] = [];
+  @Input() admin: Representante[] = [ ];
+  @Input() responsableAll: any[] = [];
+  @Input() contenciosoAll: any[] = [];
+  @Input() autoridadAll: any[] = [];
+  @Input() areaAll: any[] = [];
+  @Input() instrumentosPublicos: any[] = [ ];
 
   @Input() idAuditoria: any;
 

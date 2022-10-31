@@ -48,10 +48,10 @@
                       <a (click)="showAndHidden(i + '-descriptionNoComplete', i + '-descriptionComplete')"><strong>Ver menos</strong></a>
                     </td>
 
-                    <td id="{{i + '-tipoDocNoComplete'}}" class="show">{{applicaSubtr(r.description)}} <br>
+                    <td id="{{i + '-tipoDocNoComplete'}}" class="show">{{applicaSubtr(r.documentsType[0].descriptionDocument)}} <br>
                       <a (click)="showAndHidden(i + '-tipoDocComplete', i + '-tipoDocNoComplete')"><strong>Ver mas</strong></a> 
                     </td>
-                    <td id="{{i + '-tipoDocComplete'}}" class="hidden">{{r.description}} <br>
+                    <td id="{{i + '-tipoDocComplete'}}" class="hidden">{{r.documentsType[0].descriptionDocument}} <br>
                       <a (click)="showAndHidden(i + '-tipoDocNoComplete', i + '-tipoDocComplete')"><strong>Ver menos</strong></a>
                     </td>
 
@@ -231,7 +231,7 @@
           <p-checkbox
             name="group1"
             value="Documental / Probatorio"
-            formControlName="typeRequestDocument"
+            formControlName="typeRequestDocumental"
           ></p-checkbox>
           <label>Documental / Probatorio</label>
         </div>
@@ -239,17 +239,9 @@
           <p-checkbox
             name="group1"
             value="Descriptivo / Argumentativo"
-            formControlName="typeRequestDescrip"
+            formControlName="typeRequestDescriptive"
           ></p-checkbox>
           <label>Descriptivo / Argumentativo</label>
-        </div>
-        <div class="audit__flex field-checkbox">
-          <p-checkbox
-            name="group1"
-            value="Nuevo"
-            formControlName="typeRequestNuevo"
-          ></p-checkbox>
-          <label>Nuevo</label>
         </div>
       </div>
 
@@ -266,7 +258,7 @@
       <!-- Textarea descripción del requerimiento -->
       <div class="p-field styleInput inputTextArea">
         <label>Descripción del requerimiento</label>
-        <textarea pInputTextarea></textarea>
+        <textarea pInputTextarea formControlName="description"></textarea>
       </div>
 
       <!-- Autocomplete Área responsable -->
@@ -291,7 +283,17 @@
         <input
           pInputText
           [class.input-disabled]="true"
-          formControlName="responsable"
+          formControlName="responsible"
+        />
+      </div>
+
+      <!-- Input Email -->
+      <div class="p-field styleInput">
+        <label>Correo del responsable</label>
+        <input
+          pInputText
+          [class.input-disabled]="true"
+          formControlName="email"
         />
       </div>
 
