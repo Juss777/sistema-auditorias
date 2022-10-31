@@ -23,57 +23,66 @@
         <div class="section__title">Ficha técnica</div>
         <div class="section__content">
           <div
-            class="dataFicha"
+            class="dataSheets"
             [ngClass]="{
               card__informative: auditoriaSelected.tipoCard === 'informativo',
               card__entregadoMal: auditoriaSelected.tipoCard === 'mal',
               card__entregadoCambios: auditoriaSelected.tipoCard === 'cambios'
             }"
           >
-            <div class="dataFicha_header">
-              <div class="header-titulo">
-                <h3>{{ auditoriaSelected.nombre }}</h3>
-                <div>Ord. Revisión: BAZ960100134</div>
+            <div class="dataSheets__header">
+              <div>
+                <span>BAZ 2016</span>
+                <span>No. De oficio: 230/2022</span>
               </div>
-              <div class="header-monto">
-                Monto: <span>${{ auditoriaSelected.monto }} MDP</span>
+              <div>
+                <span>Unidad de negocio</span>
+                <span>BAZ</span>
+              </div>
+              <div>Monto: <span>$$23,172 MDP</span></div>
+            </div>
+            <div class="dataSheets__body">
+              <div>
+                <span>Autoridad:</span>
+                <span>Secretaría de Administración Tributaria</span>
+              </div>
+              <div>
+                <span>Área:</span>
+                <span
+                  >Administración Central de Fiscalización a Grupo de
+                  Sociedades</span
+                >
+              </div>
+              <div>
+                <span>Administrador central:</span>
+                <span>Armando Ramírez Sánchez</span>
               </div>
             </div>
-            <div class="dataFicha_body u-mb-40">
-              <div class="body-detalles borderTop-gris">
-                <div>
-                  <span>Año</span>
-                  <span>{{ auditoriaSelected.anio }}</span>
-                </div>
-                <div>
-                  <span>Unidad de negocio</span>
-                  <span>{{ auditoriaSelected.unidadNegocio }}</span>
-                </div>
-                <div>
-                  <span>Autoridad:</span>
-                  <span
-                    >Administración centrar de fiscalización a grupos de
-                    sociedades adscrita.</span
-                  >
-                </div>
+            <div class="dataSheets__dates">
+              <div>
+                <span>Fecha de creación:</span>
+                <span>20/09/2016</span>
               </div>
-              <div class="body-detalles borderTop-gris">
-                <div>
-                  <span>Representante de la Unidad de Negocio: </span>
-                  <span>Jesús Morales Aguilar</span>
-                </div>
-                <div>
-                  <span>Fecha de creación: </span>
-                  <span>20/09/2016</span>
-                </div>
-                <div>
-                  <span>Creador: </span>
-                  <span>Marco López</span>
-                </div>
+              <div>
+                <span>Fecha de notificación:</span>
+                <span>25/10/2022</span>
+              </div>
+              <div>
+                <span>Fecha de término:</span>
+                <span>10/11/2022</span>
+              </div>
+            </div>
+            <div class="dataSheets__footer">
+              <div>
+                <span>Representante de la Unidad de Negocio: </span>
+                <span>Jesús Morales Aguilar</span>
               </div>
             </div>
             <!-- , auditoria.id, true -->
-            <div class="dataFicha_footer" *ngIf="colaborador">
+            <div
+              class="dataSheets__button dataFicha_footer"
+              *ngIf="colaborador"
+            >
               <button
                 class="btn-auditoria"
                 [routerLink]="['/detalle-auditoria', auditoriaSelected.id]"
@@ -91,7 +100,7 @@
       <div class="section pending section-padding" *ngIf="colaborador">
         <div class="section__title">
           <span>Mis tareas pendientes</span>
-          <span>{{ pending.length }}</span>
+          <span>{{ adminTarea.length }}</span>
         </div>
         <div class="section__content">
           <div class="pending__content">
@@ -161,7 +170,7 @@
       <div class="section pending section-padding" *ngIf="!colaborador">
         <div class="section__title">
           <span>Mis tareas pendientes</span>
-          <span>{{ pending.length }}</span>
+          <span>{{ colaboTarea.length }}</span>
         </div>
         <div class="section__content">
           <div class="pending__content">
@@ -267,14 +276,18 @@
                 <tr>
                   <th>Área responsable</th>
                   <th>% de avance</th>
+                  <th>Requerimientos terminados</th>
                   <th>Último inicio de sesión</th>
+                  <th>Acción</th>
                 </tr>
               </ng-template>
               <ng-template pTemplate="body" let-task>
                 <tr>
                   <td>{{ task.area }}</td>
                   <td><p-progressBar [value]="task.avance"></p-progressBar></td>
+                  <td>{{ task.reqTerminado }}</td>
                   <td>{{ task.ultimoInicio }}</td>
+                  <td><a class="link">Ver detalle</a></td>
                 </tr>
               </ng-template>
             </p-table>

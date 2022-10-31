@@ -2,26 +2,37 @@
 	"data": [
 		{
             "id": "1",
-            "area": "Contabilidad Banco Azteca",
-            "avance": 40,
+            "area": "Contabilidad Baz Mexico de Contabilidad General en Back Office",
+            "avance": 30,
+            "reqTerminado": "20/60",
             "ultimoInicio": "Hace 2 días"
 		},
         {
             "id": "2",
-            "area": "Fiscal Banco Azteca",
-            "avance": 40,
+            "area": "Administracion Despachos de Administracion Despachos en Back Office",
+            "avance": 80,
+            "reqTerminado": "25/30",
             "ultimoInicio": "Hoy"
 		},
         {
             "id": "3",
-            "area": "Jurídico Fiscal GS",
+            "area": "Analisis y diseño de orocesos de Analisis y diseño de procesos en Back Office",
             "avance": 40,
+            "reqTerminado": "40/100",
             "ultimoInicio": "Ayer"
 		},
         {
             "id": "4",
-            "area": "Fiscal Banco Azteca",
-            "avance": 40,
+            "area": "Fiscal Sistema Financiero de Dirección Fiscal Gs en Back Office",
+            "avance": 80,
+            "reqTerminado": "20/25",
+            "ultimoInicio": "Hace 2 días"
+		},
+        {
+            "id": "5",
+            "area": "Administracion Despachos",
+            "avance": 30,
+            "reqTerminado": "Hoy",
             "ultimoInicio": "Hace 2 días"
 		}
 	

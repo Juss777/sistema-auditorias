@@ -2,25 +2,25 @@
     "data": [
         {
             "id": "1",
-            "documentos": "Documentación, facturas, registros, pólizas contables, estado de cuenta, bitácoras, reportes, programaciones presupuestales, papeles de trabajo.",
+            "documentos": "Contrato, adendas, anexos, explicación, fundamento legal, informes, reportes, bitácora.",
             "estatus": "Pendiente de entrega",
-            "fechaEntrega": "15/10/2022"
+            "fechaEntrega": "10/11/2022"
         },
         {
             "id": "2",
-            "documentos": "Balanza de comprobación, póliza contable, integración de cuentas, solicitud de crédito.",
+            "documentos": "Explicación, fundamento legal, informes, bitácora.",
             "estatus": "Pendiente de revisión",
             "fechaEntrega": "15/10/2022"
         },
         {
             "id": "3",
-            "documentos": "Balanza de comprobación, póliza contable.",
+            "documentos": "Contrato, adendas.",
             "estatus": "Cambios adicionales",
             "fechaEntrega": "15/10/2022"
         },
         {
             "id": "4",
-            "documentos": "Integración de cuentas, solicitud de crédito.",
+            "documentos": "Informes, bitácora.",
             "estatus": "Entregado mal",
             "fechaEntrega": "15/10/2022"
         }

@@ -197,9 +197,19 @@
         text-align: left;
         padding: 10px;
         background-color: var(--color-blanco);
-        width: 33.33%;
+
+        &:nth-child(1) {
+          width: 300px;
+        }
 
         &:nth-child(2) {
+          text-align: center;
+          width: 300px;
+        }
+
+        &:nth-child(3),
+        &:nth-child(4),
+        &:nth-child(5) {
           text-align: center;
         }
       }
@@ -208,9 +218,19 @@
     .p-datatable-tbody {
       font-size: 1.2rem;
 
+      tr {
+        td {
+          &:nth-child(3),
+          &:nth-child(4),
+          &:nth-child(5) {
+            text-align: center;
+          }
+        }
+      }
+
       .p-progressbar {
         .p-progressbar-value {
-          background: var(--color-avance-tabla);
+          background: var(--color-avance-total);
           .p-progressbar-label {
             position: absolute;
             right: 0;
