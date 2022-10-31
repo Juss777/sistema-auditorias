@@ -175,7 +175,7 @@ export class Requirement {
     this.email = r.email || "";
     this.dateDelivery = r.dateDelivery  || "";
     this.acredita = r.acredita  || "";
-    this.state = r.state || "Pendiente";
+    this.state = r.state || "Pendiente de revisión";
   }
 }
 

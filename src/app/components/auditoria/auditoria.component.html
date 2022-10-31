@@ -56,7 +56,31 @@
                     </td>
 
                     <td>{{ r.areaResponsible }}</td>
-                    <td><span class="main-font-demi">{{ r.state }}</span></td>
+
+                    <td>
+                      <div class="semaphore">
+                        <span
+                          [ngClass]="{
+                            semaphore__delivery:
+                              r.state == 'Pendiente de entrega',
+                            semaphore__ready: r.state == 'Listo',
+                            semaphore__revision:
+                              r.state == 'Pendiente de revisión',
+                            semaphore__introduce:
+                              r.state == 'No se va a presentar',
+                            semaphore__undelivered:
+                              r.state == 'No entregado',
+                            semaphore__notReviewed:
+                              r.state == 'No revisado',
+                            semaphore__additional:
+                              r.state == 'Cambios adicionales',
+                            semaphore__wrong:
+                              r.state == 'Entregado mal'
+                          }"
+                        ></span>
+                        <span>{{ r.state }}</span>
+                      </div>
+                    </td>
                     <td>
                       <div
                         class="requirements__icon"

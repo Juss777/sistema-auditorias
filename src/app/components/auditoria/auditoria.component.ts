@@ -134,7 +134,7 @@ export class AuditoriaComponent implements OnInit {
       email: '',
       dateDelivery: '',
       acredita: '',
-      state: "Pendiente",
+      state: "Pendiente de revisión",
     },
     {
       id: 2,
@@ -154,33 +154,15 @@ export class AuditoriaComponent implements OnInit {
       email: '',
       dateDelivery: '',
       acredita: '',
-      state: "Pendiente",
+      state: "Pendiente de revisión",
     }
   ];
 
   requirementsEmpty: Requirement[] = [];
 
-  tipoRequerimientos: any[] = [
-    {
-      id: 1,
-      name: "Estado de Cuenta",
-    },
-    {
-      id: 2,
-      name: "Componentes de Gastos",
-    },
-  ];
+  tipoRequerimientos: any[] = [];
 
-  responsibles: any[] = [
-    {
-      id: 1,
-      name: "Responsable 1",
-    },
-    {
-      id: 2,
-      name: "Responsable 2",
-    },
-  ];
+  responsibles: any[] = [];
 
   selectedTypeReq!: TypeRequeriment;
   selectedArea!: Area;
@@ -211,50 +193,11 @@ export class AuditoriaComponent implements OnInit {
 
   filterGeneral: any[] = [];
 
-  partidas: any[] = [
-    {
-      id: 1,
-      name: 'Partida 1'
-    },
-    {
-      id: 2,
-      name: 'Partida 2'
-    },
-    {
-      id: 3,
-      name: 'Partida 3'
-    }
-  ]
+  partidas: any[] = []
 
-  typesDocuments: any[] = [
-    {
-      id: 1,
-      name: 'Contrato'
-    },
-    {
-      id: 2,
-      name: 'Adendas'
-    },
-    {
-      id: 3,
-      name: 'Anexos'
-    }
-  ];
+  typesDocuments: any[] = [];
 
-  areasResponsible: any[] = [
-    {
-      id: 1,
-      name: 'Área Responsable 1'
-    },
-    {
-      id: 2,
-      name: 'Área Responsable 2'
-    },
-    {
-      id: 3,
-      name: 'Área Responsable 3'
-    }
-  ];
+  areasResponsible: any[] = [];
 
   typesDocumentsChips: TypeDocument[] = [
     {
