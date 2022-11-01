@@ -14,19 +14,19 @@ import { DetallePorAreaComponent } from "./components/detalle-por-area/detalle-p
 import { TableroComponent } from "./components/tablero/tablero.component";
 
 const routes: Routes = [
-  // {
-  //   path: "",
-  //   component: TableroComponent,
-  // },
   {
     path: "",
+    component: TableroComponent,
+  },
+  {
+    path: "dashboard",
     component: DashboardInicioComponent,
     data: {
       breadcrumb: [
-        // {
-        //   label: "Tablero de control",
-        //   url: "/",
-        // },
+        {
+          label: "Tablero de control",
+          url: "/",
+        },
         {
           label: "Dashboard",
           url: "/dashboard",
@@ -39,10 +39,10 @@ const routes: Routes = [
     component: DetalleAuditoriaComponent,
     data: {
       breadcrumb: [
-        // {
-        //   label: "Tablero de control",
-        //   url: "/",
-        // },
+        {
+          label: "Tablero de control",
+          url: "/",
+        },
         {
           label: "Dashboard",
           url: "/dashboard",
@@ -61,7 +61,7 @@ const routes: Routes = [
       breadcrumb: [
         {
           label: "Dashboard",
-          url: "/",
+          url: "/dashboard",
         },
         {
           label: "Ficha técnica",
@@ -81,7 +81,7 @@ const routes: Routes = [
       breadcrumb: [
         {
           label: "Dashboard",
-          url: "/",
+          url: "/dashboard",
         },
         {
           label: "HUB colaborativo",
@@ -97,7 +97,7 @@ const routes: Routes = [
       breadcrumb: [
         {
           label: "Dashboard",
-          url: "/",
+          url: "/dashboard",
         },
         {
           label: "HUB colaborativo",
