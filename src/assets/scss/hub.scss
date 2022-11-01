@@ -193,18 +193,43 @@
 // Modal Versiones desahogo oficio
 
 .dialogReq {
-  .p-datatable .p-datatable-thead > tr > th {
-    font-size: 1.2rem;
-    font-family: var(--main-font-medium);
-    color: var(--color-gris2);
-    background-color: var(--color-blanco);
+  .p-datatable {
+    .p-datatable-thead {
+      tr {
+        th {
+          font-size: 1.2rem;
+          font-family: var(--main-font-medium);
+          color: var(--color-gris2);
+          background-color: var(--color-blanco);
+
+          &:nth-child(1) {
+            width: 150px;
+          }
+
+          &:nth-child(3) {
+            width: 150px;
+          }
+        }
+      }
+    }
+    .p-datatable-tbody {
+      tr {
+        td {
+          font-size: 1.2rem;
+          font-family: var(--main-font-regular);
+          color: var(--color-negro);
+          background-color: var(--color-blanco);
+        }
+      }
+    }
   }
 
-  .p-datatable .p-datatable-tbody > tr > td {
-    font-size: 1.1rem;
-    font-family: var(--main-font-regular);
-    color: var(--color-negro);
-    background-color: var(--color-blanco);
+  &__text {
+    width: 100%;
+    max-width: 150px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
   }
 }
 

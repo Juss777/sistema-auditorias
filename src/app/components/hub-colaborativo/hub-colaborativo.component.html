@@ -26,22 +26,28 @@
               </div>
               <div class="chat__message send">
                 <div>No entiendo por qué está rechazado</div>
-                <div>Hoy a las 12:30</div>
+                <div>Susana - 23/09/22 a las 10:30</div>
               </div>
             </div>
             <div class="chat__sending">
               <div class="p-field styleInput">
-                <input pInputText placeholder="Escribe un mensaje" (keyup)="countCharacters($event)"
-                maxlength="250"/>
+                <input
+                  pInputText
+                  placeholder="Escribe un mensaje"
+                  (keyup)="countCharacters($event)"
+                  maxlength="250"
+                />
               </div>
               <div class="buttons-content">
                 <button class="btn-primary">Enviar</button>
               </div>
-              
             </div>
             <div class="chat__sending">
-              <div class="count-characters" [ngClass]="isMax ? 'status-characters-max' : ''">
-                {{ countChars }} / {{maxCharacters}} máx.
+              <div
+                class="count-characters"
+                [ngClass]="isMax ? 'status-characters-max' : ''"
+              >
+                {{ countChars }} / {{ maxCharacters }} máx.
               </div>
             </div>
           </div>
@@ -99,30 +105,37 @@
       </div>
 
       <!-- Sección de Avance de proyecto -->
-      <div class="advance">
-        <div class="section section-padding">
-          <div class="section__title">Avance del proyecto</div>
-          <div class="section__content pd-10">
-            <p-table class="table advance__table" [value]="colaborativo">
+      <div class="section section-padding">
+        <div class="section__title border-bottom">
+          Requerimiento de información
+        </div>
+        <!-- Requerimiento de información / Avence Total-->
+        <div class="summary">
+          <div class="summary__advance">
+            <div>Avance total</div>
+            <div><p-progressBar [value]="value"></p-progressBar></div>
+            <div>Requerimientos terminados: 100/215</div>
+          </div>
+        </div>
+        <!--Requerimiento de información / Área responsable -->
+        <div class="informationArea pd-10">
+          <div class="informationArea__content">
+            <p-table class="table informationArea__table" [value]="tasks">
               <ng-template pTemplate="header">
                 <tr>
-                  <th>Área</th>
+                  <th>Área responsable</th>
                   <th>% de avance</th>
                   <th>Requerimientos terminados</th>
                   <th>Último inicio de sesión</th>
                   <th>Acción</th>
                 </tr>
               </ng-template>
-              <ng-template pTemplate="body" let-colaborativo>
+              <ng-template pTemplate="body" let-task>
                 <tr>
-                  <td>{{ colaborativo.area }}</td>
-                  <td>
-                    <p-progressBar
-                      [value]="colaborativo.avance"
-                    ></p-progressBar>
-                  </td>
-                  <td>{{ colaborativo.req }}</td>
-                  <td>{{ colaborativo.ult }}</td>
+                  <td>{{ task.area }}</td>
+                  <td><p-progressBar [value]="task.avance"></p-progressBar></td>
+                  <td>{{ task.reqTerminado }}</td>
+                  <td>{{ task.ultimoInicio }}</td>
                   <td>
                     <a
                       class="link"
@@ -132,9 +145,8 @@
                           'Tareas / BAZ 2016 - Oficio 230/2022 - Requerimiento de información'
                         )
                       "
+                      >Ver detalle</a
                     >
-                      Ver detalle
-                    </a>
                   </td>
                 </tr>
               </ng-template>

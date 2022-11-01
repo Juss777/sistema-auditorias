@@ -7,19 +7,25 @@
           <th pSortableColumn="area">
             Área <p-sortIcon field="area"></p-sortIcon>
           </th>
+
           <th pSortableColumn="responsable">
             Responsable <p-sortIcon field="responsable"></p-sortIcon>
           </th>
-          <th pSortableColumn="requerimiento">
-            Requerimiento <p-sortIcon field="requerimiento"></p-sortIcon>
+
+          <th pSortableColumn="tipoDeDocumento">
+            Tipo de documento
+            <p-sortIcon field="tipoDeDocumento"></p-sortIcon>
           </th>
-          <th pSortableColumn="tipoDeRequerimiento">
-            Tipo de requerimiento
-            <p-sortIcon field="tipoDeRequerimiento"></p-sortIcon>
+
+          <th pSortableColumn="acredita">
+            Acredita
+            <p-sortIcon field="acredita"></p-sortIcon>
           </th>
+
           <th pSortableColumn="estatus">
             Estatus actual <p-sortIcon field="estatus"></p-sortIcon>
           </th>
+
           <th pSortableColumn="fechaEntrega">
             Fecha de entrega <p-sortIcon field="fechaEntrega"></p-sortIcon>
           </th>
@@ -30,16 +36,24 @@
         <tr>
           <td>{{ req.area }}</td>
           <td>{{ req.responsable }}</td>
-          <td>{{ req.requerimiento }}</td>
-          <td>{{ req.tipo }}</td>
           <td>
-            <div class="status">
+            <div class="dialogReq__text">
+              {{ req.tipo }}
+            </div>
+          </td>
+          <td>{{ req.acredita }}</td>
+          <td>
+            <div class="semaphore">
               <span
-                class="status__circle"
                 [ngClass]="{
-                  status__red: req.colorEstatus === 'rojo',
-                  status__yellow: req.colorEstatus === 'amarillo',
-                  status__green: req.colorEstatus === 'verde'
+                  semaphore__delivery: req.estatus == 'Pendiente de entrega',
+                  semaphore__ready: req.estatus == 'Listo',
+                  semaphore__revision: req.estatus == 'Pendiente de revisión',
+                  semaphore__introduce: req.estatus == 'No se va a presentar',
+                  semaphore__undelivered: req.estatus == 'No entregado',
+                  semaphore__notReviewed: req.estatus == 'No revisado',
+                  semaphore__additional: req.estatus == 'Cambios adicionales',
+                  semaphore__wrong: req.estatus == 'Entregado mal'
                 }"
               ></span>
               <span>{{ req.estatus }}</span>
@@ -198,9 +212,9 @@
 <div *ngIf="typeModal == 'modal5'">
   <div class="confirmDelete__confirm">
     <div>
-      <img src="assets/img/iconos/{{icon}}.svg" alt="icono eliminar" />
+      <img src="assets/img/iconos/{{ icon }}.svg" alt="icono eliminar" />
     </div>
-    <div>{{message}}</div>
+    <div>{{ message }}</div>
   </div>
 
   <div class="modalNewReq__buttons u-mb-25">

@@ -1,92 +1,54 @@
 {
-	"data": [
-		{
+    "data": [
+        {
             "id": "1",
-            "area": "Fiscal",
-            "responsable": "Susana Sánchez",
-            "requerimiento": "Documento.pdf",
-            "tipo": "Materialidad",
-            "estatus":"Entregado, pendiente de revisión",
-            "colorEstatus": "amarillo",
-            "fechaEntrega": "23/09/2022",
-            "detalle":"Ver detalle"
-		},
+            "area": "Contabilidad Baz Mexico de Conta- bilidad General en Back Office",
+            "responsable": "Albino Martínez Sosa",
+            "tipo": "Contrato, adendas, anexo, Explicación",
+            "acredita": "Materialidad / Legalidad",
+            "estatus": "Pendiente de entrega",
+            "fechaEntrega": "10/11/2022",
+            "detalle": "Ver detalle"
+        },
         {
             "id": "2",
-            "area": "Contabilidad",
-            "responsable": "Juan Alberto",
-            "requerimiento": "Estado_cuenta.pdf",
-            "tipo": "Materialidad / Legalidad",
-            "estatus": "No entregado",
-            "colorEstatus": "amarillo",
+            "area": "Administracion Despachos de Administracion Despachos en Back Office",
+            "responsable": "Ramiro Ojeda",
+            "tipo": "Bitácoras, reportes, programaciones presupuestales",
+            "acredita": "Materialidad / Legalidad",
+            "estatus": "Entregado mal",
             "fechaEntrega": "23/09/2022",
-            "detalle":"Ver detalle"
-		},
+            "detalle": "Ver detalle"
+        },
         {
             "id": "3",
-            "area": "Jurídico",
-            "responsable": "Luis Zapata",
-            "requerimiento": "Cargar documento",
-            "tipo": "Legalidad",
-            "estatus": "No entregado",
-            "colorEstatus": "rojo",
+            "area": "Analisis y diseño de orocesos de Analisis y diseño de procesos en Back Office",
+            "responsable": "Susana Sánchez",
+            "tipo": "Documentación, facturas, registros",
+            "acredita": "Materialidad",
+            "estatus": "Entregado mal",
             "fechaEntrega": "23/09/2022",
-            "detalle":"Ver detalle"
-		},
+            "detalle": "Ver detalle"
+        },
         {
             "id": "4",
-            "area": "Fiscal",
-            "responsable": "Haim Sagrero",
-            "requerimiento": "Cargar documento",
-            "tipo": "Legalidad",
-            "estatus": "Entregado, no se presenta",
-            "colorEstatus": "amarillo",
+            "area": "Fiscal Sistema Financiero de Dirección Fiscal Gs en Back Office",
+            "responsable": "Bernardo Ruíz",
+            "tipo": "programaciones presupuestales",
+            "acredita": "Legalidad",
+            "estatus": "Pendiente de revisión",
             "fechaEntrega": "23/09/2022",
-            "detalle":"Ver detalle"
-		},
+            "detalle": "Ver detalle"
+        },
         {
             "id": "5",
-            "area": "Contabilidad",
-            "responsable": "Ana Yadira",
-            "requerimiento": "Cargar documento",
-            "tipo": "Legalidad",
-            "estatus": "Entregado mal, debe completarse o reenviarse",
-            "colorEstatus": "amarillo",
-            "fechaEntrega": "23/09/2022",
-            "detalle":"Ver detalle"
-		},
-        {
-            "id": "6",
-            "area": "Contabilidad",
-            "responsable": "Juan José Rivera",
-            "requerimiento": "Cargar documento",
-            "tipo": "Legalidad",
-            "estatus": "Entregado, requiere cambios o adiciones",
-            "colorEstatus": "amarillo",
-            "fechaEntrega": "23/09/2022",
-            "detalle":"Ver detalle"
-		},
-        {
-            "id": "7",
-            "area": "Jurídico",
-            "responsable": "Arantxa Dorantes",
-            "requerimiento": "Cargar documento",
-            "tipo": "Legalidad",
-            "estatus": "En proceso",
-            "colorEstatus": "amarillo",
-            "fechaEntrega": "23/09/2022",
-            "detalle":"Ver detalle"
-		},
-        {
-            "id": "8",
-            "area": "Jurídico",
-            "responsable": "Arantxa Dorantes",
-            "requerimiento": "Cargar documento",
-            "tipo": "Legalidad",
-            "estatus": "Listo",
-            "colorEstatus": "verde",
-            "fechaEntrega": "23/09/2022",
-            "detalle":"Ver detalle"
-		}
-	]
+            "area": "Contabilidad Baz Mexico de Conta- bilidad General en Back Office",
+            "responsable": "Albino Martínez Sosa",
+            "tipo": "Contrato, adendas, anexo, Explicación",
+            "acredita": "Materialidad / Legalidad",
+            "estatus": "Pendiente de entrega",
+            "fechaEntrega": "10/11/2022",
+            "detalle": "Ver detalle"
+        }
+    ]
 }

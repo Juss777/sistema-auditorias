@@ -7,6 +7,7 @@ import { Req } from "src/app/interface/req";
 import { Auditoria } from "src/app/class/auditoriasClass";
 import { CustomService } from "src/app/services/custom.service";
 import { Desahogo, DesahogoList } from "src/app/interface/custom";
+import { Task } from "src/app/interface/task";
 
 @Component({
   selector: "app-hub-colaborativo",
@@ -17,6 +18,8 @@ export class HubColaborativoComponent implements OnInit {
   colaborativo!: Colaborativo[];
   requerimiento!: Req[];
   desahogo!: Desahogo[];
+  tasks!: Task[];
+  value: number = 46.5;
 
   displayModal: boolean = false;
   // displayDesahogoTabla: boolean = false;
@@ -33,11 +36,12 @@ export class HubColaborativoComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.colaborativoService
-      .getTasks()
-      .then((data) => (this.colaborativo = data));
+    // this.colaborativoService
+    //   .getTasks()
+    //   .then((data) => (this.colaborativo = data));
     this.reqService.getRegistros().then((data) => (this.requerimiento = data));
     this.customService.getDesahogo().then((data) => (this.desahogo = data));
+    this.customService.getTasks().then((data) => (this.tasks = data));
   }
 
   showModal(typeModal: string, headerModal: string) {
