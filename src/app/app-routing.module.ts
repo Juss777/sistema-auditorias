@@ -9,7 +9,6 @@ import { VerDetalleRequerimientoComponent } from "./components/ver-detalle-reque
 import { AuditoriaComponent } from "./components/auditoria/auditoria.component";
 import { CalendarioAuditoriaComponent } from "./components/calendario-auditoria/calendario-auditoria.component";
 import { DetalleAuditoriaComponent } from "./components/detalle-auditoria/detalle-auditoria.component";
-import { DashboardColaboradorComponent } from "./components/dashboard-colaborador/dashboard-colaborador.component";
 import { DetallePorAreaComponent } from "./components/detalle-por-area/detalle-por-area.component";
 import { TableroComponent } from "./components/tablero/tablero.component";
 
@@ -115,7 +114,6 @@ const routes: Routes = [
     },
   },
 
-  { path: "dash-colaborador", component: DashboardColaboradorComponent },
   { path: "detalle-por-area", component: DetallePorAreaComponent },
   { path: "nuevo-oficio", component: NuevoOficioComponent },
   {
@@ -129,6 +127,22 @@ const routes: Routes = [
   {
     path: "calendario-auditoria/:id",
     component: CalendarioAuditoriaComponent,
+    data: {
+      breadcrumb: [
+        {
+          label: "Tablero de control",
+          url: "/",
+        },
+        {
+          label: "Dashboard",
+          url: "/dashboard",
+        },
+        {
+          label: "Calendario",
+          url: "",
+        },
+      ],
+    },
   },
   { path: "**", pathMatch: "full", redirectTo: "" },
 ];

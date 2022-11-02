@@ -9,9 +9,7 @@ import { DashboardInicioComponent } from "./components/dashboard-inicio/dashboar
 
 //Module Prime NG
 import { PrimeNgModule } from "./prime-ng/prime-ng.module";
-import { MiddleBoardComponent } from "./components/middle-board/middle-board.component";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
-import { BottomBoardComponent } from "./components/bottom-board/bottom-board.component";
 import { CustomService } from "./services/custom.service";
 import { NuevoOficioComponent } from "./components/nuevo-oficio/nuevo-oficio.component";
 import { VerDetalleRequerimientoComponent } from "./components/ver-detalle-requerimiento/ver-detalle-requerimiento.component";
@@ -33,7 +31,6 @@ import { CatalogosComponent } from "./components/catalogos/catalogos.component";
 import { NgDynamicBreadcrumbModule } from "ng-dynamic-breadcrumb";
 import { HeaderComponent } from "./shared/header/header.component";
 import { ModalesComponent } from "./shared/modales/modales.component";
-import { DashboardColaboradorComponent } from "./components/dashboard-colaborador/dashboard-colaborador.component";
 import { CardsComponent } from "./components/cards/cards.component";
 
 // traslate
@@ -53,8 +50,6 @@ import { ToastrModule } from 'ngx-toastr';
   declarations: [
     AppComponent,
     DashboardInicioComponent,
-    MiddleBoardComponent,
-    BottomBoardComponent,
     NuevoOficioComponent,
     VerDetalleRequerimientoComponent,
     NotificacionesComponent,
@@ -69,7 +64,6 @@ import { ToastrModule } from 'ngx-toastr';
     CatalogosComponent,
     HeaderComponent,
     ModalesComponent,
-    DashboardColaboradorComponent,
     CardsComponent,
     DetallePorAreaComponent,
     TableroComponent,
