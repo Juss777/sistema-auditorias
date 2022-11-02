@@ -146,6 +146,33 @@ a.fc-h-event .fc-event-title-container {
 }
 /**************************************/
 
+.fc-daygrid-event-harness{
+  z-index: 0;
+}
+
+.content-event{
+  display: inline-block;
+  width: 100%;
+  color: #000 !important;
+  font-size: 13px;
+
+  .bg-start-event{
+    background-color: green;
+    width: 12px;
+    height: 12px;
+    border-radius: 10px;
+    display: inline-block;
+  }
+
+  .bg-end-event{
+    background-color: red;
+    width: 12px;
+    height: 12px;
+    border-radius: 10px;
+    display: inline-block;
+  }
+}
+
 .fullCalendar {
   padding: 10px;
   background-color: var(--color-blanco);

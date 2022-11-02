@@ -11,15 +11,15 @@ import { AuditoriaService } from "../../services/auditorias.service";
 export class CalendarioAuditoriaComponent implements OnInit {
   events = [
     {
-      title: "Evento 1",
-      start: "2022-09-25T12:00:00",
-      end: "2022-09-30T18:00:00",
+      title: "Oficio 230/2020",
+      start: "2022-11-02T09:00:00",
+      end: "2022-11-22T19:00:00",
     },
     {
-      title: "Citatorio Oficio 230/2020",
-      start: "2022-09-02",
-      end: "2022-09-23",
-    },
+      title: "Oficio 277/2022",
+      start: "2022-11-25T12:00:00",
+      end: "2022-11-30T18:00:00",
+    }
   ];
 
   formOficio: FormGroup = this.formBuilder.group({
