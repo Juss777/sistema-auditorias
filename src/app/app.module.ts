@@ -9,9 +9,7 @@ import { DashboardInicioComponent } from "./components/dashboard-inicio/dashboar
 
 //Module Prime NG
 import { PrimeNgModule } from "./prime-ng/prime-ng.module";
-import { MiddleBoardComponent } from "./components/middle-board/middle-board.component";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
-import { BottomBoardComponent } from "./components/bottom-board/bottom-board.component";
 import { CustomService } from "./services/custom.service";
 import { NuevoOficioComponent } from "./components/nuevo-oficio/nuevo-oficio.component";
 import { VerDetalleRequerimientoComponent } from "./components/ver-detalle-requerimiento/ver-detalle-requerimiento.component";
@@ -53,8 +51,6 @@ import { BuscadorComponent } from "./components/buscador/buscador.component";
   declarations: [
     AppComponent,
     DashboardInicioComponent,
-    MiddleBoardComponent,
-    BottomBoardComponent,
     NuevoOficioComponent,
     VerDetalleRequerimientoComponent,
     NotificacionesComponent,

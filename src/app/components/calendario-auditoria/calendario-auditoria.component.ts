@@ -13,12 +13,12 @@ export class CalendarioAuditoriaComponent implements OnInit {
     {
       title: "Oficio 230/2020",
       start: "2022-11-02T09:00:00",
-      end: "2022-11-22T19:00:00",
+      end: "2022-11-16T19:00:00",
     },
     {
       title: "Oficio 277/2022",
-      start: "2022-11-25T12:00:00",
-      end: "2022-11-30T18:00:00",
+      start: "2022-11-21T12:00:00",
+      end: "2022-11-25T18:00:00",
     }
   ];
 

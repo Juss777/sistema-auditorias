@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from "@angular/core";
+import { HostListener, Component, OnInit, Input } from "@angular/core";
 import { buildEventRangeKey } from "@fullcalendar/angular";
 import esLocale from "@fullcalendar/core/locales/es";
 
@@ -11,6 +11,16 @@ export class CalendarComponent implements OnInit {
   options: any;
 
   constructor() {}
+
+  @HostListener('click', ['$event'])
+  onClick(event: any) {   
+    if (event.target.nodeName === 'BUTTON' && event.target.classList[0] == 'fc-dayGridMonth-button') {
+      this.events.forEach(x => {
+        this.markDateStartAndEnd(x.start, x.end, x.title);
+      });
+    }
+  }
+
 
   ngOnInit(): void {
     this.options = {
@@ -73,7 +83,7 @@ export class CalendarComponent implements OnInit {
 
       let date = dayGridTop[i].parentElement.dataset.date;
       
-      if ( date == dateStartOnly) {        
+      if ( date == dateStartOnly && date != dateEndOnly) {        
         dayGridTop[i].children[1].children[0].children[0].children[0].children[0].innerHTML = `
         <div class="fc-event-title-container">
           <div class="fc-sticky">
@@ -86,7 +96,7 @@ export class CalendarComponent implements OnInit {
 
       }
 
-      if (date == dateEndOnly) {
+      if (date == dateEndOnly && date != dateStartOnly) {
         dayGridTop[i].children[1].innerHTML = `
           <div>
             <a>
@@ -105,6 +115,35 @@ export class CalendarComponent implements OnInit {
             </a>
           </div>
           <div class="fc-daygrid-day-bottom" style="margin-top: 46px;"></div>`;  
+      }
+
+      if (date == dateStartOnly && date == dateEndOnly) {
+        dayGridTop[i].children[1].innerHTML = `
+          <div>
+            <a>
+              <div class="fc-event-main">
+                <div class="fc-event-main-frame">
+                  <div class="fc-event-title-container">
+                    <div class="fc-sticky">
+
+                      <div class="content-event">
+                        <div class="bg-start-event"></div> 
+                        Citatorio <br> ${title}
+                      </div>
+
+                      <div class="content-event">
+                        <div class="bg-end-event"></div> 
+                        Término <br> ${title}
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </a>
+          </div>
+          <div class="fc-daygrid-day-bottom" style="margin-top: 46px;"></div>
+        `;  
       }
     }
 

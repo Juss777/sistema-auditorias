@@ -129,6 +129,22 @@ const routes: Routes = [
   {
     path: "calendario-auditoria/:id",
     component: CalendarioAuditoriaComponent,
+    data: {
+      breadcrumb: [
+        {
+          label: "Tablero de control",
+          url: "/",
+        },
+        {
+          label: "Dashboard",
+          url: "/dashboard",
+        },
+        {
+          label: "Calendario",
+          url: "",
+        },
+      ],
+    },
   },
   { path: "**", pathMatch: "full", redirectTo: "" },
 ];
