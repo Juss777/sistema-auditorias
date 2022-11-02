@@ -1,8 +1,8 @@
 <div class="page">
-  <!-- <div class="container exmaple">
+  <div class="container exmaple">
     <span (click)="cambioPAdm()">Administrador</span>
     <span (click)="cambioPCol()">Colaborador</span>
-  </div> -->
+  </div>
   <div class="container">
     <div class="titulo-bloque u-mb-5" *ngIf="!colaborador">
       Últimas auditorias revisadas
@@ -110,7 +110,6 @@
                   <th>Documentos</th>
                   <th>Estatus</th>
                   <th>Fecha de entrega</th>
-                  <th></th>
                 </tr>
               </ng-template>
               <ng-template pTemplate="body" let-adminTarea>
@@ -141,14 +140,6 @@
                     </div>
                   </td>
                   <td>{{ adminTarea.fechaEntrega }}</td>
-                  <td>
-                    <button class="pending__ico">
-                      <img
-                        src="assets/img/iconos/icono-ver.png"
-                        alt="icono ver"
-                      />
-                    </button>
-                  </td>
                 </tr>
               </ng-template>
             </p-table>
@@ -180,7 +171,6 @@
                   <th>Documentos</th>
                   <th>Estatus</th>
                   <th>Fecha de entrega</th>
-                  <th></th>
                 </tr>
               </ng-template>
               <ng-template pTemplate="body" let-colaboTarea>
@@ -211,14 +201,6 @@
                     </div>
                   </td>
                   <td>{{ colaboTarea.fechaEntrega }}</td>
-                  <td>
-                    <button class="pending__ico">
-                      <img
-                        src="assets/img/iconos/icono-ver.png"
-                        alt="icono ver"
-                      />
-                    </button>
-                  </td>
                 </tr>
               </ng-template>
             </p-table>
@@ -274,7 +256,7 @@
             <p-table class="table informationArea__table" [value]="tasks">
               <ng-template pTemplate="header">
                 <tr>
-                  <th>Área responsable</th>
+                  <th>Área</th>
                   <th>% de avance</th>
                   <th>Requerimientos terminados</th>
                   <th>Último inicio de sesión</th>
@@ -322,37 +304,15 @@
           </div>
 
           <div class="summary">
-            <div class="summary__advance">
+            <div class="summary__advance summary__advance--four">
               <div>Avance total</div>
               <div><p-progressBar [value]="value"></p-progressBar></div>
               <div>Total de áreas: 30</div>
+              <div>
+                <a routerLink="/detalle-por-area" class="link">Ver detalle</a>
+              </div>
             </div>
           </div>
-
-          <!-- <div class="informationAreaOficio">
-            <p-table class="table informationAreaOficio__table" [value]="req">
-              <ng-template pTemplate="header">
-                <tr>
-                  <th>Oficio</th>
-                  <th>% de avance</th>
-                  <th>Requerimientos terminados</th>
-                  <th></th>
-                </tr>
-              </ng-template>
-              <ng-template pTemplate="body" let-req>
-                <tr>
-                  <td>{{ req.oficio }}</td>
-                  <td><p-progressBar [value]="req.avance"></p-progressBar></td>
-                  <td>{{ req.terminado }}</td>
-                  <td>
-                    <a routerLink="/detalle-por-area" class="link"
-                      >Ver requerimiento</a
-                    >
-                  </td>
-                </tr>
-              </ng-template>
-            </p-table>
-          </div> -->
         </div>
       </div>
     </div>
