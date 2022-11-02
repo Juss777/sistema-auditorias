@@ -33,21 +33,21 @@ import { CatalogosComponent } from "./components/catalogos/catalogos.component";
 import { NgDynamicBreadcrumbModule } from "ng-dynamic-breadcrumb";
 import { HeaderComponent } from "./shared/header/header.component";
 import { ModalesComponent } from "./shared/modales/modales.component";
-import { DashboardColaboradorComponent } from "./components/dashboard-colaborador/dashboard-colaborador.component";
 import { CardsComponent } from "./components/cards/cards.component";
 
 // traslate
 import { TranslateLoader, TranslateModule } from "@ngx-translate/core";
 import { TranslateHttpLoader } from "@ngx-translate/http-loader";
 import { HttpClient } from "@angular/common/http";
-import { DetallePorAreaComponent } from './components/detalle-por-area/detalle-por-area.component';
-import { TableroComponent } from './components/tablero/tablero.component';
+import { DetallePorAreaComponent } from "./components/detalle-por-area/detalle-por-area.component";
+import { TableroComponent } from "./components/tablero/tablero.component";
 
 export function HttpLoaderFactory(httpClient: HttpClient) {
   return new TranslateHttpLoader(httpClient, "./assets/i18n/", ".json");
 }
 
-import { ToastrModule } from 'ngx-toastr';
+import { ToastrModule } from "ngx-toastr";
+import { BuscadorComponent } from "./components/buscador/buscador.component";
 
 @NgModule({
   declarations: [
@@ -69,10 +69,10 @@ import { ToastrModule } from 'ngx-toastr';
     CatalogosComponent,
     HeaderComponent,
     ModalesComponent,
-    DashboardColaboradorComponent,
     CardsComponent,
     DetallePorAreaComponent,
     TableroComponent,
+    BuscadorComponent,
   ],
   imports: [
     BrowserModule,
@@ -91,7 +91,7 @@ import { ToastrModule } from 'ngx-toastr';
         deps: [HttpClient],
       },
     }),
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
   ],
   providers: [
     CustomService,

@@ -19,7 +19,7 @@ export class HeaderComponent implements OnInit {
     {
       id: 2,
       name: "Buscador",
-      url: "/",
+      url: "/buscador",
     },
     {
       id: 3,

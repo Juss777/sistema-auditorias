@@ -1,0 +1,79 @@
+<div class="page">
+  <section class="search">
+    <div class="container">
+      <div class="section">
+        <div class="section__content">
+          <div class="search__flex">
+            <div class="styleInput">
+              <input type="text" pInputText />
+            </div>
+            <button class="btn btn-primary">Buscar</button>
+          </div>
+          <div class="search__grid">
+            <div class="filters">
+              <div class="filters__header">
+                <span>Filtro</span>
+                <span>Limpiar filtros</span>
+              </div>
+              <div class="filters__result">
+                <p-chip label="2016" [removable]="true"></p-chip>
+                <p-chip label="BAZ" [removable]="true"></p-chip>
+                <!-- <p-chip label="BAZ" [removable]="true"></p-chip>
+                <p-chip label="BAZ" [removable]="true"></p-chip>
+                <p-chip label="BAZ" [removable]="true"></p-chip>
+                <p-chip label="BAZ" [removable]="true"></p-chip>
+                <p-chip label="BAZ" [removable]="true"></p-chip>
+                <p-chip label="BAZ" [removable]="true"></p-chip>
+                <p-chip label="BAZ" [removable]="true"></p-chip>
+                <p-chip label="BAZ" [removable]="true"></p-chip> -->
+              </div>
+              <div class="filters__filter">
+                <div class="filters__box">
+                  <div class="filters__box-header">
+                    <span>Año</span>
+                    <img
+                      src="assets/img/iconos/ico-search-arrow-bottom.svg"
+                      alt="icono flecha abajo"
+                    />
+                  </div>
+                  <div class="filters__box-content">
+                    <div class="field-checkbox">
+                      <p-checkbox name="group1" value="2022"></p-checkbox>
+                      <label for="2022">2022</label>
+                    </div>
+                    <div class="field-checkbox">
+                      <p-checkbox name="group1" value="2023"></p-checkbox>
+                      <label for="2023">2023</label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!--Columna de tarjetas de resultado -->
+            <div class="search__result">
+              <div
+                class="search__result-card"
+                *ngFor="let result of cardResult"
+              >
+                <div class="search__result-header">
+                  <span>{{ result.name }}</span>
+                  <span>{{ result.status }}</span>
+                </div>
+                <div class="search__result-body">
+                  {{ result.body }}
+                </div>
+                <div class="search__result-footer">
+                  <div>
+                    <img src="assets/img/iconos/ico-search-eye.svg" alt="" />
+                    <img src="assets/img/iconos/ico-search-files.svg" alt="" />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

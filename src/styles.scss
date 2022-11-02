@@ -50,6 +50,7 @@ $REQDC7958-theme: mat-light-theme(
 @import "assets/scss/request.scss";
 @import "assets/scss/newReq.scss";
 @import "assets/scss/panel.scss";
+@import "assets/scss/search.scss";
 
 /* general */
 * {
@@ -99,7 +100,7 @@ $REQDC7958-theme: mat-light-theme(
   --color-range-picker: #eaeaea;
   --color-amarillo: #f8d616;
   --color-verde: #71ca6b;
-  --color-success-toast: #51A351;
+  --color-success-toast: #51a351;
   --color-error-toast: #da493d;
   --color-warning-toast: #f8d616;
 }
@@ -295,5 +296,3 @@ img {
     color: var(--color-warning-toast) !important;
   }
 }
-
-
