@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { Chips } from "src/app/interface/chips";
 import { Tarea } from "src/app/interface/tarea";
 import { CustomService } from "src/app/services/custom.service";
 interface Opciones {
@@ -12,6 +13,44 @@ interface Opciones {
 export class VerDetalleRequerimientoComponent implements OnInit {
   opt!: Opciones[];
   tarea!: Tarea[];
+  chips: Chips[] = [
+    {
+      id: 1,
+      name: 'Contratos',
+      status: true
+    },
+    {
+      id: 2,
+      name: 'Adendas',
+      status: true
+    },
+    {
+      id: 3,
+      name: 'Anexos',
+      status: true
+    },
+    {
+      id: 4,
+      name: 'Explicación',
+      status: true
+    },
+    {
+      id: 5,
+      name: 'Fundamento legal',
+      status: true
+    },
+    {
+      id: 6,
+      name: 'Informes',
+      status: true
+    },
+    {
+      id: 7,
+      name: 'Bitácoras',
+      status: false
+    },
+  ];
+
   save = false;
   toReturn = true;
   selectedOpciones!: Opciones;
@@ -20,6 +59,11 @@ export class VerDetalleRequerimientoComponent implements OnInit {
   // displayConfirmar: boolean = false;
   typeModal: string = "";
   headerModal: string = "";
+
+  chipDisable: boolean = true;
+  showDocuments: boolean = false;
+  contrato: boolean = false;
+  adendas: boolean = false;
 
   constructor(public customService: CustomService) {
     this.opt = [
@@ -67,6 +111,26 @@ export class VerDetalleRequerimientoComponent implements OnInit {
     this.displayModal = true;
   }
 
+
+  idChip: number = 0;
+  mostrarDocumentos(chipId: number){
+    this.idChip = chipId;
+    this.contrato = false;
+    this.adendas = false;
+    switch (chipId) {
+
+      case 1:
+        this.contrato = true;
+        break;
+
+      case 2:
+        this.adendas = true;
+        break;
+
+      default:
+        break;
+    }
+  }
   
 
   countChars: number = 0;

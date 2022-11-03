@@ -82,6 +82,10 @@
   display: flex;
   justify-content: flex-end;
 }
+.d-flex-justifyStart {
+  display: flex;
+  justify-content: flex-start;
+}
 .d-flex-justifyEvenly {
   display: flex;
   justify-content: space-evenly;
@@ -285,3 +289,11 @@
 .cursor-pointer {
   cursor: pointer;
 }
+
+// Width
+
+.w40{width: 40%;}
+
+.w50{width: 50%;}
+
+.w100{width: 100%;}
