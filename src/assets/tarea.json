@@ -2,9 +2,11 @@
 	"data": [
 		{
             "id": "1",
-            "requerimiento": "Estados de cuenta",
-            "area": "Contaduría",
-            "responsable":"Susana Sánchez",
+            "partida": "Gastos de operación y publicidad",
+            "requerimiento": "Descriptivo / argumentativo",
+            "acredita": "Legalidad",
+            "area": "Contabilidad",
+            "responsable":"Adolfo Torres Barajas",
             "fechaEntrega": "23/09/2022"
 		}
 	]

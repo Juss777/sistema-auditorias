@@ -111,3 +111,12 @@
 .hidden{
   display: none
 }
+
+// Alex
+.table.datosGenerales thead tr th{
+  width: 15%;
+}
+
+.table.datosGenerales thead tr th:nth-of-type(2){
+  width: 20%;
+}
