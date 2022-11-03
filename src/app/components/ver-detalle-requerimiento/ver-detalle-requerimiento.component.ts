@@ -13,6 +13,7 @@ interface Opciones {
 export class VerDetalleRequerimientoComponent implements OnInit {
   opt!: Opciones[];
   tarea!: Tarea[];
+  
   chips: Chips[] = [
     {
       id: 1,
