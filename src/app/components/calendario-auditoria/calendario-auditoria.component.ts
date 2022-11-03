@@ -36,6 +36,7 @@ export class CalendarioAuditoriaComponent implements OnInit {
   ) {
     this.listOficios = auditoriaService.oficios;
   }
+  
 
   ngOnInit(): void {}
 }
