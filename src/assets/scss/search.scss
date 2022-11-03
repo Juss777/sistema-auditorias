@@ -121,20 +121,32 @@
 
   &__box {
     &-header {
-      padding: 10px 0;
+      padding: 15px 0;
       border-bottom: 1px solid #f3f2f2;
       display: flex;
       align-items: center;
       justify-content: space-between;
+      cursor: pointer;
 
       span {
         font-size: 1.5rem;
         font-family: var(--main-font-demi);
       }
+    }
 
-      img {
-        cursor: pointer;
-      }
+    &-content {
+      height: 150px;
+      padding: 10px;
+      overflow: auto;
+    }
+
+    &-flex {
+      margin-bottom: 15px;
+      display: flex;
+      gap: 5px;
+
+      font-size: 1.2rem;
+      font-family: var(--main-font-regular);
     }
   }
 }

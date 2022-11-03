@@ -18,32 +18,39 @@
               <div class="filters__result">
                 <p-chip label="2016" [removable]="true"></p-chip>
                 <p-chip label="BAZ" [removable]="true"></p-chip>
-                <!-- <p-chip label="BAZ" [removable]="true"></p-chip>
                 <p-chip label="BAZ" [removable]="true"></p-chip>
                 <p-chip label="BAZ" [removable]="true"></p-chip>
-                <p-chip label="BAZ" [removable]="true"></p-chip>
-                <p-chip label="BAZ" [removable]="true"></p-chip>
-                <p-chip label="BAZ" [removable]="true"></p-chip>
-                <p-chip label="BAZ" [removable]="true"></p-chip>
-                <p-chip label="BAZ" [removable]="true"></p-chip> -->
               </div>
               <div class="filters__filter">
-                <div class="filters__box">
-                  <div class="filters__box-header">
-                    <span>Año</span>
+                <div class="filters__box" *ngFor="let menu of filterMenu">
+                  <div
+                    class="filters__box-header"
+                    (click)="showContent(menu.id)"
+                  >
+                    <span>{{ menu.name }}</span>
                     <img
-                      src="assets/img/iconos/ico-search-arrow-bottom.svg"
                       alt="icono flecha abajo"
+                      [src]="
+                        content && idMenuFilter == menu.id
+                          ? 'assets/img/iconos/ico-search-arrow-top.svg'
+                          : 'assets/img/iconos/ico-search-arrow-bottom.svg'
+                      "
                     />
                   </div>
-                  <div class="filters__box-content">
-                    <div class="field-checkbox">
-                      <p-checkbox name="group1" value="2022"></p-checkbox>
-                      <label for="2022">2022</label>
-                    </div>
-                    <div class="field-checkbox">
-                      <p-checkbox name="group1" value="2023"></p-checkbox>
-                      <label for="2023">2023</label>
+
+                  <div
+                    class="filters__box-content"
+                    *ngIf="content && idMenuFilter == menu.id"
+                  >
+                    <div
+                      class="field-checkbox filters__box-flex"
+                      *ngFor="let m of menu.options"
+                    >
+                      <p-checkbox
+                        name="group1"
+                        value="{{ m.label }}"
+                      ></p-checkbox>
+                      <label for="{{ m.label }}">{{ m.label }}</label>
                     </div>
                   </div>
                 </div>
