@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, Input, OnInit } from "@angular/core";
+import { AfterViewInit, Component, Input, OnInit, HostListener } from "@angular/core";
 import { Auditoria } from "src/app/class/auditoriasClass";
 import {
   AdminTarea,
@@ -17,6 +17,7 @@ import { TranslateService } from "@ngx-translate/core";
 import { PrimeNGConfig } from "primeng/api";
 import esLocale from "@fullcalendar/core/locales/es";
 import { CalendarOptions } from "@fullcalendar/angular";
+import { AppComponent } from '../../app.component';
 
 export interface IAuditoria {
   id?: number;
@@ -68,8 +69,7 @@ export class DashboardInicioComponent implements OnInit, AfterViewInit {
     public auditoriaService: AuditoriaService,
     public customService: CustomService,
     public reqService: ReqService,
-    private primengConfig: PrimeNGConfig,
-    private translateService: TranslateService
+    public appComponent: AppComponent
   ) {
     // this.listAuditorias = auditoriaService.auditoriaDetalles;
     this.customService.getTasks().then((data) => (this.tasks = data));
@@ -83,22 +83,23 @@ export class DashboardInicioComponent implements OnInit, AfterViewInit {
     this.auditorias = auditoriaService.auditoriaDetalles;
   }
 
+  @HostListener('click', ['$event'])
+  onClick(event: any) {   
+    if (event.target.nodeName === 'SPAN' && event.target.classList[2] == 'p-monthpicker-month') {
+      this.markDayStartAndFinish();
+    }
+  }
+
   ngOnInit(): void {
     this.fichaTecnica(this.auditorias[0]);
   }
 
-  ngAfterViewInit() {
-    this.translateChange("es");
+  ngAfterViewInit() {    
     setTimeout(() => {
       this.markDayStartAndFinish();
+      this.appComponent.traslateCalendarDashBoardInit();
     }, 200);
-  }
-
-  translateChange(lang: string) {
-    this.translateService.use(lang);
-    this.translateService
-      .get("primeng")
-      .subscribe((res) => this.primengConfig.setTranslation(res));
+    
   }
 
   showModal(typeModal: string, headerModal: string) {
@@ -108,8 +109,6 @@ export class DashboardInicioComponent implements OnInit, AfterViewInit {
   }
 
   fichaTecnica(auditoria: any) {
-    console.log(auditoria);
-
     this.auditoriaSelected = auditoria;
   }
 
@@ -122,9 +121,13 @@ export class DashboardInicioComponent implements OnInit, AfterViewInit {
 
   markDayStartAndFinish() {
     var d: any = document.getElementsByClassName("p-highlight");
-    d[0].style.backgroundColor = "green";
-    d[0].style.color = "white";
-    d[d.length - 1].style.backgroundColor = "red";
-    d[d.length - 1].style.color = "white";
+    if (d.length > 0) {
+      d[0].style.backgroundColor = "green";
+      d[0].style.color = "white";
+      d[d.length - 1].style.backgroundColor = "red";
+      d[d.length - 1].style.color = "white";
+    }
   }
+
+  
 }

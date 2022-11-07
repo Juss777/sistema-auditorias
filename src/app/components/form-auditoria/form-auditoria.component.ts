@@ -204,15 +204,15 @@ export class FormAuditoriaComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    this.translateChange("es");
+    //this.translateChange("es");
   }
 
-  translateChange(lang: string) {
-    this.translateService.use(lang);
-    this.translateService
-      .get("primeng")
-      .subscribe((res) => this.primengConfig.setTranslation(res));
-  }
+  // translateChange(lang: string) {
+  //   this.translateService.use(lang);
+  //   this.translateService
+  //     .get("primeng")
+  //     .subscribe((res) => this.primengConfig.setTranslation(res));
+  // }
 
   search(event: any, list: any[]) {
     let filtered: any[] = [];
