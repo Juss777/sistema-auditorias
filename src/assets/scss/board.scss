@@ -186,11 +186,12 @@
     align-items: center;
 
     @media (min-width: 768px) {
-      grid-template-columns: 1fr 3fr 1fr 1fr;
+      grid-template-columns: 1fr 2fr 1fr 1fr;
     }
   }
 
   .p-progressbar {
+    border-radius: 0px;
     .p-progressbar-value {
       background: var(--color-avance-total);
       .p-progressbar-label {
@@ -251,6 +252,7 @@
       }
 
       .p-progressbar {
+        border-radius: 0px;
         .p-progressbar-value {
           background: var(--color-avance-total);
           .p-progressbar-label {

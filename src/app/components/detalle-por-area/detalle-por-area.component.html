@@ -4,7 +4,7 @@
       <div class="titulo-bloque">Contabilidad</div>
       <div class="detailArea__content">
         <div class="p-field styleInput">
-          <label for="anio">Año de la auditoría</label>
+          <label for="anio">Seleccionar auditoría</label>
           <p-dropdown [options]="audi" optionLabel="name"></p-dropdown>
         </div>
         <div class="p-field styleInput">
@@ -20,20 +20,18 @@
           BAZ 2016 - Oficio 230/2022 - Requerimiento de información
         </div>
         <div class="section__content">
-          <p-table class="table" [value]="requerimiento">
+          <p-table class="table" [value]="reqColaborador">
             <ng-template pTemplate="header">
               <tr>
-                <th pSortableColumn="area">
-                  Área <p-sortIcon field="area"></p-sortIcon>
-                </th>
                 <th pSortableColumn="responsable">
                   Responsable <p-sortIcon field="responsable"></p-sortIcon>
                 </th>
                 <th pSortableColumn="requerimiento">
-                  Requerimiento <p-sortIcon field="requerimiento"></p-sortIcon>
+                  Tipo de documento
+                  <p-sortIcon field="requerimiento"></p-sortIcon>
                 </th>
                 <th pSortableColumn="tipoDeRequerimiento">
-                  Tipo de requerimiento
+                  Acredita
                   <p-sortIcon field="tipoDeRequerimiento"></p-sortIcon>
                 </th>
                 <th pSortableColumn="estatus">
@@ -46,30 +44,38 @@
                 <th>&nbsp;</th>
               </tr>
             </ng-template>
-            <ng-template pTemplate="body" let-req>
+            <ng-template pTemplate="body" let-reqColaborador>
               <tr>
-                <td>{{ req.area }}</td>
-                <td>{{ req.responsable }}</td>
-                <td>{{ req.requerimiento }}</td>
-                <td>{{ req.tipo }}</td>
+                <td>{{ reqColaborador.responsable }}</td>
+                <td>{{ reqColaborador.tipo }}</td>
+                <td>{{ reqColaborador.acredita }}</td>
                 <td>
-                  <div class="status">
+                  <div class="semaphore">
                     <span
-                      class="status__circle"
                       [ngClass]="{
-                        status__red: req.colorEstatus === 'rojo',
-                        status__yellow: req.colorEstatus === 'amarillo',
-                        status__green: req.colorEstatus === 'verde'
+                        semaphore__delivery:
+                          reqColaborador.estatus == 'Pendiente de entrega',
+                        semaphore__ready: reqColaborador.estatus == 'Listo',
+                        semaphore__revision:
+                          reqColaborador.estatus == 'Pendiente de revisión',
+                        semaphore__introduce:
+                          reqColaborador.estatus == 'No se va a presentar',
+                        semaphore__undelivered:
+                          reqColaborador.estatus == 'No entregado',
+                        semaphore__notReviewed:
+                          reqColaborador.estatus == 'No revisado',
+                        semaphore__additional:
+                          reqColaborador.estatus == 'Cambios adicionales',
+                        semaphore__wrong:
+                          reqColaborador.estatus == 'Entregado mal'
                       }"
                     ></span>
-                    <span>{{ req.estatus }}</span>
+                    <span>{{ reqColaborador.estatus }}</span>
                   </div>
                 </td>
-                <td>{{ req.fechaEntrega }}</td>
+                <td>{{ reqColaborador.fechaEntrega }}</td>
                 <td>
-                  <a class="link" routerLink="/ver-detalle">{{
-                    req.detalle
-                  }}</a>
+                  <a class="link" routerLink="/ver-detalle"> Ver detalle </a>
                 </td>
               </tr>
             </ng-template>

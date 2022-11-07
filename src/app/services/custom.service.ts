@@ -4,6 +4,7 @@ import {
   AdminTarea,
   ColaboTarea,
   Desahogo,
+  ReqColaborador,
   TablaRequrimientos,
 } from "../interface/custom";
 import { Tarea } from "../interface/tarea";
@@ -70,6 +71,16 @@ export class CustomService {
       .get<any>("assets/colaboTarea.json")
       .toPromise()
       .then((res) => <ColaboTarea[]>res.data)
+      .then((data) => {
+        return data;
+      });
+  }
+
+  getRequerimientoColaborador() {
+    return this.http
+      .get<any>("assets/reqColaborador.json")
+      .toPromise()
+      .then((res) => <ReqColaborador[]>res.data)
       .then((data) => {
         return data;
       });

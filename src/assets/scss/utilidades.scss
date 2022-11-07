@@ -256,29 +256,29 @@
 
 // Estatus
 
-.status {
-  display: flex;
-  align-items: center;
-  gap: 10px;
+// .status {
+//   display: flex;
+//   align-items: center;
+//   gap: 10px;
 
-  &__circle {
-    width: 16px;
-    height: 16px;
-    border-radius: 100%;
-  }
+//   &__circle {
+//     width: 16px;
+//     height: 16px;
+//     border-radius: 100%;
+//   }
 
-  &__red {
-    background-color: var(--color-rojo);
-  }
+//   &__red {
+//     background-color: var(--color-rojo);
+//   }
 
-  &__yellow {
-    background-color: var(--color-amarillo);
-  }
+//   &__yellow {
+//     background-color: var(--color-amarillo);
+//   }
 
-  &__green {
-    background-color: var(--estatus-listo);
-  }
-}
+//   &__green {
+//     background-color: var(--estatus-listo);
+//   }
+// }
 
 // Fondos
 .bg-white {
@@ -292,8 +292,14 @@
 
 // Width
 
-.w40{width: 40%;}
+.w40 {
+  width: 40%;
+}
 
-.w50{width: 50%;}
+.w50 {
+  width: 50%;
+}
 
-.w100{width: 100%;}
+.w100 {
+  width: 100%;
+}

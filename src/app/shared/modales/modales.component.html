@@ -199,19 +199,17 @@
   </div>
 </div>
 
-<!-- Modal Confirmar 2-->
+<!-- Modal Confirmar Delete-->
 <div *ngIf="typeModal == 'modal5'">
   <div class="confirmDelete__confirm">
-    <div>
-      <img src="assets/img/iconos/{{ icon }}.svg" alt="icono eliminar" />
-    </div>
     <div>{{ message }}</div>
+    <div>¿Deseas eliminar este requerimiento?</div>
   </div>
 
   <div class="modalNewReq__buttons u-mb-25">
     <button class="btn-outline-primary" (click)="emitResult(false)">
-      Cancelar
+      No, Cancelar
     </button>
-    <button class="btn-primary" (click)="emitResult(true)">Aceptar</button>
+    <button class="btn-primary" (click)="emitResult(true)">Si, Eliminar</button>
   </div>
 </div>
