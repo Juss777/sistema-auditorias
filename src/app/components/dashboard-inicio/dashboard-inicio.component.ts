@@ -63,7 +63,7 @@ export class DashboardInicioComponent implements OnInit, AfterViewInit {
   displayTabla: boolean = false;
   headerModal: string = "";
 
-  startEndDay: Date[] = [new Date("2022-10-13"), new Date("2022-10-25")];
+  startEndDay: Date[] = [new Date("2022-11-15"), new Date("2022-11-20")];
 
   constructor(
     public auditoriaService: AuditoriaService,

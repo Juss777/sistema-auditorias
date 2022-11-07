@@ -8,6 +8,7 @@ import { Component, OnInit } from "@angular/core";
 export class BuscadorComponent implements OnInit {
   constructor() {}
   content = false;
+  checkboxSelected: any[] = [];
   ngOnInit(): void {}
 
   cardResult = [
@@ -310,4 +311,9 @@ export class BuscadorComponent implements OnInit {
 
     this.idMenuFilter = idMenu;
   }
+
+  // selectedOption(event: any) {
+  //   console.log(event);
+  //   console.log(this.checkboxSelected);
+  // }
 }

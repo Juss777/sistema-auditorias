@@ -29,8 +29,8 @@
                 <thead>
                   <tr>
                     <th>Partida</th>
-                    <th style="width:257px;">Descripción del requerimiento</th>
-                    <th style="width:200px;">Tipo de documentos</th>
+                    <th style="width: 257px">Descripción del requerimiento</th>
+                    <th style="width: 200px">Tipo de documentos</th>
                     <th>Área responsable</th>
                     <th>Estatus</th>
                     <th></th>
@@ -38,21 +38,58 @@
                   </tr>
                 </thead>
                 <tbody *ngIf="requirements.length > 0">
-                  <tr *ngFor="let r of requirements; let i = index;">
+                  <tr *ngFor="let r of requirements; let i = index">
                     <td>{{ r.typePartida }}</td>
 
-                    <td id="{{i + '-descriptionNoComplete'}}" class="show">{{applicaSubtr(r.description)}} <br>
-                      <a (click)="showAndHidden(i + '-descriptionComplete', i + '-descriptionNoComplete')"><strong>Ver mas</strong></a> 
+                    <td id="{{ i + '-descriptionNoComplete' }}" class="show">
+                      {{ applicaSubtr(r.description) }} <br />
+                      <a
+                        (click)="
+                          showAndHidden(
+                            i + '-descriptionComplete',
+                            i + '-descriptionNoComplete'
+                          )
+                        "
+                        ><strong>Ver mas</strong></a
+                      >
                     </td>
-                    <td id="{{i + '-descriptionComplete'}}" class="hidden">{{r.description}} <br>
-                      <a (click)="showAndHidden(i + '-descriptionNoComplete', i + '-descriptionComplete')"><strong>Ver menos</strong></a>
+                    <td id="{{ i + '-descriptionComplete' }}" class="hidden">
+                      {{ r.description }} <br />
+                      <a
+                        (click)="
+                          showAndHidden(
+                            i + '-descriptionNoComplete',
+                            i + '-descriptionComplete'
+                          )
+                        "
+                        ><strong>Ver menos</strong></a
+                      >
                     </td>
 
-                    <td id="{{i + '-tipoDocNoComplete'}}" class="show">{{applicaSubtr(r.documentsType[0].descriptionDocument)}} <br>
-                      <a (click)="showAndHidden(i + '-tipoDocComplete', i + '-tipoDocNoComplete')"><strong>Ver mas</strong></a> 
+                    <td id="{{ i + '-tipoDocNoComplete' }}" class="show">
+                      {{ applicaSubtr(r.documentsType[0].descriptionDocument) }}
+                      <br />
+                      <a
+                        (click)="
+                          showAndHidden(
+                            i + '-tipoDocComplete',
+                            i + '-tipoDocNoComplete'
+                          )
+                        "
+                        ><strong>Ver mas</strong></a
+                      >
                     </td>
-                    <td id="{{i + '-tipoDocComplete'}}" class="hidden">{{r.documentsType[0].descriptionDocument}} <br>
-                      <a (click)="showAndHidden(i + '-tipoDocNoComplete', i + '-tipoDocComplete')"><strong>Ver menos</strong></a>
+                    <td id="{{ i + '-tipoDocComplete' }}" class="hidden">
+                      {{ r.documentsType[0].descriptionDocument }} <br />
+                      <a
+                        (click)="
+                          showAndHidden(
+                            i + '-tipoDocNoComplete',
+                            i + '-tipoDocComplete'
+                          )
+                        "
+                        ><strong>Ver menos</strong></a
+                      >
                     </td>
 
                     <td>{{ r.areaResponsible }}</td>
@@ -68,14 +105,11 @@
                               r.state == 'Pendiente de revisión',
                             semaphore__introduce:
                               r.state == 'No se va a presentar',
-                            semaphore__undelivered:
-                              r.state == 'No entregado',
-                            semaphore__notReviewed:
-                              r.state == 'No revisado',
+                            semaphore__undelivered: r.state == 'No entregado',
+                            semaphore__notReviewed: r.state == 'No revisado',
                             semaphore__additional:
                               r.state == 'Cambios adicionales',
-                            semaphore__wrong:
-                              r.state == 'Entregado mal'
+                            semaphore__wrong: r.state == 'Entregado mal'
                           }"
                         ></span>
                         <span>{{ r.state }}</span>
@@ -87,7 +121,7 @@
                         (click)="
                           openModalConfirm(
                             true,
-                            '¿Está seguro de eliminar este dato?',
+                            'Eliminar requerimiento',
                             'ico-trash',
                             'delete',
                             r.id
@@ -100,7 +134,7 @@
                     <td>
                       <div class="requirements__icon">
                         <img
-                          routerLink="/ver-detalle"
+                          (click)="displayNuevoReq = true"
                           src="assets/img/iconos/ico-pencil-square.svg"
                         />
                       </div>
@@ -155,10 +189,16 @@
         <label for="area">Partida</label>
         <div class="audit__flex">
           <div>
-            <p-autoComplete [suggestions]="filterGeneral" (completeMethod)="search($event, partidas)" formControlName="typePartida"></p-autoComplete>
+            <p-autoComplete
+              [suggestions]="filterGeneral"
+              (completeMethod)="search($event, partidas)"
+              formControlName="typePartida"
+            ></p-autoComplete>
             <small
               class="audit__required"
-              *ngIf="auditoriaService.validaCampo(formRequerimiento, 'typePartida')"
+              *ngIf="
+                auditoriaService.validaCampo(formRequerimiento, 'typePartida')
+              "
               >* Campo requerido.</small
             >
           </div>
@@ -182,14 +222,20 @@
           <label for="area">Tipo de documento</label>
           <div class="audit__flex">
             <div>
-              <p-autoComplete [suggestions]="filterGeneral" (completeMethod)="search($event, typesDocuments)" formControlName="typeDocument"></p-autoComplete>
+              <p-autoComplete
+                [suggestions]="filterGeneral"
+                (completeMethod)="search($event, typesDocuments)"
+                formControlName="typeDocument"
+              ></p-autoComplete>
               <small
                 class="audit__required"
-                *ngIf="auditoriaService.validaCampo(formDocuments, 'typeDocument')"
+                *ngIf="
+                  auditoriaService.validaCampo(formDocuments, 'typeDocument')
+                "
                 >* Campo requerido.</small
               >
             </div>
-  
+
             <img
               src="assets/img/iconos/gear-fill.svg"
               (click)="
@@ -200,29 +246,43 @@
             />
           </div>
         </div>
-  
+
         <div class="p-field styleInput">
           <label for="area">Descripción de documento</label>
           <div class="audit__flex">
             <div>
-              <input type="text" pInputText formControlName="descriptionDocument">
+              <input
+                type="text"
+                pInputText
+                formControlName="descriptionDocument"
+              />
             </div>
-            <button type="button" class="btn-primary btn-size-complete" (click)="addTypeDocumentChip()">Agregar</button>
+            <button
+              type="button"
+              class="btn-primary btn-size-complete"
+              (click)="addTypeDocumentChip()"
+            >
+              Agregar
+            </button>
           </div>
         </div>
       </ng-container>
-      
 
       <div class="p-field styleInput inputTextArea">
         <div>
-          <p-chip *ngFor="let document of typesDocumentsChips" label="{{document.typeDocument}}" class="cursor-pointer" (click)="op.toggle($event)">
+          <p-chip
+            *ngFor="let document of typesDocumentsChips"
+            label="{{ document.typeDocument }}"
+            class="cursor-pointer"
+            (click)="op.toggle($event)"
+          >
             <p-overlayPanel #op [showCloseIcon]="true">
               <ng-template pTemplate>
                 <div class="overlay-panel">
-                  <div>{{document.typeDocument}}</div>
+                  <div>{{ document.typeDocument }}</div>
 
                   <div>Descripción:</div>
-                  <div>{{document.descriptionDocument}}</div>
+                  <div>{{ document.descriptionDocument }}</div>
 
                   <div
                     class="icon-delete-overlay"
@@ -242,11 +302,8 @@
               </ng-template>
             </p-overlayPanel>
           </p-chip>
-          
         </div>
       </div>
-
-      
 
       <!-- Checkbox Tipo de Requerimiento -->
       <div class="p-field styleInput">
@@ -290,7 +347,11 @@
         <label>Área responsable</label>
         <div class="audit__flex">
           <div>
-            <p-autoComplete [suggestions]="filterGeneral" (completeMethod)="search($event, areasResponsible)" formControlName="areaResponsible"></p-autoComplete>
+            <p-autoComplete
+              [suggestions]="filterGeneral"
+              (completeMethod)="search($event, areasResponsible)"
+              formControlName="areaResponsible"
+            ></p-autoComplete>
             <!-- <small
               class="audit__required"
               *ngIf="auditoriaService.validaCampo(formRequerimiento, 'area')"
@@ -358,7 +419,6 @@
 </p-dialog>
 
 <p-dialog
-  header="Confirmación"
   class="confirmDelete"
   [(visible)]="this.displayConfirma"
   [modal]="true"

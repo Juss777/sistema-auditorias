@@ -97,26 +97,25 @@
     }
   }
 }
-.estatus__roja {
-  background-color: var(--color-rojo);
-}
-.estatus__amarillo {
-  background-color: var(--color-amarillo);
-}
-.estatus__verde {
-  background-color: var(--estatus-listo);
-}
+// .estatus__roja {
+//   background-color: var(--color-rojo);
+// }
+// .estatus__amarillo {
+//   background-color: var(--color-amarillo);
+// }
+// .estatus__verde {
+//   background-color: var(--estatus-listo);
+// }
 
-
-.hidden{
-  display: none
+.hidden {
+  display: none;
 }
 
 // Alex
-.table.datosGenerales thead tr th{
+.table.datosGenerales thead tr th {
   width: 15%;
 }
 
-.table.datosGenerales thead tr th:nth-of-type(2){
+.table.datosGenerales thead tr th:nth-of-type(2) {
   width: 20%;
 }

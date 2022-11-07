@@ -40,7 +40,7 @@
           </div>
           <div class="styleInput documents__area datos-generales">
             <label>Descripción</label>
-            <textarea 
+            <textarea
               pInputTextarea
               [autoResize]="true"
               placeholder="Explique amplia y detalladamente en qué consisten las erogaciones por concepto de “Artículos Promocionales”; asimismo, en caso de que dichos artículos sean entregados a los clientes (acreditados) de la contribuyente, indique los requisitos que debe cumplir el cliente para obtener dichos artículos promocionales y los medios a través de los cuales les da a conocer los términos y condiciones de las promociones; en su caso, proporcione los permisos ante la Secretaría de Gobernación correspondientes. Asimismo, indique cómo determinan los costos de los artículos promocionales y la razón de negocios de realizar la operación con los proveedores enlistados."
@@ -59,19 +59,30 @@
         <div class="sectionNoBg__content">
           <div class="typeDocument__content">
             <div class="typeDocument__chip">
-              <p-chip *ngFor="let chip of chips" label="{{chip.name}}" [ngClass]="{'disable': !chip.status, 'active': chip.id == idChip}" (click)="mostrarDocumentos(chip.id)"></p-chip>
+              <p-chip
+                *ngFor="let chip of chips"
+                label="{{ chip.name }}"
+                [ngClass]="{ disable: !chip.status, active: chip.id == idChip }"
+                (click)="mostrarDocumentos(chip.id)"
+              ></p-chip>
             </div>
           </div>
           <div class="typeDocument__document">
             <div class="typeDocument__title">Descripción del documento:</div>
             <div class="text">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+              enim ad minim veniam, quis nostrud exercitation ullamco laboris
+              nisi ut aliquip ex ea commodo consequat.
             </div>
             <div class="d-flex-justifyStart" *ngIf="contrato">
               <div class="w50">
                 <div class="styleInput">
                   <label class="u-mb-20">Documentos cargados</label>
-                  <div class="d-flex-alignCenter gap-10 u-mb-10" *ngFor="let d of download">
+                  <div
+                    class="d-flex-alignCenter gap-10 u-mb-10"
+                    *ngFor="let d of download"
+                  >
                     <div class="styleInput__download">{{ d.name }}</div>
                     <img src="assets/img/iconos/ico-dow.svg" />
                   </div>
@@ -80,7 +91,10 @@
               <div class="w50">
                 <div class="styleInput">
                   <label class="u-mb-20">&nbsp;</label>
-                  <div class="d-flex-alignCenter gap-10 u-mb-10"*ngFor="let d of download">
+                  <div
+                    class="d-flex-alignCenter gap-10 u-mb-10"
+                    *ngFor="let d of download"
+                  >
                     <div class="styleInput__download">{{ d.name }}</div>
                     <img src="assets/img/iconos/ico-dow.svg" />
                   </div>
@@ -91,7 +105,10 @@
               <div class="w50">
                 <div class="styleInput">
                   <label class="u-mb-20">Documentos cargados</label>
-                  <div class="d-flex-alignCenter gap-10 u-mb-10" *ngFor="let d of download">
+                  <div
+                    class="d-flex-alignCenter gap-10 u-mb-10"
+                    *ngFor="let d of download"
+                  >
                     <div class="styleInput__download">{{ d.name }}</div>
                     <img src="assets/img/iconos/ico-dow.svg" />
                   </div>
@@ -122,7 +139,11 @@
                 ></p-dropdown>
                 <div class="styleInput documents__area comments">
                   <label>Comentarios generales</label>
-                  <textarea pInputTextarea [autoResize]="true" placeholder="Ingresa un comentario"></textarea>
+                  <textarea
+                    pInputTextarea
+                    [autoResize]="true"
+                    placeholder="Ingresa un comentario"
+                  ></textarea>
                 </div>
               </div>
               <div class="styleInput documents__area bitacora">
@@ -130,7 +151,8 @@
                 <div class="bitacora__content">
                   <div class="ficha">
                     <div class="ficha__msg">
-                      Esto son comentarios de quien sube los documentos, puede o no hacer comentarios, son opcionales.
+                      Esto son comentarios de quien sube los documentos, puede o
+                      no hacer comentarios, son opcionales.
                     </div>
                     <div class="ficha__info">
                       Julio Hernández - Rechazado - 22/09/22 a las 21:30
@@ -140,9 +162,7 @@
                     <div class="ficha__msg">
                       No entiendo por qué está rechazado
                     </div>
-                    <div class="ficha__info">
-                      Susana - 23/09/22 a las 10:30
-                    </div>
+                    <div class="ficha__info">Susana - 23/09/22 a las 10:30</div>
                   </div>
                 </div>
               </div>

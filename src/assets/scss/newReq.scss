@@ -79,17 +79,17 @@
   }
 }
 
-.p-overlaypanel .p-overlaypanel-content{
+.p-overlaypanel .p-overlaypanel-content {
   max-width: 398px;
   font-size: 12px;
   padding: 33px 26px 40px 26px !important;
 
-  .overlay-panel{
-    div{
+  .overlay-panel {
+    div {
       margin-bottom: 15px;
     }
 
-    .icon-delete-overlay{
+    .icon-delete-overlay {
       float: right;
     }
   }
@@ -114,6 +114,7 @@
       padding: 15px 0;
       box-sizing: border-box;
       background-color: var(--background-gris);
+      display: none;
 
       .p-dialog-title {
         font-size: 1.8rem;
@@ -139,16 +140,27 @@
   }
 
   &__confirm {
+    padding: 20px 0 0;
     div {
-      padding-top: 25px;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
 
-      font-size: 2rem;
-      font-family: var(--main-font-demi);
       text-align: center;
+
+      &:nth-child(1) {
+        margin-bottom: 15px;
+        font-family: var(--main-font-demi);
+        font-size: 2rem;
+        color: #000;
+      }
+
+      &:nth-child(2) {
+        font-family: var(--main-font-regular);
+        font-size: 1.8rem;
+        color: #747474;
+      }
     }
 
     img {

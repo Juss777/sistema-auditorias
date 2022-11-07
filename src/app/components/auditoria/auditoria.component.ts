@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormArray } from "@angular/forms";
 import { ActivatedRoute } from "@angular/router";
 import {
   Area,
@@ -33,7 +33,7 @@ export class AuditoriaComponent implements OnInit {
 
   representantes: Representante[] = [];
 
-  areas: Area[] = [ ];
+  areas: Area[] = [];
 
   results!: string[];
 
@@ -58,9 +58,7 @@ export class AuditoriaComponent implements OnInit {
     }
   }
 
-  ngOnInit(): void {
-
-  }
+  ngOnInit(): void {}
 
   getformAuditoriaData(auditoria: Auditoria) {
     this.auditoria = auditoria;
@@ -118,44 +116,48 @@ export class AuditoriaComponent implements OnInit {
   requirements: Requirement[] = [
     {
       id: 1,
-      description: 'Explique amplia y detalladamente en qué consisten las erogaciones por concepto de “Artículos Promocionales”; asimismo, en caso de que dichos artículos sean entregados a los clientes (acreditados) de la contribuyente, indique los requisitos que debe.',
-      typePartida: 'Generales',
+      description:
+        "Explique amplia y detalladamente en qué consisten las erogaciones por concepto de “Artículos Promocionales”; asimismo, en caso de que dichos artículos sean entregados a los clientes (acreditados) de la contribuyente, indique los requisitos que debe.",
+      typePartida: "Generales",
       documentsType: [
         {
           id: 1,
-          typeDocument: 'Anexo',
-          descriptionDocument: 'Instrumento público, solicitud de crédito, aprobación de crédito, contrato, identificación, tabla de amortización, comprobante de domicilio, estado de cuenta, detalle de movimientos, consulta de gestiones, registros contables'
-        }
+          typeDocument: "Anexo",
+          descriptionDocument:
+            "Instrumento público, solicitud de crédito, aprobación de crédito, contrato, identificación, tabla de amortización, comprobante de domicilio, estado de cuenta, detalle de movimientos, consulta de gestiones, registros contables",
+        },
       ],
-      typeRequestDocumental: '',
-      typeRequestDescriptive: '',
-      areaResponsible: 'Contabilidad' ,
-      responsible: '',
-      email: '',
-      dateDelivery: '',
-      acredita: '',
+      typeRequestDocumental: "",
+      typeRequestDescriptive: "",
+      areaResponsible: "Contabilidad",
+      responsible: "",
+      email: "",
+      dateDelivery: "",
+      acredita: "",
       state: "Pendiente de revisión",
     },
     {
       id: 2,
-      description: 'Explique amplia y detalladamente en qué consisten las erogaciones por concepto de “Artículos Promocionales”; asimismo, en caso de que dichos artículos sean entregados a los clientes (acreditados) de la contribuyente, indique los requisitos que debe.',
-      typePartida: 'Generales',
+      description:
+        "Explique amplia y detalladamente en qué consisten las erogaciones por concepto de “Artículos Promocionales”; asimismo, en caso de que dichos artículos sean entregados a los clientes (acreditados) de la contribuyente, indique los requisitos que debe.",
+      typePartida: "Generales",
       documentsType: [
         {
           id: 1,
-          typeDocument: 'Anexo',
-          descriptionDocument: 'Instrumento público, solicitud de crédito, aprobación de crédito, contrato, identificación, tabla de amortización, comprobante de domicilio, estado de cuenta, detalle de movimientos, consulta de gestiones, registros contables'
-        }
+          typeDocument: "Anexo",
+          descriptionDocument:
+            "Instrumento público, solicitud de crédito, aprobación de crédito, contrato, identificación, tabla de amortización, comprobante de domicilio, estado de cuenta, detalle de movimientos, consulta de gestiones, registros contables",
+        },
       ],
-      typeRequestDocumental: '',
-      typeRequestDescriptive: '',
-      areaResponsible: 'Contabilidad' ,
-      responsible: '',
-      email: '',
-      dateDelivery: '',
-      acredita: '',
+      typeRequestDocumental: "",
+      typeRequestDescriptive: "",
+      areaResponsible: "Contabilidad",
+      responsible: "",
+      email: "",
+      dateDelivery: "",
+      acredita: "",
       state: "Pendiente de revisión",
-    }
+    },
   ];
 
   requirementsEmpty: Requirement[] = [];
@@ -170,9 +172,9 @@ export class AuditoriaComponent implements OnInit {
 
   formDocuments: FormGroup = this.formBuilder.group({
     id: [0],
-    typeDocument: ['', [Validators.required]],
-    descriptionDocument: ['']
-  })
+    typeDocument: ["", [Validators.required]],
+    descriptionDocument: [""],
+  });
 
   formRequerimiento: FormGroup = this.formBuilder.group({
     id: [0],
@@ -183,17 +185,15 @@ export class AuditoriaComponent implements OnInit {
     typeRequestDescriptive: [false],
     areaResponsible: [this.selectedArea, [Validators.required]],
     responsible: ["", [Validators.required]],
-    email: [''],
+    email: [""],
     dateDelivery: [""],
     acredita: [""],
     state: [""],
   });
 
-  
-
   filterGeneral: any[] = [];
 
-  partidas: any[] = []
+  partidas: any[] = [];
 
   typesDocuments: any[] = [];
 
@@ -201,11 +201,12 @@ export class AuditoriaComponent implements OnInit {
 
   typesDocumentsChips: TypeDocument[] = [
     {
-      "id": 1,
-      "typeDocument": "Adendas",
-      "descriptionDocument": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
-    }
-  ]
+      id: 1,
+      typeDocument: "Adendas",
+      descriptionDocument:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+    },
+  ];
 
   search(event: any, list: any[]) {
     let filtered: any[] = [];
@@ -220,19 +221,19 @@ export class AuditoriaComponent implements OnInit {
     this.filterGeneral = filtered;
   }
 
-  applicaSubtr(text: string) {  
-    var texto = text.substr(0, 100) + '...';
+  applicaSubtr(text: string) {
+    var texto = text.substr(0, 100) + "...";
     return texto;
   }
 
   showAndHidden(tdShow: string, tdHidden: string) {
     var show: any = document.getElementById(tdShow);
     var hidden: any = document.getElementById(tdHidden);
-    show.classList.remove('hidden');
-    show.classList.add('show');
+    show.classList.remove("hidden");
+    show.classList.add("show");
 
-    hidden.classList.remove('show');
-    hidden.classList.add('hidden');
+    hidden.classList.remove("show");
+    hidden.classList.add("hidden");
   }
 
   saveDataReq() {
@@ -248,7 +249,7 @@ export class AuditoriaComponent implements OnInit {
     }
   }
 
-  addTypeDocumentChip(){
+  addTypeDocumentChip() {
     console.log(this.formDocuments.controls);
     if (this.formDocuments.invalid) {
       this.formDocuments.markAllAsTouched();
@@ -261,7 +262,7 @@ export class AuditoriaComponent implements OnInit {
     }
   }
 
-  deleteTypeDocument(id: number){
+  deleteTypeDocument(id: number) {
     let index = this.typesDocumentsChips.findIndex((x) => x.id == id);
     this.typesDocumentsChips.splice(index, 1);
     this.displayConfirma = false;
@@ -325,7 +326,7 @@ export class AuditoriaComponent implements OnInit {
           break;
 
         case "delete-typeDocument":
-          this.deleteTypeDocument(this.idDataToDelete)
+          this.deleteTypeDocument(this.idDataToDelete);
           break;
       }
     } else {

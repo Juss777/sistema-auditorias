@@ -40,3 +40,12 @@ export interface ColaboTarea {
   estatus: string;
   fechaEntrega: string;
 }
+
+export interface ReqColaborador {
+  id: string;
+  responsable: string;
+  tipoDeDocumento: string;
+  acredita: string;
+  estatus: string;
+  fechaEntrega: string;
+}

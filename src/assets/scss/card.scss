@@ -1,6 +1,7 @@
 .card {
   display: flex;
   flex-direction: column;
+  flex-wrap: wrap;
   align-items: center;
   gap: 20px;
 
@@ -15,8 +16,8 @@
     border-bottom-left-radius: 3px;
 
     @media (min-width: 768px) {
-      width: 20%;
-      max-width: 200px;
+      width: 100%;
+      max-width: 210px;
     }
   }
 
