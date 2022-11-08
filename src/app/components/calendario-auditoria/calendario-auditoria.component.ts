@@ -11,12 +11,12 @@ import { AuditoriaService } from "../../services/auditorias.service";
 export class CalendarioAuditoriaComponent implements OnInit {
   events = [
     {
-      title: "Oficio 230/2020",
+      title: "230/2016",
       start: "2022-11-02T09:00:00",
       end: "2022-11-16T19:00:00",
     },
     {
-      title: "Oficio 277/2022",
+      title: "221/2016",
       start: "2022-11-21T12:00:00",
       end: "2022-11-25T18:00:00",
     }

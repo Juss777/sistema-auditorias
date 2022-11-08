@@ -388,7 +388,7 @@ export class AuditoriaService {
   oficios: any[] = [
     {
       id: 1,
-      numOficio: "300/2016",
+      numOficio: "230/2016 Requerimiento de información",
       fechaNotificacion: "05/09/2022",
       fechaTermino: "20/09/2022",
       estado: "pendiente",
@@ -397,7 +397,7 @@ export class AuditoriaService {
     },
     {
       id: 2,
-      numOficio: "50/2016",
+      numOficio: "221/2016 Requerimiento de información",
       fechaNotificacion: "05/09/2022",
       fechaTermino: "20/09/2022",
       estado: "pendiente",
