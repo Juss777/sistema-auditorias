@@ -69,7 +69,13 @@
               >
                 <div class="search__result-header">
                   <span>{{ result.name }}</span>
-                  <span>{{ result.status }}</span>
+                  <span
+                    [ngClass]="{
+                      search__finished: result.status == 'Terminado',
+                      search__active: result.status == 'Activo'
+                    }"
+                    >{{ result.status }}</span
+                  >
                 </div>
                 <div class="search__result-body">
                   {{ result.body }}

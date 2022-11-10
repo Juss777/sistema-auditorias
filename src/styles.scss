@@ -92,6 +92,7 @@ $REQDC7958-theme: mat-light-theme(
   --color-gris-oscuro: #2d2926;
   --color-gris-claro: #a8a8a8;
   --color-gris-claro2: #d6d6d6;
+  --color-borde-status: #707070;
   --color-rojo: #da493d;
   --color-blanco: #fff;
   --color-negro: #000;
@@ -99,6 +100,7 @@ $REQDC7958-theme: mat-light-theme(
   --color-avance-total: #3885b2;
   --color-range-picker: #eaeaea;
   --color-amarillo: #f8d616;
+  --color-pendiente: #fdf76f;
   --color-verde: #71ca6b;
   --color-success-toast: #51a351;
   --color-error-toast: #da493d;
@@ -244,11 +246,6 @@ img {
 .calendario__range {
   .p-datepicker table td > span.p-highlight {
     background: var(--color-range-picker);
-  }
-
-  .p-datepicker table td.p-datepicker-today > span {
-    background: transparent;
-    border-color: #747474;
   }
 }
 

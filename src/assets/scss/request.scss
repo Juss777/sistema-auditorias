@@ -32,50 +32,88 @@
     align-items: center;
     justify-content: center;
     flex-wrap: wrap;
-    gap: 3rem;
+    gap: 30px;
     font-family: var(--main-font-regular);
-    margin: 45px 0;
+    margin: 40px 0;
+    cursor: pointer;
 
     .p-chip {
       max-width: 120px;
       padding: 0.1rem 2rem;
-      border: 1px solid #609DC1;
+      border: 1px solid #609dc1;
       border-radius: 16px;
       font-family: var(--main-font-regular);
       background-color: var(--color-blanco);
-      color: #609DC1;
-
-      
+      color: #609dc1;
     }
     .p-chip-text {
       font-size: 1.4rem;
       text-align: center;
     }
 
-    p-chip.active .p-chip{
+    p-chip.active .p-chip {
       background-color: var(--main-color);
       color: var(--color-blanco);
       border-radius: 16px;
     }
 
-    p-chip.disable .p-chip{
+    p-chip.disable .p-chip {
       background-color: var(--color-blanco);
-      color: #7C7C7C !important;
-      border-color: #7C7C7C !important;
+      color: #7c7c7c !important;
+      border-color: #7c7c7c !important;
       border-radius: 16px;
       pointer-events: none;
     }
   }
 
-  &__document{
+  &__document {
     padding: 0 30px;
     box-sizing: border-box;
+  }
 
-    .text{
+  &__text {
+    font-family: var(--main-font-regular);
+    font-style: italic;
+    font-size: 1.2rem;
+    color: #747474;
+    text-align: start;
+    margin-bottom: 35px;
+  }
+
+  &__files {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  &__box {
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    &-name {
+      width: 304px;
+      height: 32px;
+      padding: 0 10px;
       font-size: 1.2rem;
-      color: #747474;
-      text-align: start;
-      margin-bottom: 35px;
+      color: var(--color-blanco);
+      background-color: var(--main-color);
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+  }
+
+  &__add {
+    width: 304px;
+    margin-left: 25px;
+
+    &-link {
+      font-size: 1.4rem;
+      font-family: var(--main-font-regular);
+      color: var(--main-color);
+      text-decoration: underline;
+      cursor: pointer;
     }
   }
 }
@@ -192,53 +230,58 @@
 
 //Alex
 
-.sectionNoBg{
-  &__content{
-      .documents__area.datos-generales{
-          margin: 26px 0;
-          textarea{
-              max-height: 130px;
-              line-height: 2.2rem;
-          }
+.sectionNoBg {
+  &__content {
+    .documents__area.datos-generales {
+      margin: 26px 0;
+      textarea {
+        max-height: 130px;
+        line-height: 2.2rem;
       }
+    }
   }
 }
 
-.dataGe__grid{
-  .documents__area.comments{
-      margin-top: 20px;
-      textarea{
-          max-height: 150px;
-          line-height: 2.2rem;
-      }
+.dataGe__grid {
+  .documents__area.comments {
+    margin-top: 20px;
+    textarea {
+      max-height: 150px;
+      line-height: 2.2rem;
+    }
   }
 }
 
-.bitacora{
-  &__content{
-      background-color: #FFFFFF;
-      padding: 16px 9px;
-      box-sizing: border-box;
-      width: 100%;
+.bitacora {
+  &__content {
+    background-color: #ffffff;
+    padding: 16px 9px;
+    box-sizing: border-box;
+    width: 100%;
+
+    border: 1px solid #74747433;
+    overflow-y: scroll;
+
+    @media (min-width: 768px) {
       height: 100%;
       max-height: 230px;
-      border: 1px solid #74747433;
-      overflow-y: scroll;
-      .ficha{
-          font-size: 1.2rem;
-          color: #747474;
-          margin-top: 30px;
-          &__msg{
-              font-family: var(--main-font-regular);
-              margin-bottom: 10px;
-          }
-      
-          &__info{
-              font-family: var(--main-font-medium);
-          }
+    }
+
+    .ficha {
+      font-size: 1.2rem;
+      color: #747474;
+      margin-top: 30px;
+      &__msg {
+        font-family: var(--main-font-regular);
+        margin-bottom: 10px;
       }
-      .ficha:first-of-type{
-          margin-top: 0;
+
+      &__info {
+        font-family: var(--main-font-medium);
       }
+    }
+    .ficha:first-of-type {
+      margin-top: 0;
+    }
   }
 }
