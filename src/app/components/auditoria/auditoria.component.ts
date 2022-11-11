@@ -29,7 +29,50 @@ export class AuditoriaComponent implements OnInit {
   auditoria = new Auditoria({});
   buttonDisabled: boolean = false;
 
-  unidadeNegocio: UnidadNegocio[] = [];
+  unidadeNegocio: UnidadNegocio[] = [
+    {
+      id: 1,
+      nombre: 'Banco Azteca',
+      rfc: 'BAZ37236236',
+      siglas: 'BAZ'
+    },
+    {
+      id: 2,
+      nombre: 'Total Play',
+      rfc: 'TPL37236236',
+      siglas: 'TP'
+    },
+    {
+      id: 3,
+      nombre: 'Elektra',
+      rfc: 'EKT37236236',
+      siglas: 'EKT'
+    },
+    {
+      id: 4,
+      nombre: 'Italika',
+      rfc: 'ITK37236236',
+      siglas: 'ITK'
+    },
+    {
+      id: 5,
+      nombre: 'Italika 2',
+      rfc: 'ITK37236236',
+      siglas: 'ITK'
+    },
+    {
+      id: 6,
+      nombre: 'Italika 3',
+      rfc: 'ITK37236236',
+      siglas: 'ITK'
+    },
+    {
+      id: 7,
+      nombre: 'Italika 4',
+      rfc: 'ITK37236236',
+      siglas: 'ITK'
+    },
+  ];
 
   representantes: Representante[] = [];
 

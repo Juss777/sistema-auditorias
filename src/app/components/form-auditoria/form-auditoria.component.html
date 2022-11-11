@@ -125,7 +125,7 @@
                         src="assets/img/iconos/gear-fill.svg"
                         (click)="
                           visibleSidebar = true;
-                          catalogName = 'Agregar representante legal';
+                          catalogName = 'Asignar representante legal';
                           catalog = 'representanteLegal';
                           listaGeneral = representantes;
                           inputSearch = '';
@@ -254,7 +254,7 @@
                             (click)="
                               visibleSidebar = true;
                               catalogName = 'Agregar área';
-                              catalog = 'area';
+                              catalog = 'areaEquipo';
                               listaGeneral = areaAll;
                               inputSearch = '';
                             "
@@ -283,7 +283,7 @@
                             alt=""
                             (click)="
                               visibleSidebar = true;
-                              catalogName = 'Agregar responsable del área';
+                              catalogName = 'Miembros del área (interna)';
                               catalog = 'responsableArea';
                               listaGeneral = responsablesArea;
                               inputSearch = '';
@@ -410,7 +410,7 @@
                       (click)="
                         visibleSidebar = true;
                         catalogName = 'Agregar área';
-                        catalog = 'area';
+                        catalog = 'areaInterna';
                         listaGeneral = areaAll;
                         inputSearch = '';
                       "
@@ -741,7 +741,12 @@
           <div class="sectionNoBg__title">{{ catalogName }}</div>
           <div class="sectionNoBg__content">
 
-            <div class="content-search-catalog styleInput">
+            <div class="content-search-catalog styleInput" 
+            *ngIf="
+              catalog == 'instrumento' || 
+              catalog == 'areaInterna' ||
+              catalog == 'partida' ||
+              catalog == 'tipoDocumento'">
               <p-autoComplete
                 class="input-search"
                 [suggestions]="filterGeneral"
@@ -760,7 +765,10 @@
                 [catalog]="catalog"
                 [catalogName]="catalogName"
                 [list] = "listaGeneral"
+                [data] = "listaGeneral"
+                [totalRecords]="listaGeneral.length"
                 (formDataOut)="getDataForm($event)"
+                (visibleSidebar)="cancelSidebar($event)"
               ></app-catalogos>
             </div>
           </div>

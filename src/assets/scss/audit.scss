@@ -384,3 +384,36 @@
 }
 
 //Tabla requerimientos en Auditoría
+
+/**************CATALOGS***************/
+.content-items-to-show{
+  display: flex;
+  justify-content: end;
+  margin-bottom: 13.57px;
+  margin-top: 13.57px;
+
+  label{
+    margin: 5px 19px 5px 0px;
+    justify-items: center;
+  }
+
+  p-dropdown{
+    width: 66px;
+  }
+}
+
+.p-datatable .p-datatable-thead > tr > th, 
+.p-datatable .p-datatable-tbody > tr > td, 
+.p-dropdown-item,
+.p-dropdown-label{
+  font-size: 1.2rem !important;
+}
+
+.p-dropdown-panel .p-dropdown-items .p-dropdown-item{
+  border-bottom: 1px solid #ececec;
+}
+
+.p-fluid .p-dropdown .p-dropdown-label,
+.p-dropdown-items{
+  text-align: center !important;
+}

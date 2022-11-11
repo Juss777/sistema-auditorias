@@ -23,7 +23,7 @@ export class CalendarioAuditoriaComponent implements OnInit {
   ];
 
   formOficio: FormGroup = this.formBuilder.group({
-    oficio: [0],
+     oficio: [0],
   });
 
   oficioSelected!: Oficio;

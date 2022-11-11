@@ -496,4 +496,8 @@ export class FormAuditoriaComponent implements OnInit, AfterViewInit {
     this.displayConfirma = false;
     
   }
+
+  cancelSidebar(event: any){
+    this.visibleSidebar = event;
+  }
 }
