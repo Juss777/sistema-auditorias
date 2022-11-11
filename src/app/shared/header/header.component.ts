@@ -28,11 +28,6 @@ export class HeaderComponent implements OnInit {
     },
     {
       id: 4,
-      name: "Archivo",
-      url: "/",
-    },
-    {
-      id: 4,
       name: "Nueva Auditoría",
       url: "/auditoria/:id/:isReading/:sectionId",
     },

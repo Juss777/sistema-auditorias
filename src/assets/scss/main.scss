@@ -17,6 +17,31 @@
   font-size: 15px;
 }
 
+.status-bloque {
+  display: flex;
+  align-items: center;
+  font-family: var(--main-font-demi);
+  font-size: 14px;
+  margin-top: 15px;
+
+  .circulo {
+    width: 16px;
+    height: 16px;
+    border: 0.2px solid var(--color-borde-status);
+    border-radius: 100%;
+    margin-right: 10px;
+  }
+  .pendiente {
+    background-color: var(--color-pendiente);
+  }
+  .completo {
+    background-color: var(--color-verde);
+  }
+  .incompleto {
+    background-color: var(--color-rojo);
+  }
+}
+
 .alert-bloque {
   color: #127625;
   font-family: var(--main-font-demi);

@@ -121,7 +121,10 @@
   align-items: center;
   gap: 10px;
 
+  font-family: var(--main-font-regular);
+
   span {
+    font-family: var(--main-font-regular);
     &:nth-child(1) {
       width: 8px;
       height: 8px;
