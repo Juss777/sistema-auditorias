@@ -141,7 +141,7 @@
         >
       </div>
 
-      <div class="p-field styleInput">
+      <div class="p-field styleInput" *ngIf="catalog == 'responsableArea'">
         <label for="siglas">Siglas</label>
         <input
           id="siglas"
@@ -157,7 +157,7 @@
         >
       </div>
 
-      <div class="p-field styleInput">
+      <div class="p-field styleInput" *ngIf="catalog == 'responsableArea'">
         <label for="email">Correo</label>
         <input
           id="email"
@@ -201,7 +201,7 @@
               value="interno"
               formControlName="typeLawyer"
             ></p-radioButton>
-            <label>Física</label>
+            <label>Interno</label>
           </div>
           <div class="field-radiobutton">
             <p-radioButton
@@ -209,7 +209,7 @@
               value="externo"
               formControlName="typeLawyer"
             ></p-radioButton>
-            <label>Buzón tributario</label>
+            <label>Externo</label>
           </div>
         </div>
 
