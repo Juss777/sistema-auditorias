@@ -57,14 +57,64 @@ export class FormAuditoriaComponent implements OnInit, AfterViewInit {
   @Input() areas: Area[] = [];
   @Input() auditoria = new Auditoria({});
   @Input() responsablesArea: Representante[] = [];
-  @Input() adminsGenerales: Representante[] = [ ];
-  @Input() adminsCentrales: Representante[] = [];
-  @Input() admin: Representante[] = [ ];
+  @Input() adminsGenerales: Representante[] = [ 
+    {
+      id: 1,
+      nombre: 'NOMBRE DEL RESPONSABLE',
+      apellidoPat: 'A. PATERNO',
+      apellidoMat: 'A. MATERNO',
+      nombreArea: 'ÁREA'
+    },
+    {
+      id: 1,
+      nombre: 'NOMBRE DEL RESPONSABLE 2',
+      apellidoPat: 'A. PATERNO 2',
+      apellidoMat: 'A. MATERNO 2',
+      nombreArea: 'ÁREA 2'
+    }
+  ];
+  @Input() adminsCentrales: Representante[] = [
+    {
+      id: 1,
+      nombre: 'ADMINISTRADOR CENTRAL',
+      apellidoPat: 'A. PATERNO',
+      apellidoMat: 'A. MATERNO',
+      nombreArea: 'ÁREA'
+    },
+    {
+      id: 1,
+      nombre: 'ADMINISTRADOR CENTRAL 2',
+      apellidoPat: 'A. PATERNO 2',
+      apellidoMat: 'A. MATERNO 2',
+      nombreArea: 'ÁREA 2'
+    }
+  ];
+  @Input() admin: Representante[] = [
+    {
+      id: 1,
+      nombre: 'ADMINISTRADOR ÁREA',
+      apellidoPat: 'A. PATERNO',
+      apellidoMat: 'A. MATERNO',
+      nombreArea: 'ÁREA'
+    },
+    {
+      id: 1,
+      nombre: 'ADMINISTRADOR ÁREA 2',
+      apellidoPat: 'A. PATERNO 2',
+      apellidoMat: 'A. MATERNO 2',
+      nombreArea: 'ÁREA 2'
+    }
+  ];
   @Input() responsableAll: any[] = [];
   @Input() contenciosoAll: any[] = [];
   @Input() autoridadAll: any[] = [];
   @Input() areaAll: any[] = [];
-  @Input() instrumentosPublicos: any[] = [ ];
+  @Input() instrumentosPublicos: any[] = [ 
+    {
+      id: 1,
+      nombre: 'Instrumento 1',
+    }
+  ];
 
   @Input() idAuditoria: any;
 
@@ -118,8 +168,9 @@ export class FormAuditoriaComponent implements OnInit, AfterViewInit {
     active: [false],
   });
 
-  visibleSidebar: any;
+  @Input() visibleSidebar: any;
   catalogName: string = "";
+  catalogNameBK: string = "";
   catalog: string = "";
 
   formBuzon = false;
@@ -499,5 +550,10 @@ export class FormAuditoriaComponent implements OnInit, AfterViewInit {
 
   cancelSidebar(event: any){
     this.visibleSidebar = event;
+  }
+
+  changeNameCatalog(event: any){
+    //this.catalogNameBK = this.catalogName;
+    this.catalogName = event;
   }
 }

@@ -11,10 +11,15 @@ import { AuditoriaService } from "../../services/auditorias.service";
 })
 export class CatalogosComponent implements OnInit {
   @Input() catalog: string = "";
-  @Input() catalogName: string = "";
+  @Input() catalogNameIn: string = "";
+
   @Input() list: any[] = [];
+
   @Output() formDataOut: EventEmitter<any> = new EventEmitter();
   @Output() visibleSidebar: EventEmitter<boolean> = new EventEmitter();
+  @Output() catalogNameOut: EventEmitter<string> = new EventEmitter();
+
+  
 
   filterGeneral: any[] = [];
 
@@ -59,13 +64,12 @@ export class CatalogosComponent implements OnInit {
   legalidadChecked: boolean = false;
   @Input() tipoDocumentosList: any[] = [];
   filteredDocuments: any[] = [];
-  /**************FORM ÁREA****************/
+  /**************FORM ÁREA EQUIPO****************/
   formAreaEquipo: FormGroup = this.formBuilder.group({
     id: [0],
     nombreAutoridad: ["", [Validators.required]],
     nombreArea: ["", [Validators.required]],
   });
-
 
   /**************FORM AREA RESPONSABLE****************/
   formAreaResponsable: FormGroup = this.formBuilder.group({
@@ -74,6 +78,7 @@ export class CatalogosComponent implements OnInit {
     grupoCorreo: ["", [Validators.required]],
     responsableArea: ["", [Validators.required]],
   });
+
   /**************FORM REPRESENTATE LEGAL****************/
   formRepresentante: FormGroup = this.formBuilder.group({
     id: [0],
@@ -83,7 +88,6 @@ export class CatalogosComponent implements OnInit {
     apellidoMat: ["", [Validators.required]],
   });
 
-  
   /**************FORM TIPO DE RERQUERIMIENTO****************/
   formTipoRequerimiento: FormGroup = this.formBuilder.group({
     id: [0],
@@ -92,8 +96,6 @@ export class CatalogosComponent implements OnInit {
     tipoDocumento: ["", [Validators.required]],
     tipoDoc: ["", [Validators.required]],
   });
-
-  
 
   constructor(
     public formBuilder: FormBuilder,
@@ -130,6 +132,14 @@ export class CatalogosComponent implements OnInit {
     rowsPerPageOptions: any[] = [5, 10, 20];
     rowNumber: number = 5;
     @Input() colspan: number = 5;
+    cols: any[] = [
+      { field: 'nombre' },
+      { field: 'rfc' },
+      { field: 'siglas' },
+      { field: 'email' },
+      { field: 'typeLawyer' },
+      { field: 'nombreArea' },
+    ];
 
     loadData(event: any) {  
 
@@ -198,5 +208,51 @@ export class CatalogosComponent implements OnInit {
 
     cancel(){
       this.visibleSidebar.emit(false);
+    }
+
+
+    catalogNameBK: string = '';
+    catalogBK: string = this.catalog;
+    listBK: any[] = [];
+    isSecondSidebar: boolean = false;
+
+    openSecondSidebar(type: string){
+      this.catalogNameBK = this.catalogNameIn;
+      this.catalogBK = this.catalog;
+      this.listBK = this.list;
+
+      switch (type) {
+        case 'unidadNegocio':
+          this.catalogNameOut.emit('Agregar unidad de negocio');
+          this.catalog = 'unidadNegocio';
+          this.list = [];
+          this.isSecondSidebar = true;
+          break;
+
+        case 'areaEquipo':
+          this.catalogNameOut.emit('Agregar área');
+          this.catalog = 'areaEquipo';
+          this.list = [];
+          this.isSecondSidebar = true;
+          break;
+
+        case 'autoridad':
+          this.catalogNameOut.emit('Agregar autoridad');
+          this.catalog = 'autoridad';
+          this.list = [];
+          this.isSecondSidebar = true;
+          break;
+      
+        default:
+          break;
+      }
+      
+    }
+
+    toBack() {
+      this.catalogNameOut.emit(this.catalogNameBK);
+      this.catalog = this.catalogBK;
+      this.list = this.listBK;
+      this.isSecondSidebar = false;
     }
 }

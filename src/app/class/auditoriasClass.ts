@@ -22,11 +22,13 @@ export class Representante {
   nombre: string;
   apellidoPat: string;
   apellidoMat: string;
+  nombreArea: string;
   constructor(r: any) {
     this.id = r.id || 0;
     this.nombre = r.nombre || "";
     this.apellidoPat = r.apellidoPat || "";
     this.apellidoMat = r.apellidoMat || "";
+    this.nombreArea = r.nombreArea || "";
   }
 }
 

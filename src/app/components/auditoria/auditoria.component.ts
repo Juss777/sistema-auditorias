@@ -155,6 +155,8 @@ export class AuditoriaComponent implements OnInit {
   visibleSidebar: boolean = false;
   catalogName: string = "";
   catalog: string = "";
+  inputSearch: string = "";
+  listaGeneral: any[] = [];
 
   requirements: Requirement[] = [
     {
@@ -335,6 +337,14 @@ export class AuditoriaComponent implements OnInit {
 
   getDataForm(event: any) {
     console.log("Data form: ", event);
+  }
+
+  cancelSidebar(event: any){
+    this.visibleSidebar = event;
+  }
+
+  changeNameCatalog(event: any){
+    this.catalogName = event;
   }
 
   /******************CONFIRMACIÓN DE ELIMINAR REQUERIMIENTO*************** */

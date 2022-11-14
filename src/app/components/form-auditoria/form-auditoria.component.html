@@ -744,9 +744,7 @@
             <div class="content-search-catalog styleInput" 
             *ngIf="
               catalog == 'instrumento' || 
-              catalog == 'areaInterna' ||
-              catalog == 'partida' ||
-              catalog == 'tipoDocumento'">
+              catalog == 'areaInterna'">
               <p-autoComplete
                 class="input-search"
                 [suggestions]="filterGeneral"
@@ -763,12 +761,13 @@
             <div class="data__content">
               <app-catalogos
                 [catalog]="catalog"
-                [catalogName]="catalogName"
+                [catalogNameIn]="catalogName"
                 [list] = "listaGeneral"
                 [data] = "listaGeneral"
                 [totalRecords]="listaGeneral.length"
                 (formDataOut)="getDataForm($event)"
                 (visibleSidebar)="cancelSidebar($event)"
+                (catalogNameOut)="changeNameCatalog($event)"
               ></app-catalogos>
             </div>
           </div>
