@@ -8,28 +8,31 @@
     >
   </div>
   <div class="container">
-    <div class="titulo-bloque u-mb-5" *ngIf="colaborador">
+    <div class="titulo-bloque u-mb-10" *ngIf="colaborador">
       Carga de documento / Balance
     </div>
     <div class="titulo-bloque u-mb-10" *ngIf="!colaborador">Tarea</div>
     <div class="subtitulo-bloque u-mb-10">
       BAZ 2016 - Oficio 230/2022 - Requerimiento de información
     </div>
-    <div class="semaphore" *ngFor="let sem of semaphore">
-      <span
-        [ngClass]="{
-          semaphore__delivery: sem.estatus == 'Pendiente de entrega',
-          semaphore__ready: sem.estatus == 'Listo',
-          semaphore__revision: sem.estatus == 'Pendiente de revisión',
-          semaphore__introduce: sem.estatus == 'No se va a presentar',
-          semaphore__undelivered: sem.estatus == 'No entregado',
-          semaphore__notReviewed: sem.estatus == 'No revisado',
-          semaphore__additional: sem.estatus == 'Cambios adicionales',
-          semaphore__wrong: sem.estatus == 'Entregado mal'
-        }"
-      ></span>
-      <span>{{ sem.estatus }}</span>
-    </div>
+
+    <ng-container *ngIf="!colaborador">
+      <div class="semaphore" *ngFor="let sem of semaphore">
+        <span
+          [ngClass]="{
+            semaphore__delivery: sem.estatus == 'Pendiente de entrega',
+            semaphore__ready: sem.estatus == 'Listo',
+            semaphore__revision: sem.estatus == 'Pendiente de revisión',
+            semaphore__introduce: sem.estatus == 'No se va a presentar',
+            semaphore__undelivered: sem.estatus == 'No entregado',
+            semaphore__notReviewed: sem.estatus == 'No revisado',
+            semaphore__additional: sem.estatus == 'Cambios adicionales',
+            semaphore__wrong: sem.estatus == 'Entregado mal'
+          }"
+        ></span>
+        <span>{{ sem.estatus }}</span>
+      </div>
+    </ng-container>
   </div>
 
   <!--Datos generales-->
@@ -66,7 +69,7 @@
             <label>Descripción</label>
             <textarea
               pInputTextarea
-              (keyup)="countCharacters($event)"
+              (keyup)="countCharacters($event, 1)"
               maxlength="250"
               [autoResize]="true"
             ></textarea>
@@ -74,7 +77,8 @@
               class="count-characters"
               [ngClass]="isMax ? 'status-characters-max' : ''"
             >
-              {{ countChars }} / {{ maxCharacters }} máx.
+              {{ countChars }} / {{ maxCharacters - countChars }} caracteres
+              restantes
             </div>
           </div>
         </div>
@@ -506,16 +510,18 @@
                   <label>Comentarios generales</label>
                   <textarea
                     pInputTextarea
-                    (keyup)="countCharacters($event)"
+                    (keyup)="countCharacters($event, 2)"
                     maxlength="250"
                     [autoResize]="true"
                     placeholder="Ingresa un comentario"
                   ></textarea>
                   <div
                     class="count-characters"
-                    [ngClass]="isMax ? 'status-characters-max' : ''"
+                    [ngClass]="isMaxBita ? 'status-characters-max' : ''"
                   >
-                    {{ countChars }} / {{ maxCharacters }} máx.
+                    {{ countCharsBita }} /
+                    {{ maxCharactersBita - countCharsBita }} caracteres
+                    restantes
                   </div>
                 </div>
               </div>

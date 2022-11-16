@@ -200,12 +200,26 @@ export class VerDetalleRequerimientoComponent implements OnInit {
   countChars: number = 0;
   isMax: boolean = false;
   maxCharacters: number = 250;
-  countCharacters(event: any) {
-    this.countChars = event.target.value.length;
-    if (this.countChars === this.maxCharacters) {
-      this.isMax = true;
+
+  countCharsBita: number = 0;
+  isMaxBita: boolean = false;
+  maxCharactersBita: number = 250;
+
+  countCharacters(event: any, idCount: number) {
+    if (idCount == 1) {
+      this.countChars = event.target.value.length;
+      if (this.countChars === this.maxCharacters) {
+        this.isMax = true;
+      } else {
+        this.isMax = false;
+      }
     } else {
-      this.isMax = false;
+      this.countCharsBita = event.target.value.length;
+      if (this.countCharsBita === this.maxCharactersBita) {
+        this.isMaxBita = true;
+      } else {
+        this.isMaxBita = false;
+      }
     }
   }
 

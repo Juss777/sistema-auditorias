@@ -268,16 +268,16 @@
     }
 
     .ficha {
-      font-size: 1.2rem;
+      margin-top: 10px;
       color: #747474;
-      margin-top: 30px;
       &__msg {
         font-family: var(--main-font-regular);
-        margin-bottom: 10px;
+        font-size: 1.4rem;
       }
 
       &__info {
         font-family: var(--main-font-medium);
+        font-size: 1rem;
       }
     }
     .ficha:first-of-type {
