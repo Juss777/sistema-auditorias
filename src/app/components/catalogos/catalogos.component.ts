@@ -38,8 +38,8 @@ export class CatalogosComponent implements OnInit {
     nombre: ["", [Validators.required]],
     apellidoPat: ["", [Validators.required]],
     apellidoMat: ["", [Validators.required]],
-    siglas: ["", [Validators.required]],
-    email: ["", [Validators.required]],
+    siglas: [""],
+    email: [""],
   });
 
   /**************FORM CONTENCIOSO****************/
