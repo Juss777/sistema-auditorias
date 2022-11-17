@@ -37,17 +37,16 @@
                   (keyup)="countCharacters($event)"
                   maxlength="250"
                 />
+                <div
+                  class="count-characters m"
+                  [ngClass]="isMax ? 'status-characters-max' : ''"
+                >
+                  {{ countChars }} / {{ maxCharacters - countChars }} caracteres
+                  restantes
+                </div>
               </div>
               <div class="buttons-content">
                 <button class="btn-primary">Enviar</button>
-              </div>
-            </div>
-            <div class="chat__sending">
-              <div
-                class="count-characters"
-                [ngClass]="isMax ? 'status-characters-max' : ''"
-              >
-                {{ countChars }} / {{ maxCharacters }} máx.
               </div>
             </div>
           </div>

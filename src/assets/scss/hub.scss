@@ -27,7 +27,7 @@
   &__message {
     width: 100%;
     min-height: 51px;
-    max-width: 400px;
+    max-width: 500px;
     font-size: 1.2rem;
     border-radius: 3px;
     padding: 8px 13px;
@@ -35,13 +35,15 @@
 
     div {
       color: var(--color-text-74);
-      font-size: 1.2rem;
+
       &:nth-child(1) {
         font-family: var(--main-font-regular);
+        font-size: 1.4rem;
       }
       &:nth-child(2) {
         font-family: var(--main-font-medium);
         font-style: italic;
+        font-size: 1rem;
       }
     }
   }
@@ -50,6 +52,7 @@
     width: 100%;
     display: flex;
     flex-direction: column;
+    align-items: flex-start;
     justify-content: center;
     gap: 20px;
 
