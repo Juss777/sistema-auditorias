@@ -69,46 +69,46 @@
 }
 
 /*BOTON DE HOY, DESAPARECER*/
-.fc .fc-header-toolbar .fc-toolbar-chunk .fc-today-button {
-  display: none;
-}
+// .fc .fc-header-toolbar .fc-toolbar-chunk .fc-today-button {
+//   display: none;
+// }
 /**************************************/
 
 /*BOTONES MES, SEMANA, DIA*/
-.fc.fc-theme-standard
-  .fc-toolbar
-  .fc-button.fc-dayGridMonth-button.fc-button-active,
-.fc.fc-theme-standard
-  .fc-toolbar
-  .fc-button.fc-timeGridWeek-button.fc-button-active,
-.fc.fc-theme-standard
-  .fc-toolbar
-  .fc-button.fc-timeGridDay-button.fc-button-active {
-  background: #206084 !important;
-  border-color: #206084 !important;
-}
+// .fc.fc-theme-standard
+//   .fc-toolbar
+//   .fc-button.fc-dayGridMonth-button.fc-button-active,
+// .fc.fc-theme-standard
+//   .fc-toolbar
+//   .fc-button.fc-timeGridWeek-button.fc-button-active,
+// .fc.fc-theme-standard
+//   .fc-toolbar
+//   .fc-button.fc-timeGridDay-button.fc-button-active {
+//   background: #206084 !important;
+//   border-color: #206084 !important;
+// }
 
-.fc.fc-theme-standard .fc-toolbar .fc-button.fc-dayGridMonth-button,
-.fc.fc-theme-standard .fc-toolbar .fc-button.fc-timeGridWeek-button,
-.fc.fc-theme-standard .fc-toolbar .fc-button.fc-timeGridDay-button {
-  background: #3684b1 !important;
-  border-color: #3684b1 !important;
-  color: #fff !important;
-}
+// .fc.fc-theme-standard .fc-toolbar .fc-button.fc-dayGridMonth-button,
+// .fc.fc-theme-standard .fc-toolbar .fc-button.fc-timeGridWeek-button,
+// .fc.fc-theme-standard .fc-toolbar .fc-button.fc-timeGridDay-button {
+//   background: #3684b1 !important;
+//   border-color: #3684b1 !important;
+//   color: #fff !important;
+// }
 
-.fc.fc-theme-standard .fc-toolbar .fc-button.fc-dayGridMonth-button:hover,
-.fc.fc-theme-standard .fc-toolbar .fc-button.fc-timeGridWeek-button:hover,
-.fc.fc-theme-standard .fc-toolbar .fc-button.fc-timeGridDay-button:hover {
-  background: #206084 !important;
-  border-color: #206084 !important;
-  color: #fff !important;
-}
+// .fc.fc-theme-standard .fc-toolbar .fc-button.fc-dayGridMonth-button:hover,
+// .fc.fc-theme-standard .fc-toolbar .fc-button.fc-timeGridWeek-button:hover,
+// .fc.fc-theme-standard .fc-toolbar .fc-button.fc-timeGridDay-button:hover {
+//   background: #206084 !important;
+//   border-color: #206084 !important;
+//   color: #fff !important;
+// }
 
-.fc .fc-button-group button {
-  width: 61px;
-  height: 40px;
-  font-size: 12px !important;
-}
+// .fc .fc-button-group button {
+//   width: 61px;
+//   height: 40px;
+//   font-size: 12px !important;
+// }
 /**************************************/
 
 /*LINEA EVENTO*/

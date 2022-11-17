@@ -1,5 +1,5 @@
 import { HostListener, Component, OnInit, Input } from "@angular/core";
-import { buildEventRangeKey } from "@fullcalendar/angular";
+import { CalendarOptions } from "@fullcalendar/angular";
 import esLocale from "@fullcalendar/core/locales/es";
 
 @Component({
@@ -10,15 +10,41 @@ export class CalendarComponent implements OnInit {
   @Input() events: any[] = [];
   options: any;
 
+  // calendarOptions: CalendarOptions = {
+  //   initialView: 'dayGridMonth',
+  //   dateClick: this.handleDateClick.bind(this),
+  //   events: [
+  //     {
+  //       title: "221/2017",
+  //       date: "2022-11-03",
+  //     },
+  //     {
+  //       title: "221/2018",
+  //       date: "2022-11-04",
+  //     }
+  //   ],
+  //   locale: 'es'
+  // }
+
   constructor() {}
 
   @HostListener('click', ['$event'])
   onClick(event: any) {   
-    if (event.target.nodeName === 'BUTTON' && event.target.classList[0] == 'fc-dayGridMonth-button') {
+    if (
+      (event.target.nodeName === 'BUTTON' && 
+      event.target.classList[0] == 'fc-next-button' || 
+      event.target.classList[0] == 'fc-prev-button') || 
+      (event.target.nodeName === 'SPAN' && 
+      event.target.classList[1] == 'fc-icon-chevron-right' || 
+      event.target.classList[1] == 'fc-icon-chevron-left')) {
       this.events.forEach(x => {
         this.markDateStartAndEnd(x.start, x.end, x.title);
       });
     }
+  }
+
+  handleDateClick(arg: any) {
+    alert('date click! ' + arg.dateStr)
   }
 
 
@@ -26,9 +52,10 @@ export class CalendarComponent implements OnInit {
     this.options = {
       initialDate: this.getCurrentDate(),
       headerToolbar: {
-        left: "prev,next today",
+        left: "prev,next",
         center: "title",
-        right: "dayGridMonth,timeGridWeek,timeGridDay",
+        right: "",
+        //right: "dayGridMonth,timeGridWeek,timeGridDay",
       },
       editable: false,
       selectable: true,
@@ -36,6 +63,7 @@ export class CalendarComponent implements OnInit {
       dayMaxEvents: true,
       locale: esLocale,
       events: this.events,
+      
     };
 
     setTimeout(() => {

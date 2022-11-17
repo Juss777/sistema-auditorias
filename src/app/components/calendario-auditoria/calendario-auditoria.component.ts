@@ -13,17 +13,27 @@ export class CalendarioAuditoriaComponent implements OnInit {
     {
       title: "230/2016",
       start: "2022-11-02T09:00:00",
-      end: "2022-11-16T19:00:00",
+      end: "2022-11-04T19:00:00",
+    },
+    // {
+    //   title: "221/2016",
+    //   start: "2022-11-07T12:00:00",
+    //   end: "2022-11-11T18:00:00",
+    // },
+    {
+      title: "221/2017",
+      start: "2022-11-03T12:00:00",
+      end: "2022-11-04T18:00:00",
     },
     {
-      title: "221/2016",
-      start: "2022-11-21T12:00:00",
-      end: "2022-11-25T18:00:00",
+      title: "221/2018",
+      start: "2022-11-07T12:00:00",
+      end: "2022-11-13T18:00:00",
     }
   ];
 
   formOficio: FormGroup = this.formBuilder.group({
-     oficio: [0],
+    oficio: [0],
   });
 
   oficioSelected!: Oficio;
