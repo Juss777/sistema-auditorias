@@ -21,10 +21,16 @@
   }
 
   &__title {
-    margin-bottom: 10px;
+    margin-bottom: 9px;
     font-size: 1.4rem;
     color: var(--color-negro);
     font-family: var(--main-font-regular);
+    display: flex;
+  }
+
+  &__title-short {
+    margin-bottom: 27px;
+    margin-right: 5px;
   }
 
   &__chip {
@@ -77,7 +83,14 @@
     font-size: 1.2rem;
     color: #747474;
     text-align: start;
-    margin-bottom: 35px;
+    margin-bottom: 27px;
+
+    
+  }
+
+  &__text-short{
+    margin-bottom: 0px;
+    margin-left: 6px;
   }
 
   &__files {

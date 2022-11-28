@@ -46,6 +46,8 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
 
 import { ToastrModule } from "ngx-toastr";
 import { BuscadorComponent } from "./components/buscador/buscador.component";
+import { RequerimientoComponent } from './components/requerimiento/requerimiento.component';
+import { FormDocumentComponent } from './components/requerimiento/form-document/form-document.component';
 
 @NgModule({
   declarations: [
@@ -69,6 +71,8 @@ import { BuscadorComponent } from "./components/buscador/buscador.component";
     DetallePorAreaComponent,
     TableroComponent,
     BuscadorComponent,
+    RequerimientoComponent,
+    FormDocumentComponent
   ],
   imports: [
     BrowserModule,

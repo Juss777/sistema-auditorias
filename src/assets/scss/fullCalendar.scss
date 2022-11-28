@@ -173,6 +173,11 @@ a.fc-h-event .fc-event-title-container {
   }
 }
 
+.content-event.end{
+  z-index: 1;
+  margin-bottom: 5px
+}
+
 .fullCalendar {
   padding: 10px;
   background-color: var(--color-blanco);

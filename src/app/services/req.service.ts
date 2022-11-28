@@ -17,4 +17,18 @@ export class ReqService {
         return data;
       });
   }
+
+  getRequirements() {
+    return this.http
+      .get<any>("assets/requirements.json")
+      .toPromise()
+      .then((res) => <Req[]>res.requirements)
+      .then((data) => {
+        return data;
+      });
+  }
+
+  getIdRandom(){
+    return Math.floor(Math.random() * 300);
+  }
 }

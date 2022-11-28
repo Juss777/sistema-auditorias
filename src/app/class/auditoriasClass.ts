@@ -154,21 +154,21 @@ export class Etapa {
 
 export class Requirement {
   id;
-  description;
-  typePartida;
-  documentsType: TypeDocument[] = [];
+  partida;
   typeRequestDocumental;
   typeRequestDescriptive;
+  acredita;
+  description;
+  dateDelivery;
+  documentsType: TypeDocument[] = [];
   areaResponsible;
   responsible;
   email;
-  dateDelivery;
-  acredita;
   state;
   constructor(r: any) {
     this.id = r.id || 0;
     this.description = r.description || "";
-    this.typePartida = r.typePartida || "";
+    this.partida = r.partida || "";
     this.documentsType = r.documentsType  || [];
     this.typeRequestDocumental = r.typeRequestDocumental  || false;
     this.typeRequestDescriptive = r.typeRequestDescriptive  || false;
@@ -202,10 +202,18 @@ export class TypeRequeriment {
 export class TypeDocument{
   id;
   typeDocument;
-  descriptionDocument;
+  description;
+  areaResponsible;
+  responsible;
+  email;
+  idRequirement;
   constructor(typeDocument:any){
     this.id = typeDocument.id || 0;
     this.typeDocument = typeDocument.typeDocument || '';
-    this.descriptionDocument = typeDocument.descriptionDocument || '';
+    this.description = typeDocument.description || '';
+    this.areaResponsible = typeDocument.areaResponsible || '';
+    this.responsible = typeDocument.responsible || '';
+    this.email = typeDocument.email || '';
+    this.idRequirement = typeDocument.idRequirement || 0;
   }
 }

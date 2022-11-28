@@ -1,0 +1,106 @@
+{
+    "requirements": [
+        {
+            "id": 1,
+            "description": "Explique amplia y detalladamente en qué consisten las erogaciones por concepto de “Artículos Promocionales”; asimismo, en caso de que dichos artículos sean entregados a los clientes (acreditados) de la contribuyente, indique los requisitos que debe.",
+            "partida": "Generales",
+            "documentsType": [
+                {
+                    "id": 1,
+                    "typeDocument": "Contratos",
+                    "description": "Contratos... Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do\n      eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut\n      enim ad minim veniam, quis nostrud exercitation ullamco laboris\n      nisi ut aliquip ex ea commodo consequat.",
+                    "areaResponsible": "Jurídico",
+                    "responsible": "Pepe",
+                    "email": "pepe@elektra.com",
+                    "idRequirement": 1
+                },
+                {
+                    "id": 2,
+                    "typeDocument": "Adendas",
+                    "description": "Adendas... ipsum dolor sit amet, consectetur adipiscing elit, sed do\n      eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut\n      enim ad minim veniam, quis nostrud exercitation ullamco laboris\n      nisi ut aliquip ex ea commodo consequat.",
+                    "areaResponsible": "Área 51",
+                    "responsible": "Juan",
+                    "email": "juan@elektra.com",
+                    "idRequirement": 1
+                },
+                {
+                    "id": 3,
+                    "typeDocument": "Anexos",
+                    "description": "Anexos... ipsum dolor sit amet, consectetur adipiscing elit, sed do\n      eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut\n      enim ad minim veniam, quis nostrud exercitation ullamco laboris\n      nisi ut aliquip ex ea commodo consequat.",
+                    "areaResponsible": "Área Responsable 3",
+                    "responsible": "Paquito",
+                    "email": "paquito@elektra.com",
+                    "idRequirement": 1
+                },
+                {
+                    "id": 4,
+                    "typeDocument": "Explicación",
+                    "description": "Explicación... ipsum dolor sit amet, consectetur adipiscing elit, sed do\n      eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut\n      enim ad minim veniam, quis nostrud exercitation ullamco laboris\n      nisi ut aliquip ex ea commodo consequat.",
+                    "areaResponsible": "Área Responsable 4",
+                    "responsible": "Javier",
+                    "email": "javier@elektra.com",
+                    "idRequirement": 1
+                }
+            ],
+            "typeRequestDocumental": true,
+            "typeRequestDescriptive": false,
+            "areaResponsible": "Contabilidad",
+            "responsible": "",
+            "email": "",
+            "dateDelivery": "2022-11-25",
+            "acredita": "Acredita",
+            "state": "Pendiente de revisión"
+        },
+        {
+            "id": 2,
+            "description": "Explique amplia y detalladamente en qué consisten las erogaciones por concepto de “Artículos Promocionales”; asimismo, en caso de que dichos artículos sean entregados a los clientes (acreditados) de la contribuyente, indique los requisitos que debe.",
+            "partida": "Generales",
+            "documentsType": [
+                {
+                    "id": 5,
+                    "typeDocument": "Fundamento Legal",
+                    "description": "Fundamento Legal... ipsum dolor sit amet, consectetur adipiscing elit, sed do\n      eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut\n      enim ad minim veniam, quis nostrud exercitation ullamco laboris\n      nisi ut aliquip ex ea commodo consequat.",
+                    "areaResponsible": "Área Responsable 5",
+                    "responsible": "Pablo",
+                    "email": "pablo@elektra.com",
+                    "idRequirement": 2
+                },
+                {
+                    "id": 6,
+                    "typeDocument": "Informes",
+                    "description": "Informes... ipsum dolor sit amet, consectetur adipiscing elit, sed do\n      eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut\n      enim ad minim veniam, quis nostrud exercitation ullamco laboris\n      nisi ut aliquip ex ea commodo consequat.",
+                    "areaResponsible": "Área Responsable 6",
+                    "responsible": "Maria",
+                    "email": "maria@elektra.com",
+                    "idRequirement": 2
+                },
+                {
+                    "id": 7,
+                    "typeDocument": "Reportes",
+                    "description": "Reportes... ipsum dolor sit amet, consectetur adipiscing elit, sed do\n      eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut\n      enim ad minim veniam, quis nostrud exercitation ullamco laboris\n      nisi ut aliquip ex ea commodo consequat.",
+                    "areaResponsible": "Área Responsable 7",
+                    "responsible": "Mercedes",
+                    "email": "mercedes@elektra.com",
+                    "idRequirement": 2
+                },
+                {
+                    "id": 8,
+                    "typeDocument": "Bitácora",
+                    "description": "Bitácora... ipsum dolor sit amet, consectetur adipiscing elit, sed do\n      eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut\n      enim ad minim veniam, quis nostrud exercitation ullamco laboris\n      nisi ut aliquip ex ea commodo consequat.",
+                    "areaResponsible": "Área Responsable 8",
+                    "responsible": "Alicia",
+                    "email": "alicia@elektra.com",
+                    "idRequirement": 2
+                }
+            ],
+            "typeRequestDocumental": false,
+            "typeRequestDescriptive": true,
+            "areaResponsible": "Contabilidad",
+            "responsible": "",
+            "email": "",
+            "dateDelivery": "",
+            "acredita": "",
+            "state": "Pendiente de revisión"
+        }
+    ]
+}
