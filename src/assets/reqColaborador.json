@@ -3,7 +3,7 @@
         {
             "id": "1",
             "responsable": "Albino Martínez Sosa",
-            "tipo": "Contrato, adendas, anexo, Explicación",
+            "tipo": "Contrato",
             "acredita": "Materialidad / Legalidad",
             "estatus": "Pendiente de entrega",
             "fechaEntrega": "10/11/2022"
@@ -11,7 +11,7 @@
         {
             "id": "2",
             "responsable": "Susana Sánchez",
-            "tipo": "Bitácoras, reportes, programaciones presupuestales",
+            "tipo": "Bitácoras",
             "acredita": "Materialidad / Legalidad",
             "estatus": "Entregado mal",
             "fechaEntrega": "23/09/2022"
@@ -19,7 +19,7 @@
         {
             "id": "3",
             "responsable": "Susana Sánchez Sosa",
-            "tipo": "Bitácoras, reportes, programaciones presupuestales",
+            "tipo": "Adendas",
             "acredita": "Materialidad",
             "estatus": "Entregado mal",
             "fechaEntrega": "23/09/2022"
@@ -27,7 +27,7 @@
         {
             "id": "4",
             "responsable": "Pedro Martínez",
-            "tipo": "Bitácoras, reportes, programaciones presupuestales",
+            "tipo": "Programaciones presupuestales",
             "acredita": "Legalidad",
             "estatus": "Pendiente de revisión",
             "fechaEntrega": "23/09/2022"
@@ -35,7 +35,7 @@
         {
             "id": "5",
             "responsable": "Luis Martínez",
-            "tipo": "Bitácoras, reportes, programaciones presupuestales",
+            "tipo": "Anexo",
             "acredita": "Legalidad",
             "estatus": "Listo",
             "fechaEntrega": "23/09/2022"

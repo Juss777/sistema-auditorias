@@ -14,6 +14,8 @@ import { SidebarModule } from "primeng/sidebar";
 import { AutoCompleteModule } from "primeng/autocomplete";
 import { ChipModule } from "primeng/chip";
 import {OverlayPanelModule} from 'primeng/overlaypanel';
+import {TabViewModule} from 'primeng/tabview';
+
 //FULL CALENDAR
 import { FullCalendarModule } from "@fullcalendar/angular";
 import dayGridPlugin from "@fullcalendar/daygrid";
@@ -46,7 +48,8 @@ FullCalendarModule.registerPlugins([
     SidebarModule,
     AutoCompleteModule,
     CheckboxModule,
-    OverlayPanelModule
+    OverlayPanelModule,
+    TabViewModule
   ],
 })
 export class PrimeNgModule {}

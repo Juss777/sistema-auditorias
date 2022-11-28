@@ -229,6 +229,10 @@ img {
     border-top: 2px solid var(--main-color);
     background-color: #f3f2f2;
   }
+
+  &__content--noBorde {
+    border: none;
+  }
 }
 
 .calendar {
@@ -296,4 +300,72 @@ img {
   .toast-close-button {
     color: var(--color-warning-toast) !important;
   }
+}
+
+// Mover
+
+.drop {
+  position: relative;
+  min-width: 30rem;
+  min-height: 20rem;
+  padding: 0.5rem;
+  border: 1px solid lightgray;
+  background: #fff;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
+  grid-column-gap: 2px;
+
+  &__input {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+  }
+
+  &__file {
+    padding: 0.5rem;
+    z-index: 9;
+    height: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  &__title {
+    padding-bottom: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-family: var(--main-font-regular);
+    font-size: 1.2rem;
+
+    img {
+      width: 1rem;
+      margin-left: 2rem;
+      cursor: pointer;
+    }
+  }
+
+  &__label {
+    width: 100%;
+    max-width: 20%;
+    margin: 0 auto;
+    padding: 3rem 0;
+
+    color: var(--main-color-gris-texto);
+    font-family: var(--main-font-demi);
+    text-align: center;
+
+    grid-column: 1 / 12;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+}
+
+.iconoDragDrop {
+  width: 77px;
+  display: block;
+  margin: 0px auto 30px auto;
 }

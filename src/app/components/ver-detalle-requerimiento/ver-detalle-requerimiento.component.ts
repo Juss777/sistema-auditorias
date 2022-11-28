@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, ElementRef, OnInit, ViewChild } from "@angular/core";
 import { Chips } from "src/app/interface/chips";
 import { Tarea } from "src/app/interface/tarea";
 import { Documents } from "src/app/interface/documents";
@@ -30,43 +30,59 @@ export class VerDetalleRequerimientoComponent implements OnInit {
   opt!: Opciones[];
   tarea!: Tarea[];
 
-  colaborador: boolean = false;
+  colaborador: boolean = true;
+
+  archivos: any = {
+    cantidadArchivos: 0,
+    documentos: [],
+  };
+
+  @ViewChild("file", { static: false }) file!: ElementRef;
+
+  @ViewChild("tipo", { static: false }) tipo!: ElementRef;
 
   chips: Chips[] = [
     {
       id: 1,
       name: "Contratos",
       status: true,
+      documents: [],
     },
     {
       id: 2,
       name: "Adendas",
       status: true,
+      documents: [],
     },
     {
       id: 3,
       name: "Anexos",
       status: true,
+      documents: [],
     },
     {
       id: 4,
       name: "Explicación",
       status: true,
+      documents: [],
     },
     {
       id: 5,
       name: "Fundamento legal",
       status: true,
+      documents: [],
     },
     {
       id: 6,
       name: "Informes",
       status: true,
+      documents: [],
     },
     {
       id: 7,
       name: "Bitácoras",
       status: false,
+      documents: [],
     },
   ];
 
@@ -247,6 +263,15 @@ export class VerDetalleRequerimientoComponent implements OnInit {
     this.selectedFile.name = this.loadedFileG.target.files[0].name;
   }
 
+  saveDocuments() {
+    var chip: any = this.chips.find((x) => x.id === this.idChip);
+    for (let i = 0; i < this.archivos.documentos.length; i++) {
+      const documento = this.archivos.documentos[i];
+      chip.documents.push(documento);
+    }
+
+    console.log(this.chips);
+  }
   public agregarNuevosDoc() {
     switch (this.idChip) {
       case 1:
@@ -325,5 +350,37 @@ export class VerDetalleRequerimientoComponent implements OnInit {
       default:
         break;
     }
+  }
+
+  cargarArchivo(event: any) {
+    var value = event.target.value;
+    var valueSplit: string[] = value.split("\\");
+    var nombreArchivo = valueSplit[valueSplit.length - 1];
+
+    event.preventDefault();
+    event.stopPropagation();
+
+    var file = this.archivos.documentos.find(
+      (documento: any) => documento.name === nombreArchivo
+    );
+    if (!file) {
+      this.archivos.cantidadArchivos =
+        this.archivos.cantidadArchivos + this.file.nativeElement.files.length;
+      var encontrado = false;
+      for (let file of this.file.nativeElement.files) {
+        encontrado = false;
+
+        if (!encontrado) {
+          this.archivos.documentos.push(file);
+          console.log(this.archivos.documentos);
+        } else {
+          this.archivos.documentos.splice(1);
+        }
+      }
+    }
+  }
+
+  eliminarArchivo(index: number) {
+    this.archivos.documentos.splice(index, 1);
   }
 }

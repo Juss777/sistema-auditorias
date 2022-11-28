@@ -56,18 +56,13 @@
     .p-datatable {
       .p-datatable-thead tr {
         th {
+          width: 33.33%;
           padding: 10px;
           border-bottom: 0.5px solid #d6d6d6;
           font-size: 1.2rem;
           background-color: var(--color-blanco);
           color: var(--color-gris2);
           font-family: var(--main-font-medium);
-
-          &:nth-child(1) {
-            @media (min-width: 768px) {
-              width: 450px;
-            }
-          }
         }
       }
 
@@ -149,6 +144,28 @@
   &__undelivered,
   &__notReviewed {
     background-color: #f42727;
+  }
+}
+
+.semaphoreText {
+  font-size: 1.8rem;
+  font-family: var(--main-font-demi);
+  font-style: italic;
+  &__delivery,
+  &__revision,
+  &__additional,
+  &__wrong {
+    color: #eaea15;
+  }
+
+  &__ready,
+  &__introduce {
+    color: #59ad25;
+  }
+
+  &__undelivered,
+  &__notReviewed {
+    color: #f42727;
   }
 }
 

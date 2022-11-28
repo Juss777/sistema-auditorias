@@ -8,31 +8,10 @@
     >
   </div>
   <div class="container">
-    <div class="titulo-bloque u-mb-10" *ngIf="colaborador">
-      Carga de documento / Balance
-    </div>
-    <div class="titulo-bloque u-mb-10" *ngIf="!colaborador">Tarea</div>
+    <div class="titulo-bloque u-mb-10">Carga de documento / Balance</div>
     <div class="subtitulo-bloque u-mb-10">
       BAZ 2016 - Oficio 230/2022 - Requerimiento de información
     </div>
-
-    <ng-container *ngIf="!colaborador">
-      <div class="semaphore" *ngFor="let sem of semaphore">
-        <span
-          [ngClass]="{
-            semaphore__delivery: sem.estatus == 'Pendiente de entrega',
-            semaphore__ready: sem.estatus == 'Listo',
-            semaphore__revision: sem.estatus == 'Pendiente de revisión',
-            semaphore__introduce: sem.estatus == 'No se va a presentar',
-            semaphore__undelivered: sem.estatus == 'No entregado',
-            semaphore__notReviewed: sem.estatus == 'No revisado',
-            semaphore__additional: sem.estatus == 'Cambios adicionales',
-            semaphore__wrong: sem.estatus == 'Entregado mal'
-          }"
-        ></span>
-        <span>{{ sem.estatus }}</span>
-      </div>
-    </ng-container>
   </div>
 
   <!--Datos generales-->
@@ -48,8 +27,6 @@
                   <th>Partida</th>
                   <th>Tipo de requerimiento</th>
                   <th>Acredita</th>
-                  <th>Área</th>
-                  <th>Responsable</th>
                   <th>Fecha de entrega</th>
                 </tr>
               </ng-template>
@@ -58,8 +35,6 @@
                   <td>{{ tarea.partida }}</td>
                   <td>{{ tarea.requerimiento }}</td>
                   <td>{{ tarea.acredita }}</td>
-                  <td>{{ tarea.area }}</td>
-                  <td>{{ tarea.responsable }}</td>
                   <td>{{ tarea.fechaEntrega }}</td>
                 </tr>
               </ng-template>
@@ -104,18 +79,60 @@
           </div>
           <!--Colaborador-->
           <div class="typeDocument__document" *ngIf="colaborador">
-            <div class="typeDocument__title">Descripción del documento:</div>
-            <div class="typeDocument__text">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo consequat.
-            </div>
-            <!--Header carga de documentos-->
-            <div class="typeDocument__title">Carga de documentos:</div>
-            <div class="typeDocument__text u-mb-40">
-              Tamaño máximo de carga 3 MB por archivo, extensiones permitidas:
-              .pdf, .doc, .docx, .pptx, .xls
+            <div>
+              <div class="typeDocument__status">
+                <div class="typeDocument__title">Estatus de documento:</div>
+                <ng-container>
+                  <div class="semaphoreText" *ngFor="let sem of semaphore">
+                    <span
+                      [ngClass]="{
+                        semaphoreText__delivery:
+                          sem.estatus == 'Pendiente de entrega',
+                        semaphoreText__ready: sem.estatus == 'Listo',
+                        semaphoreText__revision:
+                          sem.estatus == 'Pendiente de revisión',
+                        semaphoreText__introduce:
+                          sem.estatus == 'No se va a presentar',
+                        semaphoreText__undelivered:
+                          sem.estatus == 'No entregado',
+                        semaphoreText__notReviewed:
+                          sem.estatus == 'No revisado',
+                        semaphoreText__additional:
+                          sem.estatus == 'Cambios adicionales',
+                        semaphoreText__wrong: sem.estatus == 'Entregado mal'
+                      }"
+                      >{{ sem.estatus }}</span
+                    >
+                  </div>
+                </ng-container>
+              </div>
+              <div class="typeDocument__title">Descripción del documento:</div>
+              <div class="typeDocument__text">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+                enim ad minim veniam, quis nostrud exercitation ullamco laboris
+                nisi ut aliquip ex ea commodo consequat.
+              </div>
+              <div class="typeDocument__data">
+                <div>
+                  <span>Área responsable:</span>
+                  <span>Jurídico</span>
+                </div>
+                <div>
+                  <span>Responsable:</span>
+                  <span>Manuel Morán</span>
+                </div>
+                <div>
+                  <span>Correo del responsable:</span>
+                  <span>correo@ejemplo.com.mx</span>
+                </div>
+              </div>
+              <!--Header carga de documentos-->
+              <div class="typeDocument__title">Carga de documentos:</div>
+              <div class="typeDocument__text u-mb-40">
+                Tamaño máximo de carga 3 MB por archivo, extensiones permitidas:
+                .pdf, .doc, .docx, .pptx, .xls
+              </div>
             </div>
 
             <ng-container *ngIf="contrato">
@@ -138,20 +155,58 @@
                   </div>
                 </div>
               </div>
-              <div
-                class="styleInput typeDocument__add"
-                *ngFor="let file of files"
-              >
-                <input
-                  type="file"
-                  class="inputFile u-mb-5"
-                  [id]="file.id"
-                  (change)="handleFileInput($event, file)"
-                />
-                <label [for]="file.id">Agregar documento</label>
-                <a class="typeDocument__add-link" (click)="agregarNuevosDoc()"
-                  >+agregar documento</a
+              <!--Carga de archivos-->
+              <div class="drop">
+                <label class="drop__input">
+                  <input
+                    style="display: none"
+                    tittle=" "
+                    type="file"
+                    name="files[]"
+                    accept=".pdf, .csv, .xls, .xlsx, text/csv, application/csv"
+                    (change)="cargarArchivo($event)"
+                    multiple
+                    draggable
+                    #file
+                  />
+                </label>
+                <ng-container *ngIf="archivos.documentos.length > 0">
+                  <div
+                    class="drop__file"
+                    *ngFor="let archivo of archivos.documentos; let i = index"
+                  >
+                    <div class="drop__title">
+                      <label>{{
+                        archivo.name && archivo.name.length > 10
+                          ? (archivo.name.trim() | slice: 0:20) + "..."
+                          : archivo.name
+                      }}</label>
+                      <img
+                        (click)="eliminarArchivo(i)"
+                        src="assets/img/iconos/ico_close.svg"
+                        alt="icono cerrar"
+                      />
+                    </div>
+                    <p-progressBar
+                      mode="determinate"
+                      value="100"
+                    ></p-progressBar>
+                  </div>
+                </ng-container>
+                <div
+                  class="drop__label"
+                  *ngIf="archivos.documentos.length == 0"
                 >
+                  <div class="u-mb-10">
+                    <img
+                      src="assets/img/iconos/ico-dropzone.svg"
+                      alt="icono dropzone"
+                    />
+                  </div>
+                  <div>
+                    Arrastra y suelta los documentos que quieres adjuntar.
+                  </div>
+                </div>
               </div>
             </ng-container>
 
@@ -175,20 +230,58 @@
                   </div>
                 </div>
               </div>
-              <div
-                class="styleInput typeDocument__add"
-                *ngFor="let file of files"
-              >
-                <input
-                  type="file"
-                  class="inputFile u-mb-5"
-                  [id]="file.id"
-                  (change)="handleFileInput($event, file)"
-                />
-                <label [for]="file.id">Agregar documento</label>
-                <a class="typeDocument__add-link" (click)="agregarNuevosDoc()"
-                  >+agregar documento</a
+              <!--Carga de archivos-->
+              <div class="drop">
+                <label class="drop__input">
+                  <input
+                    style="display: none"
+                    tittle=" "
+                    type="file"
+                    name="files[]"
+                    accept=".pdf, .csv, .xls, .xlsx, text/csv, application/csv"
+                    (change)="cargarArchivo($event)"
+                    multiple
+                    draggable
+                    #file
+                  />
+                </label>
+                <ng-container *ngIf="archivos.documentos.length > 0">
+                  <div
+                    class="drop__file"
+                    *ngFor="let archivo of archivos.documentos; let i = index"
+                  >
+                    <div class="drop__title">
+                      <label>{{
+                        archivo.name && archivo.name.length > 10
+                          ? (archivo.name.trim() | slice: 0:20) + "..."
+                          : archivo.name
+                      }}</label>
+                      <img
+                        (click)="eliminarArchivo(i)"
+                        src="assets/img/iconos/ico_close.svg"
+                        alt="icono cerrar"
+                      />
+                    </div>
+                    <p-progressBar
+                      mode="determinate"
+                      value="100"
+                    ></p-progressBar>
+                  </div>
+                </ng-container>
+                <div
+                  class="drop__label"
+                  *ngIf="archivos.documentos.length == 0"
                 >
+                  <div class="u-mb-10">
+                    <img
+                      src="assets/img/iconos/ico-dropzone.svg"
+                      alt="icono dropzone"
+                    />
+                  </div>
+                  <div>
+                    Arrastra y suelta los documentos que quieres adjuntar.
+                  </div>
+                </div>
               </div>
             </ng-container>
 
@@ -212,20 +305,58 @@
                   </div>
                 </div>
               </div>
-              <div
-                class="styleInput typeDocument__add"
-                *ngFor="let file of files"
-              >
-                <input
-                  type="file"
-                  class="inputFile u-mb-5"
-                  [id]="file.id"
-                  (change)="handleFileInput($event, file)"
-                />
-                <label [for]="file.id">Agregar documento</label>
-                <a class="typeDocument__add-link" (click)="agregarNuevosDoc()"
-                  >+agregar documento</a
+              <!--Carga de archivos-->
+              <div class="drop">
+                <label class="drop__input">
+                  <input
+                    style="display: none"
+                    tittle=" "
+                    type="file"
+                    name="files[]"
+                    accept=".pdf, .csv, .xls, .xlsx, text/csv, application/csv"
+                    (change)="cargarArchivo($event)"
+                    multiple
+                    draggable
+                    #file
+                  />
+                </label>
+                <ng-container *ngIf="archivos.documentos.length > 0">
+                  <div
+                    class="drop__file"
+                    *ngFor="let archivo of archivos.documentos; let i = index"
+                  >
+                    <div class="drop__title">
+                      <label>{{
+                        archivo.name && archivo.name.length > 10
+                          ? (archivo.name.trim() | slice: 0:20) + "..."
+                          : archivo.name
+                      }}</label>
+                      <img
+                        (click)="eliminarArchivo(i)"
+                        src="assets/img/iconos/ico_close.svg"
+                        alt="icono cerrar"
+                      />
+                    </div>
+                    <p-progressBar
+                      mode="determinate"
+                      value="100"
+                    ></p-progressBar>
+                  </div>
+                </ng-container>
+                <div
+                  class="drop__label"
+                  *ngIf="archivos.documentos.length == 0"
                 >
+                  <div class="u-mb-10">
+                    <img
+                      src="assets/img/iconos/ico-dropzone.svg"
+                      alt="icono dropzone"
+                    />
+                  </div>
+                  <div>
+                    Arrastra y suelta los documentos que quieres adjuntar.
+                  </div>
+                </div>
               </div>
             </ng-container>
 
@@ -249,20 +380,58 @@
                   </div>
                 </div>
               </div>
-              <div
-                class="styleInput typeDocument__add"
-                *ngFor="let file of files"
-              >
-                <input
-                  type="file"
-                  class="inputFile u-mb-5"
-                  [id]="file.id"
-                  (change)="handleFileInput($event, file)"
-                />
-                <label [for]="file.id">Agregar documento</label>
-                <a class="typeDocument__add-link" (click)="agregarNuevosDoc()"
-                  >+agregar documento</a
+              <!--Carga de archivos-->
+              <div class="drop">
+                <label class="drop__input">
+                  <input
+                    style="display: none"
+                    tittle=" "
+                    type="file"
+                    name="files[]"
+                    accept=".pdf, .csv, .xls, .xlsx, text/csv, application/csv"
+                    (change)="cargarArchivo($event)"
+                    multiple
+                    draggable
+                    #file
+                  />
+                </label>
+                <ng-container *ngIf="archivos.documentos.length > 0">
+                  <div
+                    class="drop__file"
+                    *ngFor="let archivo of archivos.documentos; let i = index"
+                  >
+                    <div class="drop__title">
+                      <label>{{
+                        archivo.name && archivo.name.length > 10
+                          ? (archivo.name.trim() | slice: 0:20) + "..."
+                          : archivo.name
+                      }}</label>
+                      <img
+                        (click)="eliminarArchivo(i)"
+                        src="assets/img/iconos/ico_close.svg"
+                        alt="icono cerrar"
+                      />
+                    </div>
+                    <p-progressBar
+                      mode="determinate"
+                      value="100"
+                    ></p-progressBar>
+                  </div>
+                </ng-container>
+                <div
+                  class="drop__label"
+                  *ngIf="archivos.documentos.length == 0"
                 >
+                  <div class="u-mb-10">
+                    <img
+                      src="assets/img/iconos/ico-dropzone.svg"
+                      alt="icono dropzone"
+                    />
+                  </div>
+                  <div>
+                    Arrastra y suelta los documentos que quieres adjuntar.
+                  </div>
+                </div>
               </div>
             </ng-container>
 
@@ -286,20 +455,58 @@
                   </div>
                 </div>
               </div>
-              <div
-                class="styleInput typeDocument__add"
-                *ngFor="let file of files"
-              >
-                <input
-                  type="file"
-                  class="inputFile u-mb-5"
-                  [id]="file.id"
-                  (change)="handleFileInput($event, file)"
-                />
-                <label [for]="file.id">Agregar documento</label>
-                <a class="typeDocument__add-link" (click)="agregarNuevosDoc()"
-                  >+agregar documento</a
+              <!--Carga de archivos-->
+              <div class="drop">
+                <label class="drop__input">
+                  <input
+                    style="display: none"
+                    tittle=" "
+                    type="file"
+                    name="files[]"
+                    accept=".pdf, .csv, .xls, .xlsx, text/csv, application/csv"
+                    (change)="cargarArchivo($event)"
+                    multiple
+                    draggable
+                    #file
+                  />
+                </label>
+                <ng-container *ngIf="archivos.documentos.length > 0">
+                  <div
+                    class="drop__file"
+                    *ngFor="let archivo of archivos.documentos; let i = index"
+                  >
+                    <div class="drop__title">
+                      <label>{{
+                        archivo.name && archivo.name.length > 10
+                          ? (archivo.name.trim() | slice: 0:20) + "..."
+                          : archivo.name
+                      }}</label>
+                      <img
+                        (click)="eliminarArchivo(i)"
+                        src="assets/img/iconos/ico_close.svg"
+                        alt="icono cerrar"
+                      />
+                    </div>
+                    <p-progressBar
+                      mode="determinate"
+                      value="100"
+                    ></p-progressBar>
+                  </div>
+                </ng-container>
+                <div
+                  class="drop__label"
+                  *ngIf="archivos.documentos.length == 0"
                 >
+                  <div class="u-mb-10">
+                    <img
+                      src="assets/img/iconos/ico-dropzone.svg"
+                      alt="icono dropzone"
+                    />
+                  </div>
+                  <div>
+                    Arrastra y suelta los documentos que quieres adjuntar.
+                  </div>
+                </div>
               </div>
             </ng-container>
 
@@ -323,159 +530,319 @@
                   </div>
                 </div>
               </div>
-              <div
-                class="styleInput typeDocument__add"
-                *ngFor="let file of files"
-              >
-                <input
-                  type="file"
-                  class="inputFile u-mb-5"
-                  [id]="file.id"
-                  (change)="handleFileInput($event, file)"
-                />
-                <label [for]="file.id">Agregar documento</label>
-                <a class="typeDocument__add-link" (click)="agregarNuevosDoc()"
-                  >+agregar documento</a
+              <!--Carga de archivos-->
+              <div class="drop">
+                <label class="drop__input">
+                  <input
+                    style="display: none"
+                    tittle=" "
+                    type="file"
+                    name="files[]"
+                    accept=".pdf, .csv, .xls, .xlsx, text/csv, application/csv"
+                    (change)="cargarArchivo($event)"
+                    multiple
+                    draggable
+                    #file
+                  />
+                </label>
+                <ng-container *ngIf="archivos.documentos.length > 0">
+                  <div
+                    class="drop__file"
+                    *ngFor="let archivo of archivos.documentos; let i = index"
+                  >
+                    <div class="drop__title">
+                      <label>{{
+                        archivo.name && archivo.name.length > 10
+                          ? (archivo.name.trim() | slice: 0:20) + "..."
+                          : archivo.name
+                      }}</label>
+                      <img
+                        (click)="eliminarArchivo(i)"
+                        src="assets/img/iconos/ico_close.svg"
+                        alt="icono cerrar"
+                      />
+                    </div>
+                    <p-progressBar
+                      mode="determinate"
+                      value="100"
+                    ></p-progressBar>
+                  </div>
+                </ng-container>
+                <div
+                  class="drop__label"
+                  *ngIf="archivos.documentos.length == 0"
                 >
+                  <div class="u-mb-10">
+                    <img
+                      src="assets/img/iconos/ico-dropzone.svg"
+                      alt="icono dropzone"
+                    />
+                  </div>
+                  <div>
+                    Arrastra y suelta los documentos que quieres adjuntar.
+                  </div>
+                </div>
               </div>
             </ng-container>
+
+            <button (click)="saveDocuments()">Cargar</button>
           </div>
 
           <!--Administrador-->
           <div class="typeDocument__document" *ngIf="!colaborador">
-            <div class="typeDocument__title">Descripción del documento:</div>
-            <div class="typeDocument__text">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo consequat.
+            <div>
+              <div class="typeDocument__status">
+                <div class="typeDocument__title">Estatus de documento:</div>
+                <ng-container>
+                  <div class="semaphoreText" *ngFor="let sem of semaphore">
+                    <span
+                      [ngClass]="{
+                        semaphoreText__delivery:
+                          sem.estatus == 'Pendiente de entrega',
+                        semaphoreText__ready: sem.estatus == 'Listo',
+                        semaphoreText__revision:
+                          sem.estatus == 'Pendiente de revisión',
+                        semaphoreText__introduce:
+                          sem.estatus == 'No se va a presentar',
+                        semaphoreText__undelivered:
+                          sem.estatus == 'No entregado',
+                        semaphoreText__notReviewed:
+                          sem.estatus == 'No revisado',
+                        semaphoreText__additional:
+                          sem.estatus == 'Cambios adicionales',
+                        semaphoreText__wrong: sem.estatus == 'Entregado mal'
+                      }"
+                      >{{ sem.estatus }}</span
+                    >
+                  </div>
+                </ng-container>
+              </div>
+              <div class="typeDocument__title">Descripción del documento:</div>
+              <div class="typeDocument__text">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+                enim ad minim veniam, quis nostrud exercitation ullamco laboris
+                nisi ut aliquip ex ea commodo consequat.
+              </div>
+              <div class="typeDocument__data">
+                <div>
+                  <span>Área responsable:</span>
+                  <span>Jurídico</span>
+                </div>
+                <div>
+                  <span>Responsable:</span>
+                  <span>Manuel Morán</span>
+                </div>
+                <div>
+                  <span>Correo del responsable:</span>
+                  <span>correo@ejemplo.com.mx</span>
+                </div>
+              </div>
             </div>
 
-            <ng-container *ngIf="contrato">
-              <div class="typeDocument__title">Documentos cargados</div>
-              <div class="typeDocument__files">
-                <div *ngFor="let item of doc_contratos; let i = index">
-                  <div class="typeDocument__box">
-                    <div class="typeDocument__box-name">
-                      <div>{{ item.name }}</div>
+            <div class="u-mt-30">
+              <ng-container *ngIf="contrato">
+                <div class="typeDocument__title">Documentos cargados</div>
+                <div class="typeDocument__files">
+                  <div *ngFor="let item of doc_contratos; let i = index">
+                    <div class="typeDocument__box">
+                      <div class="typeDocument__box-name">
+                        <div>{{ item.name }}</div>
+                        <img
+                          src="assets/img/iconos/ico-file-earmark-pdf-fill.svg"
+                          alt="icono PDF"
+                        />
+                      </div>
                       <img
-                        src="assets/img/iconos/ico-file-earmark-pdf-fill.svg"
-                        alt="icono PDF"
+                        src="assets/img/iconos/ico-dow.svg"
+                        alt="icono de descarga"
                       />
                     </div>
-                    <img
-                      src="assets/img/iconos/ico-dow.svg"
-                      alt="icono de descarga"
-                    />
                   </div>
                 </div>
-              </div>
-            </ng-container>
+              </ng-container>
 
-            <ng-container *ngIf="adendas">
-              <div class="typeDocument__title">Documentos cargados</div>
-              <div class="typeDocument__files">
-                <div *ngFor="let item of doc_adendas; let i = index">
-                  <div class="typeDocument__box">
-                    <div class="typeDocument__box-name">
-                      <div>{{ item.name }}</div>
+              <ng-container *ngIf="adendas">
+                <div class="typeDocument__title">Documentos cargados</div>
+                <div class="typeDocument__files">
+                  <div *ngFor="let item of doc_adendas; let i = index">
+                    <div class="typeDocument__box">
+                      <div class="typeDocument__box-name">
+                        <div>{{ item.name }}</div>
+                        <img
+                          src="assets/img/iconos/ico-file-earmark-pdf-fill.svg"
+                          alt="icono PDF"
+                        />
+                      </div>
                       <img
-                        src="assets/img/iconos/ico-file-earmark-pdf-fill.svg"
-                        alt="icono PDF"
+                        src="assets/img/iconos/ico-dow.svg"
+                        alt="icono de descarga"
                       />
                     </div>
-                    <img
-                      src="assets/img/iconos/ico-dow.svg"
-                      alt="icono de descarga"
-                    />
                   </div>
                 </div>
-              </div>
-            </ng-container>
+              </ng-container>
 
-            <ng-container *ngIf="anexos">
-              <div class="typeDocument__title">Documentos cargados</div>
-              <div class="typeDocument__files">
-                <div *ngFor="let item of doc_anexos; let i = index">
-                  <div class="typeDocument__box">
-                    <div class="typeDocument__box-name">
-                      <div>{{ item.name }}</div>
+              <ng-container *ngIf="anexos">
+                <div class="typeDocument__title">Documentos cargados</div>
+                <div class="typeDocument__files">
+                  <div *ngFor="let item of doc_anexos; let i = index">
+                    <div class="typeDocument__box">
+                      <div class="typeDocument__box-name">
+                        <div>{{ item.name }}</div>
+                        <img
+                          src="assets/img/iconos/ico-file-earmark-pdf-fill.svg"
+                          alt="icono PDF"
+                        />
+                      </div>
                       <img
-                        src="assets/img/iconos/ico-file-earmark-pdf-fill.svg"
-                        alt="icono PDF"
+                        src="assets/img/iconos/ico-dow.svg"
+                        alt="icono de descarga"
                       />
                     </div>
-                    <img
-                      src="assets/img/iconos/ico-dow.svg"
-                      alt="icono de descarga"
-                    />
                   </div>
                 </div>
-              </div>
-            </ng-container>
+              </ng-container>
 
-            <ng-container *ngIf="explicacion">
-              <div class="typeDocument__title">Documentos cargados</div>
-              <div class="typeDocument__files">
-                <div *ngFor="let item of doc_explicacion; let i = index">
-                  <div class="typeDocument__box">
-                    <div class="typeDocument__box-name">
-                      <div>{{ item.name }}</div>
+              <ng-container *ngIf="explicacion">
+                <div class="typeDocument__title">Documentos cargados</div>
+                <div class="typeDocument__files">
+                  <div *ngFor="let item of doc_explicacion; let i = index">
+                    <div class="typeDocument__box">
+                      <div class="typeDocument__box-name">
+                        <div>{{ item.name }}</div>
+                        <img
+                          src="assets/img/iconos/ico-file-earmark-pdf-fill.svg"
+                          alt="icono PDF"
+                        />
+                      </div>
                       <img
-                        src="assets/img/iconos/ico-file-earmark-pdf-fill.svg"
-                        alt="icono PDF"
+                        src="assets/img/iconos/ico-dow.svg"
+                        alt="icono de descarga"
                       />
                     </div>
-                    <img
-                      src="assets/img/iconos/ico-dow.svg"
-                      alt="icono de descarga"
-                    />
                   </div>
                 </div>
-              </div>
-            </ng-container>
+              </ng-container>
 
-            <ng-container *ngIf="fundamento_legal">
-              <div class="typeDocument__title">Documentos cargados</div>
-              <div class="typeDocument__files">
-                <div *ngFor="let item of doc_fundamentos; let i = index">
-                  <div class="typeDocument__box">
-                    <div class="typeDocument__box-name">
-                      <div>{{ item.name }}</div>
+              <ng-container *ngIf="fundamento_legal">
+                <div class="typeDocument__title">Documentos cargados</div>
+                <div class="typeDocument__files">
+                  <div *ngFor="let item of doc_fundamentos; let i = index">
+                    <div class="typeDocument__box">
+                      <div class="typeDocument__box-name">
+                        <div>{{ item.name }}</div>
+                        <img
+                          src="assets/img/iconos/ico-file-earmark-pdf-fill.svg"
+                          alt="icono PDF"
+                        />
+                      </div>
                       <img
-                        src="assets/img/iconos/ico-file-earmark-pdf-fill.svg"
-                        alt="icono PDF"
+                        src="assets/img/iconos/ico-dow.svg"
+                        alt="icono de descarga"
                       />
                     </div>
-                    <img
-                      src="assets/img/iconos/ico-dow.svg"
-                      alt="icono de descarga"
-                    />
                   </div>
                 </div>
-              </div>
-            </ng-container>
+              </ng-container>
 
-            <ng-container *ngIf="informes">
-              <div class="typeDocument__files">
-                <div *ngFor="let item of doc_informes; let i = index">
-                  <div class="typeDocument__box">
-                    <div class="typeDocument__box-name">
-                      <div>{{ item.name }}</div>
+              <ng-container *ngIf="informes">
+                <div class="typeDocument__files">
+                  <div *ngFor="let item of doc_informes; let i = index">
+                    <div class="typeDocument__box">
+                      <div class="typeDocument__box-name">
+                        <div>{{ item.name }}</div>
+                        <img
+                          src="assets/img/iconos/ico-file-earmark-pdf-fill.svg"
+                          alt="icono PDF"
+                        />
+                      </div>
                       <img
-                        src="assets/img/iconos/ico-file-earmark-pdf-fill.svg"
-                        alt="icono PDF"
+                        class="downDocuments__delete"
+                        src="assets/img/iconos/ico-dow.svg"
+                        alt="icono de descarga"
                       />
                     </div>
-                    <img
-                      class="downDocuments__delete"
-                      src="assets/img/iconos/ico-dow.svg"
-                      alt="icono de descarga"
-                    />
+                  </div>
+                </div>
+              </ng-container>
+            </div>
+
+            <div class="dataGe">
+              <div class="dataGe__content">
+                <div class="dataGe__grid">
+                  <div class="styleInput">
+                    <div *ngIf="!colaborador">
+                      <label>Resultado de la revisión</label>
+                      <p-dropdown
+                        [options]="opt"
+                        (onChange)="changeLegal()"
+                        optionLabel="name"
+                        placeholder="Selecciona el representante legal"
+                      ></p-dropdown>
+                    </div>
+                    <div
+                      class="styleInput documents__area comments"
+                      [ngClass]="{
+                        'u-mt-0': colaborador,
+                        'u-mb-80': colaborador
+                      }"
+                    >
+                      <label>Comentarios generales</label>
+                      <textarea
+                        pInputTextarea
+                        (keyup)="countCharacters($event, 2)"
+                        maxlength="250"
+                        [autoResize]="true"
+                        placeholder="Ingresa un comentario"
+                      ></textarea>
+                      <div
+                        class="count-characters"
+                        [ngClass]="isMaxBita ? 'status-characters-max' : ''"
+                      >
+                        {{ countCharsBita }} /
+                        {{ maxCharactersBita - countCharsBita }} caracteres
+                        restantes
+                      </div>
+                    </div>
+                  </div>
+                  <div class="styleInput documents__area bitacora">
+                    <label>Bitácora de comentarios</label>
+                    <div class="bitacora__content">
+                      <div class="ficha">
+                        <div class="ficha__msg">
+                          Esto son comentarios de quien sube los documentos,
+                          puede o no hacer comentarios, son opcionales.
+                        </div>
+                        <div class="ficha__info">
+                          Julio Hernández - Rechazado - 22/09/22 a las 21:30
+                        </div>
+                      </div>
+                      <div class="ficha">
+                        <div class="ficha__msg">
+                          No entiendo por qué está rechazado
+                        </div>
+                        <div class="ficha__info">
+                          Susana - 23/09/22 a las 10:30
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
-            </ng-container>
+            </div>
+
+            <!--Botones-->
+            <div class="buttons-content" *ngIf="save && !colaborador">
+              <button class="btn-outline-primary">Cancelar</button>
+              <button class="btn-primary" (click)="showModal('modal4')">
+                Guardar
+              </button>
+            </div>
+
+            <div class="buttons-content" *ngIf="toReturn">
+              <button class="btn-outline-primary">Regresar</button>
+            </div>
           </div>
         </div>
       </div>
@@ -483,26 +850,14 @@
   </section>
 
   <!--Revisión-->
-  <section class="dataGe">
+  <section class="dataGe" *ngIf="colaborador">
     <div class="container">
       <div class="sectionNoBg">
-        <div class="sectionNoBg__title" *ngIf="colaborador">
-          Foro del requerimiento
-        </div>
-        <div class="sectionNoBg__title" *ngIf="!colaborador">Revisión</div>
+        <div class="sectionNoBg__title">Foro del documento</div>
         <div class="sectionNoBg__content">
           <div class="dataGe__content">
             <div class="dataGe__grid">
               <div class="styleInput">
-                <div *ngIf="!colaborador">
-                  <label>Resultado de la revisión</label>
-                  <p-dropdown
-                    [options]="opt"
-                    (onChange)="changeLegal()"
-                    optionLabel="name"
-                    placeholder="Selecciona el representante legal"
-                  ></p-dropdown>
-                </div>
                 <div
                   class="styleInput documents__area comments"
                   [ngClass]="{ 'u-mt-0': colaborador, 'u-mb-80': colaborador }"
@@ -549,20 +904,12 @@
           </div>
         </div>
       </div>
-      <div class="buttons-content" *ngIf="save && !colaborador">
-        <button class="btn-outline-primary">Cancelar</button>
-        <button class="btn-primary" (click)="showModal('modal4')">
-          Guardar
-        </button>
-      </div>
+
       <div class="buttons-content" *ngIf="colaborador">
         <button class="btn-outline-primary">Cancelar</button>
         <button class="btn-primary" (click)="showModal('modal4')">
           Guardar
         </button>
-      </div>
-      <div class="buttons-content" *ngIf="toReturn">
-        <button class="btn-outline-primary">Regresar</button>
       </div>
     </div>
   </section>

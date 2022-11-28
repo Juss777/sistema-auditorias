@@ -26,10 +26,10 @@ export class HeaderComponent implements OnInit {
       name: "Notificaciones",
       url: "/notificacion",
     },
-    {
-      id: 4,
-      name: "Nueva Auditoría",
-      url: "/auditoria/:id/:isReading/:sectionId",
-    },
+    // {
+    //   id: 4,
+    //   name: "Nueva Auditoría",
+    //   url: "/auditoria/:id/:isReading/:sectionId",
+    // },
   ];
 }

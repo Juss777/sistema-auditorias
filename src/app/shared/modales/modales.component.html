@@ -17,11 +17,6 @@
             <p-sortIcon field="tipoDeDocumento"></p-sortIcon>
           </th>
 
-          <th pSortableColumn="acredita">
-            Acredita
-            <p-sortIcon field="acredita"></p-sortIcon>
-          </th>
-
           <th pSortableColumn="estatus">
             Estatus actual <p-sortIcon field="estatus"></p-sortIcon>
           </th>
@@ -41,7 +36,6 @@
               {{ req.tipo }}
             </div>
           </td>
-          <td>{{ req.acredita }}</td>
           <td>
             <div class="semaphore">
               <span
@@ -150,10 +144,11 @@
             maxlength="250"
           ></textarea>
           <div
-            class="count-characters"
+            class="count-characters m"
             [ngClass]="isMax ? 'status-characters-max' : ''"
           >
-            {{ countChars }} / {{ maxCharacters }} máx.
+            {{ countChars }} / {{ maxCharacters - countChars }} caracteres
+            restantes
           </div>
         </div>
 

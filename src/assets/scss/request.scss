@@ -27,6 +27,10 @@
     font-family: var(--main-font-regular);
   }
 
+  &__status {
+    margin-bottom: 10px;
+  }
+
   &__chip {
     display: flex;
     align-items: center;
@@ -68,7 +72,6 @@
 
   &__document {
     padding: 0 30px;
-    box-sizing: border-box;
   }
 
   &__text {
@@ -77,7 +80,30 @@
     font-size: 1.2rem;
     color: #747474;
     text-align: start;
+    margin-bottom: 10px;
+  }
+
+  &__data {
     margin-bottom: 35px;
+    display: flex;
+    column-gap: 50px;
+
+    div {
+      span {
+        display: block;
+        font-family: var(--main-font-regular);
+
+        &:nth-child(1) {
+          font-size: 1.4rem;
+          color: var(--color-negro);
+        }
+
+        &:nth-child(2) {
+          font-size: 1.2rem;
+          color: var(--color-text-74);
+        }
+      }
+    }
   }
 
   &__files {
@@ -285,3 +311,47 @@
     }
   }
 }
+
+// .tabview-custom {
+//   i,
+//   span {
+//     vertical-align: middle;
+//   }
+
+//   span {
+//     margin: 0 0.5rem;
+//   }
+// }
+
+// .p-button {
+//   margin-right: 0.25rem;
+// }
+
+// .p-tabview p {
+//   line-height: 1.5;
+//   margin: 0;
+// }
+
+// .tabsReq {
+//   .p-tabview .p-tabview-panels {
+//     padding: 0;
+//   }
+//   .p-tabview .p-tabview-nav {
+//     border: 1px solid #3684b1;
+//     border-width: 0 0 2px 0;
+//   }
+//   .p-tabview .p-tabview-nav li a {
+//     font-size: 1.4rem;
+//     font-weight: normal;
+//     font-family: var(--main-font-medium);
+//   }
+//   .p-tabview .p-tabview-nav li.p-highlight .p-tabview-nav-link {
+//     border-color: #71ca6b;
+//     color: #71ca6b;
+//   }
+//   .p-tabview .p-tabview-nav li .p-tabview-nav-link {
+//     border: solid #3684b1;
+//     border-width: 0 0 2px 0;
+//     border-color: #3684b1;
+//   }
+// }

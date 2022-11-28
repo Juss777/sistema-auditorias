@@ -2,25 +2,25 @@
     "data": [
         {
             "id": "1",
-            "documentos": "Contrato, adendas, anexos, explicación, fundamento legal, informes, reportes, bitácora.",
+            "documentos": "Contrato",
             "estatus": "Pendiente de entrega",
             "fechaEntrega": "10/11/2022"
         },
         {
             "id": "2",
-            "documentos": "Explicación, fundamento legal, informes, bitácora.",
+            "documentos": "Adendas",
             "estatus": "Pendiente de revisión",
             "fechaEntrega": "15/10/2022"
         },
         {
             "id": "3",
-            "documentos": "Contrato, adendas.",
+            "documentos": "Informes",
             "estatus": "Cambios adicionales",
             "fechaEntrega": "15/10/2022"
         },
         {
             "id": "4",
-            "documentos": "Informes, bitácora.",
+            "documentos": "Bitácora",
             "estatus": "Entregado mal",
             "fechaEntrega": "15/10/2022"
         }
