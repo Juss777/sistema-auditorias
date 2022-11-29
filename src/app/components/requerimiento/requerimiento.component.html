@@ -1,0 +1,271 @@
+<div class="page">
+    <div class="container d-flex-auditoria">
+        <div class="titulo-bloque">{{mainTitle}}</div>
+    </div>
+
+    <section class="data">
+        <div class="container">
+            <div class="sectionNoBg">
+                <!-- FORMULARIO DATOS GENERALES REQUERIMIENTO
+                ________________________________________________________________________________________________ -->
+                <div class="sectionNoBg__title">Datos generales</div>
+                <div class="sectionNoBg__content">
+                    <div class="data__content">
+                        <form [formGroup]="formRequerimiento">
+
+                            <div class="audit__columns3 u-mb-50">
+
+                              <!-- Partida -->
+                              <div class="p-field styleInput">
+                                <label>Partida</label>
+                                <div class="audit__flex">
+                                    <div>
+                                      <p-autoComplete
+                                        [suggestions]="filterGeneral"
+                                        (completeMethod)="search($event, partidas)"
+                                        formControlName="partida"
+                                        placeholder="Ingresa dato"
+                                      ></p-autoComplete>
+                                      <small
+                                        class="audit__required"
+                                        *ngIf="
+                                          auditoriaService.validaCampo(formRequerimiento, 'partida')
+                                        "
+                                        >* Campo requerido.</small
+                                      >
+                                    </div>
+                            
+                                    <img
+                                      src="assets/img/iconos/gear-fill.svg"
+                                      (click)="openSidebarCatalog('Agrega partida', 'partida', true)"
+                                    />
+                                </div>
+                              </div>
+                        
+                              <!-- Checkbox Tipo de Requerimiento -->
+                              <div class="p-field styleInput">
+                                <label>Tipo de requerimiento</label>
+                                <div class="audit__flex field-checkbox">
+                                  <p-checkbox
+                                    name="group1"
+                                    value="Documental / Probatorio"
+                                    formControlName="typeRequestDocumental"
+                                  ></p-checkbox>
+                                  <label>Documental / Probatorio</label>
+                                </div>
+                                <div class="audit__flex field-checkbox">
+                                  <p-checkbox
+                                    name="group1"
+                                    value="Descriptivo / Argumentativo"
+                                    formControlName="typeRequestDescriptive"
+                                  ></p-checkbox>
+                                  <label>Descriptivo / Argumentativo</label>
+                                </div>
+                              </div>
+
+                              <!-- Input Acredita -->
+                              <div class="p-field styleInput">
+                                <label>Acredita</label>
+                                <input pInputText [class.input-disabled]="false" formControlName="acredita" placeholder="Ingresa dato"/>
+                                <small
+                                    class="audit__required"
+                                    *ngIf="
+                                        auditoriaService.validaCampo(formRequerimiento, 'acredita')
+                                    "
+                                    >* Campo requerido.</small
+                                >
+                              </div>
+                            </div>
+
+                            <div class="audit__columns1">
+                                <!-- Textarea descripción del requerimiento -->
+                                <div class="p-field styleInput u-mb-10 inputTextArea">
+                                    <label>Descripción del requerimiento</label>
+                                    <textarea pInputTextarea formControlName="description" (keyup)="countCharacters($event)" maxlength="3000" placeholder="Ingresa descripción"></textarea>
+                                    <div class="count-characters m" [ngClass]="isMax ? 'status-characters-max' : ''">
+                                        {{ countChars }} / {{ maxCharacters - countChars }} caracteres
+                                        restantes
+                                    </div>
+                                    <small
+                                        class="audit__required"
+                                        *ngIf="
+                                            auditoriaService.validaCampo(formRequerimiento, 'description')
+                                        "
+                                        >* Campo requerido.</small
+                                    >
+                                </div>
+                            </div>
+
+                            <div class="audit__columns3">
+                                <!-- Input Fecha de entrega -->
+                                <div class="p-field styleInput">
+                                    <label>Fecha de entrega</label>
+                                    <p-calendar
+                                        name="fechaEntrega"
+                                        placeholder="Ingresa fecha"
+                                        formControlName="dateDelivery"
+                                    ></p-calendar>
+                                    <small
+                                        class="audit__required"
+                                        *ngIf="
+                                            auditoriaService.validaCampo(formRequerimiento, 'dateDelivery')
+                                        "
+                                        >* Campo requerido.</small
+                                    >
+                                </div>
+                            </div>
+                        
+                            <div class="buttons-content">
+                                <button
+                                    type="button"
+                                    class="btn-outline-primary"
+                                >
+                                    Cancelar
+                                </button>
+
+                                <button
+                                    type="button"
+                                    [ngClass]="formRequerimiento.valid ? 'btn-primary' : 'btn-primary-disabled'"
+                                    class=""
+                                    (click)="saveDataReq()"
+                                >
+                                    Agregar
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                
+                <!-- ___________________________________________________________________________________________ -->
+
+                <!-- DOCUMENTOS
+                ________________________________________________________________________________________________ -->
+                <div class="sectionNoBg__title">Documentos</div>
+                <div class="sectionNoBg__content">
+                    <div class="data__content">
+                        <div class="typeDocument__content">
+                            <div class="buttons-content btn-add-document">
+                                <button 
+                                    type="button" 
+                                    (click)="openModalDocument()"
+                                    [ngClass]="{'btn-primary': activateBtnAddDocument, 'btn-primary-disabled': !activateBtnAddDocument}"
+                                > 
+                                    Agregar documento
+                                </button>
+                            </div>
+
+                            <div class="typeDocument__chip">
+                                <p-chip
+                                    *ngFor="let document of documents"
+                                    label="{{ document.typeDocument }}"
+                                    [ngClass]="{ active: document.id == idDocumentSelected }"
+                                    (click)="mostrarDocumentos(document.id)"
+                                ></p-chip>
+                            </div>
+                        </div>
+
+                        <ng-container *ngIf="documentSelected.id != 0">
+                            <div class="typeDocument__document">
+                                <div class="typeDocument__title typeDocument__title-short">Tipo de documento: <div class="typeDocument__text typeDocument__text-short">{{documentSelected.typeDocument}}</div></div>
+    
+                                <div class="typeDocument__title">Descripción del documento:</div>
+                                <div class="typeDocument__text">{{documentSelected.description}}</div>
+    
+                                <div class="typeDocument__title typeDocument__title-short">Área responsable: <div class="typeDocument__text typeDocument__text-short">{{documentSelected.areaResponsible}}</div></div>
+                                
+    
+                                <div class="typeDocument__title typeDocument__title-short">Responsanle: <div class="typeDocument__text typeDocument__text-short">{{documentSelected.responsible}}</div></div>
+                                
+    
+                                <div class="typeDocument__title typeDocument__title-short">Correo del responsable: <div class="typeDocument__text typeDocument__text-short">{{documentSelected.email}}</div></div>
+                                
+                            </div>
+    
+                            <div class="buttons-content">
+                                <button type="button" [ngClass]="idDocumentSelected > 0 ? 'btn-primary' : 'btn-primary-disabled'" (click)="openModalDocument(true)"> Editar</button>
+                            </div>
+                        </ng-container>
+                        
+                    </div>
+                </div>
+                <!-- ___________________________________________________________________________________________ -->
+
+            </div>
+        </div>
+    </section>
+</div>
+
+<!-- MODAL AGREGAR/EDITAR DOCUMENTO
+________________________________________________________________________________________________ -->
+<p-dialog
+    [header]="titleModal"
+    class="modalNewReq"
+    [(visible)]="displayModalDocument"
+    [modal]="true"
+    [draggable]="false"
+    [resizable]="false"
+>
+    <app-form-document 
+        (displayModalDocument)="getValueDisplayModal($event)" 
+        [formDocuments]="formDocuments"
+        (dataForm)="getDataFormDocument($event)"
+        (catalogName)="getCatalogNameModal($event)"
+        (catalog)="getCatalogModal($event)"
+        (visibleSidebar)="getValueVisibleSidebar($event)"
+        >
+    </app-form-document>
+</p-dialog>
+<!-- ___________________________________________________________________________________________ -->
+
+<!-- SIDEBAR CATALOGOS
+________________________________________________________________________________________________ -->
+<p-sidebar
+  [(visible)]="visibleSidebar"
+  position="right"
+  [baseZIndex]="10000"
+  styleClass="p-sidebar-xl"
+  [transitionOptions]="'200ms'"
+>
+  <div class="page">
+    <section class="data">
+      <div class="container">
+        <div class="sectionNoBg">
+          <div class="sectionNoBg__title">{{ catalogName }}</div>
+          <div class="sectionNoBg__content">
+
+            <div class="content-search-catalog styleInput" 
+            *ngIf="
+              catalog == 'partida' ||
+              catalog == 'tipoDocumento'">
+              <p-autoComplete
+                class="input-search"
+                [suggestions]="filterGeneral"
+                (completeMethod)="
+                  search($event, listaGeneral)
+                "
+                [(ngModel)] = "inputSearch"
+              ></p-autoComplete>
+              <div class="buttons-content-search-catalog">
+                <button type="submit" class="btn-primary">Agregar</button>
+              </div>
+            </div>
+
+            <div class="data__content">
+              <app-catalogos
+                [catalog]="catalog"
+                [catalogNameIn]="catalogName"
+                [list] = "listaGeneral"
+                [data] = "listaGeneral"
+                [totalRecords]="listaGeneral.length"
+                (formDataOut)="getDataForm($event)"
+                (visibleSidebar)="cancelSidebar($event)"
+                (catalogNameOut)="changeNameCatalog($event)"
+              ></app-catalogos>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</p-sidebar>
+<!-- ___________________________________________________________________________________________ -->

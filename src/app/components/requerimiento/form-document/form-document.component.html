@@ -1,0 +1,101 @@
+
+
+<form [formGroup]="formDocuments" (submit)="saveData()">
+    <div class="modalNewReq__grid u-mb-40">
+      <!-- Autocomplete Tipo Documento -->
+      <div class="p-field styleInput">
+        <label for="area">Tipo de documento</label>
+        <div class="audit__flex">
+          <div>
+            <p-autoComplete
+              [suggestions]="filterGeneral"
+              (completeMethod)="search($event, typesDocuments)"
+              formControlName="typeDocument"
+            ></p-autoComplete>
+            <small
+              class="audit__required"
+              *ngIf="
+                auditoriaService.validaCampo(formDocuments, 'typeDocument')
+              "
+              >* Campo requerido.</small
+            >
+          </div>
+
+          <img
+            src="assets/img/iconos/gear-fill.svg"
+            (click)="openModalCatalog('Agrega tipo de documento', 'tipoDocumento', true)"
+          />
+        </div>
+      </div>
+
+      <div></div>
+
+      <!-- Textarea descripción del requerimiento -->
+      <div class="p-field styleInput inputTextArea">
+        <label>Descripción del requerimiento</label>
+        <textarea pInputTextarea formControlName="description" (keyup)="countCharacters($event)"  maxlength="3000" placeholder="Ingresa descripción"></textarea>
+        <div class="count-characters m" [ngClass]="isMax ? 'status-characters-max' : ''">
+            {{ countChars }} / {{ maxCharacters - countChars }} caracteres
+            restantes
+        </div>
+      </div>    
+
+      <!-- Autocomplete Área responsable -->
+      <div class="p-field styleInput">
+        <label>Área responsable</label>
+        <div class="audit__flex">
+          <div>
+            <p-autoComplete
+              [suggestions]="filterGeneral"
+              (completeMethod)="search($event, areasResponsible)"
+              formControlName="areaResponsible"
+            ></p-autoComplete>
+            <!-- <small
+              class="audit__required"
+              *ngIf="auditoriaService.validaCampo(formDocuments, 'area')"
+              >* Campo requerido.</small
+            > -->
+          </div>
+          <img src="assets/img/iconos/gear-fill.svg" 
+            (click)="openModalCatalog('Miembro del área (interna)', 'responsableArea', true)"
+          />
+        </div>
+      </div>
+
+      <!-- Autocomplete Área responsable -->
+      <div class="p-field styleInput">
+        <label>Responsable</label>
+        <input
+          pInputText
+          formControlName="responsible"
+        />
+      </div>
+
+      <!-- Input Email -->
+      <div class="p-field styleInput">
+        <label>Correo del responsable</label>
+        <input
+          pInputText
+          formControlName="email"
+        />
+      </div>
+    </div>
+
+    <div class="buttons-content">
+      <button
+        type="button"
+        class="btn-outline-primary"
+        (click)="this.displayModalDocument.emit(false)"
+      >
+        Cancelar
+      </button>
+
+      <button
+        type="submit"
+        [ngClass]="formDocuments.valid ? 'btn-primary' : 'btn-primary-disabled'"
+        class=""
+      >
+        Guardar
+      </button>
+    </div>
+  </form>

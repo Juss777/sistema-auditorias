@@ -12,6 +12,7 @@ import { DetalleAuditoriaComponent } from "./components/detalle-auditoria/detall
 import { DetallePorAreaComponent } from "./components/detalle-por-area/detalle-por-area.component";
 import { TableroComponent } from "./components/tablero/tablero.component";
 import { BuscadorComponent } from "./components/buscador/buscador.component";
+import { RequerimientoComponent } from './components/requerimiento/requerimiento.component';
 
 const routes: Routes = [
   {
@@ -141,6 +142,30 @@ const routes: Routes = [
         },
         {
           label: "Calendario",
+          url: "",
+        },
+      ],
+    },
+  },
+  {
+    path: "requerimiento/:id",
+    component: RequerimientoComponent,
+    data: {
+      breadcrumb: [
+        {
+          label: "Tablero de control",
+          url: "/",
+        },
+        {
+          label: "Dashboard",
+          url: "/dashboard",
+        },
+        {
+          label: "Auditoría",
+          url: "/",
+        },
+        {
+          label: "Nuevo Requerimiento",
           url: "",
         },
       ],

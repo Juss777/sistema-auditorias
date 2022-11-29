@@ -32,45 +32,45 @@ export class AuditoriaComponent implements OnInit {
   unidadeNegocio: UnidadNegocio[] = [
     {
       id: 1,
-      nombre: 'Banco Azteca',
-      rfc: 'BAZ37236236',
-      siglas: 'BAZ'
+      nombre: "Banco Azteca",
+      rfc: "BAZ37236236",
+      siglas: "BAZ",
     },
     {
       id: 2,
-      nombre: 'Total Play',
-      rfc: 'TPL37236236',
-      siglas: 'TP'
+      nombre: "Total Play",
+      rfc: "TPL37236236",
+      siglas: "TP",
     },
     {
       id: 3,
-      nombre: 'Elektra',
-      rfc: 'EKT37236236',
-      siglas: 'EKT'
+      nombre: "Elektra",
+      rfc: "EKT37236236",
+      siglas: "EKT",
     },
     {
       id: 4,
-      nombre: 'Italika',
-      rfc: 'ITK37236236',
-      siglas: 'ITK'
+      nombre: "Italika",
+      rfc: "ITK37236236",
+      siglas: "ITK",
     },
     {
       id: 5,
-      nombre: 'Italika 2',
-      rfc: 'ITK37236236',
-      siglas: 'ITK'
+      nombre: "Italika 2",
+      rfc: "ITK37236236",
+      siglas: "ITK",
     },
     {
       id: 6,
-      nombre: 'Italika 3',
-      rfc: 'ITK37236236',
-      siglas: 'ITK'
+      nombre: "Italika 3",
+      rfc: "ITK37236236",
+      siglas: "ITK",
     },
     {
       id: 7,
-      nombre: 'Italika 4',
-      rfc: 'ITK37236236',
-      siglas: 'ITK'
+      nombre: "Italika 4",
+      rfc: "ITK37236236",
+      siglas: "ITK",
     },
   ];
 
@@ -163,35 +163,51 @@ export class AuditoriaComponent implements OnInit {
       id: 1,
       description:
         "Explique amplia y detalladamente en qué consisten las erogaciones por concepto de “Artículos Promocionales”; asimismo, en caso de que dichos artículos sean entregados a los clientes (acreditados) de la contribuyente, indique los requisitos que debe.",
-      typePartida: "Generales",
+      partida: "Generales",
       documentsType: [
         {
           id: 1,
-          typeDocument: "Anexo",
-          descriptionDocument:
-            "Instrumento público, solicitud de crédito, aprobación de crédito, contrato, identificación, tabla de amortización, comprobante de domicilio, estado de cuenta, detalle de movimientos, consulta de gestiones, registros contables",
+          typeDocument: "Contratos",
+          description: `Contratos... Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+          enim ad minim veniam, quis nostrud exercitation ullamco laboris
+          nisi ut aliquip ex ea commodo consequat.`,
+          areaResponsible: "Jurídico",
+          responsible: "Pepe",
+          email: "pepe@elektra.com",
+          idRequirement: 1,
+          status: "",
+          documents: [],
         },
       ],
-      typeRequestDocumental: "",
-      typeRequestDescriptive: "",
+      typeRequestDocumental: true,
+      typeRequestDescriptive: false,
       areaResponsible: "Contabilidad",
       responsible: "",
       email: "",
-      dateDelivery: "",
-      acredita: "",
+      dateDelivery: "2022-11-25",
+      acredita: "Acredita",
       state: "Pendiente de revisión",
     },
     {
       id: 2,
       description:
         "Explique amplia y detalladamente en qué consisten las erogaciones por concepto de “Artículos Promocionales”; asimismo, en caso de que dichos artículos sean entregados a los clientes (acreditados) de la contribuyente, indique los requisitos que debe.",
-      typePartida: "Generales",
+      partida: "Generales",
       documentsType: [
         {
-          id: 1,
-          typeDocument: "Anexo",
-          descriptionDocument:
-            "Instrumento público, solicitud de crédito, aprobación de crédito, contrato, identificación, tabla de amortización, comprobante de domicilio, estado de cuenta, detalle de movimientos, consulta de gestiones, registros contables",
+          id: 5,
+          typeDocument: "Fundamento Legal",
+          description: `Fundamento Legal... ipsum dolor sit amet, consectetur adipiscing elit, sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+          enim ad minim veniam, quis nostrud exercitation ullamco laboris
+          nisi ut aliquip ex ea commodo consequat.`,
+          areaResponsible: "Área Responsable 5",
+          responsible: "Pablo",
+          email: "pablo@elektra.com",
+          idRequirement: 2,
+          status: "",
+          documents: [],
         },
       ],
       typeRequestDocumental: "",
@@ -215,43 +231,43 @@ export class AuditoriaComponent implements OnInit {
   selectedArea!: Area;
   selectedResponsible!: Responsible;
 
-  formDocuments: FormGroup = this.formBuilder.group({
-    id: [0],
-    typeDocument: ["", [Validators.required]],
-    descriptionDocument: [""],
-  });
+  // formDocuments: FormGroup = this.formBuilder.group({
+  //   id: [0],
+  //   typeDocument: ["", [Validators.required]],
+  //   descriptionDocument: [""],
+  // });
 
-  formRequerimiento: FormGroup = this.formBuilder.group({
-    id: [0],
-    description: [""],
-    typePartida: [""],
-    documentsType: [[]],
-    typeRequestDocumental: [false],
-    typeRequestDescriptive: [false],
-    areaResponsible: [this.selectedArea, [Validators.required]],
-    responsible: ["", [Validators.required]],
-    email: [""],
-    dateDelivery: [""],
-    acredita: [""],
-    state: [""],
-  });
+  // formRequerimiento: FormGroup = this.formBuilder.group({
+  //   id: [0],
+  //   description: [""],
+  //   typePartida: [""],
+  //   documentsType: [[]],
+  //   typeRequestDocumental: [false],
+  //   typeRequestDescriptive: [false],
+  //   areaResponsible: [this.selectedArea, [Validators.required]],
+  //   responsible: ["", [Validators.required]],
+  //   email: [""],
+  //   dateDelivery: [""],
+  //   acredita: [""],
+  //   state: [""],
+  // });
 
   filterGeneral: any[] = [];
 
   partidas: any[] = [];
 
-  typesDocuments: any[] = [];
+  //typesDocuments: any[] = [];
 
-  areasResponsible: any[] = [];
+  //areasResponsible: any[] = [];
 
-  typesDocumentsChips: TypeDocument[] = [
-    {
-      id: 1,
-      typeDocument: "Adendas",
-      descriptionDocument:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-    },
-  ];
+  // typesDocumentsChips: TypeDocument[] = [
+  //   {
+  //     id: 1,
+  //     typeDocument: "Adendas",
+  //     descriptionDocument:
+  //       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+  //   },
+  // ];
 
   search(event: any, list: any[]) {
     let filtered: any[] = [];
@@ -281,42 +297,42 @@ export class AuditoriaComponent implements OnInit {
     hidden.classList.add("hidden");
   }
 
-  saveDataReq() {
-    if (this.formRequerimiento.invalid) {
-      this.formRequerimiento.markAllAsTouched();
-    } else {
-      var requirement = new Requirement(this.formRequerimiento.value);
-      requirement.id = this.requirements.length + 1;
-      this.requirements.push(requirement);
-      this.formRequerimiento.reset();
-      this.formRequerimiento.controls["email"].setValue("ejemplo@mail.com.mx");
-      this.displayNuevoReq = false;
-    }
-  }
+  // saveDataReq() {
+  //   if (this.formRequerimiento.invalid) {
+  //     this.formRequerimiento.markAllAsTouched();
+  //   } else {
+  //     var requirement = new Requirement(this.formRequerimiento.value);
+  //     requirement.id = this.requirements.length + 1;
+  //     this.requirements.push(requirement);
+  //     this.formRequerimiento.reset();
+  //     this.formRequerimiento.controls["email"].setValue("ejemplo@mail.com.mx");
+  //     this.displayNuevoReq = false;
+  //   }
+  // }
 
-  addTypeDocumentChip() {
-    console.log(this.formDocuments.controls);
-    if (this.formDocuments.invalid) {
-      this.formDocuments.markAllAsTouched();
-    } else {
-      var typeDocument = new TypeDocument(this.formDocuments.value);
-      typeDocument.id = this.typesDocumentsChips.length + 1;
-      console.log(typeDocument);
-      this.typesDocumentsChips.push(typeDocument);
-      this.formDocuments.reset();
-    }
-  }
+  // addTypeDocumentChip() {
+  //   console.log(this.formDocuments.controls);
+  //   if (this.formDocuments.invalid) {
+  //     this.formDocuments.markAllAsTouched();
+  //   } else {
+  //     var typeDocument = new TypeDocument(this.formDocuments.value);
+  //     typeDocument.id = this.typesDocumentsChips.length + 1;
+  //     console.log(typeDocument);
+  //     this.typesDocumentsChips.push(typeDocument);
+  //     this.formDocuments.reset();
+  //   }
+  // }
 
-  deleteTypeDocument(id: number) {
-    let index = this.typesDocumentsChips.findIndex((x) => x.id == id);
-    this.typesDocumentsChips.splice(index, 1);
-    this.displayConfirma = false;
-  }
+  // deleteTypeDocument(id: number) {
+  //   let index = this.typesDocumentsChips.findIndex((x) => x.id == id);
+  //   this.typesDocumentsChips.splice(index, 1);
+  //   this.displayConfirma = false;
+  // }
 
   mandarCorreo() {
     window.location.href =
       "https://10.89.85.139:8643/auditoriags/envio/correoAuditoria";
-    this.displayNuevoReq = false;
+    //this.displayNuevoReq = false;
   }
 
   /************************SIDEBAR CREAR TIPO DE REQUERIMIENTO***************** */
@@ -339,11 +355,11 @@ export class AuditoriaComponent implements OnInit {
     console.log("Data form: ", event);
   }
 
-  cancelSidebar(event: any){
+  cancelSidebar(event: any) {
     this.visibleSidebar = event;
   }
 
-  changeNameCatalog(event: any){
+  changeNameCatalog(event: any) {
     this.catalogName = event;
   }
 
@@ -376,10 +392,6 @@ export class AuditoriaComponent implements OnInit {
       switch (this.typeConfirma) {
         case "delete":
           this.deleteReq(this.idDataToDelete);
-          break;
-
-        case "delete-typeDocument":
-          this.deleteTypeDocument(this.idDataToDelete);
           break;
       }
     } else {

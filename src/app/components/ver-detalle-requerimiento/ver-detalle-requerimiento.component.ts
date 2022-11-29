@@ -3,6 +3,7 @@ import { Chips } from "src/app/interface/chips";
 import { Tarea } from "src/app/interface/tarea";
 import { Documents } from "src/app/interface/documents";
 import { CustomService } from "src/app/services/custom.service";
+import { TypeDocument } from "src/app/class/auditoriasClass";
 interface Opciones {
   name: string;
 }
@@ -30,7 +31,7 @@ export class VerDetalleRequerimientoComponent implements OnInit {
   opt!: Opciones[];
   tarea!: Tarea[];
 
-  colaborador: boolean = true;
+  colaborador: boolean = false;
 
   archivos: any = {
     cantidadArchivos: 0,
@@ -41,46 +42,88 @@ export class VerDetalleRequerimientoComponent implements OnInit {
 
   @ViewChild("tipo", { static: false }) tipo!: ElementRef;
 
-  chips: Chips[] = [
+  chips: TypeDocument[] = [
     {
       id: 1,
-      name: "Contratos",
+      typeDocument: "Contratos",
+      description:
+        "Contratos... Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do\n      eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut\n      enim ad minim veniam, quis nostrud exercitation ullamco laboris\n      nisi ut aliquip ex ea commodo consequat.",
+      areaResponsible: "Jurídico",
+      responsible: "Pepe",
+      email: "pepe@elektra.com",
+      idRequirement: 1,
       status: true,
       documents: [],
     },
     {
       id: 2,
-      name: "Adendas",
+      typeDocument: "Adendas",
+      description:
+        "Adendas... ipsum dolor sit amet, consectetur adipiscing elit, sed do\n      eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut\n      enim ad minim veniam, quis nostrud exercitation ullamco laboris\n      nisi ut aliquip ex ea commodo consequat.",
+      areaResponsible: "Área 51",
+      responsible: "Juan",
+      email: "juan@elektra.com",
+      idRequirement: 1,
       status: true,
       documents: [],
     },
     {
       id: 3,
-      name: "Anexos",
+      typeDocument: "Anexos",
+      description:
+        "Anexos... ipsum dolor sit amet, consectetur adipiscing elit, sed do\n      eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut\n      enim ad minim veniam, quis nostrud exercitation ullamco laboris\n      nisi ut aliquip ex ea commodo consequat.",
+      areaResponsible: "Área Responsable 3",
+      responsible: "Paquito",
+      email: "paquito@elektra.com",
+      idRequirement: 1,
       status: true,
       documents: [],
     },
     {
       id: 4,
-      name: "Explicación",
+      typeDocument: "Explicación",
+      description:
+        "Explicación... ipsum dolor sit amet, consectetur adipiscing elit, sed do\n      eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut\n      enim ad minim veniam, quis nostrud exercitation ullamco laboris\n      nisi ut aliquip ex ea commodo consequat.",
+      areaResponsible: "Área Responsable 4",
+      responsible: "Javier",
+      email: "javier@elektra.com",
+      idRequirement: 1,
       status: true,
       documents: [],
     },
     {
       id: 5,
-      name: "Fundamento legal",
+      typeDocument: "Fundamento Legal",
+      description:
+        "Fundamento Legal... ipsum dolor sit amet, consectetur adipiscing elit, sed do\n      eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut\n      enim ad minim veniam, quis nostrud exercitation ullamco laboris\n      nisi ut aliquip ex ea commodo consequat.",
+      areaResponsible: "Área Responsable 5",
+      responsible: "Pablo",
+      email: "pablo@elektra.com",
+      idRequirement: 2,
       status: true,
       documents: [],
     },
     {
       id: 6,
-      name: "Informes",
+      typeDocument: "Informes",
+      description:
+        "Informes... ipsum dolor sit amet, consectetur adipiscing elit, sed do\n      eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut\n      enim ad minim veniam, quis nostrud exercitation ullamco laboris\n      nisi ut aliquip ex ea commodo consequat.",
+      areaResponsible: "Área Responsable 6",
+      responsible: "Maria",
+      email: "maria@elektra.com",
+      idRequirement: 2,
       status: true,
       documents: [],
     },
     {
-      id: 7,
-      name: "Bitácoras",
+      id: 8,
+      typeDocument: "Bitácora",
+      description:
+        "Bitácora... ipsum dolor sit amet, consectetur adipiscing elit, sed do\n      eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut\n      enim ad minim veniam, quis nostrud exercitation ullamco laboris\n      nisi ut aliquip ex ea commodo consequat.",
+      areaResponsible: "Área Responsable 8",
+      responsible: "Alicia",
+      email: "alicia@elektra.com",
+      idRequirement: 2,
       status: false,
       documents: [],
     },
@@ -173,44 +216,48 @@ export class VerDetalleRequerimientoComponent implements OnInit {
   }
 
   idChip: number = 0;
+  typeDocumentSelected = new TypeDocument({});
   mostrarDocumentos(chipId: number) {
     this.idChip = chipId;
+    this.typeDocumentSelected = new TypeDocument(
+      this.chips.find((x) => x.id == chipId)
+    );
 
-    this.contrato = false;
-    this.adendas = false;
-    this.anexos = false;
-    this.explicacion = false;
-    this.fundamento_legal = false;
-    this.informes = false;
+    // this.contrato = false;
+    // this.adendas = false;
+    // this.anexos = false;
+    // this.explicacion = false;
+    // this.fundamento_legal = false;
+    // this.informes = false;
 
-    switch (chipId) {
-      case 1:
-        this.contrato = true;
-        break;
+    // switch (chipId) {
+    //   case 1:
+    //     this.contrato = true;
+    //     break;
 
-      case 2:
-        this.adendas = true;
-        break;
+    //   case 2:
+    //     this.adendas = true;
+    //     break;
 
-      case 3:
-        this.anexos = true;
-        break;
+    //   case 3:
+    //     this.anexos = true;
+    //     break;
 
-      case 4:
-        this.explicacion = true;
-        break;
+    //   case 4:
+    //     this.explicacion = true;
+    //     break;
 
-      case 5:
-        this.fundamento_legal = true;
-        break;
+    //   case 5:
+    //     this.fundamento_legal = true;
+    //     break;
 
-      case 6:
-        this.informes = true;
-        break;
+    //   case 6:
+    //     this.informes = true;
+    //     break;
 
-      default:
-        break;
-    }
+    //   default:
+    //     break;
+    // }
   }
 
   countChars: number = 0;
@@ -271,6 +318,7 @@ export class VerDetalleRequerimientoComponent implements OnInit {
     }
 
     console.log(this.chips);
+    this.archivos.documentos = [];
   }
   public agregarNuevosDoc() {
     switch (this.idChip) {

@@ -91,13 +91,13 @@ export class Auditoria {
 
   conceptos;
   defensa;
-  
+
   tipoCard;
   active;
   constructor(a: any) {
     this.id = a.id || 0;
     this.anio = a.anio || "";
-    this.unidadNegocio = a.unidadNegocio || '';
+    this.unidadNegocio = a.unidadNegocio || "";
     this.siglas = a.siglas || "";
     this.nombre = a.nombre || "";
     this.monto = a.monto || "";
@@ -118,7 +118,7 @@ export class Auditoria {
     this.administradorGeneral = a.administradorGeneral || [];
     this.administradorCentral = a.administradorCentral || [];
     this.administrador = a.administrador || [];
-    
+
     this.conceptos = a.conceptos || "";
     this.defensa = a.defensa || "";
 
@@ -154,29 +154,29 @@ export class Etapa {
 
 export class Requirement {
   id;
-  description;
-  typePartida;
-  documentsType: TypeDocument[] = [];
+  partida;
   typeRequestDocumental;
   typeRequestDescriptive;
+  acredita;
+  description;
+  dateDelivery;
+  documentsType: TypeDocument[] = [];
   areaResponsible;
   responsible;
   email;
-  dateDelivery;
-  acredita;
   state;
   constructor(r: any) {
     this.id = r.id || 0;
     this.description = r.description || "";
-    this.typePartida = r.typePartida || "";
-    this.documentsType = r.documentsType  || [];
-    this.typeRequestDocumental = r.typeRequestDocumental  || false;
-    this.typeRequestDescriptive = r.typeRequestDescriptive  || false;
-    this.areaResponsible = r.areaResponsible  || "";
-    this.responsible = r.responsible  || "";
+    this.partida = r.partida || "";
+    this.documentsType = r.documentsType || [];
+    this.typeRequestDocumental = r.typeRequestDocumental || false;
+    this.typeRequestDescriptive = r.typeRequestDescriptive || false;
+    this.areaResponsible = r.areaResponsible || "";
+    this.responsible = r.responsible || "";
     this.email = r.email || "";
-    this.dateDelivery = r.dateDelivery  || "";
-    this.acredita = r.acredita  || "";
+    this.dateDelivery = r.dateDelivery || "";
+    this.acredita = r.acredita || "";
     this.state = r.state || "Pendiente de revisión";
   }
 }
@@ -199,13 +199,25 @@ export class TypeRequeriment {
   }
 }
 
-export class TypeDocument{
+export class TypeDocument {
   id;
   typeDocument;
-  descriptionDocument;
-  constructor(typeDocument:any){
+  description;
+  areaResponsible;
+  responsible;
+  email;
+  idRequirement;
+  status;
+  documents;
+  constructor(typeDocument: any) {
     this.id = typeDocument.id || 0;
-    this.typeDocument = typeDocument.typeDocument || '';
-    this.descriptionDocument = typeDocument.descriptionDocument || '';
+    this.typeDocument = typeDocument.typeDocument || "";
+    this.description = typeDocument.description || "";
+    this.areaResponsible = typeDocument.areaResponsible || "";
+    this.responsible = typeDocument.responsible || "";
+    this.email = typeDocument.email || "";
+    this.idRequirement = typeDocument.idRequirement || 0;
+    this.status = typeDocument.status || "";
+    this.documents = typeDocument.documents || [];
   }
 }
