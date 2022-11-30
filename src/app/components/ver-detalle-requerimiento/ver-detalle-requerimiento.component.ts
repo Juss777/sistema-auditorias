@@ -222,42 +222,6 @@ export class VerDetalleRequerimientoComponent implements OnInit {
     this.typeDocumentSelected = new TypeDocument(
       this.chips.find((x) => x.id == chipId)
     );
-
-    // this.contrato = false;
-    // this.adendas = false;
-    // this.anexos = false;
-    // this.explicacion = false;
-    // this.fundamento_legal = false;
-    // this.informes = false;
-
-    // switch (chipId) {
-    //   case 1:
-    //     this.contrato = true;
-    //     break;
-
-    //   case 2:
-    //     this.adendas = true;
-    //     break;
-
-    //   case 3:
-    //     this.anexos = true;
-    //     break;
-
-    //   case 4:
-    //     this.explicacion = true;
-    //     break;
-
-    //   case 5:
-    //     this.fundamento_legal = true;
-    //     break;
-
-    //   case 6:
-    //     this.informes = true;
-    //     break;
-
-    //   default:
-    //     break;
-    // }
   }
 
   countChars: number = 0;
@@ -370,34 +334,8 @@ export class VerDetalleRequerimientoComponent implements OnInit {
   }
 
   public eliminarDocs(i: number) {
-    switch (this.idChip) {
-      case 1:
-        this.doc_contratos.splice(i, 1);
-        break;
-
-      case 2:
-        this.doc_adendas.splice(i, 1);
-        break;
-
-      case 3:
-        this.doc_anexos.splice(i, 1);
-        break;
-
-      case 4:
-        this.doc_explicacion.splice(i, 1);
-        break;
-
-      case 5:
-        this.doc_fundamentos.splice(i, 1);
-        break;
-
-      case 6:
-        this.doc_informes.splice(i, 1);
-        break;
-
-      default:
-        break;
-    }
+    this.typeDocumentSelected.documents.splice(i, 1);
+    console.log(this.chips);
   }
 
   cargarArchivo(event: any) {
