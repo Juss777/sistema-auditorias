@@ -142,8 +142,8 @@
               </section>
             </div>
 
-            <!--Mostrar archivos-->
-            <section *ngIf="!colaborador" class="typeDocument__files">
+            <!--Mostrar archivos -->
+            <section class="typeDocument__files">
               <div
                 *ngFor="
                   let item of typeDocumentSelected.documents;
@@ -160,8 +160,16 @@
                     />
                   </div>
                   <img
+                    *ngIf="!colaborador"
                     class="downDocuments__delete"
                     src="assets/img/iconos/ico-dow.svg"
+                    alt="icono de descarga"
+                  />
+                  <img
+                    *ngIf="colaborador"
+                    (click)="eliminarDocs(i)"
+                    class="downDocuments__delete"
+                    src="assets/img/iconos/ico-trash.svg"
                     alt="icono de descarga"
                   />
                 </div>
