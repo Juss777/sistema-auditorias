@@ -114,8 +114,10 @@
                                     >
                                 </div>
                             </div>
+                        <!-- CHANGE___________________________________________________________ -->
+                        </form>
                         
-                            <div class="buttons-content">
+                        <div class="buttons-content">
                                 <button
                                     type="button"
                                     class="btn-outline-primary"
@@ -125,14 +127,14 @@
 
                                 <button
                                     type="button"
-                                    [ngClass]="formRequerimiento.valid ? 'btn-primary' : 'btn-primary-disabled'"
+                                    [ngClass]="isEdit || !isEdit && formRequerimiento.valid ? 'btn-primary' : 'btn-primary-disabled'"
                                     class=""
-                                    (click)="saveDataReq()"
+                                    (click)="isEdit ? edit(formRequerimiento.controls['id'].value) : saveDataReq()"
                                 >
-                                    Agregar
+                                    {{titleBtnAgregar}}
                                 </button>
-                            </div>
-                        </form>
+                        </div>
+                        <!--__________________________________________________________________ -->
                     </div>
                 </div>
                 

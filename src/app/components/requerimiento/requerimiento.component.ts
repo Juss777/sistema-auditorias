@@ -42,6 +42,10 @@ export class RequerimientoComponent implements OnInit {
 
   activateBtnAddDocument: boolean = false;
 
+  //change___________________________________
+  isEdit: boolean = false;
+  titleBtnAgregar: string = "Agregar";
+
   constructor(
     public formBuilder: FormBuilder, 
     public auditoriaService: AuditoriaService,
@@ -76,10 +80,14 @@ export class RequerimientoComponent implements OnInit {
     idRequirement: [0]
   });
 
+  //change__________________________
   ngOnInit(): void {
     if (this.idRequirement > 0) {
       this.mainTitle = "Editar requerimiento";
       this.getRequirements(this.idRequirement);
+      this.formRequerimiento.disable(); 
+      this.isEdit = true;
+      this.titleBtnAgregar = 'Editar';
       this.activateBtnAddDocument = true;
     }
     
@@ -107,14 +115,37 @@ export class RequerimientoComponent implements OnInit {
     this.filterGeneral = filtered;
   }
 
+  //change___________________________________________________
   saveDataReq() {
     if (this.formRequerimiento.invalid) {
       this.formRequerimiento.markAllAsTouched();
     } else {
       var requirement = new Requirement(this.formRequerimiento.value);
-      this.formRequerimiento.disable();
+      
+      if (this.requirement.id == 0) {
+        requirement.id = this.requirementService.getIdRandom(); 
+        this.formRequerimiento.controls['id'].setValue(requirement.id);
+      }
+      
+      this.formRequerimiento.disable(); 
+      this.isEdit = true; 
+      this.titleBtnAgregar = this.isEdit ? 'Editar' : 'Agregar';
       this.activateBtnAddDocument = true;
     }
+  }
+
+  //change_________________________________________
+  activeFormToEdit: boolean = false;
+  edit(idRequirement: any) {
+    console.log(idRequirement);
+    this.titleBtnAgregar = 'Salavar';
+    this.activeFormToEdit = !this.activeFormToEdit;
+    if (this.activeFormToEdit) {
+      this.formRequerimiento.enable();
+    } else {
+      this.saveDataReq();
+    }
+    
   }
 
   mostrarDocumentos(idDocument: number){
