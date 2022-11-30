@@ -43,7 +43,10 @@ export class CalendarComponent implements OnInit {
     }
 
     if (event.target.nodeName === 'A' && event.target.classList[1] === 'fc-more-link') {
-      alert("Click")
+      let pop = document.getElementsByClassName('fc-popover');
+      console.log("Pop: ", pop);
+      
+      
     }
   }
 
@@ -62,12 +65,11 @@ export class CalendarComponent implements OnInit {
         //right: "dayGridMonth,timeGridWeek,timeGridDay",
       },
       editable: false,
-      selectable: true,
+      selectable: false,
       selectMirror: true,
       dayMaxEvents: true,
       locale: esLocale,
       events: this.events,
-      
     };
 
     setTimeout(() => {

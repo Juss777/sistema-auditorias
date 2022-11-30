@@ -112,7 +112,7 @@ export class RequerimientoComponent implements OnInit {
       this.formRequerimiento.markAllAsTouched();
     } else {
       var requirement = new Requirement(this.formRequerimiento.value);
-      this.formRequerimiento.reset();
+      this.formRequerimiento.disable();
       this.activateBtnAddDocument = true;
     }
   }
