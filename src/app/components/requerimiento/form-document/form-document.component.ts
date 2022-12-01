@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { TypeDocument, Area, Requirement } from '../../../class/auditoriasClass';
+import { TypeDocument, Area, Requirement, Responsible } from '../../../class/auditoriasClass';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ReqService } from '../../../services/req.service';
 import { AuditoriaService } from '../../../services/auditorias.service';
@@ -23,16 +23,8 @@ export class FormDocumentComponent implements OnInit {
 
   typesDocuments: any[] = [];
   areasResponsible: any[] = [];
-
-  // typesDocumentsChips: TypeDocument[] = [
-  //   {
-  //     id: 1,
-  //     typeDocument: "Adendas",
-  //     descriptionDocument:
-  //       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-  //   },
-  // ];
-
+  // change _______________________________
+  responsible: Responsible[] = [];
 
   constructor(
     public formBuilder: FormBuilder,
@@ -40,6 +32,7 @@ export class FormDocumentComponent implements OnInit {
     public requirementService: ReqService,
   ) { }
 
+  //change _________________________________________
   @Input() formDocuments: FormGroup = this.formBuilder.group({
     id: [0],
     typeDocument: ["", [Validators.required,]],
@@ -47,11 +40,12 @@ export class FormDocumentComponent implements OnInit {
     areaResponsible: ["", [Validators.required,]],
     responsible: ["", [Validators.required,]],
     email: ["", [Validators.required,]],
-    idRequirement: [0]
+    idRequirement: [0],
+    status: [''],
+    documents: [[]]
   });
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   search(event: any, list: any[]) {
     let filtered: any[] = [];

@@ -42,7 +42,6 @@ export class RequerimientoComponent implements OnInit {
 
   activateBtnAddDocument: boolean = false;
 
-  //change___________________________________
   isEdit: boolean = false;
   titleBtnAgregar: string = "Agregar";
 
@@ -70,6 +69,7 @@ export class RequerimientoComponent implements OnInit {
     state: [""],
   });
 
+  //change _________________________________________
   formDocuments: FormGroup = this.formBuilder.group({
     id: [0],
     typeDocument: ["", [Validators.required,]],
@@ -77,10 +77,11 @@ export class RequerimientoComponent implements OnInit {
     areaResponsible: ["", [Validators.required,]],
     responsible: ["", [Validators.required,]],
     email: ["", [Validators.required,]],
-    idRequirement: [0]
+    idRequirement: [0],
+    status: [''],
+    documents: [[]]
   });
 
-  //change__________________________
   ngOnInit(): void {
     if (this.idRequirement > 0) {
       this.mainTitle = "Editar requerimiento";
@@ -115,7 +116,7 @@ export class RequerimientoComponent implements OnInit {
     this.filterGeneral = filtered;
   }
 
-  //change___________________________________________________
+  //change ___________________________________________________
   saveDataReq() {
     if (this.formRequerimiento.invalid) {
       this.formRequerimiento.markAllAsTouched();
@@ -134,7 +135,7 @@ export class RequerimientoComponent implements OnInit {
     }
   }
 
-  //change_________________________________________
+  
   activeFormToEdit: boolean = false;
   edit(idRequirement: any) {
     console.log(idRequirement);

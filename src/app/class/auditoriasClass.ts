@@ -152,6 +152,7 @@ export class Etapa {
   }
 }
 
+//change ___________________________________________________
 export class Requirement {
   id;
   partida;
@@ -172,8 +173,8 @@ export class Requirement {
     this.documentsType = r.documentsType || [];
     this.typeRequestDocumental = r.typeRequestDocumental || false;
     this.typeRequestDescriptive = r.typeRequestDescriptive || false;
-    this.areaResponsible = r.areaResponsible || "";
-    this.responsible = r.responsible || "";
+    this.areaResponsible = r.areaResponsible || "Jurídico";
+    this.responsible = r.responsible || "Manuel Moran";
     this.email = r.email || "";
     this.dateDelivery = r.dateDelivery || "";
     this.acredita = r.acredita || "";
@@ -199,6 +200,7 @@ export class TypeRequeriment {
   }
 }
 
+//change ___________________________________________________
 export class TypeDocument {
   id;
   typeDocument;
@@ -213,8 +215,8 @@ export class TypeDocument {
     this.id = typeDocument.id || 0;
     this.typeDocument = typeDocument.typeDocument || "";
     this.description = typeDocument.description || "";
-    this.areaResponsible = typeDocument.areaResponsible || "";
-    this.responsible = typeDocument.responsible || "";
+    this.areaResponsible = typeDocument.areaResponsible || "Jurídico";
+    this.responsible = typeDocument.responsible || "Manuel Moran";
     this.email = typeDocument.email || "";
     this.idRequirement = typeDocument.idRequirement || 0;
     this.status = typeDocument.status || "";

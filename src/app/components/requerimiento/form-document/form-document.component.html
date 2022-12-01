@@ -41,6 +41,7 @@
       </div>    
 
       <!-- Autocomplete Área responsable -->
+      <!-- change ____________________________________________________ -->
       <div class="p-field styleInput">
         <label>Área responsable</label>
         <div class="audit__flex">
@@ -57,18 +58,32 @@
             > -->
           </div>
           <img src="assets/img/iconos/gear-fill.svg" 
-            (click)="openModalCatalog('Miembro del área (interna)', 'responsableArea', true)"
+            (click)="openModalCatalog('Agregar área (interna)', 'areaInterna', true)"
           />
         </div>
       </div>
 
       <!-- Autocomplete Área responsable -->
+      <!-- change ____________________________________________________ -->
       <div class="p-field styleInput">
         <label>Responsable</label>
-        <input
-          pInputText
-          formControlName="responsible"
-        />
+        <div class="audit__flex">
+          <div>
+            <p-autoComplete
+              [suggestions]="filterGeneral"
+              (completeMethod)="search($event, responsible)"
+              formControlName="responsible"
+            ></p-autoComplete>
+            <!-- <small
+              class="audit__required"
+              *ngIf="auditoriaService.validaCampo(formDocuments, 'area')"
+              >* Campo requerido.</small
+            > -->
+          </div>
+          <img src="assets/img/iconos/gear-fill.svg" 
+            (click)="openModalCatalog('Miembro del área (interna)', 'responsableArea', true)"
+          />
+        </div>
       </div>
 
       <!-- Input Email -->

@@ -642,15 +642,9 @@
               </th>
             </tr>
         </ng-template>
-
+        <!-- CHANGE___________________________________________________________ -->
         <ng-template pTemplate="body" let-rowData let-columns="columns">
             <tr>
-              <td *ngIf="
-                catalog == 'administradorGeneral' || 
-                catalog == 'administradorCentral' || 
-                catalog == 'administradorArea'">
-                <p-tableRadioButton></p-tableRadioButton>
-              </td>
               <td *ngFor="let col of columns">{{rowData[col.field]}}</td>
               <td><img src="assets/img/iconos/ico-trash.svg" /></td>
               <td><img src="assets/img/iconos/ico-pencil-square.svg" /></td>
