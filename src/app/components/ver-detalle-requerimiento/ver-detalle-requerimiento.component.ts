@@ -335,7 +335,6 @@ export class VerDetalleRequerimientoComponent implements OnInit {
 
   public eliminarDocs(i: number) {
     this.typeDocumentSelected.documents.splice(i, 1);
-    console.log(this.chips);
   }
 
   cargarArchivo(event: any) {
