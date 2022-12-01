@@ -138,14 +138,13 @@ export class RequerimientoComponent implements OnInit {
   activeFormToEdit: boolean = false;
   edit(idRequirement: any) {
     console.log(idRequirement);
-    this.titleBtnAgregar = 'Salavar';
+    this.titleBtnAgregar = 'Salvar';
     this.activeFormToEdit = !this.activeFormToEdit;
     if (this.activeFormToEdit) {
       this.formRequerimiento.enable();
     } else {
       this.saveDataReq();
     }
-    
   }
 
   mostrarDocumentos(idDocument: number){
