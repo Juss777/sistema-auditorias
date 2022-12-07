@@ -1,3 +1,15 @@
 <section class="fullCalendar">
   <full-calendar [options]="options"></full-calendar>
 </section>
+
+<!--Modal-->
+<p-dialog
+  [header]="this.headerModal"
+  class="modalReq"
+  [(visible)]="this.displayTabla"
+  [modal]="true"
+  [draggable]="false"
+  [resizable]="false"
+>
+  <app-modales [typeModal]="typeModal"></app-modales>
+</p-dialog>

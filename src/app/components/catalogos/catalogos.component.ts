@@ -12,7 +12,6 @@ import { AuditoriaService } from "../../services/auditorias.service";
 export class CatalogosComponent implements OnInit {
   @Input() catalog: string = "";
   @Input() catalogNameIn: string = "";
-
   @Input() list: any[] = [];
 
   @Output() formDataOut: EventEmitter<any> = new EventEmitter();

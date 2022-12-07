@@ -150,14 +150,15 @@ export class AuditoriaComponent implements OnInit {
   }
 
   // -----Funcionalidad modal - Nuevo Requerimiento-----
-  displayNuevoReq: boolean = false;
+  // displayNuevoReq: boolean = false;
 
-  visibleSidebar: boolean = false;
-  catalogName: string = "";
-  catalog: string = "";
-  inputSearch: string = "";
-  listaGeneral: any[] = [];
+  // visibleSidebar: boolean = false;
+  // catalogName: string = "";
+  // catalog: string = "";
+  // inputSearch: string = "";
+  // listaGeneral: any[] = [];
 
+  //EL CONTENIDO DE ESTE ARREGLO YA NO VA EN LA VERSIÓN DE FRONT_______________________________________________________________
   requirements: Requirement[] = [
     {
       id: 1,
@@ -220,16 +221,17 @@ export class AuditoriaComponent implements OnInit {
       state: "Pendiente de revisión",
     },
   ];
+  //________________________________________________________________________________________
 
-  requirementsEmpty: Requirement[] = [];
+  // requirementsEmpty: Requirement[] = [];
 
-  tipoRequerimientos: any[] = [];
+  // tipoRequerimientos: any[] = [];
 
-  responsibles: any[] = [];
+  // responsibles: any[] = [];
 
-  selectedTypeReq!: TypeRequeriment;
-  selectedArea!: Area;
-  selectedResponsible!: Responsible;
+  // selectedTypeReq!: TypeRequeriment;
+  // selectedArea!: Area;
+  // selectedResponsible!: Responsible;
 
   // formDocuments: FormGroup = this.formBuilder.group({
   //   id: [0],
@@ -252,9 +254,9 @@ export class AuditoriaComponent implements OnInit {
   //   state: [""],
   // });
 
-  filterGeneral: any[] = [];
+  // filterGeneral: any[] = [];
 
-  partidas: any[] = [];
+  // partidas: any[] = [];
 
   //typesDocuments: any[] = [];
 
@@ -269,19 +271,20 @@ export class AuditoriaComponent implements OnInit {
   //   },
   // ];
 
-  search(event: any, list: any[]) {
-    let filtered: any[] = [];
-    let query = event.query;
-    for (let i = 0; i < list.length; i++) {
-      let obj = list[i];
-      if (obj.name.toLowerCase().indexOf(query.toLowerCase()) == 0) {
-        filtered.push(obj.name);
-      }
-    }
+  // search(event: any, list: any[]) {
+  //   let filtered: any[] = [];
+  //   let query = event.query;
+  //   for (let i = 0; i < list.length; i++) {
+  //     let obj = list[i];
+  //     if (obj.name.toLowerCase().indexOf(query.toLowerCase()) == 0) {
+  //       filtered.push(obj.name);
+  //     }
+  //   }
 
-    this.filterGeneral = filtered;
-  }
+  //   this.filterGeneral = filtered;
+  // }
 
+  //YA NO VAN EN LA VERSIÓN DE FRONT_______________________________________________________________
   applicaSubtr(text: string) {
     var texto = text.substr(0, 100) + "...";
     return texto;
@@ -296,6 +299,7 @@ export class AuditoriaComponent implements OnInit {
     hidden.classList.remove("show");
     hidden.classList.add("hidden");
   }
+  //________________________________________________________________________________________________
 
   // saveDataReq() {
   //   if (this.formRequerimiento.invalid) {
@@ -336,32 +340,32 @@ export class AuditoriaComponent implements OnInit {
   }
 
   /************************SIDEBAR CREAR TIPO DE REQUERIMIENTO***************** */
-  tipoDocumentosList: any[] = [
-    {
-      id: 1,
-      name: "Tipo Documento 1",
-    },
-    {
-      id: 2,
-      name: "Tipo Documento 2",
-    },
-    {
-      id: 3,
-      name: "Tipo Documento 3",
-    },
-  ];
+  // tipoDocumentosList: any[] = [
+  //   {
+  //     id: 1,
+  //     name: "Tipo Documento 1",
+  //   },
+  //   {
+  //     id: 2,
+  //     name: "Tipo Documento 2",
+  //   },
+  //   {
+  //     id: 3,
+  //     name: "Tipo Documento 3",
+  //   },
+  // ];
 
-  getDataForm(event: any) {
-    console.log("Data form: ", event);
-  }
+  // getDataForm(event: any) {
+  //   console.log("Data form: ", event);
+  // }
 
-  cancelSidebar(event: any) {
-    this.visibleSidebar = event;
-  }
+  // cancelSidebar(event: any) {
+  //   this.visibleSidebar = event;
+  // }
 
-  changeNameCatalog(event: any) {
-    this.catalogName = event;
-  }
+  // changeNameCatalog(event: any) {
+  //   this.catalogName = event;
+  // }
 
   /******************CONFIRMACIÓN DE ELIMINAR REQUERIMIENTO*************** */
   displayConfirma: boolean = false;
