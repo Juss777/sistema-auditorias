@@ -1,3 +1,4 @@
+import { LEADING_TRIVIA_CHARS } from "@angular/compiler/src/render3/view/template";
 import { HostListener, Component, OnInit, Input } from "@angular/core";
 import { CalendarOptions } from "@fullcalendar/angular";
 import esLocale from "@fullcalendar/core/locales/es";
@@ -34,7 +35,13 @@ export class CalendarComponent implements OnInit {
     }
 
     if (event.target.nodeName === 'A' && event.target.classList[0] === 'action-detail') {
-      this.openModalDetails();
+      const element = event.path[3].children[0].children[0];
+      let day: number = parseInt(element.textContent);
+      let dateSection: any = element.ariaLabel.split(" ");
+      let numberMonth: number = this._months.find(x => x.name === dateSection[2]).number;
+      let year = dateSection[dateSection.length - 1];
+      let date = `${year}-${numberMonth}-${day > 9 ? day : '0' + day}`;
+      this.openModalDetails(date);
     }
   }
 
@@ -79,18 +86,18 @@ export class CalendarComponent implements OnInit {
   }
 
   _months: any[] = [
-    { name: 'enero', number: 1},
-    { name: 'febrero', number: 2},
-    { name: 'marzo', number: 3},
-    { name: 'abril', number: 4},
-    { name: 'mayo', number: 5},
-    { name: 'junio', number: 6},
-    { name: 'julio', number: 7},
-    { name: 'agosto', number: 8},
-    { name: 'septiembre', number: 9},
-    { name: 'octubre', number: 10},
-    { name: 'noviembre', number: 11},
-    { name: 'diciembre', number: 12},
+    { name: 'enero', number: '01'},
+    { name: 'febrero', number: '02'},
+    { name: 'marzo', number: '03'},
+    { name: 'abril', number: '04'},
+    { name: 'mayo', number: '05'},
+    { name: 'junio', number: '06'},
+    { name: 'julio', number: '07'},
+    { name: 'agosto', number: '08'},
+    { name: 'septiembre', number: '09'},
+    { name: 'octubre', number: '10'},
+    { name: 'noviembre', number: '11'},
+    { name: 'diciembre', number: '12'},
   ];
   listMarginTopDateStart: any[] = [];
 
@@ -206,7 +213,7 @@ export class CalendarComponent implements OnInit {
       var dateEndSplit: any = dateEnd.split('T');
       dateEndSplit = dateEndSplit[0].split('-');
       dateEndOnly = parseInt(dateEndSplit[2]); 
-      monthDateEnd = parseInt(dateEndSplit[1]);
+      monthDateEnd = dateEndSplit[1];
     }
 
     var dayGridTop: any = document.getElementsByClassName('fc-daygrid-day-frame');
@@ -219,7 +226,7 @@ export class CalendarComponent implements OnInit {
       var numberMonth: number = this._months.find(x => x.name === month[2]).number;
 
       if (dateEnd !== undefined) {
-        if (day === dateEndOnly && numberMonth === monthDateEnd) {
+        if (day === dateEndOnly && numberMonth == monthDateEnd) {
 
           const elementEnd = item.children[1];
           var divDayBottom: any = elementEnd.innerHTML;
@@ -243,8 +250,9 @@ export class CalendarComponent implements OnInit {
     }    
   }
 
-  openModalDetails(){
-    this.headerModal = 'Tareas / BAZ 2016 - Oficio 230/2022 - Requerimiento de información';
+  openModalDetails(date:string){
+    console.log("Date selected: ", date);
+    this.headerModal = `Tareas / BAZ 2016 - Oficio 220/2016 - Requerimiento de información`;
     this.typeModal = 'modal1';
     this.displayTabla = true;
   }
