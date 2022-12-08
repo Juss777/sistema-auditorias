@@ -58,6 +58,68 @@
                     </div>
                   </div>
                 </div>
+                <!--Rango de Fechas-->
+                <div class="filters__box">
+                  <div class="filters__box-header" (click)="showContent(9)">
+                    <span>Fecha de Entrega</span>
+                    <img
+                      alt="icono flecha abajo"
+                      [src]="
+                        content && idMenuFilter == 9
+                          ? 'assets/img/iconos/ico-search-arrow-top.svg'
+                          : 'assets/img/iconos/ico-search-arrow-bottom.svg'
+                      "
+                    />
+                  </div>
+
+                  <div
+                    class="filters__box-content filters__box-contentUpdate"
+                    *ngIf="content && idMenuFilter == 9"
+                  >
+                    <div class="field-checkbox filters__box-flex no-display">
+                      <!--Input de Fecha-->
+                      <div class="styleInput">
+                        <p-calendar
+                          name="fechaNotifacion"
+                          placeholder="Selecciona una opción"
+                        ></p-calendar>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!--Rango de Fechas-->
+                <div class="filters__box">
+                  <div class="filters__box-header" (click)="showContent(10)">
+                    <span>Tipo de Documento</span>
+                    <img
+                      alt="icono flecha abajo"
+                      [src]="
+                        content && idMenuFilter == 10
+                          ? 'assets/img/iconos/ico-search-arrow-top.svg'
+                          : 'assets/img/iconos/ico-search-arrow-bottom.svg'
+                      "
+                    />
+                  </div>
+
+                  <div
+                    class="filters__box-content"
+                    *ngIf="content && idMenuFilter == 10"
+                  >
+                    <div class="filters__box-flex no-display">
+                      <!--Input de Fecha-->
+                      <div class="styleInput">
+                        <p-autoComplete
+                          [(ngModel)]="selectedCountries"
+                          [suggestions]="filteredCountries"
+                          (completeMethod)="filterCountry()"
+                          field="name"
+                          [multiple]="true"
+                        >
+                        </p-autoComplete>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
 

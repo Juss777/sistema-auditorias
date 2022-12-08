@@ -131,6 +131,10 @@
     justify-content: center;
     font-size: 1rem;
     color: var(--color-text-74);
+
+    img {
+      cursor: pointer;
+    }
   }
 
   &__link {
