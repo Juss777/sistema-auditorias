@@ -126,41 +126,20 @@ export class CalendarComponent implements OnInit {
     var dateStartSplit = dateStart.split('-');
     var dateStartOnly: number = parseInt(dateStartSplit[2]);
 
-    // var dateEndOnly: number = 0, 
-    //     monthDateEnd: number = 0;
-
-    // if (dateEnd !== undefined) {
-    //   var dateEndSplit: any = dateEnd.split('T');
-    //   dateEndSplit = dateEndSplit[0].split('-');
-    //   dateEndOnly = parseInt(dateEndSplit[2]); 
-    //   monthDateEnd = parseInt(dateEndSplit[1]);
-    // }
-  
-    
-
     var dayGridTop: any = document.getElementsByClassName('fc-daygrid-day-frame');
-    //console.log("dayGridTop: ", dayGridTop);
     for (let i = 0; i < dayGridTop.length; i++) {
 
       const item = dayGridTop[i];
       let day: number = parseInt(item.children[0].textContent);
 
-      //var month: any = item.childNodes[0].lastChild.ariaLabel.split(" ");
-      //console.log(`DATE: ${month[0]} ${month[2]}`);
-      //var numberMonth: number = this._months.find(x => x.name === month[2]).number;
-
-      
-
       if (day === dateStartOnly && dateEnd !== undefined) {
         for (let j = 0; j < item.children[1].children.length; j++) {
           const element = item.children[1].children[j];
-          //console.log("element: ", element);
           if (element.classList[0] == 'fc-daygrid-event-harness') {
             if (element.children[0].children[0].children[0].children[1]) {
               var innerText = element.children[0].children[0].children[0].children[1].children[0].innerText; 
 
               if (innerText === title) {
-                //console.log(`Citatorio ${title}, día: ${day}`);
                 element.children[0].children[0].children[0].children[1].children[0].innerHTML = `
                   <div class="content-event">
                     <div class="bg-start-event"></div> 
@@ -174,33 +153,7 @@ export class CalendarComponent implements OnInit {
           }
         }       
       }
-
-
-      // if (dateEnd !== undefined) {
-      //   if (day === dateEndOnly && numberMonth === monthDateEnd) {
-
-      //     //const elementEnd = item.children[1].children[0];
-      //     //elementEnd.style.marginTop = this.listMarginTopDateStart.find(x => x.title === title).top;
-
-      //     const elementEnd = item.children[1];
-      //     var divDayBottom: any = elementEnd.innerHTML;
-          
-      //     if (this.listMarginTopDateStart.find(x => x.title === title)) {
-      //       elementEnd.innerHTML = "";
-
-      //       elementEnd.innerHTML += `
-      //         <div class="content-event end" style="margin-top: ${this.listMarginTopDateStart.find(x => x.title === title).top}">
-      //           <div class="bg-end-event"></div> 
-      //           Término <br> ${title}
-      //         </div>
-      //       `;
-
-      //       elementEnd.innerHTML += divDayBottom;
-      //     }
-      //   }
-      // }
     }
-
     return true;
   }
 
@@ -230,7 +183,6 @@ export class CalendarComponent implements OnInit {
 
           const elementEnd = item.children[1];
           var divDayBottom: any = elementEnd.innerHTML;
-          //console.log("divDayBottom: ", divDayBottom);
           
           if (this.listMarginTopDateStart.find(x => x.title === title)) {
             elementEnd.innerHTML = "";

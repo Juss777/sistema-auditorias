@@ -149,15 +149,6 @@ export class AuditoriaComponent implements OnInit {
     }
   }
 
-  // -----Funcionalidad modal - Nuevo Requerimiento-----
-  // displayNuevoReq: boolean = false;
-
-  // visibleSidebar: boolean = false;
-  // catalogName: string = "";
-  // catalog: string = "";
-  // inputSearch: string = "";
-  // listaGeneral: any[] = [];
-
   //EL CONTENIDO DE ESTE ARREGLO YA NO VA EN LA VERSIÓN DE FRONT_______________________________________________________________
   requirements: Requirement[] = [
     {
@@ -223,67 +214,6 @@ export class AuditoriaComponent implements OnInit {
   ];
   //________________________________________________________________________________________
 
-  // requirementsEmpty: Requirement[] = [];
-
-  // tipoRequerimientos: any[] = [];
-
-  // responsibles: any[] = [];
-
-  // selectedTypeReq!: TypeRequeriment;
-  // selectedArea!: Area;
-  // selectedResponsible!: Responsible;
-
-  // formDocuments: FormGroup = this.formBuilder.group({
-  //   id: [0],
-  //   typeDocument: ["", [Validators.required]],
-  //   descriptionDocument: [""],
-  // });
-
-  // formRequerimiento: FormGroup = this.formBuilder.group({
-  //   id: [0],
-  //   description: [""],
-  //   typePartida: [""],
-  //   documentsType: [[]],
-  //   typeRequestDocumental: [false],
-  //   typeRequestDescriptive: [false],
-  //   areaResponsible: [this.selectedArea, [Validators.required]],
-  //   responsible: ["", [Validators.required]],
-  //   email: [""],
-  //   dateDelivery: [""],
-  //   acredita: [""],
-  //   state: [""],
-  // });
-
-  // filterGeneral: any[] = [];
-
-  // partidas: any[] = [];
-
-  //typesDocuments: any[] = [];
-
-  //areasResponsible: any[] = [];
-
-  // typesDocumentsChips: TypeDocument[] = [
-  //   {
-  //     id: 1,
-  //     typeDocument: "Adendas",
-  //     descriptionDocument:
-  //       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-  //   },
-  // ];
-
-  // search(event: any, list: any[]) {
-  //   let filtered: any[] = [];
-  //   let query = event.query;
-  //   for (let i = 0; i < list.length; i++) {
-  //     let obj = list[i];
-  //     if (obj.name.toLowerCase().indexOf(query.toLowerCase()) == 0) {
-  //       filtered.push(obj.name);
-  //     }
-  //   }
-
-  //   this.filterGeneral = filtered;
-  // }
-
   //YA NO VAN EN LA VERSIÓN DE FRONT_______________________________________________________________
   applicaSubtr(text: string) {
     var texto = text.substr(0, 100) + "...";
@@ -301,71 +231,10 @@ export class AuditoriaComponent implements OnInit {
   }
   //________________________________________________________________________________________________
 
-  // saveDataReq() {
-  //   if (this.formRequerimiento.invalid) {
-  //     this.formRequerimiento.markAllAsTouched();
-  //   } else {
-  //     var requirement = new Requirement(this.formRequerimiento.value);
-  //     requirement.id = this.requirements.length + 1;
-  //     this.requirements.push(requirement);
-  //     this.formRequerimiento.reset();
-  //     this.formRequerimiento.controls["email"].setValue("ejemplo@mail.com.mx");
-  //     this.displayNuevoReq = false;
-  //   }
-  // }
-
-  // addTypeDocumentChip() {
-  //   console.log(this.formDocuments.controls);
-  //   if (this.formDocuments.invalid) {
-  //     this.formDocuments.markAllAsTouched();
-  //   } else {
-  //     var typeDocument = new TypeDocument(this.formDocuments.value);
-  //     typeDocument.id = this.typesDocumentsChips.length + 1;
-  //     console.log(typeDocument);
-  //     this.typesDocumentsChips.push(typeDocument);
-  //     this.formDocuments.reset();
-  //   }
-  // }
-
-  // deleteTypeDocument(id: number) {
-  //   let index = this.typesDocumentsChips.findIndex((x) => x.id == id);
-  //   this.typesDocumentsChips.splice(index, 1);
-  //   this.displayConfirma = false;
-  // }
-
   mandarCorreo() {
     window.location.href =
       "https://10.89.85.139:8643/auditoriags/envio/correoAuditoria";
-    //this.displayNuevoReq = false;
   }
-
-  /************************SIDEBAR CREAR TIPO DE REQUERIMIENTO***************** */
-  // tipoDocumentosList: any[] = [
-  //   {
-  //     id: 1,
-  //     name: "Tipo Documento 1",
-  //   },
-  //   {
-  //     id: 2,
-  //     name: "Tipo Documento 2",
-  //   },
-  //   {
-  //     id: 3,
-  //     name: "Tipo Documento 3",
-  //   },
-  // ];
-
-  // getDataForm(event: any) {
-  //   console.log("Data form: ", event);
-  // }
-
-  // cancelSidebar(event: any) {
-  //   this.visibleSidebar = event;
-  // }
-
-  // changeNameCatalog(event: any) {
-  //   this.catalogName = event;
-  // }
 
   /******************CONFIRMACIÓN DE ELIMINAR REQUERIMIENTO*************** */
   displayConfirma: boolean = false;

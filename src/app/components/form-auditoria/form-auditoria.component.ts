@@ -254,16 +254,7 @@ export class FormAuditoriaComponent implements OnInit, AfterViewInit {
     }
   }
 
-  ngAfterViewInit() {
-    //this.translateChange("es");
-  }
-
-  // translateChange(lang: string) {
-  //   this.translateService.use(lang);
-  //   this.translateService
-  //     .get("primeng")
-  //     .subscribe((res) => this.primengConfig.setTranslation(res));
-  // }
+  ngAfterViewInit() {}
 
   search(event: any, list: any[]) {
     let filtered: any[] = [];
@@ -553,7 +544,6 @@ export class FormAuditoriaComponent implements OnInit, AfterViewInit {
   }
 
   changeNameCatalog(event: any){
-    //this.catalogNameBK = this.catalogName;
     this.catalogName = event;
   }
 }
