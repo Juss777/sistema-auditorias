@@ -48,13 +48,24 @@
       justify-content: space-between;
       gap: 10px;
 
-      span {
-        font-size: 1.6rem;
-        font-family: var(--main-font-bold);
+      div {
+        span {
+          display: block;
+          &:nth-child(1) {
+            font-size: 1.6rem;
+            font-family: var(--main-font-bold);
+          }
+
+          &:nth-child(2) {
+            font-size: 1.1rem;
+            font-family: var(--main-font-regular);
+          }
+        }
       }
     }
 
     &-body {
+      font-family: var(--main-font-regular);
       font-size: 1.2rem;
       color: #43413b;
     }
@@ -76,10 +87,12 @@
   }
 
   &__finished {
+    font-family: var(--main-font-bold);
     color: #5c7457;
   }
 
   &__active {
+    font-family: var(--main-font-bold);
     color: #279612;
   }
 }

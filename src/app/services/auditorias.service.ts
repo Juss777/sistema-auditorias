@@ -95,6 +95,7 @@ export class AuditoriaService {
       defensa: "<p>fdbdfbfdbfdbd</p>",
       tipoCard: "cambios",
       active: false,
+      status: "Terminado",
     },
     {
       id: 2,
@@ -129,6 +130,7 @@ export class AuditoriaService {
       defensa: "<p>fdbdfbfdbfdbd</p>",
       tipoCard: "informativo",
       active: false,
+      status: "Terminado",
     },
     {
       id: 3,
@@ -163,6 +165,7 @@ export class AuditoriaService {
       defensa: "<p>fdbdfbfdbfdbd</p>",
       tipoCard: "mal",
       active: false,
+      status: "Terminado",
     },
     {
       id: 4,
@@ -197,6 +200,7 @@ export class AuditoriaService {
       defensa: "<p>fdbdfbfdbfdbd</p>",
       tipoCard: "cambios",
       active: false,
+      status: "Terminado",
     },
     {
       id: 5,
@@ -231,6 +235,7 @@ export class AuditoriaService {
       defensa: "<p>fdbdfbfdbfdbd</p>",
       tipoCard: "informativo",
       active: false,
+      status: "Activo",
     },
     {
       id: 6,
@@ -265,6 +270,7 @@ export class AuditoriaService {
       defensa: "<p>fdbdfbfdbfdbd</p>",
       tipoCard: "cambios",
       active: false,
+      status: "Activo",
     },
   ];
 

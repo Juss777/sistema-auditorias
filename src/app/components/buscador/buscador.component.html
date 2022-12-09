@@ -58,10 +58,11 @@
                     </div>
                   </div>
                 </div>
-                <!--Rango de Fechas-->
+
+                <!--Sociedad-->
                 <div class="filters__box">
                   <div class="filters__box-header" (click)="showContent(9)">
-                    <span>Fecha de Entrega</span>
+                    <span>Sociedad</span>
                     <img
                       alt="icono flecha abajo"
                       [src]="
@@ -76,21 +77,17 @@
                     class="filters__box-content filters__box-contentUpdate"
                     *ngIf="content && idMenuFilter == 9"
                   >
-                    <div class="field-checkbox filters__box-flex no-display">
-                      <!--Input de Fecha-->
+                    <div class="filters__box-flex no-display">
                       <div class="styleInput">
-                        <p-calendar
-                          name="fechaNotifacion"
-                          placeholder="Selecciona una opción"
-                        ></p-calendar>
+                        <p-autoComplete [multiple]="true"> </p-autoComplete>
                       </div>
                     </div>
                   </div>
                 </div>
-                <!--Rango de Fechas-->
+                <!--Representante Legal-->
                 <div class="filters__box">
                   <div class="filters__box-header" (click)="showContent(10)">
-                    <span>Tipo de Documento</span>
+                    <span>Representante Legal</span>
                     <img
                       alt="icono flecha abajo"
                       [src]="
@@ -102,20 +99,72 @@
                   </div>
 
                   <div
-                    class="filters__box-content"
+                    class="filters__box-content filters__box-contentUpdate"
                     *ngIf="content && idMenuFilter == 10"
                   >
                     <div class="filters__box-flex no-display">
-                      <!--Input de Fecha-->
                       <div class="styleInput">
-                        <p-autoComplete
-                          [(ngModel)]="selectedCountries"
-                          [suggestions]="filteredCountries"
-                          (completeMethod)="filterCountry()"
-                          field="name"
-                          [multiple]="true"
-                        >
-                        </p-autoComplete>
+                        <p-autoComplete [multiple]="true"> </p-autoComplete>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!--Rango de Fechas-->
+                <div class="filters__box">
+                  <div class="filters__box-header" (click)="showContent(11)">
+                    <span>Fecha de Entrega</span>
+                    <img
+                      alt="icono flecha abajo"
+                      [src]="
+                        content && idMenuFilter == 11
+                          ? 'assets/img/iconos/ico-search-arrow-top.svg'
+                          : 'assets/img/iconos/ico-search-arrow-bottom.svg'
+                      "
+                    />
+                  </div>
+
+                  <div
+                    class="filters__box-content filters__box-contentUpdate"
+                    *ngIf="content && idMenuFilter == 11"
+                  >
+                    <div class="field-checkbox filters__box-flex no-display">
+                      <!--Input de Fecha-->
+                      <div class="styleInput u-mb-10">
+                        <p-calendar
+                          name="fechaInicio"
+                          placeholder="Fecha de inicio"
+                        ></p-calendar>
+                      </div>
+                      <div class="styleInput">
+                        <p-calendar
+                          name="fechaFin"
+                          placeholder="Fecha de término"
+                        ></p-calendar>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!--Tipo de Documento-->
+                <div class="filters__box">
+                  <div class="filters__box-header" (click)="showContent(12)">
+                    <span>Tipo de Documento</span>
+                    <img
+                      alt="icono flecha abajo"
+                      [src]="
+                        content && idMenuFilter == 12
+                          ? 'assets/img/iconos/ico-search-arrow-top.svg'
+                          : 'assets/img/iconos/ico-search-arrow-bottom.svg'
+                      "
+                    />
+                  </div>
+
+                  <div
+                    class="filters__box-content"
+                    *ngIf="content && idMenuFilter == 12"
+                  >
+                    <div class="filters__box-flex no-display">
+                      <div class="styleInput">
+                        <p-autoComplete [multiple]="true"> </p-autoComplete>
                       </div>
                     </div>
                   </div>
@@ -130,7 +179,11 @@
                 *ngFor="let result of cardResult"
               >
                 <div class="search__result-header">
-                  <span>{{ result.name }}</span>
+                  <div>
+                    <span>{{ result.nombre }}</span>
+                    <span>{{ result.instrumentoPublico[0] }}</span>
+                  </div>
+
                   <span
                     [ngClass]="{
                       search__finished: result.status == 'Terminado',
@@ -140,7 +193,10 @@
                   >
                 </div>
                 <div class="search__result-body">
-                  {{ result.body }}
+                  {{ result.nombre }} - Banco Azteca S.A. de C.V. - Etapa
+                  Crédito Fiscal - Contabilidad - Juan Pérez - Fecha de carga:
+                  15/05/2016 Monto: ${{ result.monto }} MDP - Fecha de entrega:
+                  25/05/2016
                 </div>
                 <div class="search__result-footer">
                   <div>

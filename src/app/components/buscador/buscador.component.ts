@@ -1,4 +1,6 @@
 import { Component, OnInit } from "@angular/core";
+import { Auditoria } from "src/app/class/auditoriasClass";
+import { AuditoriaService } from "src/app/services/auditorias.service";
 
 @Component({
   selector: "app-buscador",
@@ -6,39 +8,14 @@ import { Component, OnInit } from "@angular/core";
   styles: [],
 })
 export class BuscadorComponent implements OnInit {
-  constructor() {}
   content = false;
   checkboxSelected: any[] = [];
-  selectedCountries!: any[];
-  filteredCountries!: any[];
-  ngOnInit(): void {}
 
-  cardResult = [
-    {
-      id: 1,
-      name: "Estado de cuenta - BAZ 2016",
-      status: "Activo",
-      body: "BAZ 2016 - Banco Azteca S.A. de C.V. - Etapa Crédito Fiscal - Contabilidad - Juan Pérez - Fecha de carga: 15/05/2016 Monto: $20,172 MDP",
-    },
-    {
-      id: 2,
-      name: "Estado de cuenta - BAZ 2016",
-      status: "Terminado",
-      body: "BAZ 2016 - Banco Azteca S.A. de C.V. - Etapa Crédito Fiscal - Contabilidad - Juan Pérez - Fecha de carga: 15/05/2016 Monto: $20,172 MDP",
-    },
-    {
-      id: 3,
-      name: "Estado de cuenta - BAZ 2016",
-      status: "Activo",
-      body: "BAZ 2016 - Banco Azteca S.A. de C.V. - Etapa Crédito Fiscal - Contabilidad - Juan Pérez - Fecha de carga: 15/05/2016 Monto: $20,172 MDP",
-    },
-    {
-      id: 4,
-      name: "Estado de cuenta - BAZ 2016",
-      status: "Terminado",
-      body: "BAZ 2016 - Banco Azteca S.A. de C.V. - Etapa Crédito Fiscal - Contabilidad - Juan Pérez - Fecha de carga: 15/05/2016 Monto: $20,172 MDP",
-    },
-  ];
+  cardResult: Auditoria[] = [];
+  constructor(private auditoriaService: AuditoriaService) {
+    this.cardResult = this.auditoriaService.auditoriaDetalles;
+  }
+  ngOnInit(): void {}
 
   filterMenu = [
     {
@@ -53,26 +30,6 @@ export class BuscadorComponent implements OnInit {
     },
     {
       id: 2,
-      name: "Sociedad",
-      options: [
-        {
-          id: 1,
-          label: "Banco Azteca S.A. Institución de Banca Múltiple",
-        },
-      ],
-    },
-    {
-      id: 3,
-      name: "Representante Legal",
-      options: [
-        {
-          id: 1,
-          label: "Rafael Flores Birrichaga",
-        },
-      ],
-    },
-    {
-      id: 4,
       name: "Autoridad",
       options: [
         {
@@ -82,7 +39,7 @@ export class BuscadorComponent implements OnInit {
       ],
     },
     {
-      id: 5,
+      id: 3,
       name: "Etapas de proceso",
       options: [
         {
@@ -96,7 +53,7 @@ export class BuscadorComponent implements OnInit {
       ],
     },
     {
-      id: 6,
+      id: 4,
       name: "Partida",
       options: [
         {
@@ -110,7 +67,7 @@ export class BuscadorComponent implements OnInit {
       ],
     },
     {
-      id: 7,
+      id: 5,
       name: "Tipo de requerimiento",
       options: [
         {
@@ -124,7 +81,7 @@ export class BuscadorComponent implements OnInit {
       ],
     },
     {
-      id: 8,
+      id: 6,
       name: "Área Responsable",
       options: [
         {
@@ -149,11 +106,4 @@ export class BuscadorComponent implements OnInit {
 
     this.idMenuFilter = idMenu;
   }
-
-  filterCountry() {}
-
-  // selectedOption(event: any) {
-  //   console.log(event);
-  //   console.log(this.checkboxSelected);
-  // }
 }

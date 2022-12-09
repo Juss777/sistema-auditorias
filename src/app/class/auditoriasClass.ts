@@ -94,6 +94,7 @@ export class Auditoria {
 
   tipoCard;
   active;
+  status;
   constructor(a: any) {
     this.id = a.id || 0;
     this.anio = a.anio || "";
@@ -124,6 +125,7 @@ export class Auditoria {
 
     this.tipoCard = a.tipoCard || "cambios";
     this.active = a.active || false;
+    this.status = a.status || "";
   }
 }
 
