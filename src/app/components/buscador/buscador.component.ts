@@ -17,6 +17,71 @@ export class BuscadorComponent implements OnInit {
   }
   ngOnInit(): void {}
 
+  filterYear = [
+    {
+      id: 1,
+      label: "2016",
+      year: 2016,
+    },
+    {
+      id: 2,
+      label: "2017",
+      year: 2017,
+    },
+  ];
+
+  filterEtapas = [
+    {
+      id: 1,
+      label: "Requerimiento de información",
+      year: "Requerimiento de información",
+    },
+    {
+      id: 2,
+      label: "Oficio / Observaciones",
+      year: "Oficio / Observaciones",
+    },
+  ];
+
+  filterPartida = [
+    {
+      id: 1,
+      label: "Generales",
+      year: "Generales",
+    },
+    {
+      id: 2,
+      label: "Derivados",
+      year: "Derivados",
+    },
+  ];
+
+  filterRequerimiento = [
+    {
+      id: 1,
+      label: "Documental / Probatorio",
+      year: "Documental / Probatorio",
+    },
+    {
+      id: 2,
+      label: "Argumentativo / Descriptivo",
+      year: "Argumentativo / Descriptivo",
+    },
+  ];
+
+  filterRresponsable = [
+    {
+      id: 1,
+      label: "Contraloría Banco Azteca",
+      year: "Contraloría Banco Azteca",
+    },
+    {
+      id: 2,
+      label: "Cobranza Ejecutiva",
+      year: "Cobranza Ejecutiva",
+    },
+  ];
+
   filterMenu = [
     {
       id: 1,
