@@ -214,12 +214,14 @@ export class FormAuditoriaComponent implements OnInit, AfterViewInit {
       label: "Citatorio",
       name: "Agregar documento",
       estatus: false,
+      visible: true
     },
     {
       id: "file 2",
       label: "Notificación",
       name: "Agregar documento",
       estatus: false,
+      visible: true
     },
   ];
 
@@ -488,8 +490,8 @@ export class FormAuditoriaComponent implements OnInit, AfterViewInit {
 
   changeNotiFisica() {
     this.tipoComunicado = "citatorio";
-    this.tipoMensaje = "citatorio";
-    this.tipoDocumento = "Citatorio";
+    // this.tipoMensaje = "citatorio";
+    // this.tipoDocumento = "Citatorio";
 
     this.formBuzon = false;
     this.formFisico = true;
@@ -497,14 +499,22 @@ export class FormAuditoriaComponent implements OnInit, AfterViewInit {
 
   changeNotiBuzon() {
     this.tipoComunicado = "aviso";
-    this.tipoMensaje = "aviso";
-    this.tipoDocumento = "Aviso";
+    // this.tipoMensaje = "aviso";
+    // this.tipoDocumento = "Aviso";
 
     this.formBuzon = true;
     this.formFisico = false;
 
     this.varEditor = false;
   }
+
+  //cambio_______________________________________________________
+  exists: boolean = true;
+  changeExists(value: boolean){
+    this.exists = value;
+    this.files[0].visible = value;
+  }
+  //_____________________________________________________________
 
   changeCitaSi() {
     this.varEditor = true;

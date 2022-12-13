@@ -526,6 +526,7 @@
       <div class="sectionNoBg__content">
         <form [formGroup]="formEtapa" class="noti__content">
           <div class="noti__grid">
+
             <div class="styleInput">
               <label>Tipo de notificación</label>
               <div class="styleInput__radioButton">
@@ -551,13 +552,14 @@
             </div>
 
             <div class="styleInput">
-              <label>¿Existe {{ tipoMensaje }}?</label>
+              <label>¿Existe {{ tipoComunicado }}?</label>
               <div class="styleInput__radioButton">
                 <div class="field-radiobutton">
                   <p-radioButton
                     name="existeMensaje"
                     value="si"
                     formControlName="existeMensaje"
+                    (click)="changeExists(true)"
                   ></p-radioButton>
                   <label>Si</label>
                 </div>
@@ -566,13 +568,15 @@
                     name="existeMensaje"
                     value="no"
                     formControlName="existeMensaje"
+                    (click)="changeExists(false)"
                   ></p-radioButton>
                   <label>No</label>
                 </div>
               </div>
             </div>
 
-            <div class="styleInput">
+            <!-- cambio_______________________________________________________________________________________________ -->
+            <div class="styleInput" *ngIf="exists">
               <label for="basic">Fecha de {{ tipoComunicado }}</label>
               <p-calendar
                 name="fechaMensaje"
@@ -580,27 +584,32 @@
                 placeholder="Selecciona una opción"
               ></p-calendar>
             </div>
+            <!--______________________________________________________________________________________________________ -->
 
-            <div class="styleInput" *ngFor="let file of files">
-              <label>{{
-                file.label == "Citatorio" && formBuzon ? "Aviso" : file.label
-              }}</label>
-              <input
-                type="file"
-                class="inputFile"
-                name="tipoArchivo"
-                formControlName="tipoArchivo"
-                [id]="file.id"
-                (change)="handleFileInput($event, file)"
-              />
-              <label [for]="file.id"
-                ><span [ngClass]="{ 'u-txt-black': file.estatus }">{{
-                  file.name
-                }}</span></label
-              >
-            </div>
+            <!-- cambio_______________________________________________________________________________________________ -->
+            <ng-container *ngFor="let file of files" >
+              <div class="styleInput" *ngIf="file.visible">
+                <label>{{
+                  file.label == "Citatorio" && formBuzon ? "Aviso" : file.label
+                }}</label>
+                <input
+                  type="file"
+                  class="inputFile"
+                  name="tipoArchivo"
+                  formControlName="tipoArchivo"
+                  [id]="file.id"
+                  (change)="handleFileInput($event, file)"
+                />
+                <label [for]="file.id"
+                  ><span [ngClass]="{ 'u-txt-black': file.estatus }">{{
+                    file.name
+                  }}</span>
+                </label>
+              </div>
+            </ng-container>
+            <!--______________________________________________________________________________________________________ -->
 
-            <div class="styleInput" *ngIf="formFisico">
+            <div class="styleInput">
               <label for="basic">Fecha de notificación</label>
               <p-calendar
                 name="fechaNotifacion"
@@ -644,7 +653,7 @@
               />
             </div>
 
-            <div class="styleInput" *ngIf="!formFisico">
+            <div class="styleInput">
               <label>Número de oficio</label>
               <input
                 name="numeroOficio"
@@ -677,6 +686,7 @@
                 </div>
               </div>
             </div>
+
           </div>
 
           <div *ngIf="varEditor" class="u-mb-10">
