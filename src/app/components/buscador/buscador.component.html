@@ -110,10 +110,10 @@
                     </div>
                   </div>
                 </div>
-                <!--Etapas de proceso-->
+                <!--Autoridad-->
                 <div class="filters__box">
                   <div class="filters__box-header" (click)="showContent(4)">
-                    <span>Etapas de proceso</span>
+                    <span>Autoridad</span>
                     <img
                       alt="icono flecha abajo"
                       [src]="
@@ -127,6 +127,45 @@
                   <div
                     class="filters__box-content"
                     *ngIf="content && idMenuFilter == 4"
+                  >
+                    <div class="filters__box-flex no-display">
+                      <div class="styleInput">
+                        <div
+                          class="field-checkbox filters__box-flex"
+                          *ngFor="let option of filterAutoridad"
+                        >
+                          <p-checkbox
+                            name="group1"
+                            [(ngModel)]="checkboxSelected"
+                            value="{{ option.label }}"
+                          >
+                            ></p-checkbox
+                          >
+                          <label for="{{ option.label }}">{{
+                            option.label
+                          }}</label>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!--Etapas de proceso-->
+                <div class="filters__box">
+                  <div class="filters__box-header" (click)="showContent(5)">
+                    <span>Etapas de proceso</span>
+                    <img
+                      alt="icono flecha abajo"
+                      [src]="
+                        content && idMenuFilter == 5
+                          ? 'assets/img/iconos/ico-search-arrow-top.svg'
+                          : 'assets/img/iconos/ico-search-arrow-bottom.svg'
+                      "
+                    />
+                  </div>
+
+                  <div
+                    class="filters__box-content"
+                    *ngIf="content && idMenuFilter == 5"
                   >
                     <div class="filters__box-flex no-display">
                       <div class="styleInput">
@@ -151,12 +190,12 @@
                 </div>
                 <!--Partida-->
                 <div class="filters__box">
-                  <div class="filters__box-header" (click)="showContent(5)">
+                  <div class="filters__box-header" (click)="showContent(6)">
                     <span>Partida</span>
                     <img
                       alt="icono flecha abajo"
                       [src]="
-                        content && idMenuFilter == 5
+                        content && idMenuFilter == 6
                           ? 'assets/img/iconos/ico-search-arrow-top.svg'
                           : 'assets/img/iconos/ico-search-arrow-bottom.svg'
                       "
@@ -165,7 +204,7 @@
 
                   <div
                     class="filters__box-content"
-                    *ngIf="content && idMenuFilter == 5"
+                    *ngIf="content && idMenuFilter == 6"
                   >
                     <div class="filters__box-flex no-display">
                       <div class="styleInput">
@@ -190,12 +229,12 @@
                 </div>
                 <!--Tipo de requerimiento-->
                 <div class="filters__box">
-                  <div class="filters__box-header" (click)="showContent(6)">
+                  <div class="filters__box-header" (click)="showContent(7)">
                     <span>Tipo de requerimiento</span>
                     <img
                       alt="icono flecha abajo"
                       [src]="
-                        content && idMenuFilter == 6
+                        content && idMenuFilter == 7
                           ? 'assets/img/iconos/ico-search-arrow-top.svg'
                           : 'assets/img/iconos/ico-search-arrow-bottom.svg'
                       "
@@ -204,7 +243,7 @@
 
                   <div
                     class="filters__box-content"
-                    *ngIf="content && idMenuFilter == 6"
+                    *ngIf="content && idMenuFilter == 7"
                   >
                     <div class="filters__box-flex no-display">
                       <div class="styleInput">
@@ -229,12 +268,12 @@
                 </div>
                 <!--Rango de Fechas-->
                 <div class="filters__box">
-                  <div class="filters__box-header" (click)="showContent(7)">
+                  <div class="filters__box-header" (click)="showContent(8)">
                     <span>Fecha de Entrega</span>
                     <img
                       alt="icono flecha abajo"
                       [src]="
-                        content && idMenuFilter == 7
+                        content && idMenuFilter == 8
                           ? 'assets/img/iconos/ico-search-arrow-top.svg'
                           : 'assets/img/iconos/ico-search-arrow-bottom.svg'
                       "
@@ -243,7 +282,7 @@
 
                   <div
                     class="filters__box-content filters__box-contentUpdate"
-                    *ngIf="content && idMenuFilter == 7"
+                    *ngIf="content && idMenuFilter == 8"
                   >
                     <div class="field-checkbox filters__box-flex no-display">
                       <!--Input de Fecha-->
@@ -264,33 +303,8 @@
                 </div>
                 <!--Tipo de Documento-->
                 <div class="filters__box">
-                  <div class="filters__box-header" (click)="showContent(8)">
-                    <span>Tipo de Documento</span>
-                    <img
-                      alt="icono flecha abajo"
-                      [src]="
-                        content && idMenuFilter == 8
-                          ? 'assets/img/iconos/ico-search-arrow-top.svg'
-                          : 'assets/img/iconos/ico-search-arrow-bottom.svg'
-                      "
-                    />
-                  </div>
-
-                  <div
-                    class="filters__box-content filters__box-contentUpdate"
-                    *ngIf="content && idMenuFilter == 8"
-                  >
-                    <div class="filters__box-flex no-display">
-                      <div class="styleInput">
-                        <p-autoComplete [multiple]="true"> </p-autoComplete>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <!--Área responsable-->
-                <div class="filters__box">
                   <div class="filters__box-header" (click)="showContent(9)">
-                    <span>Área responsable</span>
+                    <span>Tipo de Documento</span>
                     <img
                       alt="icono flecha abajo"
                       [src]="
@@ -302,8 +316,33 @@
                   </div>
 
                   <div
-                    class="filters__box-content"
+                    class="filters__box-content filters__box-contentUpdate"
                     *ngIf="content && idMenuFilter == 9"
+                  >
+                    <div class="filters__box-flex no-display">
+                      <div class="styleInput">
+                        <p-autoComplete [multiple]="true"> </p-autoComplete>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!--Área responsable-->
+                <div class="filters__box">
+                  <div class="filters__box-header" (click)="showContent(10)">
+                    <span>Área responsable</span>
+                    <img
+                      alt="icono flecha abajo"
+                      [src]="
+                        content && idMenuFilter == 10
+                          ? 'assets/img/iconos/ico-search-arrow-top.svg'
+                          : 'assets/img/iconos/ico-search-arrow-bottom.svg'
+                      "
+                    />
+                  </div>
+
+                  <div
+                    class="filters__box-content"
+                    *ngIf="content && idMenuFilter == 10"
                   >
                     <div class="filters__box-flex no-display">
                       <div class="styleInput">

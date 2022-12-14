@@ -82,6 +82,14 @@ export class BuscadorComponent implements OnInit {
     },
   ];
 
+  filterAutoridad = [
+    {
+      id: 1,
+      label: "Servicio de Administración Tributaria",
+      year: "Servicio de Administración Tributaria",
+    },
+  ];
+
   filterMenu = [
     {
       id: 1,
