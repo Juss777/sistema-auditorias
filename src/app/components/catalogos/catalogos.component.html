@@ -7,11 +7,11 @@
   >
     <div class="audit__columns2 u-mb-50">
       <div class="p-field styleInput">
-        <label for="unidadNegocio">Nombre de unidad de negocio</label>
+        <label for="unidadNegocio">Nombre de la sociedad</label>
         <input
           id="unidadNegocio"
           type="text"
-          placeholder="Ingresa la unidad de negocio"
+          placeholder="Ingresa la sociedad"
           pInputText
           formControlName="nombre"
         />
@@ -408,11 +408,11 @@
     *ngIf="catalog == 'representanteLegal'"
     (ngSubmit)="addData(formRepresentante, catalog)"
   >
-  <!-- <div *ngIf="catalog == 'representanteLegal'" class="sectionNoBg__title" style="margin-bottom:43px;">Asignar unidad de negocio</div> -->
+  <!-- <div *ngIf="catalog == 'representanteLegal'" class="sectionNoBg__title" style="margin-bottom:43px;">Asignar sociedad</div> -->
 
     <div class="audit__columns2 u-mb-50">
       <div class="p-field styleInput">
-        <label for="representanteLegal">Nombre de unidad de negocio</label>
+        <label for="representanteLegal">Nombre de la sociedad</label>
         <div class="audit__flex">
           <div>
             <p-autoComplete formControlName="nombreUnidadNegocio"></p-autoComplete>

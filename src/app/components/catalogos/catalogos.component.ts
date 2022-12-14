@@ -222,7 +222,7 @@ export class CatalogosComponent implements OnInit {
 
       switch (type) {
         case 'unidadNegocio':
-          this.catalogNameOut.emit('Agregar unidad de negocio');
+          this.catalogNameOut.emit('Agregar sociedad');
           this.catalog = 'unidadNegocio';
           this.list = [];
           this.isSecondSidebar = true;

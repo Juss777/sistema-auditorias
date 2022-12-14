@@ -24,6 +24,7 @@ import { PrimeNGConfig } from "primeng/api";
 import esLocale from "@fullcalendar/core/locales/es";
 import { CalendarOptions } from "@fullcalendar/angular";
 import { Router } from "@angular/router";
+import { ViewChild } from '@angular/core';
 
 interface Authority {
   name: string;
@@ -250,9 +251,12 @@ export class FormAuditoriaComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {
     this.formAuditoria.controls["siglas"].disable();
     this.formAuditoria.controls["nombre"].disable();
+    
     if (this.auditoria.id > 0) {
       this.setDataFormAuditoria(this.auditoria);
       this.formAuditoria.disable();
+    } else {
+      this.formEtapa.controls["tipoNotificacion"].setValue("fisica"); //cambio___________________________________
     }
   }
 
@@ -556,4 +560,5 @@ export class FormAuditoriaComponent implements OnInit, AfterViewInit {
   changeNameCatalog(event: any){
     this.catalogName = event;
   }
+
 }

@@ -26,7 +26,7 @@
                 </div>
 
                 <div class="p-field styleInput">
-                  <label for="unidadNegocio">Unidad de Negocio</label>
+                  <label for="unidadNegocio">Sociedad</label>
                   <div class="audit__flex">
                     <div>
                       <p-autoComplete
@@ -51,7 +51,7 @@
                       alt=""
                       (click)="
                         visibleSidebar = true;
-                        catalogName = 'Agregar unidad de negocio';
+                        catalogName = 'Agregar sociedad';
                         catalog = 'unidadNegocio';
                         listaGeneral = unidadeNegocio;
                         inputSearch = '';
@@ -542,7 +542,7 @@
                 <div class="field-radiobutton">
                   <p-radioButton
                     name="tipoNotificacion"
-                    value="buzon tributario"
+                    value="buzonTributario"
                     formControlName="tipoNotificacion"
                     (onClick)="changeNotiBuzon()"
                   ></p-radioButton>
@@ -686,7 +686,6 @@
                 </div>
               </div>
             </div>
-
           </div>
 
           <div *ngIf="varEditor" class="u-mb-10">
