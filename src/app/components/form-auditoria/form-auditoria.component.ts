@@ -494,8 +494,6 @@ export class FormAuditoriaComponent implements OnInit, AfterViewInit {
 
   changeNotiFisica() {
     this.tipoComunicado = "citatorio";
-    // this.tipoMensaje = "citatorio";
-    // this.tipoDocumento = "Citatorio";
 
     this.formBuzon = false;
     this.formFisico = true;
@@ -503,8 +501,6 @@ export class FormAuditoriaComponent implements OnInit, AfterViewInit {
 
   changeNotiBuzon() {
     this.tipoComunicado = "aviso";
-    // this.tipoMensaje = "aviso";
-    // this.tipoDocumento = "Aviso";
 
     this.formBuzon = true;
     this.formFisico = false;
