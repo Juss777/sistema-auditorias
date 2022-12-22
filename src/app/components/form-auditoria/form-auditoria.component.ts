@@ -508,13 +508,11 @@ export class FormAuditoriaComponent implements OnInit, AfterViewInit {
     this.varEditor = false;
   }
 
-  //cambio_______________________________________________________
   exists: boolean = true;
   changeExists(value: boolean){
     this.exists = value;
     this.files[0].visible = value;
   }
-  //_____________________________________________________________
 
   changeCitaSi() {
     this.varEditor = true;
