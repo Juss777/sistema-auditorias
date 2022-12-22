@@ -48,6 +48,8 @@ import { ToastrModule } from "ngx-toastr";
 import { BuscadorComponent } from "./components/buscador/buscador.component";
 import { RequerimientoComponent } from './components/requerimiento/requerimiento.component';
 import { FormDocumentComponent } from './components/requerimiento/form-document/form-document.component';
+import { GraficasGeneralesComponent } from './components/graficas-generales/graficas-generales.component';
+import { GanttComponent } from './components/gantt/gantt.component';
 
 @NgModule({
   declarations: [
@@ -72,7 +74,9 @@ import { FormDocumentComponent } from './components/requerimiento/form-document/
     TableroComponent,
     BuscadorComponent,
     RequerimientoComponent,
-    FormDocumentComponent
+    FormDocumentComponent,
+    GraficasGeneralesComponent,
+    GanttComponent
   ],
   imports: [
     BrowserModule,
