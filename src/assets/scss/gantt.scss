@@ -1,0 +1,56 @@
+:root{
+    --plazo-interno-color: #B6DDAC;
+    --plazo-ley-color: #3684B1;
+}
+
+.gantt-chart{
+    height: max-content;
+}
+
+.gantt-plan{
+    background-color: var(--plazo-interno-color);
+    border: 0.2em solid var(--plazo-interno-color);
+    border-radius: 50px !important;
+
+    .gantt_task_progress {
+        background-color: var(--plazo-interno-color);
+    }
+
+}
+
+.gantt-task{
+    background-color: var(--plazo-ley-color);
+    border: 0.2em solid var(--plazo-ley-color);
+    border-radius: 50px !important;
+
+    .gantt_task_progress {
+        background-color: var(--plazo-ley-color);
+    }
+}
+
+.gantt_row_task.odd, .gantt_task_progress_drag,.gantt_link_point {
+    display:none !important;
+}
+
+.gantt_row_task {
+    height: 70px!important;
+    line-height: 70px!important;
+    cursor: pointer;
+}
+
+.gantt_grid_data,.gantt_ver_scroll, .gantt_data_area{
+    transform: scaleY(0.5);
+    transform-origin: top;
+}
+
+.gantt_layout_cell_border_bottom {
+    height: 220px !important;
+}
+
+.gantt_tree_content {
+    transform: scaleY(2);
+}
+
+.gantt_task_content,.gantt_side_content {
+    transform: scaleY(1.5);
+}
