@@ -1,3 +1,14 @@
+.container-gantt {
+    background-color: #FFFFFF;
+    padding: 0.5em 2em;
+
+    .gantt-year {
+        margin: 0.5em auto;
+        display: flex;
+        justify-content: center;
+    }
+}
+
 :root{
     --plazo-interno-color: #B6DDAC;
     --plazo-ley-color: #3684B1;
@@ -5,6 +16,70 @@
 
 .gantt-chart{
     height: max-content;
+    min-height: 50vh;
+
+    * {
+        font-weight: bold;
+        color: black;
+    }
+}
+
+.gantt_scale_cell {
+    color: black !important;
+    font-size: 1.2em;
+}
+
+.gantt-scale-title {
+
+    line-height: 30px;
+    div {
+        height: 30px!important;
+    }
+    
+    .gantt-grid-4{
+        display: grid;
+        grid-template-columns: repeat(4,1fr);
+
+        div {
+            font-size: 0.7em;
+            display: flex;
+            flex-direction: column;
+            border-top: 1px dashed #EAEAEA;
+            border-right: 1px dashed #EAEAEA;
+            span {
+                height: 15px;
+                line-height: 15px;
+            }
+        }
+
+        div:nth-child(4){
+            border-right: none !important;
+        }
+    }
+}
+
+.gantt_scale_line,.gantt_grid_head_cell {
+    background-color: #F5F5F5 !important;
+}
+
+.gantt_row.gantt_row_task:nth-child(even),.gantt-row-gray{
+    
+    background-color: #F5F5F5 !important;
+}
+
+.gantt-week-taskcell-dashed {
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    height: 20px;
+
+    >div {
+        
+        border-right: 1px dashed #EAEAEA;
+    }
+
+    >div:nth-child(4){
+        border-right: none !important;
+    }
 }
 
 .gantt-plan{
@@ -33,11 +108,29 @@
 }
 
 .gantt_row_task {
-    height: 70px!important;
-    line-height: 70px!important;
+    height: 40px!important;
+    line-height: 40px!important;
     cursor: pointer;
 }
 
+.gantt_task_row {
+   border-bottom: none;
+}
+
+.gantt_task_row.odd,.gantt_row_task {
+    border-bottom: 1px dashed #ebebeb;
+}
+
+.gantt_tree_content {
+    display: grid; 
+    align-items: center;
+    line-break: auto;
+    white-space: break-spaces;
+    line-height: 18px;
+}
+
+
+/*
 .gantt_grid_data,.gantt_ver_scroll, .gantt_data_area{
     transform: scaleY(0.5);
     transform-origin: top;
@@ -53,4 +146,4 @@
 
 .gantt_task_content,.gantt_side_content {
     transform: scaleY(1.5);
-}
+}*/
