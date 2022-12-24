@@ -17,7 +17,7 @@ export class GanttComponent implements OnInit {
   @Input() columns: any[] = [
     {name: "text", label: "", width: 200, resize: true, min_width: 170}
   ];
-  @Input() periodGantt : string = "Mes";
+  @Input() periodGantt : string = "Semana";
 
   constructor( private ganttService: GanttServiceService) {
     this.ganttData = ganttService.gantt.data;
