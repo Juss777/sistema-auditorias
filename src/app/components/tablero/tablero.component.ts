@@ -282,5 +282,6 @@ export class TableroComponent implements OnInit {
 
   activarInputDate() {
     console.log("activarInputDate");
+    this.inputDate = !this.inputDate;
   }
 }

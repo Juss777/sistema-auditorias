@@ -329,6 +329,7 @@
                     value="{{ option.value }}"
                     [(ngModel)]="selectedValue"
                     inputId="{{ option.id }}"
+                    [disabled]="!inputDate"
                   ></p-radioButton>
                   <label for="{{ option.id }}">{{ option.name }}</label>
                 </div>
