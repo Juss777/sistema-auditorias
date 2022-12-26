@@ -1,13 +1,36 @@
 <div class="page">
   <div class="container panelHeader">
-    <div class="titulo-bloque u-mb-5">Tablero de control</div>
+    <div class="panelHeader__content">
+      <div class="panelHeader__main">
+        <span>Filtro</span>
+        <img (click)="display = true" src="assets/img/iconos/ico-filter.svg" />
+      </div>
+      <div class="titulo-bloque u-mb-5">Tablero de control</div>
+    </div>
+
     <button
       class="btn btn-primary"
       routerLink="/auditoria/:id/:isReading/:sectionId"
+      *ngIf="!ejecutivo"
     >
       Nueva Auditoría
     </button>
+    <button class="btn btn-primary" *ngIf="ejecutivo">Gráficas</button>
   </div>
+
+  <!--Resultados-->
+  <div class="container panelResult">
+    <div class="panelResult__text">Filtrado por:</div>
+    <div class="filters__result">
+      <p-chip
+        *ngFor="let c of checkboxSelected"
+        label="{{ c }}"
+        [removable]="true"
+      ></p-chip>
+    </div>
+  </div>
+
+  <!--Contenido-->
   <div class="container">
     <div class="panel">
       <div class="panel__content">
@@ -190,4 +213,377 @@
       </div>
     </div>
   </div>
+</div>
+
+<!--Sidebar Filtro-->
+<div class="panelFilter">
+  <p-sidebar [(visible)]="display">
+    <div class="filters">
+      <div class="filters__header">
+        <span>Filtro</span>
+        <span (click)="checkboxSelected = []">Limpiar filtros</span>
+      </div>
+
+      <div class="filters__filter">
+        <!--Montos-->
+        <div class="filters__box">
+          <div class="filters__box-header" (click)="showContent(1)">
+            <span>Montos</span>
+            <img
+              alt="icono flecha abajo"
+              [src]="
+                content && idMenuFilter == 1
+                  ? 'assets/img/iconos/ico-search-arrow-top.svg'
+                  : 'assets/img/iconos/ico-search-arrow-bottom.svg'
+              "
+            />
+          </div>
+
+          <div
+            class="filters__box-content"
+            *ngIf="content && idMenuFilter == 1"
+          >
+            <div class="filters__box-flex no-display">
+              <div class="styleInput">
+                <div
+                  class="field-checkbox filters__box-flex"
+                  *ngFor="let f of filterMonto"
+                >
+                  <p-checkbox
+                    name="group1"
+                    [(ngModel)]="checkboxSelected"
+                    value="{{ f.name }}"
+                  >
+                    ></p-checkbox
+                  >
+                  <label for="{{ f.label }}">{{ f.label }}</label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--Riesgos-->
+        <div class="filters__box">
+          <div class="filters__box-header" (click)="showContent(2)">
+            <span>Riesgos</span>
+            <img
+              alt="icono flecha abajo"
+              [src]="
+                content && idMenuFilter == 2
+                  ? 'assets/img/iconos/ico-search-arrow-top.svg'
+                  : 'assets/img/iconos/ico-search-arrow-bottom.svg'
+              "
+            />
+          </div>
+
+          <div
+            class="filters__box-content filters__box-contentUpdate"
+            *ngIf="content && idMenuFilter == 2"
+          >
+            <div class="filters__box-flex no-display">
+              <div class="styleInput">
+                <div
+                  class="field-checkbox filters__box-flex"
+                  *ngFor="let f of filterRiesgos"
+                >
+                  <p-checkbox
+                    name="group1"
+                    [(ngModel)]="checkboxSelected"
+                    value="{{ f.name }}"
+                  >
+                    ></p-checkbox
+                  >
+                  <label for="{{ f.label }}">{{ f.label }}</label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--Tiempo de vencimiento-->
+        <div class="filters__box">
+          <div class="filters__box-header" (click)="showContent(3)">
+            <span>Tiempo de vencimiento</span>
+            <img
+              alt="icono flecha abajo"
+              [src]="
+                content && idMenuFilter == 3
+                  ? 'assets/img/iconos/ico-search-arrow-top.svg'
+                  : 'assets/img/iconos/ico-search-arrow-bottom.svg'
+              "
+            />
+          </div>
+
+          <div
+            class="filters__box-content filters__box-contentUpdate"
+            *ngIf="content && idMenuFilter == 3"
+          >
+            <div class="field-checkbox filters__box-flex no-display">
+              <!--Input de Fecha-->
+              <div class="styleInput u-mb-10">
+                <div
+                  class="field-radiobutton"
+                  *ngFor="let option of tiempoEspera"
+                >
+                  <p-radioButton
+                    name="{{ option.type }}"
+                    value="{{ option.value }}"
+                    [(ngModel)]="selectedValue"
+                    inputId="{{ option.id }}"
+                  ></p-radioButton>
+                  <label for="{{ option.id }}">{{ option.name }}</label>
+                </div>
+              </div>
+              <div class="styleInput">
+                <div class="field-checkbox u-mb-10">
+                  <p-checkbox
+                    (onChange)="activarInputDate()"
+                    [binary]="true"
+                    inputId="binary"
+                  ></p-checkbox>
+                  <label for="binary"></label>
+                </div>
+                <div class="u-mb-10">
+                  <p-calendar
+                    name="fechaFin"
+                    [ngClass]="inputDate ? 'panelDateFilter' : ''"
+                    placeholder="Fecha de término"
+                  ></p-calendar>
+                </div>
+                <div>
+                  <p-calendar
+                    name="fechaInicio"
+                    [ngClass]="inputDate ? 'panelDateFilter' : ''"
+                    placeholder="Fecha de inicio"
+                  ></p-calendar>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--Empresas de GS-->
+        <div class="filters__box">
+          <div class="filters__box-header" (click)="showContent(4)">
+            <span>Empresas de GS</span>
+            <img
+              alt="icono flecha abajo"
+              [src]="
+                content && idMenuFilter == 4
+                  ? 'assets/img/iconos/ico-search-arrow-top.svg'
+                  : 'assets/img/iconos/ico-search-arrow-bottom.svg'
+              "
+            />
+          </div>
+
+          <div
+            class="filters__box-content"
+            *ngIf="content && idMenuFilter == 4"
+          >
+            <div class="filters__box-flex no-display">
+              <div class="styleInput">
+                <div
+                  class="field-checkbox filters__box-flex"
+                  *ngFor="let option of filterEmpresas"
+                >
+                  <p-checkbox
+                    name="group1"
+                    [(ngModel)]="checkboxSelected"
+                    value="{{ option.name }}"
+                  >
+                    ></p-checkbox
+                  >
+                  <label for="{{ option.label }}">{{ option.label }}</label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--Autoridad-->
+        <div class="filters__box">
+          <div class="filters__box-header" (click)="showContent(5)">
+            <span>Autoridad</span>
+            <img
+              alt="icono flecha abajo"
+              [src]="
+                content && idMenuFilter == 5
+                  ? 'assets/img/iconos/ico-search-arrow-top.svg'
+                  : 'assets/img/iconos/ico-search-arrow-bottom.svg'
+              "
+            />
+          </div>
+
+          <div
+            class="filters__box-content"
+            *ngIf="content && idMenuFilter == 5"
+          >
+            <div class="filters__box-flex no-display">
+              <div class="styleInput">
+                <div
+                  class="field-checkbox filters__box-flex"
+                  *ngFor="let option of filterAutoridad"
+                >
+                  <p-checkbox
+                    name="group1"
+                    [(ngModel)]="checkboxSelected"
+                    value="{{ option.name }}"
+                  >
+                    ></p-checkbox
+                  >
+                  <label for="{{ option.label }}">{{ option.label }}</label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--Administrador de auditoría-->
+        <div class="filters__box">
+          <div class="filters__box-header" (click)="showContent(6)">
+            <span>Administrador de auditoría</span>
+            <img
+              alt="icono flecha abajo"
+              [src]="
+                content && idMenuFilter == 6
+                  ? 'assets/img/iconos/ico-search-arrow-top.svg'
+                  : 'assets/img/iconos/ico-search-arrow-bottom.svg'
+              "
+            />
+          </div>
+
+          <div
+            class="filters__box-content"
+            *ngIf="content && idMenuFilter == 6"
+          >
+            <div class="filters__box-flex no-display">
+              <div class="styleInput">
+                <div
+                  class="field-checkbox filters__box-flex"
+                  *ngFor="let option of filterAdministrador"
+                >
+                  <p-checkbox
+                    name="group1"
+                    [(ngModel)]="checkboxSelected"
+                    value="{{ option.name }}"
+                  >
+                    ></p-checkbox
+                  >
+                  <label for="{{ option.label }}">{{ option.label }}</label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--Etapa-->
+        <div class="filters__box">
+          <div class="filters__box-header" (click)="showContent(7)">
+            <span>Etapa</span>
+            <img
+              alt="icono flecha abajo"
+              [src]="
+                content && idMenuFilter == 7
+                  ? 'assets/img/iconos/ico-search-arrow-top.svg'
+                  : 'assets/img/iconos/ico-search-arrow-bottom.svg'
+              "
+            />
+          </div>
+
+          <div
+            class="filters__box-content"
+            *ngIf="content && idMenuFilter == 7"
+          >
+            <div class="filters__box-flex no-display">
+              <div class="styleInput">
+                <div
+                  class="field-checkbox filters__box-flex"
+                  *ngFor="let option of filterEtapas"
+                >
+                  <p-checkbox
+                    name="group1"
+                    [(ngModel)]="checkboxSelected"
+                    value="{{ option.name }}"
+                  >
+                    ></p-checkbox
+                  >
+                  <label for="{{ option.label }}">{{ option.label }}</label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!--Año-->
+        <div class="filters__box">
+          <div class="filters__box-header" (click)="showContent(9)">
+            <span>Año</span>
+            <img
+              alt="icono flecha abajo"
+              [src]="
+                content && idMenuFilter == 9
+                  ? 'assets/img/iconos/ico-search-arrow-top.svg'
+                  : 'assets/img/iconos/ico-search-arrow-bottom.svg'
+              "
+            />
+          </div>
+
+          <div
+            class="filters__box-content filters__box-contentUpdate"
+            *ngIf="content && idMenuFilter == 9"
+          >
+            <div class="filters__box-flex no-display">
+              <div class="styleInput">
+                <div
+                  class="field-checkbox filters__box-flex"
+                  *ngFor="let option of filterYear"
+                >
+                  <p-checkbox
+                    name="group1"
+                    [(ngModel)]="checkboxSelected"
+                    value="{{ option.name }}"
+                  >
+                    ></p-checkbox
+                  >
+                  <label for="{{ option.label }}">{{ option.label }}</label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--Representante legal-->
+        <div class="filters__box">
+          <div class="filters__box-header" (click)="showContent(10)">
+            <span>Representante legal</span>
+            <img
+              alt="icono flecha abajo"
+              [src]="
+                content && idMenuFilter == 10
+                  ? 'assets/img/iconos/ico-search-arrow-top.svg'
+                  : 'assets/img/iconos/ico-search-arrow-bottom.svg'
+              "
+            />
+          </div>
+
+          <div
+            class="filters__box-content"
+            *ngIf="content && idMenuFilter == 10"
+          >
+            <div class="filters__box-flex no-display">
+              <div class="styleInput">
+                <div
+                  class="field-checkbox filters__box-flex"
+                  *ngFor="let option of filterRLegal"
+                >
+                  <p-checkbox
+                    name="group1"
+                    [(ngModel)]="checkboxSelected"
+                    value="{{ option.name }}"
+                  >
+                    ></p-checkbox
+                  >
+                  <label for="{{ option.label }}">{{ option.label }}</label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </p-sidebar>
 </div>

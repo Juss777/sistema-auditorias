@@ -202,4 +202,55 @@
     width: 140px;
     height: 40px;
   }
+
+  &__content {
+    display: flex;
+    align-items: flex-end;
+    column-gap: 15px;
+  }
+
+  &__main {
+    span {
+      font-size: 1.1rem;
+      font-family: var(--main-font-regular);
+    }
+
+    img {
+      cursor: pointer;
+    }
+  }
+}
+
+.panelFilter {
+  .p-sidebar-left {
+    width: 35rem;
+  }
+}
+
+.panelResult {
+  display: grid;
+  grid-template-columns: 0.5fr 7fr;
+
+  gap: 20px;
+
+  &__text {
+    font-size: 1.4rem;
+    font-family: var(--main-font-demi);
+  }
+
+  .filters__result {
+    margin-bottom: 0;
+    .p-chip {
+      border: 1px solid var(--main-color);
+      color: var(--main-color);
+    }
+  }
+}
+
+.panelDateFilter {
+  .p-calendar input {
+    border: 2px solid #e3e3e3;
+    background-color: #fcfafa;
+    pointer-events: none;
+  }
 }

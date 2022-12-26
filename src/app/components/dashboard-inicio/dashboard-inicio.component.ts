@@ -1,4 +1,10 @@
-import { AfterViewInit, Component, Input, OnInit, HostListener } from "@angular/core";
+import {
+  AfterViewInit,
+  Component,
+  Input,
+  OnInit,
+  HostListener,
+} from "@angular/core";
 import { Auditoria } from "src/app/class/auditoriasClass";
 import {
   AdminTarea,
@@ -17,7 +23,7 @@ import { TranslateService } from "@ngx-translate/core";
 import { PrimeNGConfig } from "primeng/api";
 import esLocale from "@fullcalendar/core/locales/es";
 import { CalendarOptions } from "@fullcalendar/angular";
-import { AppComponent } from '../../app.component';
+import { AppComponent } from "../../app.component";
 
 export interface IAuditoria {
   id?: number;
@@ -83,9 +89,12 @@ export class DashboardInicioComponent implements OnInit, AfterViewInit {
     this.auditorias = auditoriaService.auditoriaDetalles;
   }
 
-  @HostListener('click', ['$event'])
-  onClick(event: any) {   
-    if (event.target.nodeName === 'SPAN' && event.target.classList[2] == 'p-monthpicker-month') {
+  @HostListener("click", ["$event"])
+  onClick(event: any) {
+    if (
+      event.target.nodeName === "SPAN" &&
+      event.target.classList[2] == "p-monthpicker-month"
+    ) {
       this.markDayStartAndFinish();
     }
   }
@@ -94,12 +103,11 @@ export class DashboardInicioComponent implements OnInit, AfterViewInit {
     this.fichaTecnica(this.auditorias[0]);
   }
 
-  ngAfterViewInit() {    
+  ngAfterViewInit() {
     setTimeout(() => {
       this.markDayStartAndFinish();
       this.appComponent.traslateCalendarDashBoardInit();
     }, 200);
-    
   }
 
   showModal(typeModal: string, headerModal: string) {
@@ -128,6 +136,4 @@ export class DashboardInicioComponent implements OnInit, AfterViewInit {
       d[d.length - 1].style.color = "white";
     }
   }
-
-  
 }
