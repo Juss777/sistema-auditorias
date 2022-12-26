@@ -51,6 +51,8 @@ $REQDC7958-theme: mat-light-theme(
 @import "assets/scss/panel.scss";
 @import "assets/scss/search.scss";
 @import "assets/scss/drop.scss";
+@import "dhtmlx-gantt/codebase/dhtmlxgantt.css";
+@import "assets/scss/gantt.scss";
 
 /* general */
 * {

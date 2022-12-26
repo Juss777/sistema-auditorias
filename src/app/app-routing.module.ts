@@ -13,6 +13,7 @@ import { DetallePorAreaComponent } from "./components/detalle-por-area/detalle-p
 import { TableroComponent } from "./components/tablero/tablero.component";
 import { BuscadorComponent } from "./components/buscador/buscador.component";
 import { RequerimientoComponent } from './components/requerimiento/requerimiento.component';
+import { GraficasGeneralesComponent } from './components/graficas-generales/graficas-generales.component';
 
 const routes: Routes = [
   {
@@ -166,6 +167,22 @@ const routes: Routes = [
         },
         {
           label: "Nuevo Requerimiento",
+          url: "",
+        },
+      ],
+    },
+  },
+  {
+    path: "graficasGenerales",
+    component: GraficasGeneralesComponent,
+    data: {
+      breadcrumb: [
+        {
+          label: "Tablero de control",
+          url: "/",
+        },
+        {
+          label: "Gráficas generales",
           url: "",
         },
       ],

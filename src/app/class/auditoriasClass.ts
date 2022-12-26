@@ -154,7 +154,6 @@ export class Etapa {
   }
 }
 
-//change ___________________________________________________
 export class Requirement {
   id;
   partida;
@@ -202,7 +201,6 @@ export class TypeRequeriment {
   }
 }
 
-//change ___________________________________________________
 export class TypeDocument {
   id;
   typeDocument;
@@ -223,5 +221,21 @@ export class TypeDocument {
     this.idRequirement = typeDocument.idRequirement || 0;
     this.status = typeDocument.status || "";
     this.documents = typeDocument.documents || [];
+  }
+}
+
+//change ___________________________________________________
+export class GanttData {
+  id: number = 0;
+  text: string = "";
+  progress: number = 0;
+  start_date: string = "";
+  end_date?:string ="";
+  duration: number = 0;
+  parent: number = 0;
+  open: boolean;
+
+  constructor() {
+    this.open = true;
   }
 }
