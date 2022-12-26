@@ -13,8 +13,8 @@ import { PaginatorModule } from "primeng/paginator";
 import { SidebarModule } from "primeng/sidebar";
 import { AutoCompleteModule } from "primeng/autocomplete";
 import { ChipModule } from "primeng/chip";
-import {OverlayPanelModule} from 'primeng/overlaypanel';
-import {TabViewModule} from 'primeng/tabview';
+import { OverlayPanelModule } from "primeng/overlaypanel";
+import { TabViewModule } from "primeng/tabview";
 
 //FULL CALENDAR
 import { FullCalendarModule } from "@fullcalendar/angular";
@@ -49,7 +49,7 @@ FullCalendarModule.registerPlugins([
     AutoCompleteModule,
     CheckboxModule,
     OverlayPanelModule,
-    TabViewModule
+    TabViewModule,
   ],
 })
 export class PrimeNgModule {}
