@@ -39,15 +39,9 @@ export class GanttComponent implements OnInit {
     gantt.config.min_column_width = 100;
     gantt.config.row_height = 20;
     gantt.config.scale_height = 60;
-    gantt.config.grid_width = 150;
-    gantt.config.layout = {
-      css: "gantt_container",
-      cols: [
-        {
-          width:100
-        }
-      ]
-    };
+    gantt.config.grid_width = 170;
+    gantt.config.drag_move = false;
+
     switch (this.periodGantt) {
       case "Semana":
         gantt.config.scales = [
