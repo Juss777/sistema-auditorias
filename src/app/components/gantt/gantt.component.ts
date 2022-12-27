@@ -25,8 +25,8 @@ export class GanttComponent implements OnInit {
   }
   ngOnInit(): void {
     this.loadGantt();
-    setTimeout(()=>{this.paintRow();this.paintRowTaskBar();this.paintTaskCellDashed()},700);
-    setInterval(() => {this.paintRow();this.paintRowTaskBar();this.paintTaskCellDashed()},100);
+    setTimeout(()=>{this.paintRow();this.paintRowTaskBar();this.paintTaskCellDashed();},700);
+    setInterval(() => {this.paintRow();this.paintRowTaskBar();this.paintTaskCellDashed();},100);
   }
 
   loadGantt(){
@@ -41,6 +41,8 @@ export class GanttComponent implements OnInit {
     gantt.config.scale_height = 60;
     gantt.config.grid_width = 170;
     gantt.config.drag_move = false;
+    gantt.config.drag_resize = false;
+    gantt.config.details_on_dblclick = false;
 
     switch (this.periodGantt) {
       case "Semana":
@@ -83,7 +85,10 @@ export class GanttComponent implements OnInit {
     let divChild = divParent[0].children;
     let contentChildTask = [];
     for (let i = 0; i < divChild.length; i++) {
-      const child = divChild[i];
+
+      var child = divChild[i];
+      child.classList.remove("gantt_selected");
+
       if(child.classList[1] != "odd") {
         contentChildTask.push(child);
       }
@@ -102,6 +107,10 @@ export class GanttComponent implements OnInit {
     let divChild = divParent[0].children;
     let lastPainted:boolean = true;
     for (let i = 0; i < divChild.length; i++) {
+
+      var child = divChild[i];
+      child.classList.remove("gantt_selected");
+
       if (i%2==0) {
         if (lastPainted) {
           lastPainted = false;
@@ -113,6 +122,15 @@ export class GanttComponent implements OnInit {
       }
     }
   }
+
+  // disapperClassSelected(){
+  //   let divParentGrid:HTMLCollection = document.getElementsByClassName("gantt_grid_data");
+  //   let divChildGrid = divParentGrid[0].children;
+  //   for (let i = 0; i < divChildGrid.length; i++) {
+  //     var child = divChildGrid[i];
+  //     child.classList.remove("gantt_selected");
+  //   }
+  // }
 
   paintTaskCellDashed() {
     let divCellTask:HTMLCollection = document.getElementsByClassName("gantt_task_cell");

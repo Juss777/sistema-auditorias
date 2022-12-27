@@ -1,7 +1,11 @@
 <div class="page">
+  <div class="container temporal">
+    <span (click)="ejecutivo = false">Administrador</span>
+    <span (click)="ejecutivo = true">Ejecutivo</span>
+  </div>
   <div class="container panelHeader">
     <div class="panelHeader__content">
-      <div class="panelHeader__main">
+      <div class="panelHeader__main" *ngIf="ejecutivo">
         <span>Filtro</span>
         <img (click)="display = true" src="assets/img/iconos/ico-filter.svg" />
       </div>
@@ -15,7 +19,7 @@
     >
       Nueva Auditoría
     </button>
-    <button class="btn btn-primary" *ngIf="ejecutivo">Gráficas</button>
+    <button class="btn btn-primary" *ngIf="ejecutivo" routerLink="/graficasGenerales">Gráficas</button>
   </div>
 
   <!--Resultados-->

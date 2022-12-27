@@ -132,6 +132,7 @@
 
 .content-bg-gantt{
     margin-top: 17px;
+    margin-bottom: 32px;
     display: flex;
     align-items: center;
 
@@ -145,6 +146,11 @@
             margin-right: 7px;
             width: 17px;
             height: 17px;
+        }
+
+        span{
+            font-weight: 700;
+            font-size: 11px;
         }
     }
 
@@ -167,20 +173,10 @@
     background: none !important;
 }
 
-/*
-.gantt_grid_data,.gantt_ver_scroll, .gantt_data_area{
-    transform: scaleY(0.5);
-    transform-origin: top;
+.gantt_layout_cell_border_right {
+    border-right: 1px solid var(--color-dashed);
 }
 
-.gantt_layout_cell_border_bottom {
-    height: 220px !important;
+.gantt_grid_scale, .gantt_task_scale{
+    border-bottom: 1px solid var(--color-dashed);
 }
-
-.gantt_tree_content {
-    transform: scaleY(2);
-}
-
-.gantt_task_content,.gantt_side_content {
-    transform: scaleY(1.5);
-}*/

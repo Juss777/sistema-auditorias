@@ -3,7 +3,18 @@ import { Component, OnInit } from "@angular/core";
 @Component({
   selector: "app-tablero",
   templateUrl: "./tablero.component.html",
-  styles: [],
+  styles: [
+    `
+      .temporal {
+        display: flex;
+        gap: 10px;
+        justify-content: flex-end;
+        cursor: pointer;
+        font-family: var(--main-font-regular);
+        color: var(--color-negro);
+      }
+    `,
+  ],
 })
 export class TableroComponent implements OnInit {
   ejecutivo = false;

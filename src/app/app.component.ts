@@ -46,7 +46,7 @@ export class AppComponent {
       "December": "Diciembre",
     }
 
-    btnMonth[0].innerHTML = mapMonth[btnMonth[0].innerText];
+    btnMonth[0].innerHTML = mapMonth[btnMonth[0].innerText] == undefined ? btnMonth[0].innerText : mapMonth[btnMonth[0].innerText];
 
     for (let i = 0; i < table.children[0].children[0].children.length; i++) {
       const element = table.children[0].children[0].children[i];
@@ -62,7 +62,7 @@ export class AppComponent {
         "Sa": "Sa"
       };
 
-      element.children[0].innerHTML = mapDay[element.children[0].innerHTML]      
+      element.children[0].innerHTML = mapDay[element.children[0].innerHTML] == undefined ? element.children[0].innerHTML : mapDay[element.children[0].innerHTML];
     }
   }
 }
