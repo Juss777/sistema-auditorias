@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { GanttServiceService } from '../../services/gantt-service.service';
+import { GanttData } from '../../class/auditoriasClass';
 
 @Component({
   selector: 'app-graficas-generales',
@@ -6,8 +8,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: []
 })
 export class GraficasGeneralesComponent implements OnInit {
+  ganttData: GanttData[] = [];
 
-  constructor() { }
+  constructor(private ganttService: GanttServiceService) { 
+    this.ganttData = ganttService.gantt.data;
+  }
 
   ngOnInit(): void {
   }

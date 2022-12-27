@@ -1,5 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef, Input, ViewEncapsulation, AfterViewInit } from '@angular/core';
-
+import { Component, OnInit, ViewChild, ElementRef, Input, ViewEncapsulation } from '@angular/core';
 import { gantt } from 'dhtmlx-gantt';
 import { GanttServiceService } from '../../services/gantt-service.service';
 import { GanttData } from '../../class/auditoriasClass';
@@ -13,7 +12,8 @@ import { GanttData } from '../../class/auditoriasClass';
 export class GanttComponent implements OnInit {
 
   @ViewChild("gantt", {static: true}) ganttContainer!: ElementRef;
-  ganttData: GanttData[];
+
+  @Input() data: GanttData[];
   @Input() columns: any[] = [
     {name: "text", label: " ", width: 70, resize: true, min_width: 70}
   ];
@@ -21,7 +21,7 @@ export class GanttComponent implements OnInit {
   @Input() year : number = 2023;
 
   constructor( private ganttService: GanttServiceService) {
-    this.ganttData = ganttService.gantt.data;
+    this.data = ganttService.gantt.data;
   }
   ngOnInit(): void {
     this.loadGantt();
@@ -77,7 +77,7 @@ export class GanttComponent implements OnInit {
       return "gantt-task";
     }
 
-    gantt.parse({data: this.ganttData});
+    gantt.parse({data: this.data});
   }
 
   paintRow() {
@@ -122,15 +122,6 @@ export class GanttComponent implements OnInit {
       }
     }
   }
-
-  // disapperClassSelected(){
-  //   let divParentGrid:HTMLCollection = document.getElementsByClassName("gantt_grid_data");
-  //   let divChildGrid = divParentGrid[0].children;
-  //   for (let i = 0; i < divChildGrid.length; i++) {
-  //     var child = divChildGrid[i];
-  //     child.classList.remove("gantt_selected");
-  //   }
-  // }
 
   paintTaskCellDashed() {
     let divCellTask:HTMLCollection = document.getElementsByClassName("gantt_task_cell");

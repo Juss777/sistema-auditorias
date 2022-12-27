@@ -13,23 +13,15 @@ export class HeaderComponent implements OnInit {
   menu = [
     {
       id: 1,
-      name: "Home",
-      url: "/",
+      name: "Buscador",
+      url: "/buscador",
+      icon: "ico-search-white"
     },
     {
       id: 2,
-      name: "Buscador",
-      url: "/buscador",
-    },
-    {
-      id: 3,
       name: "Notificaciones",
       url: "/notificacion",
-    },
-    // {
-    //   id: 4,
-    //   name: "Nueva Auditoría",
-    //   url: "/auditoria/:id/:isReading/:sectionId",
-    // },
+      icon: "ico-bell-fill-white"
+    }
   ];
 }
