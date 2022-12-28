@@ -1,7 +1,7 @@
 <section class="header">
   <div class="header__top">
     <div class="header__logo">
-      <img src="assets/img/header/logo.svg" />
+      <img src="assets/img/header/logo.svg" routerLink="/" style="cursor: pointer;"/>
     </div>
     <div class="header__info">
       <div class="header__username">
@@ -14,13 +14,23 @@
         </div>
       </div>
       <div class="welcome">
-        <span>Bienvenido a</span>
-        <span>Sistema de Auditorias</span>
+        <div>
+          <span>Bienvenido a</span>
+          <span>Sistema de Auditorias</span>
+        </div>
+        
+        <div>
+          <div *ngFor="let m of menu" class="{{m.icon}} tooltip" [routerLink]="m.url">
+            <span class="tooltiptext tooltip-left">{{m.name}}</span>
+          </div>
+        </div>
+        
       </div>
     </div>
   </div>
 </section>
-<div class="nav">
+
+<!-- <div class="nav">
   <input type="checkbox" id="nav-check" />
   <div class="nav-btn">
     <label for="nav-check">
@@ -33,11 +43,4 @@
   <div class="nav-links">
     <a *ngFor="let m of menu" [routerLink]="m.url">{{ m.name }}</a>
   </div>
-
-  <!-- <p-confirmDialog
-    [style]="{ width: '50vw' }"
-    key="confirmation"
-    [baseZIndex]="10000"
-    rejectButtonStyleClass="p-button-outlined"
-  ></p-confirmDialog> -->
-</div>
+</div> -->

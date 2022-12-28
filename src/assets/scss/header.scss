@@ -45,6 +45,11 @@
   .welcome {
     padding: 5px 20px;
     background-color: #71ca6b;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
     span {
       display: block;
 
@@ -60,6 +65,31 @@
         font-family: var(--main-font-demi);
       }
     }
+
+    /*change*/
+    div:nth-child(2){
+      display: flex;
+
+      div.ico-search-white{
+          background-image: url(../img/iconos/ico-search-white.svg);
+          background-repeat: no-repeat;
+          background-size: contain;
+          width: 22px;
+          height: 26px;
+          margin-right: 25.5px;
+          cursor: pointer;
+      }
+  
+      div.ico-bell-fill-white{
+          background-image: url(../img/iconos/ico-bell-fill-white.svg);
+          background-repeat: no-repeat;
+          background-size: contain;
+          width: 22px;
+          height: 26px;
+          cursor: pointer;
+      }
+    }
+    
   }
 }
 
@@ -173,3 +203,4 @@
     }
   }
 }
+
