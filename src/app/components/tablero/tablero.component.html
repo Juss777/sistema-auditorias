@@ -1,7 +1,11 @@
 <div class="page">
+  <div class="container temporal">
+    <span (click)="ejecutivo = false">Administrador</span>
+    <span (click)="ejecutivo = true">Ejecutivo</span>
+  </div>
   <div class="container panelHeader">
     <div class="panelHeader__content">
-      <div class="panelHeader__main">
+      <div class="panelHeader__main" *ngIf="ejecutivo">
         <span>Filtro</span>
         <img (click)="display = true" src="assets/img/iconos/ico-filter.svg" />
       </div>
@@ -15,11 +19,17 @@
     >
       Nueva Auditoría
     </button>
-    <button class="btn btn-primary" *ngIf="ejecutivo">Gráficas</button>
+    <button
+      class="btn btn-primary"
+      *ngIf="ejecutivo"
+      routerLink="/graficasGenerales"
+    >
+      Gráficas
+    </button>
   </div>
 
   <!--Resultados-->
-  <div class="container panelResult">
+  <div class="container panelResult" *ngIf="ejecutivo">
     <div class="panelResult__text">Filtrado por:</div>
     <div class="filters__result">
       <p-chip
@@ -115,14 +125,26 @@
                     TVA 2019 C. Ext
                   </div>
 
-                  <div class="panel__card panel__card--white">
+                  <div
+                    class="panel__card panel__border-yellow panel__card--white"
+                  >
                     TVA 2020 C. Ext
                   </div>
 
-                  <div class="panel__card panel__card--gray">
+                  <div class="panel__card panel__border-red panel__card--white">
+                    GPRomo 19
+                  </div>
+
+                  <div
+                    class="panel__card panel__border-green panel__card--gray"
+                  >
                     Cobre Mayo ´16
                   </div>
-                  <div class="panel__card panel__card--gray">SIIEN ´21</div>
+                  <div
+                    class="panel__card panel__border-green panel__card--gray"
+                  >
+                    SIIEN ´21
+                  </div>
                   <div class="panel__card panel__card--gray">
                     EKTCOM 2015 ($148 MDP)
                   </div>
@@ -209,6 +231,33 @@
         </div>
         <div class="panel__footer-italic">
           * Las cifras reflejan montos con accesorios
+        </div>
+        <div class="panelRisks" *ngIf="ejecutivo">
+          <div class="panelRisks__columnOne">
+            <span>Riesgos</span>
+            <div class="panelRisks__circle">
+              <span class="panelRisks__red"></span>
+              <span>Alto</span>
+            </div>
+            <div class="panelRisks__circle">
+              <span class="panelRisks__yellow"></span>
+              <span>Medio</span>
+            </div>
+            <div class="panelRisks__circle">
+              <span class="panelRisks__green"></span>
+              <span>Bajo</span>
+            </div>
+          </div>
+          <div class="panelRisks__columnTwo">
+            <div>
+              <span>Determinada</span>
+              <span>$450,000,000.00 MXN</span>
+            </div>
+            <div>
+              <span>Contingencia</span>
+              <span>$5,000,000,000.00 MXN</span>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -329,6 +378,7 @@
                     value="{{ option.value }}"
                     [(ngModel)]="selectedValue"
                     inputId="{{ option.id }}"
+                    [disabled]="!inputDate"
                   ></p-radioButton>
                   <label for="{{ option.id }}">{{ option.name }}</label>
                 </div>

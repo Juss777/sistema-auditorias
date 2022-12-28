@@ -12,6 +12,7 @@
 :root{
     --plazo-interno-color: #B6DDAC;
     --plazo-ley-color: #3684B1;
+    --color-dashed: #EAEAEA;
 }
 
 .gantt-chart{
@@ -44,8 +45,8 @@
             font-size: 0.7em;
             display: flex;
             flex-direction: column;
-            border-top: 1px dashed #EAEAEA;
-            border-right: 1px dashed #EAEAEA;
+            border-top: 1px dashed var(--color-dashed);
+            border-right: 1px dashed var(--color-dashed);
             span {
                 height: 15px;
                 line-height: 15px;
@@ -74,7 +75,7 @@
 
     >div {
         
-        border-right: 1px dashed #EAEAEA;
+        border-right: 1px dashed var(--color-dashed);
     }
 
     >div:nth-child(4){
@@ -114,7 +115,7 @@
 }
 
 .gantt_task_row {
-   border-bottom: none;
+    border-bottom: none;
 }
 
 .gantt_task_row.odd,.gantt_row_task {
@@ -129,21 +130,53 @@
     line-height: 18px;
 }
 
+.content-bg-gantt{
+    margin-top: 17px;
+    margin-bottom: 32px;
+    display: flex;
+    align-items: center;
 
-/*
-.gantt_grid_data,.gantt_ver_scroll, .gantt_data_area{
-    transform: scaleY(0.5);
-    transform-origin: top;
+    .line{
+        display: flex;
+        align-items: center;
+        margin-right: 32px;
+        
+        div{
+            border-radius: 50px;
+            margin-right: 7px;
+            width: 17px;
+            height: 17px;
+        }
+
+        span{
+            font-weight: 700;
+            font-size: 11px;
+        }
+    }
+
+    .bg-gantt{
+        &__interno{
+            background-color: var(--plazo-interno-color);
+        }
+
+        &__ley{
+            background-color: var(--plazo-ley-color);
+        }
+    }
 }
 
-.gantt_layout_cell_border_bottom {
-    height: 220px !important;
+.gantt_grid_data .gantt_row.gantt_selected, 
+.gantt_grid_data .gantt_row.odd.gantt_selected, 
+.gantt_task_row.gantt_selected,
+.gantt_grid_data .gantt_row.odd:hover, 
+.gantt_grid_data .gantt_row:hover{
+    background: none !important;
 }
 
-.gantt_tree_content {
-    transform: scaleY(2);
+.gantt_layout_cell_border_right {
+    border-right: 1px solid var(--color-dashed);
 }
 
-.gantt_task_content,.gantt_side_content {
-    transform: scaleY(1.5);
-}*/
+.gantt_grid_scale, .gantt_task_scale{
+    border-bottom: 1px solid var(--color-dashed);
+}

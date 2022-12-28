@@ -8,7 +8,6 @@ import {
   AfterViewInit,
 } from "@angular/core";
 
-// import { gantt } from "dhtmlx-gantt";
 import { gantt } from "dhtmlx-gantt";
 import { GanttServiceService } from "../../services/gantt-service.service";
 import { GanttData } from "../../class/auditoriasClass";
@@ -49,22 +48,16 @@ export class GanttComponent implements OnInit {
     gantt.clearAll();
     gantt.config.date_format = "%d-%m-%Y";
     gantt.init(this.ganttContainer.nativeElement);
-
     gantt.config.columns = this.columns;
     gantt.config.start_on_monday = true;
     gantt.i18n.setLocale("es");
     gantt.config.min_column_width = 100;
     gantt.config.row_height = 20;
     gantt.config.scale_height = 60;
-    gantt.config.grid_width = 150;
-    gantt.config.layout = {
-      css: "gantt_container",
-      cols: [
-        {
-          width: 100,
-        },
-      ],
-    };
+    gantt.config.grid_width = 170;
+    gantt.config.drag_move = false;
+    gantt.config.drag_resize = false;
+    gantt.config.details_on_dblclick = false;
 
     switch (this.periodGantt) {
       case "Semana":
@@ -108,7 +101,9 @@ export class GanttComponent implements OnInit {
     let divChild = divParent[0].children;
     let contentChildTask = [];
     for (let i = 0; i < divChild.length; i++) {
-      const child = divChild[i];
+      var child = divChild[i];
+      child.classList.remove("gantt_selected");
+
       if (child.classList[1] != "odd") {
         contentChildTask.push(child);
       }
@@ -126,6 +121,9 @@ export class GanttComponent implements OnInit {
     let divChild = divParent[0].children;
     let lastPainted: boolean = true;
     for (let i = 0; i < divChild.length; i++) {
+      var child = divChild[i];
+      child.classList.remove("gantt_selected");
+
       if (i % 2 == 0) {
         if (lastPainted) {
           lastPainted = false;
@@ -137,6 +135,15 @@ export class GanttComponent implements OnInit {
       }
     }
   }
+
+  // disapperClassSelected(){
+  //   let divParentGrid:HTMLCollection = document.getElementsByClassName("gantt_grid_data");
+  //   let divChildGrid = divParentGrid[0].children;
+  //   for (let i = 0; i < divChildGrid.length; i++) {
+  //     var child = divChildGrid[i];
+  //     child.classList.remove("gantt_selected");
+  //   }
+  // }
 
   paintTaskCellDashed() {
     let divCellTask: HTMLCollection =
