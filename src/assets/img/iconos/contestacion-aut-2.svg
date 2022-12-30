@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 50 50">
+  <g id="Layer_2" data-name="Layer 2" transform="translate(-0.163 142.903)">
+    <g id="person-done" transform="translate(0 -143)">
+      <rect id="Rectángulo_3137" data-name="Rectángulo 3137" width="50" height="50" transform="translate(0.163 0.097)" fill="#fff" opacity="0"/>
+      <path id="Trazado_6280" data-name="Trazado 6280" d="M27.78,4.519a2.081,2.081,0,0,0-2.934.187L20.955,9.18,19.644,7.7a2.086,2.086,0,0,0-3.121,2.768l2.892,3.246a2.072,2.072,0,0,0,3.1-.021l5.431-6.243a2.081,2.081,0,0,0-.166-2.934Z" transform="translate(17.291 4.325)" fill="#fff"/>
+      <path id="Trazado_6281" data-name="Trazado 6281" d="M14.323,19.647A8.323,8.323,0,1,0,6,11.323a8.323,8.323,0,0,0,8.323,8.323Z" transform="translate(6.485 3.243)" fill="#fff"/>
+      <path id="Trazado_6282" data-name="Trazado 6282" d="M30.051,29.647a2.081,2.081,0,0,0,2.081-2.081A14.566,14.566,0,1,0,3,27.566a2.081,2.081,0,0,0,2.081,2.081" transform="translate(3.243 14.051)" fill="#fff"/>
+    </g>
+  </g>
+</svg>

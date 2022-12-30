@@ -35,6 +35,74 @@
     padding: 20px;
     overflow: auto;
   }
+
+  &__stepAudi {
+    padding: 10px 5px 30px 5px;
+    overflow: auto;
+  }
+
+  &__subStep{
+    position: relative;
+    width: 95%;
+    display: flex;
+    align-items: flex-start;
+    background-color: #F7F5F5;
+    padding: 35px 14px;
+    box-sizing: border-box;
+    margin: 0 auto;
+    font-family: var(--main-font-regular);
+
+    .subStep-fechas{
+      width: 10%;
+      padding-left: 15px;
+      box-sizing: border-box;
+
+      .fecha-registro{
+        height: 26px;
+        margin-bottom: 25px;
+
+        div:first-of-type{
+          color: #43413B;
+          font-size: 11px;
+          line-height: 14px;
+        }
+        div:nth-of-type(2){
+          color: #9D9D9D;
+          font-size: 10px;
+          line-height: 10px;
+        }
+
+        &:last-of-type{
+          margin: 0;
+        }
+      }
+    }
+
+    .subStep-desc{
+      width: 80%;
+
+      .desc-subEtapa{
+        height: 26px;
+        margin-bottom: 25px;
+
+        div:first-of-type{
+          font-family: var(--main-font-demi);
+          color: #43413B;
+          font-size: 11px;
+          line-height: 14px;
+        }
+        div:nth-of-type(2){
+          color: #9D9D9D;
+          font-size: 9px;
+          line-height: 9px;
+        }
+
+        &:last-of-type{
+          margin: 0;
+        }
+      }
+    }
+  }
 }
 
 // Tracking de etapas
@@ -71,7 +139,7 @@
   justify-content: center;
 }
 
-.stepper-horizontal .step:nth-child(4) .step-circle {
+.stepper-horizontal.stepEtapa .step:nth-child(4) .step-circle {
   background-color: #ebeff2;
 }
 
@@ -142,10 +210,6 @@
   border-color: #71ca6b;
 }
 
-.stepper-horizontal .step.editing .step-circle .step-circle-middle img {
-  filter: brightness(100);
-}
-
 .stepper-horizontal .step.editing .step-title {
   color: #43413b;
   text-decoration: underline;
@@ -156,9 +220,6 @@
   margin-top: 10px;
   font-size: 1.4rem;
   font-family: var(--main-font-demi);
-}
-
-.stepper-horizontal .step .step-title {
   text-align: center;
   color: #b7b7b7;
 }
@@ -193,4 +254,229 @@
   border-color: #71ca6b;
   z-index: 3;
   width: calc(100% - 1rem);
+}
+
+// Tracking Etapas de la Auditoria
+
+.step-audi{
+  margin-bottom: 10px;
+}
+
+.stepper-horizontal.step-audi .step{
+  padding: 1.5rem;
+  width: 10%;
+}
+
+.stepper-horizontal.step-audi .step .step-circle {
+  width: 55px;
+  height: 55px;
+  border: 2px solid #D8D8D8;
+}
+
+.stepper-horizontal.step-audi .step .step-circle .step-circle-middle {
+  width: 47px;
+  height: 47px;
+  background: #D8D8D8;
+}
+
+.stepper-horizontal.step-audi .step .step-circle .step-circle-middle img {
+  width: 20.5px;
+}
+.stepper-horizontal.step-audi .step:nth-child(4) .step-circle .step-circle-middle img {
+  width: 30px;
+}
+
+// Done
+.stepper-horizontal.step-audi .step.done .step-circle {
+  border: 2px solid #71ca6b;
+}
+
+.stepper-horizontal.step-audi .step.done .step-circle .step-circle-middle {
+  background-color: #71ca6b;
+}
+
+// Editing
+.stepper-horizontal.step-audi .step.editing .step-circle {
+  border-color: #FCBF08;
+}
+
+.stepper-horizontal.step-audi .step:nth-child(4).editing .step-circle {
+  background-color: #FCBF08;
+}
+
+.stepper-horizontal.step-audi .step.editing .step-circle .step-circle-middle {
+  background: #FCBF08;
+  border-color: #FCBF08;
+}
+
+// Text
+.stepper-horizontal.step-audi .step .step-title {
+  margin-top: 7px;
+  font-size: 1.1rem;
+  color: #a0a0a0bb;
+  padding: 0 25px;
+  box-sizing: border-box;
+}
+
+.stepper-horizontal.step-audi .step.editing .step-title,
+.stepper-horizontal.step-audi .step.done .step-title {
+  color: #43413B;
+  text-decoration: none;
+}
+
+// Bars
+.stepper-horizontal.step-audi .step .step-bar-left,
+.stepper-horizontal.step-audi .step .step-bar-right {
+  position: absolute;
+  top: calc(2rem + 22px);
+  height: 6px;
+  background-color: #D8D8D8;
+  border: solid #D8D8D8;
+}
+
+.stepper-horizontal.step-audi .step .step-bar-left {
+  width: calc(83% - 1rem);
+  left: 60%;
+}
+
+.stepper-horizontal.step-audi .step .step-bar-right {
+  left: 60%;
+}
+
+.stepper-horizontal.step-audi .step.done .step-bar-right {
+  background-color: #71ca6b;
+  border-color: #71ca6b;
+  z-index: 3;
+  width: calc(100% - 1rem);
+}
+
+// Tracking SubEtapas de la Auditoria
+.stepper-vertical {
+  display: flex;
+  flex-direction: column;
+  width: 10%;
+  margin: 0 auto;
+}
+
+.stepper-vertical .step {
+  display: table-cell;
+  position: relative;
+  z-index: 2;
+  width: 65%;
+}
+
+.stepper-vertical .step .step-circle {
+  width: 30px;
+  height: 30px;
+  margin: 0 auto;
+  border-radius: 50%;
+  z-index: 2;
+  border: 1.5px solid #D8D8D8;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.stepper-vertical .step .step-circle .step-circle-middle {
+  width: 24px;
+  height: 24px;
+  margin: 0 auto;
+  border-radius: 50%;
+
+  background: #D8D8D8;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+}
+
+// .stepper-vertical .step .step-circle .step-circle-middle img {
+//   width: 10px;
+// }
+
+.stepper-vertical .step .step-circle .step-circle-middle .img-termino {
+  width: 10px;
+  height: 10px;
+  background-image: url(../img/iconos/ico-check-lg.svg);
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.stepper-vertical .step .step-circle .step-circle-middle .img-desahogo {
+  width: 10px;
+  height: 10px;
+  background-image: url(../img/iconos/desahogo-gris.svg);
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.stepper-vertical .step .step-circle .step-circle-middle .img-prorroga {
+  width: 10px;
+  height: 10px;
+  background-image: url(../img/iconos/prorroga-gris.svg);
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.stepper-vertical .step .step-circle .step-circle-middle .img-notificacion {
+  width: 10px;
+  height: 10px;
+  background-image: url(../img/iconos/notificacion-campana-gris.svg);
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.stepper-vertical .step .step-circle .step-circle-middle .img-citatorio {
+  width: 10px;
+  height: 13px;
+  background-image: url(../img/iconos/citatorio-hoja-gris.svg);
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.stepper-vertical .step.done .step-circle .step-circle-middle .img-termino {
+  background-image: url(../img/iconos/icono-paloma-blanca.svg);
+}
+.stepper-vertical .step.done .step-circle .step-circle-middle .img-desahogo {
+  background-image: url(../img/iconos/desahogo-blanco.svg);
+}
+.stepper-vertical .step.done .step-circle .step-circle-middle .img-prorroga {
+  background-image: url(../img/iconos/prorroga-blanco.svg);
+}
+.stepper-vertical .step.done .step-circle .step-circle-middle .img-notificacion {
+  background-image: url(../img/iconos/notificacion-campana-blanco.svg);
+}
+.stepper-vertical .step.done .step-circle .step-circle-middle .img-citatorio {
+  background-image: url(../img/iconos/citatorio-hoja-blanco.svg);
+}
+
+.step-bar-down{
+  width: 1px;
+  height: 20px;
+  background-color: #CECECE;
+  margin: 0 auto;
+}
+
+.stepper-vertical .step.done .step-circle {
+  border: 1.5px solid #71ca6b;
+}
+.stepper-vertical .step.done .step-circle .step-circle-middle {
+  background-color: #71ca6b;
+}
+
+.stepper-vertical .step:last-child .step-bar-down {
+  display: none;
+}
+
+.link-mas{
+  font-size: 11px;
+  font-family: var(--main-font-demi);
+  text-decoration: underline;
+  position: absolute;
+  bottom: 8px;
+  left: 12.3%;
 }

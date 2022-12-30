@@ -2,16 +2,17 @@
   <div class="container exmaple">
     <span (click)="cambioPAdm()">Administrador</span>
     <span (click)="cambioPCol()">Colaborador</span>
+    <span (click)="cambioPEje()">Ejecutivo</span>
   </div>
   <div class="container">
-    <div class="titulo-bloque u-mb-5" *ngIf="!colaborador">
+    <div class="titulo-bloque u-mb-5" *ngIf="colaborador">
       Últimas auditorias revisadas
     </div>
-    <div class="titulo-bloque u-mb-5" *ngIf="colaborador">Dashboard</div>
+    <div class="titulo-bloque u-mb-5" *ngIf="admin || ejecutivo">Dashboard</div>
   </div>
   <div class="container">
     <!-- Componente Cards -->
-    <div class="dashboardTop u-mb-20" *ngIf="!colaborador">
+    <div class="dashboardTop u-mb-20" *ngIf="colaborador">
       <app-cards
         [auditorias]="auditorias"
         (auditoriaSelected)="fichaTecnica($event)"
@@ -81,7 +82,7 @@
             <!-- , auditoria.id, true -->
             <div
               class="dataSheets__button dataFicha_footer"
-              *ngIf="colaborador"
+              *ngIf="admin"
             >
               <button
                 class="btn-auditoria"
@@ -95,9 +96,183 @@
       </div>
     </div>
 
+    <!-- Etapas de la auditoria (Tracking) -->
+    <section class="tracking" *ngIf="ejecutivo">
+      <div class="section">
+        <div class="section__title">Etapas de la Auditoría</div>
+        <div class="section__content">
+          <div class="tracking__content">
+            <div class="tracking__stepAudi">
+              <div class="stepper-horizontal step-audi" id="stepper2">
+                <div class="step editing">
+                  <div class="step-circle">
+                    <div class="step-circle-middle">
+                      <img src="assets/img/iconos/ico-file-earmark-check-fill.svg"/>
+                    </div>
+                  </div>
+                  <div class="step-title">Requerimiento de información</div>
+                  <div class="step-bar-left"></div>
+                  <div class="step-bar-right"></div>
+                </div>
+                <div class="step">
+                  <div class="step-circle">
+                    <div class="step-circle-middle">
+                      <img src="assets/img/iconos/acta-comparecencia.svg" />
+                    </div>
+                  </div>
+                  <div class="step-title">Acta de comparecencias</div>
+                  <div class="step-bar-left"></div>
+                  <div class="step-bar-right"></div>
+                </div>
+                <div class="step">
+                  <div class="step-circle">
+                    <div class="step-circle-middle">
+                      <img src="assets/img/iconos/oficio-observaciones.svg"/>
+                    </div>
+                  </div>
+                  <div class="step-title">Oficio de observaciones</div>
+                  <div class="step-bar-left"></div>
+                  <div class="step-bar-right"></div>
+                </div>
+                <div class="step">
+                  <div class="step-circle">
+                    <div class="step-circle-middle">
+                      <img src="assets/img/iconos/contestacion-aut.svg" />
+                    </div>
+                  </div>
+                  <div class="step-title">Contestación de la autoridad</div>
+                  <div class="step-bar-left"></div>
+                  <div class="step-bar-right"></div>
+                </div>
+                <div class="step">
+                  <div class="step-circle">
+                    <div class="step-circle-middle">
+                      <img src="assets/img/iconos/correccion-fiscal.svg" />
+                    </div>
+                  </div>
+                  <div class="step-title">Corrección fiscal</div>
+                  <div class="step-bar-left"></div>
+                  <div class="step-bar-right"></div>
+                </div>
+                <div class="step">
+                  <div class="step-circle">
+                    <div class="step-circle-middle">
+                      <img src="assets/img/iconos/determinacion-credito.svg" />
+                    </div>
+                  </div>
+                  <div class="step-title">Determinación de crédito</div>
+                  <div class="step-bar-left"></div>
+                  <div class="step-bar-right"></div>
+                </div>
+                <div class="step">
+                  <div class="step-circle">
+                    <div class="step-circle-middle">
+                      <img src="assets/img/iconos/fin-auditoria.svg" />
+                    </div>
+                  </div>
+                  <div class="step-title">Fin de la auditoria</div>
+                  <div class="step-bar-left"></div>
+                  <div class="step-bar-right"></div>
+                </div>
+              </div>
+              <div class="tracking__subStep">
+                <div class="subStep-fechas">
+                  <div class="fecha-registro">
+                    <div>04 Dic 2022</div>
+                    <div>17:00</div>
+                  </div>
+                  <div class="fecha-registro">
+                    <div>04 Dic 2022</div>
+                    <div>12:00</div>
+                  </div>
+                  <div class="fecha-registro">
+                    <div>01 Dic 2022</div>
+                    <div>10:30</div>
+                  </div>
+                  <div class="fecha-registro">
+                    <div>30 Nov 2022</div>
+                    <div>18:30</div>
+                  </div>
+                  <div class="fecha-registro">
+                    <div>24 Nov 2022</div>
+                    <div>10:00</div>
+                  </div>
+                </div>
+                <div class="stepper-vertical" id="stepper3">
+                  <div class="step done">
+                    <div class="step-circle">
+                      <div class="step-circle-middle">
+                        <div class="img-termino"></div>
+                      </div>
+                    </div>
+                    <div class="step-bar-down"></div>
+                  </div>
+                  <div class="step">
+                    <div class="step-circle">
+                      <div class="step-circle-middle">
+                        <div class="img-desahogo"></div>
+                      </div>
+                    </div>
+                    <div class="step-bar-down"></div>
+                  </div>
+                  <div class="step">
+                    <div class="step-circle">
+                      <div class="step-circle-middle">
+                        <div class="img-prorroga"></div>
+                      </div>
+                    </div>
+                    <div class="step-bar-down"></div>
+                  </div>
+                  <div class="step">
+                    <div class="step-circle">
+                      <div class="step-circle-middle">
+                        <div class="img-notificacion"></div>
+                      </div>
+                    </div>
+                    <div class="step-bar-down"></div>
+                  </div>
+                  <div class="step">
+                    <div class="step-circle">
+                      <div class="step-circle-middle">
+                        <div class="img-citatorio"></div>
+                      </div>
+                    </div>
+                    <div class="step-bar-down"></div>
+                  </div>
+                </div>
+                <div class="subStep-desc">
+                  <div class="desc-subEtapa">
+                    <div>Término</div>
+                    <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat</div>
+                  </div>
+                  <div class="desc-subEtapa">
+                    <div>Desahogo</div>
+                    <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>
+                  </div>
+                  <div class="desc-subEtapa">
+                    <div>Prórroga</div>
+                    <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>
+                  </div>
+                  <div class="desc-subEtapa">
+                    <div>Notificación</div>
+                    <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat</div>
+                  </div>
+                  <div class="desc-subEtapa">
+                    <div>Citatorio</div>
+                    <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
+                  </div>
+                </div>
+                <div class="link-mas">Ver todo</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <div class="dashboardBottom u-mb-20">
       <!-- Mis tareas pendientes -->
-      <div class="section pending section-padding" *ngIf="colaborador">
+      <div class="section pending section-padding" *ngIf="admin">
         <div class="section__title">
           <span>Mis tareas pendientes</span>
           <span>4</span>
@@ -158,7 +333,7 @@
         </div>
       </div>
       <!-- Mis tareas pendientes colaborador -->
-      <div class="section pending section-padding" *ngIf="!colaborador">
+      <div class="section pending section-padding" *ngIf="colaborador">
         <div class="section__title">
           <span>Mis tareas pendientes</span>
           <span>4</span>
@@ -211,7 +386,7 @@
         </div>
       </div>
       <!-- Calendario -->
-      <div class="section calendar section-padding">
+      <div class="section calendar section-padding" *ngIf="admin || colaborador">
         <div
           class="section__title"
           [routerLink]="['/calendario-auditoria/', 0]"
@@ -237,7 +412,7 @@
       <!--Requerimientos Administador-->
       <div
         class="dashboardBottom__columnOne section section-padding"
-        *ngIf="colaborador"
+        *ngIf="admin"
       >
         <div class="section__title border-bottom">
           Requerimiento de información
@@ -296,7 +471,7 @@
       <!--Requerimientos Colaborador-->
       <div
         class="dashboardBottom__columnOne section section-padding"
-        *ngIf="!colaborador"
+        *ngIf="colaborador"
       >
         <div class="section">
           <div class="section__title border-bottom">

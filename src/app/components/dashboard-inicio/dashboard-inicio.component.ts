@@ -1,17 +1,6 @@
-import {
-  AfterViewInit,
-  Component,
-  Input,
-  OnInit,
-  HostListener,
-} from "@angular/core";
+import { AfterViewInit, Component, Input, OnInit, HostListener } from "@angular/core";
 import { Auditoria } from "src/app/class/auditoriasClass";
-import {
-  AdminTarea,
-  Audito,
-  ColaboTarea,
-  TablaRequrimientos,
-} from "src/app/interface/custom";
+import { AdminTarea, Audito, ColaboTarea, TablaRequrimientos } from "src/app/interface/custom";
 import { Req } from "src/app/interface/req";
 import { Task } from "src/app/interface/task";
 import { AuditoriaService } from "src/app/services/auditorias.service";
@@ -23,7 +12,7 @@ import { TranslateService } from "@ngx-translate/core";
 import { PrimeNGConfig } from "primeng/api";
 import esLocale from "@fullcalendar/core/locales/es";
 import { CalendarOptions } from "@fullcalendar/angular";
-import { AppComponent } from "../../app.component";
+import { AppComponent } from '../../app.component';
 
 export interface IAuditoria {
   id?: number;
@@ -64,6 +53,8 @@ export class DashboardInicioComponent implements OnInit, AfterViewInit {
 
   value: number = 40;
   colaborador: boolean = true;
+  ejecutivo: boolean = false;
+  admin: boolean = false;
 
   typeModal: string = "";
   displayTabla: boolean = false;
@@ -89,12 +80,9 @@ export class DashboardInicioComponent implements OnInit, AfterViewInit {
     this.auditorias = auditoriaService.auditoriaDetalles;
   }
 
-  @HostListener("click", ["$event"])
-  onClick(event: any) {
-    if (
-      event.target.nodeName === "SPAN" &&
-      event.target.classList[2] == "p-monthpicker-month"
-    ) {
+  @HostListener('click', ['$event'])
+  onClick(event: any) {   
+    if (event.target.nodeName === 'SPAN' && event.target.classList[2] == 'p-monthpicker-month') {
       this.markDayStartAndFinish();
     }
   }
@@ -103,7 +91,7 @@ export class DashboardInicioComponent implements OnInit, AfterViewInit {
     this.fichaTecnica(this.auditorias[0]);
   }
 
-  ngAfterViewInit() {
+  ngAfterViewInit() {    
     setTimeout(() => {
       this.markDayStartAndFinish();
       this.appComponent.traslateCalendarDashBoardInit();
@@ -121,10 +109,19 @@ export class DashboardInicioComponent implements OnInit, AfterViewInit {
   }
 
   cambioPAdm() {
-    this.colaborador = true;
+    this.admin = true;
+    this.colaborador = false;
+    this.ejecutivo = false;
   }
   cambioPCol() {
+    this.colaborador = true;
+    this.ejecutivo = false;
+    this.admin = false;
+  }
+  cambioPEje() {
+    this.ejecutivo = true;
     this.colaborador = false;
+    this.admin = false;
   }
 
   markDayStartAndFinish() {
