@@ -155,16 +155,17 @@
   align-items: center;
   justify-content: center;
 
-  cursor: pointer;
 }
 
 .stepper-horizontal .step.done .step-circle {
   background-color: #fff;
   border: 2px solid #71ca6b;
+  cursor: pointer;
 }
 
 .stepper-horizontal .step.done .step-circle .step-circle-middle {
   background-color: #71ca6b;
+  cursor: pointer;
 }
 
 .stepper-horizontal .step:nth-child(1) .step-circle .step-circle-middle img {
@@ -203,11 +204,13 @@
 
 .stepper-horizontal .step:nth-child(4).editing .step-circle {
   background-color: #71ca6b;
+  cursor: pointer;
 }
 
 .stepper-horizontal .step.editing .step-circle .step-circle-middle {
   background: #71ca6b;
   border-color: #71ca6b;
+  cursor: pointer;
 }
 
 .stepper-horizontal .step.editing .step-title {
@@ -390,7 +393,7 @@
   align-items: center;
   justify-content: center;
 
-  cursor: pointer;
+ 
 }
 
 // .stepper-vertical .step .step-circle .step-circle-middle img {
@@ -466,6 +469,7 @@
 }
 .stepper-vertical .step.done .step-circle .step-circle-middle {
   background-color: #71ca6b;
+  cursor: pointer;
 }
 
 .stepper-vertical .step:last-child .step-bar-down {

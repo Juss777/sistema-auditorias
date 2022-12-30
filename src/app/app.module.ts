@@ -50,6 +50,7 @@ import { RequerimientoComponent } from './components/requerimiento/requerimiento
 import { FormDocumentComponent } from './components/requerimiento/form-document/form-document.component';
 import { GraficasGeneralesComponent } from './components/graficas-generales/graficas-generales.component';
 import { GanttComponent } from './components/gantt/gantt.component';
+import { TrackingComponent } from './components/tracking/tracking.component';
 
 @NgModule({
   declarations: [
@@ -76,7 +77,8 @@ import { GanttComponent } from './components/gantt/gantt.component';
     RequerimientoComponent,
     FormDocumentComponent,
     GraficasGeneralesComponent,
-    GanttComponent
+    GanttComponent,
+    TrackingComponent
   ],
   imports: [
     BrowserModule,
