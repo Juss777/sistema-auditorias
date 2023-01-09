@@ -139,6 +139,7 @@ export class FormAuditoriaComponent implements OnInit, AfterViewInit {
     siglas: [""],
     nombre: [""],
     monto: ["", Validators.required],
+    responsable: [""],
 
     representanteLegal: this.formBuilder.array([
       this.formBuilder.control(""),

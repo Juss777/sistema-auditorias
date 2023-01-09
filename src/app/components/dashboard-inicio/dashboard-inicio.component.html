@@ -85,6 +85,12 @@
               *ngIf="admin"
             >
               <button
+                class="btn-auditoria u-mr-30"
+                routerLink="/graficasGenerales"
+              >
+                Línea del tiempo
+              </button>
+              <button
                 class="btn-auditoria"
                 [routerLink]="['/detalle-auditoria', auditoriaSelected.id]"
               >

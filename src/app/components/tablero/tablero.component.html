@@ -410,10 +410,10 @@
             </div>
           </div>
         </div>
-        <!--Empresas de GS-->
+        <!--Sociedades-->
         <div class="filters__box">
           <div class="filters__box-header" (click)="showContent(4)">
-            <span>Empresas de GS</span>
+            <span>Sociedades</span>
             <img
               alt="icono flecha abajo"
               [src]="
@@ -428,23 +428,20 @@
             class="filters__box-content"
             *ngIf="content && idMenuFilter == 4"
           >
-            <div class="filters__box-flex no-display">
-              <div class="styleInput">
-                <div
-                  class="field-checkbox filters__box-flex"
-                  *ngFor="let option of filterEmpresas"
-                >
-                  <p-checkbox
-                    name="group1"
-                    [(ngModel)]="checkboxSelected"
-                    value="{{ option.name }}"
-                  >
-                    ></p-checkbox
-                  >
-                  <label for="{{ option.label }}">{{ option.label }}</label>
-                </div>
-              </div>
+            <div class="p-field styleInput">
+              <input
+                id="sociedades"
+                type="text"
+                pInputText
+                [(ngModel)]="selectSociedad"
+              />
             </div>
+            <button
+              class="btn btn-primary btn-filtro"
+              (click)="agregarFiltro(1)"
+            >
+              Agregar
+            </button>
           </div>
         </div>
         <!--Autoridad-->
@@ -502,23 +499,20 @@
             class="filters__box-content"
             *ngIf="content && idMenuFilter == 6"
           >
-            <div class="filters__box-flex no-display">
-              <div class="styleInput">
-                <div
-                  class="field-checkbox filters__box-flex"
-                  *ngFor="let option of filterAdministrador"
-                >
-                  <p-checkbox
-                    name="group1"
-                    [(ngModel)]="checkboxSelected"
-                    value="{{ option.name }}"
-                  >
-                    ></p-checkbox
-                  >
-                  <label for="{{ option.label }}">{{ option.label }}</label>
-                </div>
-              </div>
+            <div class="p-field styleInput">
+              <input
+                id="adminAudit"
+                type="text"
+                pInputText
+                [(ngModel)]="selectAdmin"
+              />
             </div>
+            <button
+              class="btn btn-primary btn-filtro"
+              (click)="agregarFiltro(2)"
+            >
+              Agregar
+            </button>
           </div>
         </div>
         <!--Etapa-->
@@ -614,23 +608,20 @@
             class="filters__box-content"
             *ngIf="content && idMenuFilter == 10"
           >
-            <div class="filters__box-flex no-display">
-              <div class="styleInput">
-                <div
-                  class="field-checkbox filters__box-flex"
-                  *ngFor="let option of filterRLegal"
-                >
-                  <p-checkbox
-                    name="group1"
-                    [(ngModel)]="checkboxSelected"
-                    value="{{ option.name }}"
-                  >
-                    ></p-checkbox
-                  >
-                  <label for="{{ option.label }}">{{ option.label }}</label>
-                </div>
-              </div>
+            <div class="p-field styleInput">
+              <input
+                id="representante"
+                type="text"
+                pInputText
+                [(ngModel)]="selectRepresentante"
+              />
             </div>
+            <button
+              class="btn btn-primary btn-filtro"
+              (click)="agregarFiltro(3)"
+            >
+              Agregar
+            </button>
           </div>
         </div>
       </div>

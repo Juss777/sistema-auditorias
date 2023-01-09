@@ -23,6 +23,9 @@ export class TableroComponent implements OnInit {
   inputDate = true;
 
   checkboxSelected: any[] = [];
+  selectSociedad!: string;
+  selectAdmin!: string;
+  selectRepresentante!: string;
   selectedValue!: string;
   constructor() {}
 
@@ -58,6 +61,11 @@ export class TableroComponent implements OnInit {
       id: 3,
       label: "$5000-100,000 MDP",
       name: "$5000-100,000 MDP",
+    },
+    {
+      id: 4,
+      label: "Mayor a 100,000 MDP",
+      name: "Mayor a 100,000 MDP",
     },
   ];
 
@@ -294,5 +302,23 @@ export class TableroComponent implements OnInit {
   activarInputDate() {
     console.log("activarInputDate");
     this.inputDate = !this.inputDate;
+  }
+
+  agregarFiltro(num: number){
+    switch(num) { 
+      case 1: { 
+        this.checkboxSelected.push(this.selectSociedad);
+         break; 
+      } 
+      case 2: { 
+        this.checkboxSelected.push(this.selectAdmin);
+         break; 
+      } 
+      default: { 
+        this.checkboxSelected.push(this.selectRepresentante);
+         break; 
+      } 
+    } 
+    this.display = false;
   }
 }
